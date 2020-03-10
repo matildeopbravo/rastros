@@ -1,7 +1,7 @@
 #ifndef CAMADA_DADOS_H
 #define CAMADA_DADOS_H
 
-// Protótipos dos "tipos" e "estruturas"
+// Definição de tipos e estruturas
 
 typedef enum {VAZIO, BRANCA, PRETA} CASA;
 
@@ -25,17 +25,14 @@ typedef struct {
 	int jogador_atual;
 } ESTADO;
 
-// Protótipos das funções correspondentes a camada de dados.
-
-void coloca_branca(ESTADO * estado );
+// Protótipos das funções correspondentes à camada de dados.
 
 ESTADO * inicializar_estado();
 
-obter_jogador_atual(ESTADO *estado);
+int obter_jogador_atual(ESTADO *estado);
 
-obter_numero_de_jogadas(ESTADO *estado);CASA;
+int obter_numero_de_jogadas(ESTADO *estado);
 
-obter_estado_casa(ESTADO *e, COORDENADA c);
-
+CASA obter_estado_casa(ESTADO *e, COORDENADA c);
 
 #endif

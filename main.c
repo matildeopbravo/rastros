@@ -1,9 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "dados.h"
 #include "interface.h"
 #include "logica.h"
-
-ESTADO * inicializar_estado();
 
 int main () {
         ESTADO *  estado;
