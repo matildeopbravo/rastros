@@ -5,8 +5,7 @@
 
 ESTADO *inicializar_estado(){
 
-	ESTADO * novo;
-    novo =  malloc (sizeof(ESTADO));
+    ESTADO * novo =  malloc (sizeof(ESTADO));
 
     *novo = (ESTADO){
         .tab = {{VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO},
@@ -26,7 +25,6 @@ ESTADO *inicializar_estado(){
 }   
 
 void coloca_branca(ESTADO * estado ) {
-	COORDENADA jogada ;
-    jogada =  estado -> ultima_jogada; // equivalente a jogada = *estado.ultima_jogada
+	COORDENADA jogada =  estado -> ultima_jogada; 
 	estado -> tab[jogada.linha][jogada.coluna] = BRANCA;
 }
