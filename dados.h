@@ -31,11 +31,11 @@ void coloca_branca(ESTADO * estado );
 
 ESTADO * inicializar_estado();
 
-int obter_jogador_atual(ESTADO *estado);
+obter_jogador_atual(ESTADO *estado);
 
-int obter_numero_de_jogadas(ESTADO *estado);CASA;
+obter_numero_de_jogadas(ESTADO *estado);CASA;
 
-CASA obter_estado_casa(ESTADO *e, COORDENADA c);
+obter_estado_casa(ESTADO *e, COORDENADA c);
 
 
 #endif
