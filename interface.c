@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "dados.h"
+#define BUF_SIZE 1024
 
 int interpretador(ESTADO *e) {
     char linha[BUF_SIZE];
@@ -14,7 +15,9 @@ int interpretador(ESTADO *e) {
      mostrar_tabuleiro(e);
     }
     
-    return 1;}
+    return 1;
+    }
+
 
 
 void mostrar_tabuleiro(ESTADO * estado) {
