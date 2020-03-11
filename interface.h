@@ -3,5 +3,7 @@
 
 void mostrar_tabuleiro(ESTADO * estado);
 
+int interpretador(ESTADO *e);
+
 
 #endif
