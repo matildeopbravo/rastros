@@ -5,6 +5,5 @@ rastros: main.o dados.o interface.o logica.o
 	$(CC) $(CFLAGS) -o rastros main.o dados.o interface.o logica.o
 
 clean:
-	@rm *.o
-	@rm rastros
+	(git rm -f *.o && git rm -f rastros) || (rm *.o && rm rastros)
 
