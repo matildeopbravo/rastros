@@ -16,7 +16,7 @@ ESTADO *inicializar_estado(){
                {VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO},
                {VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO},
                {VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO}},
-		.ultima_jogada ={4,3},
+		.ultima_jogada ={3,4},
         .jogadas = {},  
         .num_jogadas = 0,
         .jogador_atual = 0};
