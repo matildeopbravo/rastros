@@ -5,24 +5,11 @@
 
 ESTADO *inicializar_estado(){
 
-    ESTADO * novo =  malloc (sizeof(ESTADO));
-
-    *novo = (ESTADO){
-        .tab = {{VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO},
-               {VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO},
-               {VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO},
-               {VAZIO, VAZIO, VAZIO, VAZIO, BRANCA, VAZIO, VAZIO, VAZIO},
-               {VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO},
-               {VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO},
-               {VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO},
-               {VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO, VAZIO}},
-		.ultima_jogada ={3,4},
-        .jogadas = {},  
-        .num_jogadas = 0,
-        .jogador_atual = 0};
-
-	return (novo);	
-
+    // calloc coloca todos os 'pedacos' de memória a 0, no caso do tabuleiro, 0 = VAZIO. Só resta colocar a peca Branca.
+    ESTADO *e = calloc(1, sizeof(ESTADO)); 
+    e->jogador_atual = 1;
+    e->tab[3][4] = BRANCA;
+	return e ;	
 }   
 
 int obter_jogador_atual (ESTADO *estado) {

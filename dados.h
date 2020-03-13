@@ -3,7 +3,7 @@
 
 // Definição de tipos e estruturas
 
-typedef enum {VAZIO, BRANCA, PRETA} CASA;
+typedef enum {VAZIO = 0, BRANCA = 1, PRETA = 2} CASA;
 
 typedef struct {
 	int linha;
