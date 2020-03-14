@@ -9,11 +9,13 @@ void mostrar_tabuleiro(ESTADO * estado) {
 
     for ( i = 0 ; i < 8 ; i++ ) {
         for ( j = 0 ; j < 8 ; j++ ) {
-            if ( i == 0 && j == 7 ) putchar ((*estado).tab[i][j] == VAZIO ? '2' : '#') ;
-            else if  ( i == 7 && j == 0 ) putchar ((*estado).tab[i][j] == VAZIO ? '1' : '#') ;
+            if ( i == 0 && j == 7 ) 
+                putchar ((obter_estado_casa(estado, (COORDENADA){i,j})) == VAZIO ? '2' : '#') ;
+            else if  ( i == 7 && j == 0 ) 
+                putchar ((obter_estado_casa(estado, (COORDENADA){i,j})) == VAZIO ? '1' : '#') ;
             else {
-                if ((*estado).tab[i][j] == VAZIO) putchar ('.') ;
-                else if ((*estado).tab[i][j] == BRANCA ) putchar ('*') ;
+                if ((obter_estado_casa(estado, (COORDENADA){i,j})) == VAZIO) putchar ('.') ;
+                else if ((obter_estado_casa(estado, (COORDENADA){i,j})) == BRANCA ) putchar ('*') ;
                 else putchar ('#') ;
             }
             
@@ -39,6 +41,3 @@ int interpretador(ESTADO *e) {
     
     return 1;
     }
-
-
-
