@@ -2,75 +2,66 @@
 #include <stdlib.h>
 #include "dados.h"
 
-int evalida ( ESTADO *e , COORDENADA c1 , COORDENADA c2 ) {
-    int l1 , l2 , col1 , col2 , r = 0;
 
-    l1 = c1.linha ;
-    col1 = c1.coluna ;
+int evalida ( ESTADO *e , COORDENADA jog_ant , COORDENADA jog_efet) {
 
-    l2 = c2.linha ;
-    col2 = c2.coluna ;
+    int r = 0;
 
-    if ( obter_estado_casa ( e , c2 ) == VAZIO )
-        if ( abs( col1 - col2 ) <= 1 && abs( l1 - l2 ) <= 1 )
-            r = 1;
-
+    if ( obter_estado_casa ( e , jog_efet ) == VAZIO 
+        && abs( jog_ant.coluna - jog_efet.coluna ) <= 1 
+        && abs( jog_ant.linha - jog_efet.linha ) <= 1 ) {
+               r = 1;
+        }
     return r;
-
 }
 
-int fim ( ESTADO *e , int l , int c , int j ) {
+int fim ( ESTADO *e , int l , int c, int j ) {
 
-    if ( (*e).ultima_jogada.linha == 7 && (*e).ultima_jogada.coluna == 0 ) return 2 ;
-
-    if ( (*e).ultima_jogada.linha == 0 && (*e).ultima_jogada.coluna == 7 ) return 1 ;
-
+    if ( l == 7 && c == 0 ) return 2 ;
+    if ( l == 0 && c == 7 ) return 1 ;
+ 
     if ( l == 0 ) {
-        if ( c == 0 )
-            return j ;
-        if ( (*e).tab[l][c-1]   == 2 
-          && (*e).tab[l][c+1]   == 2 
-          && (*e).tab[l+1][c-1] == 2 
-          && (*e).tab[l+1][c]   == 2 
-          && (*e).tab[l+1][c+1] == 2 )
+        if ( e->tab[l][c-1]   == 2 
+          && e->tab[l][c+1]   == 2 
+          && e->tab[l+1][c-1] == 2 
+          && e->tab[l+1][c]   == 2 
+          && e->tab[l+1][c+1] == 2 )
             return j ;
     }
 
     if ( l == 7 ) {
-        if ( c == 7 )
-            return j ;
-        if ( (*e).tab[l][c-1]   == 2 
-          && (*e).tab[l][c+1]   == 2 
-          && (*e).tab[l-1][c-1] == 2 
-          && (*e).tab[l-1][c]   == 2 
-          && (*e).tab[l-1][c+1] == 2 )
+        if ( e->tab[l][c-1]   == 2 
+          && e->tab[l][c+1]   == 2 
+          && e->tab[l-1][c-1] == 2 
+          && e->tab[l-1][c]   == 2 
+          && e->tab[l-1][c+1] == 2 )
             return j ;
     }
 
     if ( c == 0 ) 
-        if ( (*e).tab[l-1][c]   == 2 
-          && (*e).tab[l+1][c]   == 2 
-          && (*e).tab[l+1][c+1] == 2 
-          && (*e).tab[l][c+1]   == 2 
-          && (*e).tab[l-1][c+1] == 2 )
+        if ( e->tab[l-1][c]   == 2 
+          && e->tab[l+1][c]   == 2 
+          && e->tab[l+1][c+1] == 2 
+          && e->tab[l][c+1]   == 2 
+          && e->tab[l-1][c+1] == 2 )
             return j ;
 
     if ( c == 7 ) 
-        if ( (*e).tab[l-1][c]   == 2 
-          && (*e).tab[l+1][c]   == 2 
-          && (*e).tab[l+1][c-1] == 2 
-          && (*e).tab[l][c-1]   == 2 
-          && (*e).tab[l-1][c-1] == 2 )
+        if ( e->tab[l-1][c]   == 2 
+          && e->tab[l+1][c]   == 2 
+          && e->tab[l+1][c-1] == 2 
+          && e->tab[l][c-1]   == 2 
+          && e->tab[l-1][c-1] == 2 )
             return j ;
 
-    if ( (*e).tab[l-1][c]   == 2 
-      && (*e).tab[l+1][c]   == 2 
-      && (*e).tab[l+1][c-1] == 2 
-      && (*e).tab[l][c-1]   == 2 
-      && (*e).tab[l-1][c-1] == 2 
-      && (*e).tab[l+1][c+1] == 2 
-      && (*e).tab[l][c+1]   == 2 
-      && (*e).tab[l-1][c+1] == 2 )
+    if ( e->tab[l-1][c]   == 2 
+      && e->tab[l+1][c]   == 2 
+      && e->tab[l+1][c-1] == 2 
+      && e->tab[l][c-1]   == 2 
+      && e->tab[l-1][c-1] == 2 
+      && e->tab[l+1][c+1] == 2 
+      && e->tab[l][c+1]   == 2 
+      && e->tab[l-1][c+1] == 2 )
         return j ;
 
     return 0 ;
@@ -109,13 +100,11 @@ int jogar( ESTADO *e , COORDENADA jog_efet ) {
         
         }
         
-        
         int t = fim ( e , prox_lin , prox_col , obter_jogador_atual(e));
-        if (t)
-            printf ( "Parabéns jogador %d, é o vencedor deste jogo!!!! \n" ,t) ;
-            
-        return 1;
+        if (t) 
+            printf ( "Parabéns jogador %d, é o vencedor deste jogo!!!! \n" ,t) ;    
         
+        return 1;   
     }
 
     else {

@@ -29,11 +29,9 @@ void mostrar_tabuleiro(ESTADO * estado) {
 int interpretador(ESTADO *e) {
     char linha[BUF_SIZE];
     char col[2], lin[2];
-   // int * fim;
- //   *fim = 0;
     int t =0;
 
-    while( !t) {
+    while(!t) {
         if (fgets(linha, BUF_SIZE, stdin) == NULL)
             return 0;
         
