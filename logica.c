@@ -76,47 +76,46 @@ int fim ( ESTADO *e , int l , int c , int j ) {
     return 0 ;
 
 }
+int n = 0;
+int jogar( ESTADO *e , COORDENADA jog_efet ) {
+ 
 
-int jogar( ESTADO *e , COORDENADA c ) {
-    int l1 , l2 , col1 , col2 , t , nj , jog ;
-    COORDENADA uj ;
+    COORDENADA jog_ant = e->ultima_jogada;
+    int lin_atual =  jog_ant.linha ;
+    int col_atual = jog_ant.coluna ;
 
-    uj = e -> ultima_jogada ;
+    int prox_lin = jog_efet.linha ;
+    int prox_col = jog_efet.coluna ;
+    int num_jogadas = obter_numero_de_jogadas(e);
+  
 
-    l1 = uj.linha ;
-    col1 = uj.coluna ;
-
-    l2 = c.linha ;
-    col2 = c.coluna ;
-
-    jog = e -> jogador_atual ;
-
-    if ( evalida ( e , uj , c ) ) {
+    if (evalida ( e , jog_ant , jog_efet ) ) {
         
-        printf("jogar %d %d\n", col2 , l2 );
+        printf("jogar %d %d\n", prox_col , prox_lin);
         
-        (*e).tab[l1][col1] = PRETA ;
-        (*e).tab[l2][col2] = BRANCA ;
-        (*e).ultima_jogada = c ;
-
-        nj = e -> num_jogadas ;
+        e->tab[lin_atual][col_atual] = PRETA ;
+        e->tab[prox_lin][prox_col] = BRANCA ;
+        e-> ultima_jogada = jog_efet ;
+      
 
         if ( obter_jogador_atual (e) == 1 ) {
-            (*e).jogadas[nj].jogador1 = c ;
+            e->jogadas[num_jogadas].jogador1 = jog_efet ;
             e -> jogador_atual = 2 ;
         }
         else {
-            (*e).jogadas[nj-1].jogador2 = c ;
+            e->jogadas[num_jogadas -1].jogador2 = jog_efet ;
             e -> jogador_atual = 1 ;
-            nj++ ;
+            e->num_jogadas++;
+        
         }
-            
-        t = fim ( e , l2 , col2 , jog ) ;
-
-        if ( t != 0 )
-            printf ( "Parabéns jogador %d, é o vencedor deste jogo!!!! \n" , t ) ;
+        
+        
+        int t = fim ( e , prox_lin , prox_col , obter_jogador_atual(e));
+        if (t)
+            printf ( "Parabéns jogador %d, é o vencedor deste jogo!!!! \n" ,t) ;
             
         return 1;
+        
     }
 
     else {
