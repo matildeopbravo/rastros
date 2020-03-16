@@ -11,6 +11,8 @@ ESTADO *inicializar_estado(){
     e->num_jogadas = 0;
     e->ultima_jogada = (COORDENADA) {3,4};
     e->tab[3][4] = BRANCA;
+    e->tab[0][7] = DOIS;
+    e->tab[7][0] = UM;
 	return e ;	
 }   
 

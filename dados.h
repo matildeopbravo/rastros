@@ -3,7 +3,9 @@
 
 // Definição de tipos e estruturas
 
-typedef enum {VAZIO = 0, BRANCA = 1, PRETA = 2} CASA;
+typedef enum {UM = '1', DOIS = '2', VAZIO = 0, BRANCA = '*', PRETA = '#'} CASA;
+
+typedef enum {GRAVAR =1 , LER = 2, QUIT = 3, JOG = 4} COMANDO;
 
 typedef struct {
 	int linha;

@@ -105,9 +105,7 @@ int jogar( ESTADO *e , COORDENADA jog_efet ) {
         int t = verifica_fim ( e , prox_lin , prox_col , obter_jogador_atual(e));
         // Condição para verificar se há um ganhador
         if (t) return 2;
-            
-    
-         
+                 
         if ( obter_jogador_atual (e) == 1 ) {
             e->jogadas[num_jogadas].jogador1 = jog_efet ;
             e -> jogador_atual = 2 ;
@@ -119,7 +117,6 @@ int jogar( ESTADO *e , COORDENADA jog_efet ) {
  
         }
         
-          
     return 1;   
     }
 
