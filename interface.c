@@ -34,26 +34,26 @@ void prompt (ESTADO * estado){
 
 }
 
-void mostrar_tabuleiro(ESTADO * estado) {
+void mostrar_tabuleiro(ESTADO * estado, FILE * stream) {
     int i , j ;
 
     for ( i = 0 ; i < 8 ; i++ ) {
-        printf ("%d ", 8 - i);         // Printa o número de cada linha na tela
+        fprintf (stream, "%d", 8 - i);         // Printa o número de cada linha na tela
         for ( j = 0 ; j < 8 ; j++ ) {
             if ( i == 0 && j == 7 ) 
-                putchar ((obter_estado_casa(estado, (COORDENADA){i,j})) == VAZIO ? '2' : '#') ;
+                fputc(((obter_estado_casa(estado, (COORDENADA){i,j})) == VAZIO ? '2' : '#'),stream) ;
             else if  ( i == 7 && j == 0 ) 
-                putchar ((obter_estado_casa(estado, (COORDENADA){i,j})) == VAZIO ? '1' : '#') ;
+                fputc(((obter_estado_casa(estado, (COORDENADA){i,j})) == VAZIO ? '1' : '#'),stream) ;
             else {
-                if ((obter_estado_casa(estado, (COORDENADA){i,j})) == VAZIO) putchar ('.') ;
-                else if ((obter_estado_casa(estado, (COORDENADA){i,j})) == BRANCA ) putchar ('*') ;
-                else putchar ('#') ;
+                if ((obter_estado_casa(estado, (COORDENADA){i,j})) == VAZIO) fputc('.',stream) ;
+                else if((obter_estado_casa(estado, (COORDENADA){i,j})) == BRANCA) fputc('*',stream)  ;
+                else fputc ('#',stream) ;
             }
             
             }
-        printf ("\n") ;
+        fputc('\n',stream) ;
     }
- printf ("  abcdefgh\n");    
+ fprintf (stream," abcdefgh\n");    
         
 }
 
@@ -62,19 +62,43 @@ int interpretador(ESTADO *e) {
     char col[2], lin[2];
     int t =0;
 
-    mostrar_tabuleiro(e);
+    mostrar_tabuleiro(e,stdout);
 
     while(t != 2) { // enquanto t for 0;
         prompt (e);
-        if (fgets(linha, BUF_SIZE, stdin) == NULL)
+        if ((fgets(linha, BUF_SIZE, stdin) == NULL) || (!strcmp(linha,"Q\n")))
             return 0;
-        
-        if (strlen(linha) == 3 && sscanf(linha, "%[a-h]%[1-8]", col, lin) == 2) {
+
+        else if (strlen(linha) == 3 && sscanf(linha, "%[a-h]%[1-8]", col, lin) == 2) {
+
             COORDENADA coord = { '8' - *lin , *col -'a'};
             t = jogar ( e , coord );
-            mostrar_tabuleiro(e);
+            mostrar_tabuleiro(e,stdout);
+            
         }
-  
+        else {
+            char * token = strtok(linha," ");
+            FILE * file_pointer = NULL;
+
+            if(!strcmp(token,"gr")) {
+                
+                if((token = strtok(NULL, "\n")) && (*token != ' ')) {
+                         file_pointer = fopen(token,"w+");
+                         mostrar_tabuleiro(e,file_pointer);
+                }
+            }
+
+            else if(!strcmp(token,"ler")) {
+                if((token = strtok(NULL, "\n")) && (*token != ' ')) {
+                    file_pointer = fopen(token,"r");
+                }
+         
+            }
+            else return 0;
+            
+            fclose(file_pointer);
+          
+        }
     }
 
     printarcampeao(e); 

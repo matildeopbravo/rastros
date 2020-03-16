@@ -3,7 +3,7 @@
 #include "dados.h"
 
 
-int evalida ( ESTADO *e , COORDENADA jog_ant , COORDENADA jog_efet) {
+int verifica_valida ( ESTADO *e , COORDENADA jog_ant , COORDENADA jog_efet) {
 
     int r = 0;
 
@@ -15,7 +15,7 @@ int evalida ( ESTADO *e , COORDENADA jog_ant , COORDENADA jog_efet) {
     return r;
 }
 
-int fim ( ESTADO *e , int l , int c, int j ) {
+int verifica_fim ( ESTADO *e , int l , int c, int j ) {
 
     if ( l == 7 && c == 0 ) return 1 ;
     if ( l == 0 && c == 7 ) return 2 ;
@@ -94,7 +94,7 @@ int jogar( ESTADO *e , COORDENADA jog_efet ) {
     int num_jogadas = obter_numero_de_jogadas(e);
   
 
-    if (evalida ( e , jog_ant , jog_efet ) ) {
+    if (verifica_valida ( e , jog_ant , jog_efet ) ) {
         
         printf("jogar %d %d\n", prox_col , prox_lin);
         
@@ -102,11 +102,10 @@ int jogar( ESTADO *e , COORDENADA jog_efet ) {
         e->tab[prox_lin][prox_col] = BRANCA ;
         e-> ultima_jogada = jog_efet ;
 
-        int t = fim ( e , prox_lin , prox_col , obter_jogador_atual(e));
+        int t = verifica_fim ( e , prox_lin , prox_col , obter_jogador_atual(e));
         // Condição para verificar se há um ganhador
-        if (t){ 
-        return 2;
-            }
+        if (t) return 2;
+            
     
          
         if ( obter_jogador_atual (e) == 1 ) {

@@ -16,15 +16,13 @@ ESTADO *inicializar_estado(){
 
 int obter_jogador_atual (ESTADO *estado) {
 
-    int j ;
-    j = estado -> jogador_atual ;
+    int j = estado -> jogador_atual ;
     return j ;
 }
 
 int obter_numero_de_jogadas (ESTADO *estado) {
 
-    int n;
-    n = estado -> num_jogadas ;
+    int n = estado -> num_jogadas ;
     return n ;
 }
 
