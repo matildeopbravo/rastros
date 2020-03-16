@@ -7,7 +7,9 @@ int verifica_valida ( ESTADO *e , COORDENADA jog_ant , COORDENADA jog_efet) {
 
     int r = 0;
 
-    if ( obter_estado_casa ( e , jog_efet ) == VAZIO 
+    if (((obter_estado_casa ( e , jog_efet ) == VAZIO)
+        || (obter_estado_casa (e, jog_efet ) == UM)
+        || (obter_estado_casa (e, jog_efet ) == DOIS))  
         && abs( jog_ant.coluna - jog_efet.coluna ) <= 1 
         && abs( jog_ant.linha - jog_efet.linha ) <= 1 ) {
                r = 1;
