@@ -2,14 +2,21 @@
 #include <stdlib.h>
 #include "dados.h"
 
-
 int verifica_valida ( ESTADO *e , COORDENADA jog_ant , COORDENADA jog_efet) {
 
     int r = 0;
 
+    int linhajogefet = jog_efet.linha;
+    int linhajogant = jog_ant.linha;
+    int coljogefet = jog_efet.coluna;
+    int coljogant = jog_ant.coluna;
+
     if ((obter_estado_casa ( e , jog_efet ) != PRETA)  
         && abs( jog_ant.coluna - jog_efet.coluna ) <= 1 
-        && abs( jog_ant.linha - jog_efet.linha ) <= 1 ) {
+        && abs( jog_ant.linha - jog_efet.linha ) <= 1 
+        && ((coljogant != coljogefet)
+        || (linhajogant != linhajogefet)))
+        {
                r = 1;
         }
     return r;
@@ -97,16 +104,17 @@ int jogar( ESTADO *e , COORDENADA jog_efet ) {
     if (verifica_valida ( e , jog_ant , jog_efet ) ) {
         
         printf("jogar %d %d\n", prox_col , prox_lin);
-        
-        e->tab[lin_atual][col_atual] = PRETA ;
-        e->tab[prox_lin][prox_col] = BRANCA ;
-        e-> ultima_jogada = jog_efet ;
+
+        altera_casa(e,(COORDENADA){lin_atual, col_atual}, PRETA);
+        altera_casa(e,(COORDENADA){prox_lin,prox_col}, BRANCA);
+        altera_ultima_jogada(e,jog_efet);
 
         int t = verifica_fim ( e , prox_lin , prox_col , obter_jogador_atual(e));
         // Condição para verificar se há um ganhador
         if (t) return 2;
                  
         if ( obter_jogador_atual (e) == 1 ) {
+            
             e->jogadas[num_jogadas].jogador1 = jog_efet ;
             e -> jogador_atual = 2 ;
             e->num_jogadas++;
