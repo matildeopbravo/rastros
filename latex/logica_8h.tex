@@ -1,0 +1,73 @@
+\hypertarget{logica_8h}{}\section{src/logica.h File Reference}
+\label{logica_8h}\index{src/logica.\+h@{src/logica.\+h}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{logica_8h_a53472e75f056ceb02b5387193021838a}{jogar} (\hyperlink{structESTADO}{E\+S\+T\+A\+DO} $\ast$estado, \hyperlink{structCOORDENADA}{C\+O\+O\+R\+D\+E\+N\+A\+DA} c)
+\begin{DoxyCompactList}\small\item\em Executa a jogada em si. Se a jogada não for válida, a função retorna 0. \end{DoxyCompactList}\item 
+int \hyperlink{logica_8h_aaa3fd9c526e661b27383a69e5a5277f0}{verifica\+\_\+fim} (\hyperlink{structESTADO}{E\+S\+T\+A\+DO} $\ast$e, int l, int c, int j)
+\begin{DoxyCompactList}\small\item\em Esta função verifica se o jogo chegou ao fim. Verifica as condições de fim de jogo,isto é, \char`\"{}jogador atual nas extremidades 1 ou 2, ou jogador atual
+encurralado\char`\"{}. Retornando 0 caso não se verifique nenhum. \end{DoxyCompactList}\item 
+int \hyperlink{logica_8h_ad3f8800d9f979e4b250c2603de7dcadd}{verifica\+\_\+valida} (\hyperlink{structESTADO}{E\+S\+T\+A\+DO} $\ast$e, \hyperlink{structCOORDENADA}{C\+O\+O\+R\+D\+E\+N\+A\+DA} jog\+\_\+ant, \hyperlink{structCOORDENADA}{C\+O\+O\+R\+D\+E\+N\+A\+DA} jog\+\_\+efet)
+\begin{DoxyCompactList}\small\item\em Esta função verifica se a jogada que se pretende efetuar é válida. Para a jogada ser válida, é necessário que a casa para onde esta se pretende efetuar esteja\+: 1) Vazia (sendo do tipo V\+A\+Z\+IO, UM ou D\+O\+IS); 2) A uma distância de 1 na horizontal, vertical, ou diagonal da casa atual. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{logica_8h_a53472e75f056ceb02b5387193021838a}\label{logica_8h_a53472e75f056ceb02b5387193021838a}} 
+\index{logica.\+h@{logica.\+h}!jogar@{jogar}}
+\index{jogar@{jogar}!logica.\+h@{logica.\+h}}
+\subsubsection{\texorpdfstring{jogar()}{jogar()}}
+{\footnotesize\ttfamily int jogar (\begin{DoxyParamCaption}\item[{\hyperlink{structESTADO}{E\+S\+T\+A\+DO} $\ast$}]{estado,  }\item[{\hyperlink{structCOORDENADA}{C\+O\+O\+R\+D\+E\+N\+A\+DA}}]{c }\end{DoxyParamCaption})}
+
+
+
+Executa a jogada em si. Se a jogada não for válida, a função retorna 0. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em estado} & Apontador para o estado \\
+\hline
+{\em c} & Coordenada da jogada efetuada \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{logica_8h_aaa3fd9c526e661b27383a69e5a5277f0}\label{logica_8h_aaa3fd9c526e661b27383a69e5a5277f0}} 
+\index{logica.\+h@{logica.\+h}!verifica\+\_\+fim@{verifica\+\_\+fim}}
+\index{verifica\+\_\+fim@{verifica\+\_\+fim}!logica.\+h@{logica.\+h}}
+\subsubsection{\texorpdfstring{verifica\+\_\+fim()}{verifica\_fim()}}
+{\footnotesize\ttfamily int verifica\+\_\+fim (\begin{DoxyParamCaption}\item[{\hyperlink{structESTADO}{E\+S\+T\+A\+DO} $\ast$}]{e,  }\item[{int}]{l,  }\item[{int}]{c,  }\item[{int}]{j }\end{DoxyParamCaption})}
+
+
+
+Esta função verifica se o jogo chegou ao fim. Verifica as condições de fim de jogo,isto é, \char`\"{}jogador atual nas extremidades 1 ou 2, ou jogador atual
+encurralado\char`\"{}. Retornando 0 caso não se verifique nenhum. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & Apontador para o estado \\
+\hline
+{\em l} & linha da jogada efetuada \\
+\hline
+{\em l} & coluna da jogada efetuada \\
+\hline
+{\em j} & jogador atual \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{logica_8h_ad3f8800d9f979e4b250c2603de7dcadd}\label{logica_8h_ad3f8800d9f979e4b250c2603de7dcadd}} 
+\index{logica.\+h@{logica.\+h}!verifica\+\_\+valida@{verifica\+\_\+valida}}
+\index{verifica\+\_\+valida@{verifica\+\_\+valida}!logica.\+h@{logica.\+h}}
+\subsubsection{\texorpdfstring{verifica\+\_\+valida()}{verifica\_valida()}}
+{\footnotesize\ttfamily int verifica\+\_\+valida (\begin{DoxyParamCaption}\item[{\hyperlink{structESTADO}{E\+S\+T\+A\+DO} $\ast$}]{e,  }\item[{\hyperlink{structCOORDENADA}{C\+O\+O\+R\+D\+E\+N\+A\+DA}}]{jog\+\_\+ant,  }\item[{\hyperlink{structCOORDENADA}{C\+O\+O\+R\+D\+E\+N\+A\+DA}}]{jog\+\_\+efet }\end{DoxyParamCaption})}
+
+
+
+Esta função verifica se a jogada que se pretende efetuar é válida. Para a jogada ser válida, é necessário que a casa para onde esta se pretende efetuar esteja\+: 1) Vazia (sendo do tipo V\+A\+Z\+IO, UM ou D\+O\+IS); 2) A uma distância de 1 na horizontal, vertical, ou diagonal da casa atual. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em estado} & Apontador para o estado \\
+\hline
+{\em c} & Coordenada da jogada anterior \\
+\hline
+{\em c} & Coordenada da jogada efetuada \\
+\hline
+\end{DoxyParams}

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "dados.h"
+
 ESTADO * inicializar_estado(){
 
     // calloc coloca todos os 'pedacos' de memória a 0, no caso do tabuleiro, 0 = VAZIO. Só resta colocar a peca Branca.
@@ -50,7 +51,7 @@ void altera_num_jogadas(ESTADO *e,int numerojogadas){
 
 void altera_numero_comandos(ESTADO *e,int numerocomandos){
 
-       e->num_comandos = numerocomandos;
+    e->num_comandos = numerocomandos;
 }
 
 CASA obter_estado_casa(ESTADO *e, COORDENADA c) {
@@ -66,7 +67,7 @@ CASA obter_estado_casa(ESTADO *e, COORDENADA c) {
 
 void altera_casa(ESTADO * e, COORDENADA c, CASA casa) {
 
-        e->tab[c.linha][c.coluna] = casa;
+    e->tab[c.linha][c.coluna] = casa;
 }
 
 
@@ -91,15 +92,6 @@ char * obtem_jogada(ESTADO * e, int indice_jogada, int jogador) {
     return(str);
 
 }
-/*
-int obtem_ultimo_jog (ESTADO * e) {
-    COORDENADA uj = e->ultima_jogada;
-    COORDENADA jog1 = obtem_coordenada(e,obter_numero_de_jogadas(e)- 1,1);
-    if(jog1.coluna == uj.coluna && jog1.linha == uj.linha) return 1;
-    else return 2;
-    
-}
-*/
 
 void acrescenta_jogada(ESTADO *e , int index, JOGADA jog) {
     e->jogadas[index]=jog;

@@ -5,6 +5,9 @@
 #define BUF_SIZE 1024
 
 void printarcampeao(ESTADO * estado){
+
+    int campeao;
+    int jogadoratual;
     
     COORDENADA ultimajogada;  
     ultimajogada  = (estado -> ultima_jogada);
@@ -13,10 +16,14 @@ void printarcampeao(ESTADO * estado){
     linha = ultimajogada.linha;
     coluna = ultimajogada.coluna;
 
-    if ( linha == 7 && coluna == 0 ) 
-         printf ( "Parabéns jogador 1, é o vencedor deste jogo!!!! \n");
-    else
-        printf ( "Parabéns jogador 2, é o vencedor deste jogo!!!! \n");
+    jogadoratual = estado -> jogador_atual;
+
+    campeao = verifica_fim (estado,linha,coluna,jogadoratual);
+
+    if (campeao==1) 
+        printf ("Parabéns jogador 1, é o vencedor deste jogo!!!! \n");
+    else 
+        printf ("Parabéns jogador 2, é o vencedor deste jogo!!!! \n");
 }
 
 //Mostra o prompt no ecrã como também o insere num ficheiro quando feito o comando "gr"
