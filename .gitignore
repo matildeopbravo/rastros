@@ -2,3 +2,5 @@ src/rastros
 *.o
 *.swp
 *.swo
+./html
+./latex
