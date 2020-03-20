@@ -1,12 +1,14 @@
 CFLAGS = -Wall -Wextra -O2
 CC = gcc
 
-run: rastros
-	 ./rastros
+run: ex
+	 src/rastros
 
-rastros: main.o dados.o interface.o logica.o
-	$(CC) $(CFLAGS) -o rastros main.o dados.o interface.o logica.o
+ex: src/main.o src/dados.o src/interface.o src/logica.o
+	$(CC) $(CFLAGS) -o src/rastros src/main.o src/dados.o src/interface.o src/logica.o
 
 clean:
-	(git rm -f *.o && git rm -f rastros) || (rm *.o && rm rastros)
+	@rm -f src/*.o
+	@rm -f src/rastros
 
+       	#o -f faz com que a instrucao nunca dê erro e por isso execute sempre a primeira. o @ não dá print da instrucao executada
