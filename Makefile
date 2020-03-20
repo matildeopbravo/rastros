@@ -1,11 +1,11 @@
 CFLAGS = -Wall -Wextra -O2
 CC = gcc
 
-run: ex
-	 src/rastros
-
 ex: src/main.o src/dados.o src/interface.o src/logica.o
 	$(CC) $(CFLAGS) -o src/rastros src/main.o src/dados.o src/interface.o src/logica.o
+
+run: ex
+	src/rastros
 
 clean:
 	@rm -f src/*.o
