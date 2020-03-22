@@ -36,7 +36,6 @@ int obter_numero_de_jogadas (ESTADO *estado) {
     return n ;
 }
 
-
 int obter_numero_de_comandos(ESTADO *estado){
 
     int numerocomandos = estado -> num_comandos;
@@ -89,7 +88,6 @@ COORDENADA obtem_coordenada(ESTADO * e,int indice_jogada, int jogador) {
 
 char * obtem_jogada(ESTADO * e, int indice_jogada, int jogador) {
 
-   
     char * str = (char*)malloc(3 * sizeof(char));
     COORDENADA c = obtem_coordenada(e,indice_jogada,jogador);
     sprintf(str,"%c%d",c.coluna + 'a',8 - c.linha);

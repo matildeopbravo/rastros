@@ -17,7 +17,7 @@ int verifica_valida ( ESTADO *e , COORDENADA jog_ant , COORDENADA jog_efet) {
         && ((coljogant != coljogefet)
         || (linhajogant != linhajogefet)))
         {
-               r = 1;
+        r = 1;
         }
     return r;
 }
@@ -91,7 +91,6 @@ int verifica_fim ( ESTADO *e , int l , int c, int j ) {
 int n = 0;
 int jogar( ESTADO *e , COORDENADA jog_efet ) {
  
-
     COORDENADA jog_ant = e->ultima_jogada;
     int lin_atual =  jog_ant.linha ;
     int col_atual = jog_ant.coluna ;

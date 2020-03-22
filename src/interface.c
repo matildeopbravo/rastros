@@ -109,6 +109,7 @@ COMANDO verifica_comando( char * token ){
         return 0;
     }
 
+//Auxiliar da função "ler" que lê a parte correspondente ao tabuleiro
 void ler_tabuleiro(ESTADO * e, FILE * fp) {
     char ponto;
     for(int i = 0; i < 8 ; i++) {
@@ -124,6 +125,7 @@ void ler_tabuleiro(ESTADO * e, FILE * fp) {
     }   
 }
 
+//Auxiliar da função "ler" que lê a parte correspondente as jogadas
 void ler_jogadas(ESTADO * e, FILE * fp) {
     char col1 ,col2;
     int lin1,lin2;
@@ -145,8 +147,7 @@ void ler_jogadas(ESTADO * e, FILE * fp) {
         
         acrescenta_jogada(e,i,jog);
     }
-   
-        
+           
 }
    
 void ler (ESTADO * e, char * nome_ficheiro) {
@@ -171,7 +172,6 @@ int interpretador(ESTADO *e) {
     char col[2], lin[2];
     int t =0;
   
-
     mostrar_tabuleiro(e,stdout);
 
     while(t != 2) { 
