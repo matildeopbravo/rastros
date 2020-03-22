@@ -90,16 +90,14 @@ void gravar (ESTADO * e, char * nome_ficheiro) {
 //Auxiliar da função "ler" que lê a parte correspondente ao prompt
 void ler_prompt(ESTADO *e, FILE * fp){
 
- int numerojogadas;
- int jogadoratual;
- int numerocomandos;
- char str1[7],str2[8], str3[10];
-            while(fgetc(fp) != 'P');
-            fscanf(fp, "%s %d %s %d %s %d" ,str1,&jogadoratual,str2,&numerojogadas,str3,&numerocomandos);
+ int numerojogadas, jogadoratual, numerocomandos;
 
-            altera_jogador_atual(e,jogadoratual);
-            altera_num_jogadas(e,numerojogadas);
-            altera_numero_comandos(e,numerocomandos);
+        while(fgetc(fp) != 'P');
+        fscanf(fp, "%*s %d %*s %d %*s %d" ,&jogadoratual,&numerojogadas,&numerocomandos);
+
+        altera_jogador_atual(e,jogadoratual);
+        altera_num_jogadas(e,numerojogadas);
+        altera_numero_comandos(e,numerocomandos);
 
 }
 
@@ -132,7 +130,6 @@ void ler_jogadas(ESTADO * e, FILE * fp) {
     JOGADA jog;
     int num_jogadas = obter_numero_de_jogadas(e); 
     int ultimo_jog = obter_ultimo_jogador(e);
-    printf("ultimo jogador é %d\n", ultimo_jog);
 
     for(int i = 0; i < num_jogadas; i++) {
         while(fgetc(fp) != ':');
