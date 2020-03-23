@@ -184,6 +184,10 @@ int interpretador(ESTADO *e) {
             incrementa_comandos(e);
             
         }
+	    else if (!strcmp(linha,"movs\n")) {
+	        mostrar_jogadas(e,stdout);
+
+       	}
         else {
             char * token = strtok(linha," ");
             COMANDO cmd = verifica_comando(token);
