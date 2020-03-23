@@ -186,7 +186,7 @@ int interpretador(ESTADO *e) {
         }
 	    else if (!strcmp(linha,"movs\n")) {
 	        mostrar_jogadas(e,stdout);
-
+            incrementa_comandos(e); 
        	}
         else {
             char * token = strtok(linha," ");
