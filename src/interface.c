@@ -6,19 +6,13 @@
 
 void printarcampeao(ESTADO * estado){
 
-    int campeao;
-    int jogadoratual;
-    
-    COORDENADA ultimajogada;  
-    ultimajogada  = (estado -> ultima_jogada);
-    int linha,coluna;
+    int campeao,jogadoratual;
+    COORDENADA ultimajogada; 
 
-    linha = ultimajogada.linha;
-    coluna = ultimajogada.coluna;
-
+    ultimajogada  = estado -> ultima_jogada;
     jogadoratual = estado -> jogador_atual;
 
-    campeao = verifica_fim (estado,linha,coluna,jogadoratual);
+    campeao = verifica_fim (estado,ultimajogada.linha,ultimajogada.coluna,jogadoratual);
 
     if (campeao==1) 
         printf ("Parabéns jogador 1, é o vencedor deste jogo!!!! \n");
@@ -181,12 +175,10 @@ int interpretador(ESTADO *e) {
             COORDENADA coord = { '8' - *lin , *col -'a'};
             t = jogar ( e , coord );
             mostrar_tabuleiro(e,stdout);
-            incrementa_comandos(e);
             
         }
 	    else if (!strcmp(linha,"movs\n")) {
 	        mostrar_jogadas(e,stdout);
-            incrementa_comandos(e); 
        	}
         else {
             char * token = strtok(linha," ");
@@ -195,18 +187,18 @@ int interpretador(ESTADO *e) {
             if(cmd && (token = strtok(NULL, "\n"))) {
                if(cmd == GRAVAR){ 
                     gravar(e,token);
-                    incrementa_comandos(e);
                }
                if(cmd == LER) {
                     ler(e,token);
-                    incrementa_comandos(e);
                 }
             }    
             else {
             printf ("Comando inválido\n");
+            t = 3;
             }
              
         }
+        if(t != 3) incrementa_comandos(e);
     }
     printarcampeao(e); 
     
