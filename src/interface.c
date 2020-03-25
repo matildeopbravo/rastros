@@ -63,7 +63,10 @@ void mostrar_jogadas (ESTADO * e,  FILE * stream) {
         fprintf (stream,"\n");
 
     for(int i = 0; i <  obter_numero_de_jogadas(e); i++) {
-        fprintf(stream,"0%d: ", i + 1);
+        if ( i < 9 ) 
+            fprintf(stream,"0%d: ", i + 1);
+        else 
+            fprintf(stream,"%d: ", i + 1);
 
         if(i == (obter_numero_de_jogadas(e) - 1) && obter_ultimo_jogador(e) == 1)
             fprintf(stream,"%s\n",obtem_jogada(e,i,1));
