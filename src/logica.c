@@ -102,7 +102,7 @@ int jogar( ESTADO *e , COORDENADA jog_efet ) {
 
     if (verifica_valida ( e , jog_ant , jog_efet ) ) {
         
-        printf("jogar %d %d\n", prox_col , prox_lin);
+        printf("\njogar %d %d\n\n", prox_col , prox_lin);
 
         altera_casa(e,(COORDENADA){lin_atual, col_atual}, PRETA);
         altera_casa(e,(COORDENADA){prox_lin,prox_col}, BRANCA);
