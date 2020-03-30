@@ -20,8 +20,10 @@ typedef enum {/** Casa da vitória para o jogador 1 */
 typedef enum {/** Correspondente ao comando gr. Função de salvar a partida*/
 	          GRAVAR =1 ,/** Correspondente ao comando lr. Função de carregar partida salva*/ 
 			  LER = 2,/** Correspondente ao comando Q.Função de sair da partida*/
-			  QUIT = 3, /** Correspondente ao comando jog. Função de mostrar as jogadas*/
-			  JOG = 4} COMANDO;
+			  QUIT = 3, /** Correspondente ao comando jog. Função de mostrar a melhor jogada*/
+			  JOG = 4,/** Correspondente a mvoltar a jogar a aprtida a partir de uma jogada anterior*/
+			  POS = 5
+			  } COMANDO;
 /**
 \brief Tipo de informação para o tipo COORDENADA
 */
@@ -139,5 +141,8 @@ void altera_numero_comandos(ESTADO *e,int numerocomandos);
 @param e Apontador para o estado
 */
 void incrementa_comandos(ESTADO *e);
+
+
+COORDENADA obtem_coordenada(ESTADO * e,int indice_jogada, int jogador);
 
 #endif
