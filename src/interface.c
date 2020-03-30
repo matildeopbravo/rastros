@@ -117,7 +117,11 @@ void ler_tabuleiro(ESTADO * e, FILE * fp) {
         }
     }
 
-    jogadoratual = jognvazias % 2 ;
+    if ( jognvazias % 2 == 0 ) 
+        jogadoratual = 2 ;
+    else 
+        jogadoratual = 1 ;
+        
     altera_jogador_atual(e,jogadoratual);
     numerojogadas = ( jognvazias - 2 ) / 2 ;
     altera_num_jogadas(e,numerojogadas);
