@@ -82,8 +82,7 @@ void gravar (ESTADO * e, char * nome_ficheiro) {
     if ( fp = fopen(nome_ficheiro,"w+") ) {
         mostrar_tabuleiro(e,fp);
         fputc('\n',fp);
-        mostrar_jogadas(e,fp);
-        fputc('\n',fp);            
+        mostrar_jogadas(e,fp);         
     }
 
     else printf("Erro a gravar ficheiro");
@@ -121,7 +120,7 @@ void ler_tabuleiro(ESTADO * e, FILE * fp) {
         jogadoratual = 2 ;
     else 
         jogadoratual = 1 ;
-        
+
     altera_jogador_atual(e,jogadoratual);
     numerojogadas = ( jognvazias - 2 ) / 2 ;
     altera_num_jogadas(e,numerojogadas);
