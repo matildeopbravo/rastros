@@ -114,16 +114,17 @@ int jogar( ESTADO *e , COORDENADA jog_efet ) {
                  
         if ( obter_jogador_atual (e) == 1 ) {
             
-            e->jogadas[num_jogadas].jogador1 = jog_efet ;
+            e->jogadas[num_jogadas-1].jogador1 = jog_efet ;
             e -> jogador_atual = 2 ;
-            e->num_jogadas++;
+            
         }
         else {
-            e->jogadas[num_jogadas -1].jogador2 = jog_efet ;
+            e->jogadas[num_jogadas-1].jogador2 = jog_efet ;
             e -> jogador_atual = 1 ;
+            e->num_jogadas++;
  
         }
-        
+
     return 1;   
     }
 

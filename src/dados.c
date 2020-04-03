@@ -11,7 +11,7 @@ ESTADO * inicializar_estado(){
     *e =(ESTADO) {
  
     .jogador_atual = 1,
-    .num_jogadas = 0,
+    .num_jogadas = 1,
     .ultima_jogada = (COORDENADA) {3,4},
     .tab[3][4] = BRANCA,
     .tab[0][7] = DOIS,

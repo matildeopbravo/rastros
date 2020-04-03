@@ -58,6 +58,8 @@ typedef struct {
 	int jogador_atual;
 	/** O número de comandos efetuados */
 	int num_comandos;
+	/** Irá controlar se um novo cenário se iniciou ou não*/
+	int regulapos;
 } ESTADO;
 
 /**

@@ -21,13 +21,27 @@ void printarcampeao(ESTADO * estado){
 }
 
 void atualizapos(ESTADO *e){
-      e->jogador_atual = 1;//Padrão. O começo de uma nova jogada é sempre do jogador 1.
-      if (e-> num_jogadas != 0)
-        e->ultima_jogada = obtem_coordenada(e,(e->num_jogadas - 1),2);// Ex: Ao fazer "pos 1"(chamemos 1 de variável "n") queremos voltar para o momento 
-      else (e->ultima_jogada = (COORDENADA) {3,4});                // em que havia passado apenas uma rodada, isto é, cada jogador
-      altera_tabuleiro(e);                                          // fizera apenas 1 movimento cada. Por tanto, apenas o índice 0 do
-      apagajogpost(e);//Apaga Jogada Posteriores                    // Array jogadas estará preenchido. Logo temos de fazer (n - 1) para acessá-lo.
-      mostrar_tabuleiro(e,stdout);}                               
+       CASA tabcopia[8][8];
+ 
+       e->jogador_atual = 1;//Padrão. O começo de uma nova jogada é sempre do jogador 1.
+    
+      for (int i= 0; i < 9 - 1; i++){
+          for (int j = 0; j < 9-1; j++){
+              tabcopia[i][j] = e->tab[i][j];
+          }
+      }
+      e->num_jogadas = e->num_jogadas - 2;
+      altera_tabuleiro(e,0);
+      mostrar_tabuleiro(e,stdout);
+ 
+      for (int i= 0; i < 9-1; i++){
+          for (int j = 0; j < 9-1; j++){
+              e->tab[i][j] = tabcopia[i][j];
+          }
+      }
+    
+      
+      }                               
 
 
 // Apaga (coloca a zero) jogadas posteriores da posição dada no comando pos.
@@ -37,34 +51,40 @@ void atualizapos(ESTADO *e){
 // ao fazer "pos 2", é como se após a segunda rodada tudo fosse anulado, como se voltássemos no tempo.
 // Por tanto, seria ligeiramente mal estar as antigas jogadas armazenadas ainda no array.
 void apagajogpost(ESTADO *e){
+              // em que havia passado apenas uma rodada, isto é, cada jogador
+        
     JOGADA jog;
     int i;
     // O início que queremos zerar é a partir do "novo num_jogadas".
     // Novo porque a primeira coisa que foi alterada após o comando pos, foi o num_jogadas
     // para estar de acordo com o inserido.
     // A ideia aqui é acrescentar jogadas a 0.
-    for ( i = e->num_jogadas ; i <= 31 ; i++ ) { 
+    for ( i = e->num_jogadas + 1 ; i <= 31 ; i++ ) { 
         jog = (JOGADA) {.jogador1 = (COORDENADA){0,0}, .jogador2 =(COORDENADA){0,0}};
         acrescenta_jogada(e,i,jog);
     }
 }
-// O tabuleiro a ser mostrado agora será diferente, e como a função que mostra o tabuleiro
-// se baseia no array tab para funcionar, é necessário então atualizar o array tab.
-// A ideia por trás dessa atualização é apenas colocar como "VAZIO" as jogadas que estão após
-// o que foi inserido no comando pos (o num_jogadas atualizado). Sendo essa função anterior (no código)
-// em relação a função que elimina as jogadas posteriores, ainda tenho acesso a elas para localizar
-// suas coordenadas e colocar tal casa do tab a VAZIO (como se nunca tivessem sido feitas).
-void altera_tabuleiro(ESTADO *e){
+
+void altera_tabuleiro(ESTADO *e,int regulador){
+
+     COORDENADA guardaultima = e->ultima_jogada;
+
+      if (e-> num_jogadas != -1)
+      e->ultima_jogada = obtem_coordenada(e,(e->num_jogadas),2);// Ex: Ao fazer "pos 1"(chamemos 1 de variável "n") queremos voltar para o momento 
+      else (e->ultima_jogada = (COORDENADA) {3,4});
    
-    for (int h = e ->num_jogadas; h <= 31; h++){
+    for (int h = e ->num_jogadas + 1; h <= 31; h++){
         COORDENADA coord1 = obtem_coordenada(e,h,1);
         COORDENADA coord2 = obtem_coordenada(e,h,2);
       e->tab[coord1.linha][coord1.coluna] = VAZIO;
       e->tab[coord2.linha][coord2.coluna] = VAZIO;
-    }
+    }   
     COORDENADA coord3 = e->ultima_jogada;
-      e->tab[coord3.linha][coord3.coluna] = BRANCA;
+    e->tab[coord3.linha][coord3.coluna] = BRANCA;
 
+    if (regulador == 0){
+    e->ultima_jogada = guardaultima;
+    }
 }
        
 //Mostra o prompt no ecrã como também o insere num ficheiro quando feito o comando "gr"
@@ -106,17 +126,21 @@ void mostrar_tabuleiro(ESTADO * estado, FILE * stream) {
 }
 //Mostra o histórico de jogadas no ecrã como também os insere num ficheiro após efetuado ocomando "gr"
 void mostrar_jogadas (ESTADO * e,  FILE * stream) {
-
+    int numjogadas;
     if ( stream == stdout )
         fprintf (stream,"\n");
 
-    for(int i = 0; i <  obter_numero_de_jogadas(e); i++) {
+    if (e->jogador_atual == 1)
+    numjogadas = e->num_jogadas  - 1;
+    else numjogadas = e->num_jogadas;
+
+    for(int i = 0; i < numjogadas; i++) {
         if ( i < 9 ) 
             fprintf(stream,"0%d: ", i + 1);
         else 
             fprintf(stream,"%d: ", i + 1);
 
-        if(i == (obter_numero_de_jogadas(e) - 1) && obter_ultimo_jogador(e) == 1)
+        if(i == (numjogadas -1) && obter_ultimo_jogador(e) == 1)
             fprintf(stream,"%s\n",obtem_jogada(e,i,1));
         else
             fprintf(stream,"%s %s\n",obtem_jogada(e,i,1), obtem_jogada(e,i,2));
@@ -172,8 +196,8 @@ void ler_tabuleiro(ESTADO * e, FILE * fp) {
         jogadoratual = 1 ;
 
     altera_jogador_atual(e,jogadoratual);
-    numerojogadas = ( jognvazias - 2 ) / 2 ;
-    altera_num_jogadas(e,numerojogadas);
+    numerojogadas = ((jognvazias - 2 ) / 2) ;
+    altera_num_jogadas(e,numerojogadas );
 }
 
 //Auxiliar da função "ler" que lê a parte correspondente as jogadas
@@ -208,6 +232,8 @@ void ler (ESTADO * e, char * nome_ficheiro) {
             ler_tabuleiro(e,fp);
             ler_jogadas(e,fp);
             mostrar_tabuleiro(e,stdout);
+            if (e->jogador_atual == 1)
+            e->num_jogadas = e->num_jogadas + 1;
             mostrar_jogadas(e,stdout);
            
         }
@@ -218,6 +244,9 @@ void ler (ESTADO * e, char * nome_ficheiro) {
 
 
 int interpretador(ESTADO *e) {
+    int numjogadaspos;
+    int guarda_num_jogadas;
+
     char linha[BUF_SIZE];
     char col[2], lin[2];
     int t =0;
@@ -225,20 +254,42 @@ int interpretador(ESTADO *e) {
     mostrar_tabuleiro(e,stdout);
 
     while(t != 2) { 
-        mostrar_prompt (e,stdout);
+
+        if (e->regulapos==1){
+            e->num_jogadas = numjogadaspos;
+            mostrar_prompt (e,stdout);
+            e->num_jogadas = guarda_num_jogadas;
+        }
+        else
+            mostrar_prompt (e,stdout); 
+
         if ((fgets(linha, BUF_SIZE, stdin) == NULL) || (!strcmp(linha,"Q\n")))
             return 0;
 
         else if (strlen(linha) == 3 && sscanf(linha, "%[a-h]%[1-8]", col, lin) == 2) {
 
                 COORDENADA coord = { '8' - *lin , *col -'a'};
+                if (e->regulapos == 1){
+                    e->num_jogadas = numjogadaspos - 2;
+                     altera_tabuleiro(e,1);
+                    apagajogpost(e); 
+                    e->num_jogadas = numjogadaspos ;                                          // fizera apenas 1 movimento cada. Por tanto, apenas o índice 0 do 
+                }
+                else{};
                 t = jogar ( e , coord );
+                if (t!=0){
                 mostrar_tabuleiro(e,stdout);
-            
+                e->regulapos = 0;
+                }
              }
-	         else if (!strcmp(linha,"movs\n"))
+	         else if (!strcmp(linha,"movs\n")){
+                  if (e->regulapos == 1){
+                     e->num_jogadas = numjogadaspos;
 	                 mostrar_jogadas(e,stdout);
-
+                     e->num_jogadas = guarda_num_jogadas;
+                  }
+                  else  mostrar_jogadas(e,stdout);
+                  }
                   else {
                         char * token = strtok(linha," ");
                         COMANDO cmd = verifica_comando(token);
@@ -252,8 +303,12 @@ int interpretador(ESTADO *e) {
                               
                             int i = atoi(token);  
                             if((cmd == POS)&& (i>=0)&&(i< e->num_jogadas)){
-                                e->num_jogadas = atoi(token);// transforma a string que representa o número inserido, no próprio valor do inteiro
-                                atualizapos(e);//Atualiza o estado do jog após inserido o comando pos
+                                guarda_num_jogadas = e->num_jogadas;
+                                e->num_jogadas = atoi(token) + 1;// transforma a string que representa o número inserido, no próprio valor do inteiro
+                                numjogadaspos = e->num_jogadas;
+                                atualizapos(e);
+                                e->regulapos = 1;
+                                e->num_jogadas = guarda_num_jogadas;                           
                             }
                         }   
 
