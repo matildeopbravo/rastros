@@ -20,6 +20,56 @@ void printarcampeao(ESTADO * estado){
         printf ("Parabéns jogador 2, é o vencedor deste jogo!!!! \n");
 }
 
+//Mostra o tabuleiro no ecrã como também o insere num ficheiro quando efetuado o comando "gr"
+void mostrar_tabuleiro(ESTADO * estado, FILE * stream) {
+    int i , j ;
+
+    for ( i = 0 ; i < 8 ; i++ ) {
+        
+        if ( stream == stdout )
+            fprintf (stream, "%d ", 8 - i);    // Printa o número de cada linha na tela
+
+        for ( j = 0 ; j < 8 ; j++ ) {
+            CASA cs =(obter_estado_casa(estado, (COORDENADA){i,j}));
+            if (cs == VAZIO) 
+                fputc('.',stream) ;
+            else
+                 fputc(cs,stream);
+        }       
+        fputc('\n',stream) ;
+    }
+
+    if ( stream == stdout )
+        fprintf (stream,"  abcdefgh\n");    
+        
+}
+
+// Aqui, o argumento "regulador" irá regular e controlar se essa função está a ser chamada na situação de uma "Invocação de fachada"
+// ou se já é mesmo para alterar os conteúdos de verdade. Caso o regulador for 0, então ainda não é para alterar tudo,
+// nomeadamente a última jogada, que é uma componente da struct principal, deverá ser ainda a do jogo atual e nao da do jogo 
+// inserido no comando pos. Por isso é guardado seu valor para no final de tudo, repor ele caso tal função tiver sido invocada num momento em que
+// não era o conteúdo propriamente em si que iria ser mudado e apenas trabalhava  para funções que mostram na tela.
+void altera_tabuleiro(ESTADO *e,int regulador){
+
+     COORDENADA guardaultima = e->ultima_jogada;
+
+      if (e-> num_jogadas != -1)
+      e->ultima_jogada = obtem_coordenada(e,(e->num_jogadas),2);
+      else (e->ultima_jogada = (COORDENADA) {3,4});
+   
+    for (int h = e ->num_jogadas + 1; h <= 31; h++){
+        COORDENADA coord1 = obtem_coordenada(e,h,1);
+        COORDENADA coord2 = obtem_coordenada(e,h,2);
+      e->tab[coord1.linha][coord1.coluna] = VAZIO;
+      e->tab[coord2.linha][coord2.coluna] = VAZIO;
+    }   
+    COORDENADA coord3 = e->ultima_jogada;
+    e->tab[coord3.linha][coord3.coluna] = BRANCA;
+
+    if (regulador == 0){
+    e->ultima_jogada = guardaultima;
+    }
+}
 void atualizapos(ESTADO *e){
       CASA tabcopia[8][8];
       e->jogador_atual = 1;//Padrão. O começo de uma nova jogada é sempre do jogador 1.
@@ -51,33 +101,6 @@ void apagajogpost(ESTADO *e){
     }
 }
 
-// Aqui, o argumento "regulador" irá regular e controlar se essa função está a ser chamada na situação de uma "Invocação de fachada"
-// ou se já é mesmo para alterar os conteúdos de verdade. Caso o regulador for 0, então ainda não é para alterar tudo,
-// nomeadamente a última jogada, que é uma componente da struct principal, deverá ser ainda a do jogo atual e nao da do jogo 
-// inserido no comando pos. Por isso é guardado seu valor para no final de tudo, repor ele caso tal função tiver sido invocada num momento em que
-// não era o conteúdo propriamente em si que iria ser mudado e apenas trabalhava  para funções que mostram na tela.
-void altera_tabuleiro(ESTADO *e,int regulador){
-
-     COORDENADA guardaultima = e->ultima_jogada;
-
-      if (e-> num_jogadas != -1)
-      e->ultima_jogada = obtem_coordenada(e,(e->num_jogadas),2);
-      else (e->ultima_jogada = (COORDENADA) {3,4});
-   
-    for (int h = e ->num_jogadas + 1; h <= 31; h++){
-        COORDENADA coord1 = obtem_coordenada(e,h,1);
-        COORDENADA coord2 = obtem_coordenada(e,h,2);
-      e->tab[coord1.linha][coord1.coluna] = VAZIO;
-      e->tab[coord2.linha][coord2.coluna] = VAZIO;
-    }   
-    COORDENADA coord3 = e->ultima_jogada;
-    e->tab[coord3.linha][coord3.coluna] = BRANCA;
-
-    if (regulador == 0){
-    e->ultima_jogada = guardaultima;
-    }
-}
-       
 //Mostra o prompt no ecrã como também o insere num ficheiro quando feito o comando "gr"
 void mostrar_prompt (ESTADO * e, FILE * stream){
     int jogadoratual;
@@ -92,29 +115,6 @@ void mostrar_prompt (ESTADO * e, FILE * stream){
    
 }
 
-//Mostra o tabuleiro no ecrã como também o insere num ficheiro quando efetuado o comando "gr"
-void mostrar_tabuleiro(ESTADO * estado, FILE * stream) {
-    int i , j ;
-
-    for ( i = 0 ; i < 8 ; i++ ) {
-        
-        if ( stream == stdout )
-            fprintf (stream, "%d ", 8 - i);    // Printa o número de cada linha na tela
-
-        for ( j = 0 ; j < 8 ; j++ ) {
-            CASA cs =(obter_estado_casa(estado, (COORDENADA){i,j}));
-            if (cs == VAZIO) 
-                fputc('.',stream) ;
-            else
-                 fputc(cs,stream);
-        }       
-        fputc('\n',stream) ;
-    }
-
-    if ( stream == stdout )
-        fprintf (stream,"  abcdefgh\n");    
-        
-}
 //Mostra o histórico de jogadas no ecrã como também os insere num ficheiro após efetuado ocomando "gr"
 void mostrar_jogadas (ESTADO * e,  FILE * stream) {
     int numjogadas;
@@ -380,6 +380,7 @@ int interpretador(ESTADO *e) {
 //Devemos então deixar em aberto a hipótese de serem feitos outros comandos "pos" e para isso deve ter em conta o antigo número de jogadas como base.                                
                                 e->num_jogadas = guarda_num_jogadas;                           
                             }
+                            else printf ("\njogada inválida\n") ;
                          
                         }   
 
