@@ -4,6 +4,15 @@
 #include <string.h>
 #define BUF_SIZE 1024
 
+int verificanumero (char token){
+    int res = 0;
+    for (char a = '0';a < '9';a++) {
+        if (token == a)
+        res = 1;
+    }
+    return res;
+}
+
 void printarcampeao(ESTADO * estado){
 
     int campeao,jogadoratual;
@@ -354,9 +363,10 @@ int interpretador(ESTADO *e) {
 
                             if(cmd == LER)
                                 ler(e,token);
+                             
                               
                             int i = atoi(token);  
-                            if((cmd == POS)&& (i>=0)&&(i< e->num_jogadas)){
+                            if((cmd == POS)&& (i>=0)&&(i< e->num_jogadas) && verificanumero(token[0])==1 ){
 // Guarda o número de jogadas da partida atual caso o comando "pos" seja inserido diversas vezes seguidos (wentão o ponto de referência deve ser o mesmo)
                                 guarda_num_jogadas = e->num_jogadas; 
 // Novo número de jogadas mediante o que foi dado no comando. É "+ 1" porque por ex: uma vez dado "pos 2", você quer voltar para                            
