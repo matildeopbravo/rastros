@@ -380,7 +380,7 @@ int interpretador(ESTADO *e) {
 //Devemos então deixar em aberto a hipótese de serem feitos outros comandos "pos" e para isso deve ter em conta o antigo número de jogadas como base.                                
                                 e->num_jogadas = guarda_num_jogadas;                           
                             }
-                            else printf ("\njogada inválida\n") ;
+                            else if (cmd == POS) printf ("\ncomando inválido\n") ;
                          
                         }   
 
