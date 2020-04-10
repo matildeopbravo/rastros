@@ -19,7 +19,7 @@ O prompt é apresentado na stream fornecida como argumento que será um apontado
 @param e Apontador para o estado
 @param stream Apontador para FILE
 */
-void mostrar_prompt(ESTADO * e,FILE * stream);
+void mostrar_prompt(ESTADO * e);
 /**
 \brief Função que apresenta as jogadas efetuadas no jogo atual, ou seja, o array JOGADAS do estado. 
 As jogadas são apresentadas na stream fornecida como argumento que será um apontador para um ficheiro ou stdout.
