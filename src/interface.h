@@ -44,6 +44,25 @@ int interpretador(ESTADO *e);
 @param token Apontador para caracter
 */
 COMANDO verifica_comando( char * token );
+/**
+\brief Função que guarda o estado atual do tabuleiroe  das jogadas num "estado copia"
+@param Apontador para o estado atual
+@param Apontador para o estado copia
+*/
+void guarda_estado(ESTADO * e, ESTADO * copia_estado);
+/**
+\brief Função que guarda no estado atual o tabuleiro e as jogados do "estado copia"
+@param Apontador para o estado atual
+@param Apontador para o estado copia
+*/
+void repor_estado(ESTADO *e, ESTADO * copia_estado); 
+/**
+\brief Função que guarda no estado atual o tabuleiro e as jogados do "estado copia"
+@param Apontador para o estado atual
+@param Apontador para o estado copia
+@param Token que poderá corresponder ao número da jogada para qual se pretende voltar
+*/
+int pos(ESTADO * e, ESTADO * copia_estado, char * token);
 /** 
 \brief Função que lê o tabuleiro  de um ficheiro e guarda no estado atual o array tab e a COORDENADA da última jogda. 
 @param e Apontador para o estado
