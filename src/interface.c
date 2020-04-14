@@ -286,15 +286,16 @@ int pos(ESTADO * e, ESTADO * copia_estado, char * token) {
                         e->regulapos = 1;
                         altera_num_jogadas(e,obter_numero_de_jogadas(copia_estado));
     }
-    else 
+    else{ 
         printf ("\nComando inválido\n") ;
-    
+        numjogadaspos = obter_numero_de_jogadas(e) + 1; 
+    } 
     return numjogadaspos;
 }
 
 int interpretador(ESTADO *e) {
     int numjogadaspos = 0, t =0;
-    ESTADO * estado_copia = malloc(sizeof(ESTADO)) ;
+    ESTADO * estado_copia = calloc(1,sizeof(ESTADO)) ;
     char linha[BUF_SIZE], col[2], lin[2];
   
     mostrar_tabuleiro(e,stdout);
@@ -337,6 +338,7 @@ int interpretador(ESTADO *e) {
 
         else {
                 char * token = strtok(linha," ");
+                if(!strcmp(linha,"imprime\n")) mostrar_tabuleiro(estado_copia,stdout);
                  if (!strcmp(linha,"movs\n")) token = "movs";
                 COMANDO cmd = verifica_comando(token);
                 if( cmd && (cmd == MOVS || (token = strtok(NULL, "\n")))) {
@@ -354,7 +356,8 @@ int interpretador(ESTADO *e) {
                             mostrar_jogadas(e,stdout);
                     }
                     if(cmd == POS) {
-                       numjogadaspos = pos(e, estado_copia ,token);    
+                        if (pos(e,estado_copia,token) <= obter_numero_de_jogadas(e))
+                             numjogadaspos = pos(e, estado_copia ,token);    
                     }
                 }   
                 else {
