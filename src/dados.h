@@ -61,6 +61,7 @@ typedef struct {
 	int num_comandos;
 	/** Irá controlar se um novo cenário se iniciou ou não*/
 	int regulapos;
+	int regulaparidade;
 } ESTADO;
 
 /**

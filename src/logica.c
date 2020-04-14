@@ -5,7 +5,8 @@
 
 //-------------------------------------estrategias comando jog--------------------------------------
 
-
+// AS 2 PRIMEIRAS FUNÇÕES DESTE FICHEIRO ESTÃO MOMENTANEAMENTE DESATIVADAS. PORÉM AINDA ESTÁ
+// A SER PONDERADO SEU DUTURO USO.
 COORDENADA posicaovitoria(ESTADO *e,LISTA posicoesvazias){
   COORDENADA * coord;
   COORDENADA * coordaefetuar;
@@ -27,15 +28,17 @@ int verificasetemvitoria(ESTADO *e,LISTA posicoesvazias,int jogadoratual){
   guardainicio = posicoesvazias;
   int result = 0;
 
-  while (posicoesvazias!=NULL && result!=1){
+  while (posicoesvazias!=NULL && result!=1 && (e->regulaparidade == 1)){
     coord = devolve_cabeca(posicoesvazias);
     if ((obter_estado_casa(e,*coord) == UM)&&(jogadoratual == 1))
       result = 1;
     if ((obter_estado_casa(e,*coord) == DOIS)&&(jogadoratual == 2))
       result = 1;  
-    posicoesvazias = posicoesvazias->prox;  
+    posicoesvazias = posicoesvazias->prox; 
+    e->regulaparidade = 2; 
   }
   posicoesvazias = guardainicio;
+  e->regulaparidade = 1;
   return result;
 }
 
@@ -45,7 +48,7 @@ int calculaarea(COORDENADA * possiveljogada, ESTADO * e){ // O ARGUMENTO É A CO
     int area = 0;
 
 
-    for (int i = 1 ;i <= -1;i++){
+    for (int i = 1 ;i >= -1;i--){
         for (int j = -1;j <= 1;j++){ 
             
         coordvizinha.linha = ((*possiveljogada).linha) + i;
@@ -179,11 +182,11 @@ else {
 
   //  SITUAÇÃO EM QUE UMA DAS VIZINHANÇAS É UMA CASA DE VIÓTIA DO JOGADOR ATUAL(PRIORIDADE MÁXIMA)
 
-    if (verificasetemvitoria(e,posicoesvazias,e->jogador_atual) == 1)
-         coordaserjogada = posicaovitoria(e,posicoesvazias);
+   // if (verificasetemvitoria(e,posicoesvazias,e->jogador_atual) == 1) TALVEZ SEJA NECESSÁRIA
+    // (())     coordaserjogada = posicaovitoria(e,posicoesvazias);
 
     // CASO O DE CIMA NÃO SE VERIFICAR...     
-    else {     
+    //else {     
          
     int resultado = 65; // NADA É MAIOR QUE ISSO
     int indicedajogadaaefetuar = 9;
@@ -218,7 +221,8 @@ else {
          }
          printf("\n->Joogada escolhida a partir da heuŕistica da paridade : %c%d  ",(*cabeca).coluna + 'a',8 - (*cabeca).linha); 
 
-        }
+        // PENSAR SE VALE A PENA A ESCOLHA PSEUDO-ALEATÓRIA PARA ÁREAS OU IGUAIS OU MANTER A CASA DIAGONAL
+        // PARA CASA DA VITÓRIA.
          return (coordaserjogada);
 }
 

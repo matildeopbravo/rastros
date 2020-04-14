@@ -15,7 +15,8 @@ ESTADO * inicializar_estado(){
     .ultima_jogada = (COORDENADA) {3,4},
     .tab[3][4] = BRANCA,
     .tab[0][7] = DOIS,
-    .tab[7][0] = UM };
+    .tab[7][0] = UM, 
+    .regulaparidade = 1};
 
     return e ;	
 }   
