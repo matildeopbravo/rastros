@@ -38,7 +38,9 @@ return area;
 
 void auxiliarparidade (ESTADO *e,LISTA posicoesvazias,int paridade[8],COORDENADA *cabeca){
    CASA tabcopia[8][8];
-   int cont = 0;  
+   int cont = 0; 
+
+   printf("\n->Área que sobra mediante cada possível jogada\n") ;
     
     while (posicoesvazias != NULL) {
 
@@ -49,10 +51,11 @@ void auxiliarparidade (ESTADO *e,LISTA posicoesvazias,int paridade[8],COORDENADA
           } 
      
         cabeca = devolve_cabeca(posicoesvazias);
-        printf("%c%d\n",(*cabeca).coluna + 'a',8 - (*cabeca).linha); 
+        printf("%c%d -> ",(*cabeca).coluna + 'a',8 - (*cabeca).linha); 
           altera_casa(e,(COORDENADA){(e->ultima_jogada).linha,(e->ultima_jogada).coluna}, PRETA);
           altera_casa(e,(COORDENADA){(*cabeca).linha,(*cabeca).coluna}, BRANCA);
         paridade[cont] = calculaarea((posicoesvazias->valor),e);
+
         printf("Área : %d\n",paridade[cont]);
         cont++;
         posicoesvazias = posicoesvazias->prox;
@@ -72,6 +75,7 @@ COORDENADA estrategiaparidade(ESTADO *e){
     
     LISTA posicoesvazias;
     posicoesvazias = criar_lista(); // LISTA LIGADA QUE VAI ARMAZENAR AS POSIÇÕES VAZIAS POSSÍVEIS DE EFETUAR UMA JOGADA
+    
     COORDENADA coordvizinha[8]; 
 
     COORDENADA coordaserjogada;
@@ -113,15 +117,17 @@ int h = 0;
     int resultado = 65; // NADA É MAIOR QUE ISSO
     int indicedajogadaaefetuar = 9;
         for (int i = 0; i <8;i++){
-            printf("cheguei %d \n",i); 
+          
             if (paridade[i] % 2 == 0 && paridade[i] < resultado){
             indicedajogadaaefetuar = i;
             resultado = paridade[i];
             }
-            printf("cheguei %d \n",i); 
+    
         }
-          printf("%d\n ",indicedajogadaaefetuar); 
-        
+
+        //Situação em que não existem jogadas com área restante par
+        // Por tanto devo jogar para a maior área ímpar(dado que diminuirá
+        //as probabilidades de eu ser encurralado)
         if (indicedajogadaaefetuar == 9){
           resultado = 0;
           for (int i = 0; i < 8;i++){
@@ -132,13 +138,14 @@ int h = 0;
 
         }   
 
-        printf("%d",indicedajogadaaefetuar);  
 
          for (int i = indicedajogadaaefetuar; i >= 0;i--,posicoesvazias = posicoesvazias->prox){
              if (i == 0)
              cabeca = devolve_cabeca(posicoesvazias);        
              coordaserjogada = *cabeca;
          }
+         printf("\n->Joogada escolhida a partir da heuŕistica da paridade : %c%d  ",(*cabeca).coluna + 'a',8 - (*cabeca).linha); 
+
  
          return (coordaserjogada);
 }
