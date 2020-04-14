@@ -372,11 +372,10 @@ int interpretador(ESTADO *e) {
 
                         COORDENADA coordaefetuar;
                         coordaefetuar = estrategiaparidade(e);
-                        jogar(e,coordaefetuar);
+                        t = jogar(e,coordaefetuar);
                         mostrar_tabuleiro(e,stdout);
                         e->regulapos = 0;
 
-                 // minha AREA
                     }
                 }      
                 else {

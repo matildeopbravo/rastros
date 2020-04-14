@@ -5,13 +5,47 @@
 
 //-------------------------------------estrategias comando jog--------------------------------------
 
+
+COORDENADA posicaovitoria(ESTADO *e,LISTA posicoesvazias){
+  COORDENADA * coord;
+  COORDENADA * coordaefetuar;
+
+ 
+  while (posicoesvazias!=NULL){
+    coord = devolve_cabeca(posicoesvazias);
+    if ((obter_estado_casa(e,*coord) == UM)
+    || (obter_estado_casa(e,*coord) == DOIS))
+    coordaefetuar = devolve_cabeca (posicoesvazias); 
+    posicoesvazias = posicoesvazias->prox;  
+  }
+  return (*coordaefetuar);
+}
+
+int verificasetemvitoria(ESTADO *e,LISTA posicoesvazias,int jogadoratual){
+  LISTA guardainicio = criar_lista();
+  COORDENADA * coord;
+  guardainicio = posicoesvazias;
+  int result = 0;
+
+  while (posicoesvazias!=NULL && result!=1){
+    coord = devolve_cabeca(posicoesvazias);
+    if ((obter_estado_casa(e,*coord) == UM)&&(jogadoratual == 1))
+      result = 1;
+    if ((obter_estado_casa(e,*coord) == DOIS)&&(jogadoratual == 2))
+      result = 1;  
+    posicoesvazias = posicoesvazias->prox;  
+  }
+  posicoesvazias = guardainicio;
+  return result;
+}
+
 // CALCULA A ÁREA RESTANTE SIMULADA A PARTIR DE UMA POSSÍVEL JOGADA
 int calculaarea(COORDENADA * possiveljogada, ESTADO * e){ // O ARGUMENTO É A COORDENADA DA POSSÍVEL JOGADA
     COORDENADA coordvizinha;
     int area = 0;
 
 
-    for (int i = -1 ;i <= 1;i++){
+    for (int i = 1 ;i <= -1;i++){
         for (int j = -1;j <= 1;j++){ 
             
         coordvizinha.linha = ((*possiveljogada).linha) + i;
@@ -41,7 +75,7 @@ void auxiliarparidade (ESTADO *e,LISTA posicoesvazias,int paridade[8],COORDENADA
    int cont = 0; 
 
    printf("\n->Área que sobra mediante cada possível jogada\n") ;
-    
+   
     while (posicoesvazias != NULL) {
 
          for (int i= 0; i < 8; i++){
@@ -49,7 +83,7 @@ void auxiliarparidade (ESTADO *e,LISTA posicoesvazias,int paridade[8],COORDENADA
                tabcopia[i][j] = e->tab[i][j]; 
              } 
           } 
-     
+
         cabeca = devolve_cabeca(posicoesvazias);
         printf("%c%d -> ",(*cabeca).coluna + 'a',8 - (*cabeca).linha); 
           altera_casa(e,(COORDENADA){(e->ultima_jogada).linha,(e->ultima_jogada).coluna}, PRETA);
@@ -80,11 +114,9 @@ COORDENADA estrategiaparidade(ESTADO *e){
 
     COORDENADA coordaserjogada;
     COORDENADA *cabeca;
-    int paridade[8];
     
-    LISTA guardalista;
-    guardalista = criar_lista();
-    guardalista = posicoesvazias; 
+    int paridade[8];
+     
            
     for (int i = 0;i< 9;i++)
          paridade[i]= 1;
@@ -92,32 +124,72 @@ COORDENADA estrategiaparidade(ESTADO *e){
 
 // CICLO QUE VAI ANALISAR QUAIS DAS POSIÇÕES VIZINHAS ESTÃO VAZIAS e ARMAZENAR ELAS NA LISTA LIGADA
 // CRIADA PARA ESSE FIM.
+if (e->jogador_atual == 2){
+
 int h = 0;
-    for (int i = -1 ;i <= 1;i++){
+    for (int i = 1 ;i >= -1;i--){
         for (int j = -1;j <= 1;j++,h++){
             
             coordvizinha[h].linha = ((e->ultima_jogada).linha) + i;
             coordvizinha[h].coluna = ((e->ultima_jogada).coluna) + j;
 
-            if ((obter_estado_casa(e,coordvizinha[h]) == VAZIO)
-            && (coordvizinha[h].linha >= 0)
-            && (coordvizinha[h].linha <= 7)
-            && (coordvizinha[h].coluna >= 0)
-            && (coordvizinha[h].coluna <= 7)){
-            posicoesvazias = insere_cabeca(posicoesvazias, &(coordvizinha[h]));;
+            if (((obter_estado_casa(e,coordvizinha[h]) == VAZIO)
+                 ||(obter_estado_casa(e,coordvizinha[h]) == UM)
+                 || (obter_estado_casa(e,coordvizinha[h]) == DOIS))
+                 && ((coordvizinha[h].linha >= 0)
+                    && (coordvizinha[h].linha <= 7)
+                    && (coordvizinha[h].coluna >= 0)
+                    && (coordvizinha[h].coluna <= 7))) 
+                     {
+            posicoesvazias = insere_cabeca(posicoesvazias, &(coordvizinha[h]));
+
+            }
+              
+        }
+    }
+}
+else {
+  int h = 0;
+    for (int i = -1 ;i <= 1;i++){
+        for (int j = 1;j >= -1;j--,h++){
+            
+            coordvizinha[h].linha = ((e->ultima_jogada).linha) + i;
+            coordvizinha[h].coluna = ((e->ultima_jogada).coluna) + j;
+
+            if (((obter_estado_casa(e,coordvizinha[h]) == VAZIO)
+                 ||(obter_estado_casa(e,coordvizinha[h]) == UM)
+                 || (obter_estado_casa(e,coordvizinha[h]) == DOIS))
+                 && ((coordvizinha[h].linha >= 0)
+                    && (coordvizinha[h].linha <= 7)
+                    && (coordvizinha[h].coluna >= 0)
+                    && (coordvizinha[h].coluna <= 7))) 
+                     {
+         
+            posicoesvazias = insere_cabeca(posicoesvazias, &(coordvizinha[h]));
+
             }
               
         }
     }
 
+}
+
     auxiliarparidade(e,posicoesvazias,paridade,cabeca);
 
 
-    //CICLO PARA DECIDIR A JOGADA PAR A EFETUAR (SE TIVER MAIS DE UMA SERÁ ESCOLHIDA A MENOR)
+  //  SITUAÇÃO EM QUE UMA DAS VIZINHANÇAS É UMA CASA DE VIÓTIA DO JOGADOR ATUAL(PRIORIDADE MÁXIMA)
+
+    if (verificasetemvitoria(e,posicoesvazias,e->jogador_atual) == 1)
+         coordaserjogada = posicaovitoria(e,posicoesvazias);
+
+    // CASO O DE CIMA NÃO SE VERIFICAR...     
+    else {     
+         
     int resultado = 65; // NADA É MAIOR QUE ISSO
     int indicedajogadaaefetuar = 9;
         for (int i = 0; i <8;i++){
           
+            
             if (paridade[i] % 2 == 0 && paridade[i] < resultado){
             indicedajogadaaefetuar = i;
             resultado = paridade[i];
@@ -146,7 +218,7 @@ int h = 0;
          }
          printf("\n->Joogada escolhida a partir da heuŕistica da paridade : %c%d  ",(*cabeca).coluna + 'a',8 - (*cabeca).linha); 
 
- 
+        }
          return (coordaserjogada);
 }
 
