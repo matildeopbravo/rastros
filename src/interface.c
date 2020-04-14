@@ -167,6 +167,7 @@ COMANDO verifica_comando( char * token ) {
     if(!strcmp(token,"ler")) return LER;
     if(!strcmp(token,"pos")) return POS;
     if(!strcmp(token,"movs")) return MOVS;
+    if(!strcmp(token,"jog")) return  JOG;
     return 0;
 }
 
@@ -338,9 +339,11 @@ int interpretador(ESTADO *e) {
 
         else {
                 char * token = strtok(linha," ");
+                if(!strcmp(linha,"imprime\n")) mostrar_tabuleiro(estado_copia,stdout);
                  if (!strcmp(linha,"movs\n")) token = "movs";
+                 if (!strcmp(linha,"jog\n")) token = "jog";
                 COMANDO cmd = verifica_comando(token);
-                if( cmd && (cmd == MOVS || (token = strtok(NULL, "\n")))) {
+                if( cmd && (cmd == MOVS || cmd == JOG || (token = strtok(NULL, "\n")))) {
                     if(cmd == GRAVAR)
                         gravar(e,token);
                     if(cmd == LER)
@@ -358,7 +361,24 @@ int interpretador(ESTADO *e) {
                         if (pos(e,estado_copia,token) <= obter_numero_de_jogadas(e))
                              numjogadaspos = pos(e, estado_copia ,token);    
                     }
-                }   
+                     if (cmd == JOG){
+                        if (e->regulapos == 1){
+                         guarda_estado(e, estado_copia);
+                         altera_num_jogadas(e,numjogadaspos -2);
+                         altera_tabuleiro(e,1); 
+                         apagajogpost(e); 
+                         altera_num_jogadas(e, numjogadaspos);
+                        }
+
+                        COORDENADA coordaefetuar;
+                        coordaefetuar = estrategiaparidade(e);
+                        jogar(e,coordaefetuar);
+                        mostrar_tabuleiro(e,stdout);
+                        e->regulapos = 0;
+
+                 // minha AREA
+                    }
+                }      
                 else {
                     printf ("inválido\n");
                     t = 3;

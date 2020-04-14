@@ -1,6 +1,142 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "dados.h"
+#include "listas.h"
+
+//-------------------------------------estrategias comando jog--------------------------------------
+
+// CALCULA A ÁREA RESTANTE SIMULADA A PARTIR DE UMA POSSÍVEL JOGADA
+int calculaarea(COORDENADA * possiveljogada, ESTADO * e){ // O ARGUMENTO É A COORDENADA DA POSSÍVEL JOGADA
+    COORDENADA coordvizinha;
+    int area = 0;
+
+
+    for (int i = -1 ;i <= 1;i++){
+        for (int j = -1;j <= 1;j++){ 
+            
+        coordvizinha.linha = ((*possiveljogada).linha) + i;
+        coordvizinha.coluna = ((*possiveljogada).coluna) + j;
+
+        if ((obter_estado_casa(e,coordvizinha) == VAZIO)
+        && (coordvizinha.linha >= 0)
+        && (coordvizinha.linha <= 7)
+        && (coordvizinha.coluna >= 0)
+        && (coordvizinha.coluna <= 7))
+           {
+            area++;
+            altera_casa(e,(COORDENADA){(*possiveljogada).linha,(*possiveljogada).coluna}, PRETA);
+            altera_casa(e,(COORDENADA){coordvizinha.linha,coordvizinha.coluna}, BRANCA);// SIMBOLICO
+            altera_casa(e,(COORDENADA){coordvizinha.linha,coordvizinha.coluna}, PRETA);
+            area += calculaarea(&coordvizinha,e);
+        }
+      }
+    } 
+
+
+return area;
+}
+
+
+COORDENADA estrategiaparidade(ESTADO *e){
+    LISTA posicoesvazias;
+    posicoesvazias = criar_lista(); // LISTA LIGADA QUE VAI ARMAZENAR AS POSIÇÕES VAZIAS POSSÍVEIS DE
+// EFETUAR UMA JOGADA
+    COORDENADA coordvizinha[8]; 
+    CASA tabcopia[8][8];
+    COORDENADA coordaserjogada;
+    COORDENADA *cabeca;
+       int paridade[8]; 
+           for (int i = 0;i< 9;i++)
+        paridade[i]=1;
+// CICLO QUE VAI ANALISAR QUAIS DAS POSIÇÕES VIZINHAS ESTÃO VAZIAS e ARMAZENAR ELAS NA LISTA LIGADA
+// CRIADA PARA ESSE FIM.
+int h = 0;
+    for (int i = -1 ;i <= 1;i++){
+        for (int j = -1;j <= 1;j++,h++){
+            
+            coordvizinha[h].linha = ((e->ultima_jogada).linha) + i;
+            coordvizinha[h].coluna = ((e->ultima_jogada).coluna) + j;
+
+            if ((obter_estado_casa(e,coordvizinha[h]) == VAZIO)
+            && (coordvizinha[h].linha >= 0)
+            && (coordvizinha[h].linha <= 7)
+            && (coordvizinha[h].coluna >= 0)
+            && (coordvizinha[h].coluna <= 7)){
+            posicoesvazias = insere_cabeca(posicoesvazias, &(coordvizinha[h]));;
+            }
+            
+        }
+    }
+
+
+    LISTA guardalista = posicoesvazias;
+    
+  
+    //CICLO PARA CASO RESTAR ALGUMA POSÇÃO NO ARRAY, NO FINAL PELO FACTO DE SER ÍMPAR ELA NÃO VAI ATRAPALHAR
+
+   
+
+    int cont = 0;  
+    
+
+    while (posicoesvazias != NULL) {
+        // devo guardar o tabuleiro antigo
+        for (int i= 0; i < 8; i++){
+                        for (int j = 0; j < 8; j++){    // Processo de guardar o tabuleiro atual
+                            tabcopia[i][j] = obter_estado_casa(e,(COORDENADA) {i,j}); 
+                        } 
+                    }
+        cabeca = devolve_cabeca(posicoesvazias);
+ 
+        altera_casa(e,(COORDENADA){(e->ultima_jogada).linha,(e->ultima_jogada).coluna}, PRETA);
+        altera_casa(e,(COORDENADA){(*cabeca).linha,(*cabeca).coluna}, BRANCA);
+        paridade[cont] = calculaarea((posicoesvazias->valor),e);
+        cont++;
+        posicoesvazias = posicoesvazias->prox;
+        
+        // DEVO VOLTAR O TABUELIRO ANTIGO
+        for (int i= 0; i < 8; i++){
+                        for (int j = 0; j < 8; j++){
+                            e->tab[i][j] = tabcopia[i][j];
+      }
+     }
+    }
+
+      
+
+    //CICLO PARA DECIDIR A JOGADA PAR A EFETUAR (SE TIVER MAIS DE UMA SERÁ ESCOLHIDA A MENOR)
+    int resultado = 65; // NADA É MAIOR QUE ISSO
+    int indicedajogadaaefetuar = 9;
+        for (int i = 0; i <9;i++){
+            if (paridade[i] % 2 == 0 && paridade[i] < resultado)
+            indicedajogadaaefetuar = i;
+            resultado = paridade[i];
+        }
+        if (indicedajogadaaefetuar == 9){
+          resultado = 1;
+          for (int i = 0; i <9;i++){
+            if (paridade[i] > resultado)
+            indicedajogadaaefetuar = i;
+            resultado = paridade[i];
+        }
+
+        }  
+
+         // DEVOLVER JOGADA
+         // recuperar lista ligada
+         posicoesvazias = guardalista;
+         for (int i = indicedajogadaaefetuar; i >= 0;i--,posicoesvazias = posicoesvazias->prox){
+             if (i == 0)
+             cabeca = devolve_cabeca(posicoesvazias);        
+                coordaserjogada = *cabeca;
+         }
+
+         return (coordaserjogada);
+}
+
+
+
+// --------------------------------------------------------------------------------------------------
 
 int verifica_valida ( ESTADO *e , COORDENADA jog_ant , COORDENADA jog_efet) {
 
