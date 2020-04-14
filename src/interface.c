@@ -338,7 +338,6 @@ int interpretador(ESTADO *e) {
 
         else {
                 char * token = strtok(linha," ");
-                if(!strcmp(linha,"imprime\n")) mostrar_tabuleiro(estado_copia,stdout);
                  if (!strcmp(linha,"movs\n")) token = "movs";
                 COMANDO cmd = verifica_comando(token);
                 if( cmd && (cmd == MOVS || (token = strtok(NULL, "\n")))) {

@@ -1,8 +1,8 @@
 CFLAGS = -Wall -Wextra -O2
 CC = gcc
 
-ex: src/main.o src/dados.o src/interface.o src/logica.o
-	$(CC) $(CFLAGS) -o src/rastros src/main.o src/dados.o src/interface.o src/logica.o
+ex: src/main.o src/dados.o src/interface.o src/logica.o src/listas.o
+	$(CC) $(CFLAGS) -o src/rastros src/main.o src/dados.o src/interface.o src/logica.o src/listas.o
 
 run: ex
 	src/rastros

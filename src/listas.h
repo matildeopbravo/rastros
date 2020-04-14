@@ -3,7 +3,7 @@
 
 typedef struct lista {
     void * valor; 
-    LISTA prox;
+    struct lista *  prox;
 } *LISTA;
 
 LISTA criar_lista();
