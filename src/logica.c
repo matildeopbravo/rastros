@@ -25,11 +25,12 @@ int aux_1_indice(ESTADO * e,int paridade[8]){
         if (indicedajogadaaefetuar == 9){
           resultado = 0;
           for (int i = 0; i < 8;i++){
-            if (paridade[i] > resultado)
+            if (paridade[i] >= resultado){
             indicedajogadaaefetuar = i;
             resultado = paridade[i];
            }
-         }   
+          }   
+         }
 return indicedajogadaaefetuar;
 }
 
@@ -53,9 +54,10 @@ int aux_2_indice(ESTADO * e,int paridade[8]){
         if (indicedajogadaaefetuar == 9){
           resultado = 0;
           for (int i = 0; i < 8;i++){
-            if (paridade[i] > resultado)
+            if (paridade[i] > resultado){
             indicedajogadaaefetuar = i;
             resultado = paridade[i];
+            }
            }
          }   
 return indicedajogadaaefetuar;
@@ -146,8 +148,8 @@ COORDENADA estrategia_paridade(ESTADO *e){
     COORDENADA coordvizinha[8];//array que vai auxiliar no preenchimento da lista acima
     COORDENADA coordaserjogada;//coordenada escolhida resultado de aplicar a função
     COORDENADA *cabeca;//apontador auxiliar para retirar o conteúdo do apontador void da lista ligada
-    int paridade[8] =  {1,1,1,1,1,1,1,1,};//array que armazena a área restante para cada possível jogada
-    /* o array acima é inicializado com 1 para efeitos no momento de desprezar certas jogadas   
+    int paridade[8] =  {-1,-1,-1,-1,-1,-1,-1,-1,};//array que armazena a área restante para cada possível jogada
+    /* o array acima é inicializado com -1 para efeitos no momento de desprezar certas jogadas   
 
 /* ciclo que vai analisar quais das POSIÇÕES VIZINHAS estão VAZIAS e armazená-las na LISTA ligada
 criada para esse fim */
