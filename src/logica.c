@@ -25,7 +25,7 @@ int aux_1_indice(ESTADO * e,int paridade[8]){
         if (indicedajogadaaefetuar == 9){
           resultado = 0;
           for (int i = 0; i < 8;i++){
-            if (paridade[i] >= resultado)
+            if (paridade[i] > resultado)
             indicedajogadaaefetuar = i;
             resultado = paridade[i];
            }
