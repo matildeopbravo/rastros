@@ -34,8 +34,8 @@ Devolve 1 caso for válida, retorna 0 caso contrário.
 
 int verifica_valida ( ESTADO *e , COORDENADA jog_ant , COORDENADA jog_efet);
 
-COORDENADA estrategiaparidade(ESTADO *e);
+COORDENADA estrategia_paridade(ESTADO *e);
 
-int calculaarea(COORDENADA * possiveljogada, ESTADO * e);
+int calcula_area(COORDENADA * possiveljogada, ESTADO * e);
 
 #endif

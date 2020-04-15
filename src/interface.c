@@ -371,7 +371,7 @@ int interpretador(ESTADO *e) {
                         }
 
                         COORDENADA coordaefetuar;
-                        coordaefetuar = estrategiaparidade(e);
+                        coordaefetuar = estrategia_paridade(e);
                         t = jogar(e,coordaefetuar);
                         mostrar_tabuleiro(e,stdout);
                         e->regulapos = 0;
