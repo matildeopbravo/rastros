@@ -147,6 +147,8 @@ COORDENADA estrategia_paridade(ESTADO *e){
       posicoesvazias = criar_lista(); 
     COORDENADA coordvizinha[8];//array que vai auxiliar no preenchimento da lista acima
     COORDENADA coordaserjogada;//coordenada escolhida resultado de aplicar a função
+    coordaserjogada.linha = 3;  // Inicialização da coordenada com este valor com fins na condição
+    coordaserjogada.coluna = 4; //presente no próximo 'if'.
     COORDENADA *cabeca;//apontador auxiliar para retirar o conteúdo do apontador void da lista ligada
     int paridade[8] =  {-1,-1,-1,-1,-1,-1,-1,-1,};//array que armazena a área restante para cada possível jogada
     /* o array acima é inicializado com -1 para efeitos no momento de desprezar certas jogadas   
@@ -160,20 +162,52 @@ criada para esse fim */
             
             coordvizinha[h].linha = ((e->ultima_jogada).linha) + i;
             coordvizinha[h].coluna = ((e->ultima_jogada).coluna) + j;
-
-            if (((obter_estado_casa(e,coordvizinha[h]) == VAZIO)
-                 ||(obter_estado_casa(e,coordvizinha[h]) == UM)
-                 || (obter_estado_casa(e,coordvizinha[h]) == DOIS))
-                 && ((coordvizinha[h].linha >= 0)
-                    && (coordvizinha[h].linha <= 7)
-                    && (coordvizinha[h].coluna >= 0)
-                    && (coordvizinha[h].coluna <= 7))) 
-                     {
+             
+            /* Este primeiro if é a situação de preenchimento normal*/
+            if ((obter_estado_casa(e,coordvizinha[h]) == VAZIO)
+                 && (coordvizinha[h].linha >= 0)
+                 && (coordvizinha[h].linha <= 7)
+                 && (coordvizinha[h].coluna >= 0)
+                 && (coordvizinha[h].coluna <= 7)) 
+            {
             posicoesvazias = insere_cabeca(posicoesvazias, &(coordvizinha[h]));
-            }              
+            }   
+            /* Este if analisa uma das situações de prioridade MÀXIMA- VITÓRIA
+            O ciclo deve ser interrompido dado que já achamos a jogada*/
+            if ((e->jogador_atual == 1 
+                 &&   obter_estado_casa(e,coordvizinha[h]) == UM)
+                 && (coordvizinha[h].linha >= 0)
+                 && (coordvizinha[h].linha <= 7)
+                 && (coordvizinha[h].coluna >= 0)
+                 && (coordvizinha[h].coluna <= 7)) 
+            {
+              coordaserjogada = coordvizinha[h];
+              j = 1;
+              i = -1;
+            } 
+            /* Este if analisa a outra situações de prioridade MÀXIMA- VITÓRIA
+            O ciclo deve ser interrompido dado que já achamos a jogada*/
+            if ((e->jogador_atual == 2 
+                 &&   obter_estado_casa(e,coordvizinha[h]) == DOIS)
+                 && (coordvizinha[h].linha >= 0)
+                 && (coordvizinha[h].linha <= 7)
+                 && (coordvizinha[h].coluna >= 0)
+                 && (coordvizinha[h].coluna <= 7)) 
+                 {
+                coordaserjogada = coordvizinha[h];
+                j = 1;
+                i = -1;
+            }                  
         }
     }
-
+    
+    /* Caso a coordaserjogada for uma das casas da vitória para o jogador atual, então quer dizer
+    que o ciclo anterior encontrou uma jogada de prioridade MÁXIMA: a jogada da vitória. Caso 
+    contrário então entrará em ação a escolha com base na paridade*/
+    
+    if ((obter_estado_casa(e,coordaserjogada) != DOIS)
+       && (obter_estado_casa(e,coordaserjogada) != UM)){
+    
     /*Função auxiliar que preenche o array paridade com as respetivas áreas de cada possível jogada*/
     auxiliarparidade(e,posicoesvazias,paridade,cabeca);
     /*Função auxiliar que devolverá o índice do array paridade escolhido. Como o array paridade
@@ -190,7 +224,8 @@ criada para esse fim */
              coordaserjogada = *cabeca;
          }
          printf("\n->Jogada escolhida a partir da heurística da paridade : %c%d  ",(*cabeca).coluna + 'a',8 - (*cabeca).linha); 
-
+    }
+    else printf("\n->Você não me deu hipóteses...Parabéns pelo segundo lugar\n");
          return (coordaserjogada);
 }
 

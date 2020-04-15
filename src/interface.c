@@ -90,6 +90,7 @@ void atualizapos(ESTADO *e){
       }
       e->num_jogadas = e->num_jogadas - 2;
       altera_tabuleiro(e,0);
+      if (e->regulapos2 == 1)
       mostrar_tabuleiro(e,stdout);
  
       for (int i= 0; i < 8; i++){
@@ -358,8 +359,10 @@ int interpretador(ESTADO *e) {
                             mostrar_jogadas(e,stdout);
                     }
                     if(cmd == POS) {
-                        if (pos(e,estado_copia,token) <= obter_numero_de_jogadas(e))
-                             numjogadaspos = pos(e, estado_copia ,token);    
+                        if (pos(e,estado_copia,token) <= obter_numero_de_jogadas(e)){                       
+                             e->regulapos2 = 1; //Flag de aviso para não printar tabuleiro novamente
+                             numjogadaspos = pos(e, estado_copia ,token); 
+                             e->regulapos2 = 0;}   
                     }
                      if (cmd == JOG){
                         if (e->regulapos == 1){
