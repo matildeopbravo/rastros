@@ -71,7 +71,7 @@ void altera_tabuleiro(ESTADO *e,int regulador,ESTADO *copia_estado){
 
         COORDENADA coord1 = obtem_coordenada(e,h,1);
         COORDENADA coord2 = obtem_coordenada(e,h,2);
-        printf("\n %c%d  %c%d\n",coord1.coluna + 'a',8 - coord1.linha,coord2.coluna + 'a',8 - coord2.linha);
+      
         e->tab[coord1.linha][coord1.coluna] = VAZIO;
         e->tab[coord2.linha][coord2.coluna] = VAZIO;
        
