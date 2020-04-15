@@ -7,7 +7,7 @@
 
 int verificanumero (char token){
     int res = 0;
-    for (char a = '0';a < '9';a++) {
+    for (char a = '0';a <='9';a++) {
         if (token == a)
            res = 1;
     }
@@ -57,21 +57,30 @@ void mostrar_tabuleiro(ESTADO * estado, FILE * stream) {
 // nomeadamente a última jogada, que é uma componente da struct principal, deverá ser ainda a do jogo atual e nao da do jogo 
 // inserido no comando pos. Por isso é guardado seu valor para no final de tudo, repor ele caso tal função tiver sido invocada num momento em que
 // não era o conteúdo propriamente em si que iria ser mudado e apenas trabalhava  para funções que mostram na tela.
-void altera_tabuleiro(ESTADO *e,int regulador){
-
+void altera_tabuleiro(ESTADO *e,int regulador,ESTADO *copia_estado){
+     int h;
      COORDENADA guardaultima = e->ultima_jogada;
+ 
 
     if (e-> num_jogadas != -1)
         e->ultima_jogada = obtem_coordenada(e,(e->num_jogadas),2);
     else  
         (e->ultima_jogada = (COORDENADA) {3,4});
-   
-    for (int h = e ->num_jogadas + 1; h <= 31; h++){
+    
+    for (h = e ->num_jogadas + 1; h <= copia_estado->num_jogadas - 2; h++){
+
         COORDENADA coord1 = obtem_coordenada(e,h,1);
         COORDENADA coord2 = obtem_coordenada(e,h,2);
+        printf("\n %c%d  %c%d\n",coord1.coluna + 'a',8 - coord1.linha,coord2.coluna + 'a',8 - coord2.linha);
         e->tab[coord1.linha][coord1.coluna] = VAZIO;
         e->tab[coord2.linha][coord2.coluna] = VAZIO;
-    }   
+       
+    } 
+    if (copia_estado->jogador_atual == 2){
+       COORDENADA coord4 = obtem_coordenada(e,h,1);
+      e->tab[coord4.linha][coord4.coluna] = VAZIO;
+    }
+          
     COORDENADA coord3 = e->ultima_jogada;
     e->tab[coord3.linha][coord3.coluna] = BRANCA;
 
@@ -79,17 +88,18 @@ void altera_tabuleiro(ESTADO *e,int regulador){
         e->ultima_jogada = guardaultima;
     
 }
-void atualizapos(ESTADO *e){
+void atualizapos(ESTADO *e,ESTADO *copia_estado){
+         
       CASA tabcopia[8][8];
       e->jogador_atual = 1;//Padrão. O começo de uma nova jogada é sempre do jogador 1.
-    
+      
       for (int i= 0; i < 9 - 1; i++){
           for (int j = 0; j < 8; j++){
               tabcopia[i][j] = e->tab[i][j];
           }
       }
       e->num_jogadas = e->num_jogadas - 2;
-      altera_tabuleiro(e,0);
+      altera_tabuleiro(e,0,copia_estado);
       if (e->regulapos2 == 1)
       mostrar_tabuleiro(e,stdout);
  
@@ -284,9 +294,12 @@ int pos(ESTADO * e, ESTADO * copia_estado, char * token) {
                         copia_estado->num_jogadas = obter_numero_de_jogadas(e);
                         altera_num_jogadas(e, (atoi(token) +1));
                         numjogadaspos = obter_numero_de_jogadas(e);
-                        atualizapos(e);
+                        atualizapos(e,copia_estado);
                         e->regulapos = 1;
+    
                         altera_num_jogadas(e,obter_numero_de_jogadas(copia_estado));
+                      
+
     }
     else{ 
         printf ("\nComando inválido\n") ;
@@ -299,15 +312,17 @@ int interpretador(ESTADO *e) {
     int numjogadaspos = 0, t =0;
     ESTADO * estado_copia = calloc(1,sizeof(ESTADO)) ;
     char linha[BUF_SIZE], col[2], lin[2];
-  
+      int flag;
     mostrar_tabuleiro(e,stdout);
 
     while(t != 2) { 
 
         if (e->regulapos==1){
+
             altera_num_jogadas(e,numjogadaspos);
             mostrar_prompt (e);
             altera_num_jogadas(e,obter_numero_de_jogadas(estado_copia));
+    
         }
         else
             mostrar_prompt (e); 
@@ -322,7 +337,7 @@ int interpretador(ESTADO *e) {
                 if (e->regulapos == 1){
                     guarda_estado(e, estado_copia);
                     altera_num_jogadas(e,numjogadaspos -2);
-                    altera_tabuleiro(e,1); 
+                    altera_tabuleiro(e,1,estado_copia); 
                     apagajogpost(e); 
                     altera_num_jogadas(e, numjogadaspos);
                 }
@@ -331,6 +346,7 @@ int interpretador(ESTADO *e) {
                 if (t){
                     mostrar_tabuleiro(e,stdout);
                     e->regulapos = 0;
+                    estado_copia->jogador_atual = 0;
                 }
                 else if (e->regulapos == 1) {
                     repor_estado(e, estado_copia);
@@ -347,8 +363,9 @@ int interpretador(ESTADO *e) {
                 if( cmd && (cmd == MOVS || cmd == JOG || (token = strtok(NULL, "\n")))) {
                     if(cmd == GRAVAR)
                         gravar(e,token);
-                    if(cmd == LER)
+                    if(cmd == LER){
                         ler(e,token);
+                            estado_copia->jogador_atual = 0;}
                     if(cmd == MOVS) {
                        if (e->regulapos == 1){
                            altera_num_jogadas(e,numjogadaspos);
@@ -359,16 +376,28 @@ int interpretador(ESTADO *e) {
                             mostrar_jogadas(e,stdout);
                     }
                     if(cmd == POS) {
-                        if (pos(e,estado_copia,token) <= obter_numero_de_jogadas(e)){                       
+                        int i = atoi(token);
+                        if ((i>=0)&&(i < obter_numero_de_jogadas(e)) && verificanumero(token[0])==1 ){   
+                           
                              e->regulapos2 = 1; //Flag de aviso para não printar tabuleiro novamente
+                             if (estado_copia->jogador_atual == 0){
+                             if (e->jogador_atual == 2)
+                             estado_copia->jogador_atual = 2;
+                             else
+                             estado_copia->jogador_atual = 1;   
+                             }
+           
+
                              numjogadaspos = pos(e, estado_copia ,token); 
-                             e->regulapos2 = 0;}   
+                             e->regulapos2 = 0;
+                            }  
+                            else printf ("inválido\n");
                     }
                      if (cmd == JOG){
                         if (e->regulapos == 1){
                          guarda_estado(e, estado_copia);
                          altera_num_jogadas(e,numjogadaspos -2);
-                         altera_tabuleiro(e,1); 
+                         altera_tabuleiro(e,1,estado_copia); 
                          apagajogpost(e); 
                          altera_num_jogadas(e, numjogadaspos);
                         }
