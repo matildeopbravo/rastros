@@ -192,11 +192,11 @@ criada para esse fim */
                  && (coordvizinha[h].linha >= 0)
                  && (coordvizinha[h].linha <= 7)
                  && (coordvizinha[h].coluna >= 0)
-                 && (coordvizinha[h].coluna <= 7)) 
-                 {
-                coordaserjogada = coordvizinha[h];
-                j = 1;
-                i = -1;
+                 && (coordvizinha[h].coluna <= 7)){
+                   
+                    coordaserjogada = coordvizinha[h];
+                    j = 1;
+                    i = -1;
             }                  
         }
     }

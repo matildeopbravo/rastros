@@ -307,22 +307,23 @@ int interpretador(ESTADO *e) {
 
                 if( cmd && (cmd == MOVS || cmd == JOG || (token = strtok(NULL, "\n")))) {
                     /*Situação em que foi digitado o comando gravar*/
-                    if(cmd == GRAVAR){
-                    if (e->flag_pos == 1){
-                         salva_jogador_atual = e->jogador_atual;
-                         salva_num_jogadas = e->num_jogadas;
-                         e->jogador_atual = 1;
-                         e->num_jogadas = (e->guarda_num_jogadas_pos) + 1;
-                    
-                         altera_tabuleiro(e);
+                    if(cmd == GRAVAR) {
+                        if (e->flag_pos == 1){
 
+                            salva_jogador_atual = e->jogador_atual;
+                            salva_num_jogadas = e->num_jogadas;
+                            e->jogador_atual = 1;
+                            e->num_jogadas = (e->guarda_num_jogadas_pos) + 1;
+                        
+                            altera_tabuleiro(e);
                         }
-                        gravar(e,token);
-                     if (e->flag_pos == 1) {
-                        e->num_jogadas = salva_num_jogadas;
-                        e->jogador_atual = salva_jogador_atual;
+                            gravar(e,token);
+
+                        if (e->flag_pos == 1) {
+                            e->num_jogadas = salva_num_jogadas;
+                            e->jogador_atual = salva_jogador_atual;
                         }
-                     };
+                    }
                     /*Situação em que foi digitado o comando ler*/
                     if(cmd == LER)
                         ler(e,token);
@@ -345,7 +346,7 @@ int interpretador(ESTADO *e) {
                     }
                     if(cmd == POS) {
                         int i = atoi(token);
-                        if ((i>=0)&&(i < obter_numero_de_jogadas(e)) && verificanumero(token[0])==1 ){   
+                        if ((i>=0)&&(i < obter_numero_de_jogadas(e)) && verificanumero(token[0])==1 ) {   
                              salva_num_jogadas = e->num_jogadas; //variável local que repõe o num_jogadas original
                              e->guarda_num_jogadas_pos = i;//componente da struct que armazena o que foi digitado no "Pos"  
                              if (i!=0){
@@ -365,8 +366,8 @@ int interpretador(ESTADO *e) {
                              e->num_jogadas = salva_num_jogadas;
                              e->jogador_atual = salva_jogador_atual;
                              e->flag_pos = 1;//Flag de aviso que o comando pos foi dado
-                            }  
-                            else printf ("inválido\n");
+                        }  
+                        else printf ("inválido\n");
                     }
                      if (cmd == JOG){
                         if (e->flag_pos == 1){
