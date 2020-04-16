@@ -16,7 +16,7 @@ ESTADO * inicializar_estado(){
     .tab[3][4] = BRANCA,
     .tab[0][7] = DOIS,
     .tab[7][0] = UM, 
-    .regulapos2 = 0};
+    };
 
     return e ;	
 }   
