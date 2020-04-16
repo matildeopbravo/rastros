@@ -260,23 +260,29 @@ int verifica_fim ( ESTADO *e , int l , int c, int j ) {
     if ( l == 0 && c == 0 ) {      
         if ( e->tab[l][c+1]   == PRETA 
           && e->tab[l+1][c]   == PRETA 
-          && e->tab[l+1][c+1] == PRETA )
-        return j ;}
+          && e->tab[l+1][c+1] == PRETA ){
+       if (j == 1)
+            return 2 ;
+            else return 1 ;}}
 
      // Caso em que o jogador está no canto inferior direito
     if ( l == 7 && c == 7 ) {      
         if ( e->tab[l-1][c]   == PRETA 
           && e->tab[l][c-1]   == PRETA 
-          && e->tab[l-1][c-1] == PRETA )
-        return j ;}    
+          && e->tab[l-1][c-1] == PRETA ){
+        if (j == 1)
+            return 2 ;
+            else return 1;}}
 
     if ( l == 0 ) {
         if ( e->tab[l][c-1]   == PRETA 
           && e->tab[l][c+1]   == PRETA 
           && e->tab[l+1][c-1] == PRETA 
           && e->tab[l+1][c]   == PRETA 
-          && e->tab[l+1][c+1] == PRETA )
-            return j ;
+          && e->tab[l+1][c+1] == PRETA ){
+            if (j == 1)
+            return 2 ;
+            else return 1;}
     }
 
     if ( l == 7 ) {
@@ -284,25 +290,31 @@ int verifica_fim ( ESTADO *e , int l , int c, int j ) {
           && e->tab[l][c+1]   == PRETA 
           && e->tab[l-1][c-1] == PRETA 
           && e->tab[l-1][c]   == PRETA 
-          && e->tab[l-1][c+1] == PRETA )
-            return j ;
+          && e->tab[l-1][c+1] == PRETA ){
+           if (j == 1)
+            return 2 ;
+            else return 1;}
     }
 
-    if ( c == 0 ) 
+    if ( c == 0 ) {
         if ( e->tab[l-1][c]   == PRETA 
           && e->tab[l+1][c]   == PRETA 
           && e->tab[l+1][c+1] == PRETA 
           && e->tab[l][c+1]   == PRETA 
-          && e->tab[l-1][c+1] == PRETA )
-            return j ;
+          && e->tab[l-1][c+1] == PRETA ){
+           if (j == 1)
+            return 2 ;
+            else return 1;}}
 
-    if ( c == 7 ) 
+    if ( c == 7 ) {
         if ( e->tab[l-1][c]   == PRETA 
           && e->tab[l+1][c]   == PRETA 
           && e->tab[l+1][c-1] == PRETA 
           && e->tab[l][c-1]   == PRETA 
-          && e->tab[l-1][c-1] == PRETA )
-            return j ;
+          && e->tab[l-1][c-1] == PRETA ){
+            if (j == 1)
+            return 2 ;
+            else return 1;}}
 
     if ( e->tab[l-1][c]   == PRETA 
       && e->tab[l+1][c]   == PRETA 
@@ -311,8 +323,10 @@ int verifica_fim ( ESTADO *e , int l , int c, int j ) {
       && e->tab[l-1][c-1] == PRETA 
       && e->tab[l+1][c+1] == PRETA 
       && e->tab[l][c+1]   == PRETA 
-      && e->tab[l-1][c+1] == PRETA )
-        return j ;
+      && e->tab[l-1][c+1] == PRETA ){
+        if (j == 1)
+            return 2 ;
+            else return 1;}
 
     return 0 ;
 
@@ -339,7 +353,6 @@ int jogar( ESTADO *e , COORDENADA jog_efet ) {
 
         int t = verifica_fim ( e , prox_lin , prox_col , obter_jogador_atual(e));
         // Condição para verificar se há um ganhador
-        if (t) return 2;
                  
         if ( obter_jogador_atual (e) == 1 ) {
             
@@ -353,7 +366,8 @@ int jogar( ESTADO *e , COORDENADA jog_efet ) {
             e->num_jogadas++;
  
         }
-
+    if (t!=0) return 2;
+    else 
     return 1;   
     }
 
