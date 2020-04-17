@@ -327,6 +327,7 @@ int interpretador(ESTADO *e) {
                     /*Situação em que foi digitado o comando ler*/
                     if(cmd == LER)
                         ler(e,token);
+                        e->flag_pos = 0;
                     /*Situação em que foi digitado o comando movs*/    
                     if(cmd == MOVS) {
                        if (e->flag_pos == 1){
