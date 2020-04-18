@@ -244,7 +244,7 @@ void ler (ESTADO * e, char * nome_ficheiro) {
     }
 
 int interpretador(ESTADO *e) {
-    int numjogadaspos = 0, t =0;
+    int t =0;
     char linha[BUF_SIZE], col[2], lin[2];
 
     int salva_num_jogadas;
