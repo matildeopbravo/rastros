@@ -31,16 +31,17 @@ void printarcampeao(ESTADO * estado){
 }
 
 void altera_tabuleiro(ESTADO *estado){
-      int h;
-     COORDENADA coord1;
-     COORDENADA coord2;
+    int h;
+    COORDENADA coord1;
+    COORDENADA coord2;
 
-     /*Ciclo que coloca o tabuleiro todo a VAZIO*/
-     for (int a = 0;a<8;a++){
+    /*Ciclo que coloca o tabuleiro todo a VAZIO*/
+    for (int a = 0;a<8;a++){
         for (int b = 0;b<8;b++){
             estado->tab[a][b] = VAZIO;
-           }
         }
+    }
+
     estado->tab[0][7] = DOIS;
     estado->tab[7][0] = UM;
     
@@ -52,38 +53,38 @@ void altera_tabuleiro(ESTADO *estado){
 
     else {
 
-     /*Ciclo que coloca a PRETO todas as casas do tabuleiro que já foram ocupadas até a e-nésima jogada*/
-     for (h = 0; h < (estado->num_jogadas) - 1; h++){
+        /*Ciclo que coloca a PRETO todas as casas do tabuleiro que já foram ocupadas até a e-nésima jogada*/
+        for (h = 0; h < (estado->num_jogadas) - 1; h++){
 
-        coord1 = obtem_coordenada(estado,h,1);
-        coord2 = obtem_coordenada(estado,h,2);
-      
-        estado->tab[coord1.linha][coord1.coluna] = PRETA;
-        estado->tab[coord2.linha][coord2.coluna] = PRETA;
-       
-    } 
-    /* Caso o jogador atual for o 2, então falta preencher a BRANCO  a última jogada efetuada*/
-    if (estado->jogador_atual == 2){
-      coord1 = obtem_coordenada(estado,h,1);
-      estado->tab[coord1.linha][coord1.coluna] = BRANCA;
-      (estado->ultima_jogada).linha = coord1.linha;
-      (estado->ultima_jogada).coluna = coord1.coluna;
-    }
-     /* Caso o jogador atual for o 1, então falta preencher a BRANCO ua última jogada efetuada*/
-    if (estado->jogador_atual == 1){
-      coord2 = obtem_coordenada(estado,h - 1,2);
-      estado->tab[coord2.linha][coord2.coluna] = BRANCA;
-      (estado->ultima_jogada).linha = coord2.linha;
-      (estado->ultima_jogada).coluna = coord2.coluna;
+            coord1 = obtem_coordenada(estado,h,1);
+            coord2 = obtem_coordenada(estado,h,2);
+        
+            estado->tab[coord1.linha][coord1.coluna] = PRETA;
+            estado->tab[coord2.linha][coord2.coluna] = PRETA;
+        
+        } 
+        /* Caso o jogador atual for o 2, então falta preencher a BRANCO  a última jogada efetuada*/
+        if (estado->jogador_atual == 2){
+            coord1 = obtem_coordenada(estado,h,1);
+            estado->tab[coord1.linha][coord1.coluna] = BRANCA;
+            (estado->ultima_jogada).linha = coord1.linha;
+            (estado->ultima_jogada).coluna = coord1.coluna;
+        }
+        /* Caso o jogador atual for o 1, então falta preencher a BRANCO ua última jogada efetuada*/
+        if (estado->jogador_atual == 1){
+            coord2 = obtem_coordenada(estado,h - 1,2);
+            estado->tab[coord2.linha][coord2.coluna] = BRANCA;
+            (estado->ultima_jogada).linha = coord2.linha;
+            (estado->ultima_jogada).coluna = coord2.coluna;
 
+        }
+        /* Preenchimento da posição inicial a PRETO é sempre necessário, dado que ela não está presente em nenhuma das listas.
+        apenas quando nenhuma jogada foi efetuada ainda é  que não devo fazer nada */
+        if ((estado->num_jogadas == 1 && estado->jogador_atual == 2)
+        || (estado->num_jogadas > 1)){
+            estado->tab[3][4] = PRETA;
+        }
     }
-    /* Preenchimento da posição inicial a PRETO é sempre necessário, dado que ela não está presente em nenhuma das listas.
-    apenas quando nenhuma jogada foi efetuada ainda é  que não devo fazer nada */
-    if ((estado->num_jogadas == 1 && estado->jogador_atual == 2)
-    || (estado->num_jogadas > 1)){
-      estado->tab[3][4] = PRETA;
-      }
- }
 }
 
 //Mostra o tabuleiro no ecrã como também o insere num ficheiro quando efetuado o comando "gr"
@@ -99,8 +100,8 @@ void mostrar_tabuleiro(ESTADO * estado, FILE * stream) {
             if (cs == VAZIO) 
                 fputc('.',stream) ;
             else
-                 fputc(cs,stream);
-        }       
+                fputc(cs,stream);
+        }
         fputc('\n',stream) ;
     }
 
@@ -300,101 +301,116 @@ int interpretador(ESTADO *e) {
         }
         // Situações em que foi digitado comandos
         else {
-                char * token = strtok(linha," ");
-                if (!strcmp(linha,"movs\n")) token = "movs";
-                if (!strcmp(linha,"jog\n")) token = "jog";
-                COMANDO cmd = verifica_comando(token);
+            char * token = strtok(linha," ");
+            if (!strcmp(linha,"movs\n")) token = "movs";
+            //if (!strcmp(linha,"jog\n")) token = "jog";
+            COMANDO cmd = verifica_comando(token);
 
-                if( cmd && (cmd == MOVS || cmd == JOG || (token = strtok(NULL, "\n")))) {
-                    /*Situação em que foi digitado o comando gravar*/
-                    if(cmd == GRAVAR) {
-                        if (e->flag_pos == 1){
+            if( cmd && (cmd == MOVS || /*cmd == JOG ||*/ (token = strtok(NULL, "\n")))) {
+                /*Situação em que foi digitado o comando gravar*/
+                if(cmd == GRAVAR) {
+                    if (e->flag_pos == 1){
 
-                            salva_jogador_atual = e->jogador_atual;
-                            salva_num_jogadas = e->num_jogadas;
-                            e->jogador_atual = 1;
-                            e->num_jogadas = (e->guarda_num_jogadas_pos) + 1;
-                        
-                            altera_tabuleiro(e);
-                        }
-                            gravar(e,token);
-
-                        if (e->flag_pos == 1) {
-                            e->num_jogadas = salva_num_jogadas;
-                            e->jogador_atual = salva_jogador_atual;
-                        }
-                    }
-                    /*Situação em que foi digitado o comando ler*/
-                    if(cmd == LER){
-                        ler(e,token);
-                        e->flag_pos = 0;}
-                    /*Situação em que foi digitado o comando movs*/    
-                    if(cmd == MOVS) {
-                       if (e->flag_pos == 1){
-
-                           salva_num_jogadas = e->num_jogadas;
-                           salva_jogador_atual = e->jogador_atual;
-                           e->num_jogadas = (e->guarda_num_jogadas_pos) + 1; /* soma-se um pois o comando "pos" exige um tratamento especial*/
-                           e->jogador_atual = 1;
-                           
-                           mostrar_jogadas(e,stdout);
-                           
-                           e->jogador_atual = salva_jogador_atual;
-                           e->num_jogadas = salva_num_jogadas;
-                       }
-                       else  
-                            mostrar_jogadas(e,stdout);
-                    }
-                    if(cmd == POS) {
-                        int i = atoi(token);
-                        if ((i>=0)&&(i < obter_numero_de_jogadas(e)) && verificanumero(token[0])==1 ) {   
-                             salva_num_jogadas = e->num_jogadas; //variável local que repõe o num_jogadas original
-                             e->guarda_num_jogadas_pos = i;//componente da struct que armazena o que foi digitado no "Pos"  
-                             if (i!=0){
-                             e->num_jogadas = i + 1;/* É feito +1 porque ao fazer "pos 1" por exemplo, quero estar no ínicio da jogada 2,
-                             ou seja, a primeira jogada já foi feita. Como a primeira jogada está no índice 0 do array jogadas,
-                             e, a condição de paragem na mostrar_tabuleiro está feita com a ideia de que o número de jogadas é o "atual"
-                             e não aquele que já foi feito, então para mostrar a primeira jogada devo aumentar em um o número de jogadas.*/
-                             }
-                             else e->num_jogadas = 0; /* o zero é condição especial*/
-                             
-                             salva_jogador_atual = e->jogador_atual;
-                             e->jogador_atual = 1;
-                             
-                             mostrar_tabuleiro(e,stdout);
-                             /*Como posso fazer "pos"encadeado, devo manter sempre o num_jogadas atual*/
-                             //Processo de repor o que foi salvo
-                             e->num_jogadas = salva_num_jogadas;
-                             e->jogador_atual = salva_jogador_atual;
-                             e->flag_pos = 1;//Flag de aviso que o comando pos foi dado
-                        }  
-                        else printf ("inválido\n");
-                    }
-                     if (cmd == JOG){
-                        if (e->flag_pos == 1){
                         salva_jogador_atual = e->jogador_atual;
                         salva_num_jogadas = e->num_jogadas;
                         e->jogador_atual = 1;
                         e->num_jogadas = (e->guarda_num_jogadas_pos) + 1;
-                        //Sei que a jogada nesse comando é sempre válida
-                         altera_tabuleiro(e);
+                    
+                        altera_tabuleiro(e);
+                    }
+                        gravar(e,token);
+
+                    if (e->flag_pos == 1) {
+                        e->num_jogadas = salva_num_jogadas;
+                        e->jogador_atual = salva_jogador_atual;
+                    }
+                }
+
+                /*Situação em que foi digitado o comando ler*/
+                if(cmd == LER){
+                    ler(e,token);
+                    e->flag_pos = 0;}
+
+                /*Situação em que foi digitado o comando movs*/    
+                if(cmd == MOVS) {
+                    if (e->flag_pos == 1){
+
+                        salva_num_jogadas = e->num_jogadas;
+                        salva_jogador_atual = e->jogador_atual;
+                        e->num_jogadas = (e->guarda_num_jogadas_pos) + 1; /* soma-se um pois o comando "pos" exige um tratamento especial*/
+                        e->jogador_atual = 1;
+                           
+                        mostrar_jogadas(e,stdout);
+                           
+                        e->jogador_atual = salva_jogador_atual;
+                        e->num_jogadas = salva_num_jogadas;
+                    }
+                    else  
+                        mostrar_jogadas(e,stdout);
+                }
+
+                if(cmd == POS) {
+                    int i = atoi(token);
+                    if ((i>=0)&&(i < obter_numero_de_jogadas(e)) && verificanumero(token[0])==1 ) {   
+                        salva_num_jogadas = e->num_jogadas; //variável local que repõe o num_jogadas original
+                        e->guarda_num_jogadas_pos = i;//componente da struct que armazena o que foi digitado no "Pos"
+
+                        if (i!=0){
+                            e->num_jogadas = i + 1;/* É feito +1 porque ao fazer "pos 1" por exemplo, quero estar no ínicio da jogada 2,
+                            ou seja, a primeira jogada já foi feita. Como a primeira jogada está no índice 0 do array jogadas,
+                            e, a condição de paragem na mostrar_tabuleiro está feita com a ideia de que o número de jogadas é o "atual"
+                            e não aquele que já foi feito, então para mostrar a primeira jogada devo aumentar em um o número de jogadas.*/
+                        }
+                        else e->num_jogadas = 0; /* o zero é condição especial*/
+                             
+                        salva_jogador_atual = e->jogador_atual;
+                        e->jogador_atual = 1;
+                         
+                        mostrar_tabuleiro(e,stdout);
+                        /*Como posso fazer "pos"encadeado, devo manter sempre o num_jogadas atual*/
+                        //Processo de repor o que foi salvo
+                        e->num_jogadas = salva_num_jogadas;
+                        e->jogador_atual = salva_jogador_atual;
+                        e->flag_pos = 1;//Flag de aviso que o comando pos foi dado
+                    }  
+                    else printf ("inválido\n");
+                }
+
+                if (cmd == JOG){
+                    int n = atoi (token) ;
+
+                    if (( n != 1 ) && ( n != 2 ))
+                        printf ("inválido\n");
+                    else {
+
+                        if (e->flag_pos == 1){
+                            salva_jogador_atual = e->jogador_atual;
+                            salva_num_jogadas = e->num_jogadas;
+                            e->jogador_atual = 1;
+                            e->num_jogadas = (e->guarda_num_jogadas_pos) + 1;
+                            //Sei que a jogada nesse comando é sempre válida
+                            altera_tabuleiro(e);
                         }
 
                         COORDENADA coordaefetuar;
-                        coordaefetuar = estrategia_paridade(e);
+
+                        if ( n == 1 )
+                            coordaefetuar = estrategia_paridade(e);
+                        else
+                            coordaefetuar = estrategia_floodfill(e);
+
                         t = jogar(e,coordaefetuar);
                         mostrar_tabuleiro(e,stdout);
                         e->flag_pos = 0;
-
                     }
-                }      
-                else {
-                    printf ("inválido\n");
-                    t = 3;
                 }
+            }      
+            else {
+                printf ("inválido\n");
+                t = 3;
+            }
         }
-    
-                  
+              
         if(t != 3) incrementa_comandos(e);
 
     }

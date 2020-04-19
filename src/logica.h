@@ -38,4 +38,6 @@ COORDENADA estrategia_paridade(ESTADO *e);
 
 int calcula_area(COORDENADA * possiveljogada, ESTADO * e);
 
+COORDENADA estrategia_floodfill ( ESTADO * e ) ;
+
 #endif

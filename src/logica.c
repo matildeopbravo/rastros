@@ -3,6 +3,200 @@
 #include "dados.h"
 #include "listas.h"
 
+/*------------------Funções correspondentes a estratégia Floodfill---------------------------------*/
+
+// {3,4} é a coordenada de controlo
+COORDENADA vizinhas ( ESTADO *e , LISTA posicoesvazias ) {
+
+    COORDENADA coordvizinha[8];//array que vai auxiliar no preenchimento da lista acima
+    COORDENADA coordaserjogada;//coordenada escolhida resultado de aplicar a função
+    coordaserjogada.linha = 3;  // Inicialização da coordenada com este valor com fins na condição
+    coordaserjogada.coluna = 4; //presente no próximo 'if'.
+
+    int h = 0;
+    for (int i = 1 ;i >= -1;i--){
+        for (int j = -1;j <= 1;j++,h++){
+            
+            coordvizinha[h].linha = ((e->ultima_jogada).linha) + i;
+            coordvizinha[h].coluna = ((e->ultima_jogada).coluna) + j;
+             
+            /* Este primeiro if é a situação de preenchimento normal*/
+            if ((obter_estado_casa(e,coordvizinha[h]) == VAZIO)
+             && (coordvizinha[h].linha >= 0)
+             && (coordvizinha[h].linha <= 7)
+             && (coordvizinha[h].coluna >= 0)
+             && (coordvizinha[h].coluna <= 7)) {
+                posicoesvazias = insere_cabeca(posicoesvazias, &(coordvizinha[h]));
+            }
+
+            /* Este if analisa uma das situações de prioridade MÀXIMA- VITÓRIA
+            O ciclo deve ser interrompido dado que já achamos a jogada*/
+            if ((e->jogador_atual == 1 )
+             && (obter_estado_casa(e,coordvizinha[h]) == UM)
+             && (coordvizinha[h].linha >= 0)
+             && (coordvizinha[h].linha <= 7)
+             && (coordvizinha[h].coluna >= 0)
+             && (coordvizinha[h].coluna <= 7)) {
+
+                coordaserjogada = coordvizinha[h];
+                j = 1;
+                i = -1;
+            }
+
+            /* Este if analisa a outra situações de prioridade MÀXIMA- VITÓRIA
+            O ciclo deve ser interrompido dado que já achamos a jogada*/
+            if ((e->jogador_atual == 2 
+             &&   obter_estado_casa(e,coordvizinha[h]) == DOIS)
+             && (coordvizinha[h].linha >= 0)
+             && (coordvizinha[h].linha <= 7)
+             && (coordvizinha[h].coluna >= 0)
+             && (coordvizinha[h].coluna <= 7)){
+                   
+                coordaserjogada = coordvizinha[h];
+                j = 1;
+                i = -1;
+            }                  
+        }
+    }
+
+    return coordaserjogada;
+}
+
+
+// Temos a coordenada t. Queremos saber se essa casa está ao lado de alguma com valor n-1. Para isso corremos todas as posições do tabuleiro até 
+// encontrarmos alguma ao lado da coordenada que temos ou chegarmos ao fim do tabuleiro.
+
+int eaolado ( COORDENADA t , int num_casa[8][8] , int n ) {                 
+    int f = 0 ;                                                             // flag que será usada no ciclo
+    int l = 0 , c = 0 ;                                                     // primeira posição do tabuleiro é linha 0 coluna 0
+
+    while ( f == 0 ) {
+
+        if (c == 7 && l == 7)                                               // verificamos se chegou ao fim do tabuleiro se isso acontecer, mudamos a flag,
+            f = 2 ;                                                         //  parando o ciclo e informando que não está ao lado de nenhuma casa
+                                                                          // nas condições que queríamos (a não ser que a condição seguinte se verifique)
+        if (num_casa[l][c] == (n-1) ) {                                     // verificamos que tem valor (n-1)
+            if ( abs(t.linha - l) <= 1 && abs(t.coluna - c) <= 1 )          // verificamos que está ao lado da nossa coordenada dada
+                f = 1 ;                                                     // alterar a flag, parando o ciclo, e indicando aquilo que acabamos de verificar
+        }
+                                                                            // mudar a posição do tabuleiro, se este ainda não tiver chegado ao fim
+        if (c == 7 && l != 7) {                                             // se estiver na ultima coluna,
+            c = 0 ;                                                       // passar para a primeira coluna
+            l++;                                                          // da linha seguinte
+        }
+        else c++;                                                         // senão simplesmente vai-se para a coluna seguinte da mesma linha
+    }
+
+    if ( f == 1 ) return 1 ;                                                // a flag com valor 1 indica que a função tem valor 1
+    else return 0;                                                          // a flag com valor 2 indica que a função tem valor 0
+
+}
+
+COORDENADA estrategia_floodfill ( ESTADO * e ) {
+
+    COORDENADA coor_final;                                                      // é a coordenada que vamos retornar no final
+
+    LISTA l = criar_lista();                                                    // lista de posições vazias
+    COORDENADA possiveljogada = vizinhas ( e , l ) ;
+
+    if ( possiveljogada.linha != 3 
+      || possiveljogada.coluna != 4 ) {
+          coor_final = possiveljogada ;
+    }
+    else {
+
+        COORDENADA cf;                                                          // é a coordenada da casa para onde a peça se deve dirigir
+        int f1 = 0 ;                                                            // flag 1 (explicação em baixo)
+        int f2 = 0 ;                                                            // flag 2 (explicação em baixo)
+        int c1 ;                                                                // variáveis cujos valores serão determinados à frente
+        int c2 ;
+        int nn ;                                                                // explicação mais à frente
+        int num_casa[8][8] = {{ -1 , -1 , -1 , -1 , -1 , -1 , -1 , c2 },        // matriz que representa qual o número que tem cada casa do tabuleiro;
+                              { -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 },      // para perceber melhor isso, consultar este vídeo:
+                              { -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 },      // https://www.youtube.com/watch?v=k0XFafeGjsI
+                              { -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 },      // -1 é um valor pré-definido e significa que não lhe foi atribuído valor
+                              { -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 },      // o valor de c1 e c2 vai depender de qual jogador está a jogar,
+                              { -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 },      // será -1 ou 0.
+                              { -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 },
+                              { c1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 }};
+
+        int n = 0 ;                                                             // é a variável que vai dar valor às casas no num_casa
+
+        if ( e->jogador_atual == 1 ) {                                           // ao saber qual o jogador_atual,
+            cf.linha = 7 ;                                                     // conseguimos saber qual a peça para onde ele ganha o jogo
+            cf.coluna = 0 ;                                                    // e desse modo atribuir valor a c1 e c2
+            c1 = 0 ;
+            c2 = -1 ;
+        }  
+        else {
+            cf.linha = 0 ;
+            cf.coluna = 7 ;
+            c1 = -1 ;
+            c2 = 0 ;
+        }
+
+        while ( f1 == 0 ) {                                                     // a flag 1 muda quando atingimos a posição onde o jogador está ( f1 > 0 )
+                                                                              // ou quando se conclui que não há caminho possível até lá ( f1 == -1 )
+            n++ ;                                                               // incrementa-se o n para mudar o número que se coloca na matriz num_casa
+            nn = 0 ;                                                            // nn representa quantas vezes se vai escrever o numero n em num_casa
+                                                                              // no ciclo abaixo
+            COORDENADA t ;                                                      // t representa a posição que vamos averiguar se colocamos o valor n
+            t.linha = 0 ;
+            t.coluna = 0 ;
+
+            while ( f2 == 0 ) {                                                 // a flag 2 muda se chegamos ao fim das casas do tabuleiro para este valor n
+
+                if ( num_casa[t.linha][t.coluna] == -1 ) {                      // só colocamos valor n nas casas que ainda só têm o valor -1 (pré-definido)
+
+                    if (eaolado ( t , num_casa , n )) {                          // função auxiliar que testa se a casa está ao lado de alguma casa com
+                                                                              // valor já definido (>=0)
+                        if (e->tab[t.linha][t.coluna] == VAZIO ) {              // se a casa for vazia,
+                            num_casa[t.linha][t.coluna] = n ;                 // atribuimos-lhe o valor n,
+                            nn++ ;                                            // e incrementa-se nn
+                        }
+                        else {
+                            if (e->tab[t.linha][t.coluna] == BRANCA ) {         // mesmo processo do que se a casa for vazia
+                                num_casa[t.linha][t.coluna] = n ;             // acrescentando apenas a mudança do valor da flag 1 para n
+                                f1 = n ;                                      // o que vai fazer com que este ciclo pare
+                                nn++ ;                                        // (porque chegou à casa destino e já podemos concluir o que pretendemos)
+                            }
+                        }
+                    }
+                }
+
+                if (t.linha == 7 && t.coluna == 7)                              // na ultima casa do tabuleiro,
+                    f2 = 1 ;                                                  // é necessário mudar a flag 2 para parar o ciclo
+                else {                                                          // se não estivermos na ultima casa do tabuleiro, temos de ir para a
+                    if (t.coluna == 7) {                                      // seguinte que, no caso de estar na ultima coluna,
+                        t.coluna = 0 ;                                        // será na primeira coluna
+                        t.linha++;                                            // da linha seguinte
+                    }
+                    else t.coluna++;                                          // se não estivermos na última coluna é só ir para a coluna seguinte e ficar
+                }                                                             // na mesma linha
+                    
+            }
+
+            if ( nn == 0 )                                                      // no fim de cada ciclo, é necessário ver se atribuímos o valor n a alguma
+                f1 = -1 ;                                                     // casa neste ciclo. Se isso não acontecer, é porque não há caminho possível
+                                                                              // desde a casa detino até à casa ondee o jogador se encontra. É atribuído
+        }                                                                     // o valor -1 à flag 1, para parar o ciclo maior, informando que não há caminho.
+
+        COORDENADA * cabeca = devolve_cabeca(l);
+
+        if ( f1 > 0 )                                                           // se houver caminho possível, encontrar a primeira casa 
+            while ( num_casa[cabeca->linha][cabeca->coluna] != (f1 - 1)) {    // (é aleatório) com valor igual a (f1 - 1)
+                l = proximo(l);
+                cabeca = devolve_cabeca (l) ;
+            }
+
+        coor_final = *cabeca ;                                                  // retornar a coordenada dessa casa
+    }
+
+    return coor_final;
+
+}
+
+
 /*------------------Funções correspondentes a estratégia Paridade----------------------------------*/
 
 int aux_1_indice(ESTADO * e,int paridade[8]){
@@ -178,8 +372,8 @@ criada para esse fim */
 
             /* Este if analisa uma das situações de prioridade MÀXIMA- VITÓRIA
             O ciclo deve ser interrompido dado que já achamos a jogada*/
-            if ((e->jogador_atual == 1 
-             &&   obter_estado_casa(e,coordvizinha[h]) == UM)
+            if ((e->jogador_atual == 1 )
+             && (obter_estado_casa(e,coordvizinha[h]) == UM)
              && (coordvizinha[h].linha >= 0)
              && (coordvizinha[h].linha <= 7)
              && (coordvizinha[h].coluna >= 0)
