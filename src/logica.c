@@ -5,7 +5,7 @@
 
 
 // {3,4} é a coordenada de controlo
-COORDENADA vizinhas ( ESTADO *e , LISTA posicoesvazias ) {
+LISTA vizinhas ( ESTADO *e , LISTA posicoesvazias ) {
 
     COORDENADA coordvizinha[8];//array que vai auxiliar no preenchimento da lista acima
     COORDENADA coordaserjogada;//coordenada escolhida resultado de aplicar a função
@@ -26,54 +26,25 @@ COORDENADA vizinhas ( ESTADO *e , LISTA posicoesvazias ) {
              && (coordvizinha[h].coluna >= 0)
              && (coordvizinha[h].coluna <= 7)) {
                 posicoesvazias = insere_cabeca(posicoesvazias, &(coordvizinha[h]));
-            }
-
-            /* Este if analisa uma das situações de prioridade MÀXIMA- VITÓRIA
-            O ciclo deve ser interrompido dado que já achamos a jogada*/
-            if ((e->jogador_atual == 1 )
-             && (obter_estado_casa(e,coordvizinha[h]) == UM)
-             && (coordvizinha[h].linha >= 0)
-             && (coordvizinha[h].linha <= 7)
-             && (coordvizinha[h].coluna >= 0)
-             && (coordvizinha[h].coluna <= 7)) {
-
-                coordaserjogada = coordvizinha[h];
-                j = 1;
-                i = -1;
-            }
-
-            /* Este if analisa a outra situações de prioridade MÀXIMA- VITÓRIA
-            O ciclo deve ser interrompido dado que já achamos a jogada*/
-            if ((e->jogador_atual == 2 
-             &&   obter_estado_casa(e,coordvizinha[h]) == DOIS)
-             && (coordvizinha[h].linha >= 0)
-             && (coordvizinha[h].linha <= 7)
-             && (coordvizinha[h].coluna >= 0)
-             && (coordvizinha[h].coluna <= 7)){
-                   
-                coordaserjogada = coordvizinha[h];
-                j = 1;
-                i = -1;
-            }                  
+                printf("%d %d \n", coordvizinha[h].linha , coordvizinha[h].coluna );
+            }   
         }
     }
 
-    return coordaserjogada;
+    return posicoesvazias;
 }
 
 /*------------------Funções correspondentes a estratégia Floodfill---------------------------------*/
-COORDENADA aux (int f1 , LISTA l , int num_casa[8][8]){
+COORDENADA aux ( int f1 , LISTA l , int num_casa[8][8]){
     COORDENADA coor_final;
     COORDENADA * cabeca ;
     cabeca = devolve_cabeca(l);
-        if ( f1 > 0 ){                                                        // se houver caminho possível, encontrar a primeira casa 
-            while ( num_casa[cabeca->linha][cabeca->coluna] != (f1 - 1)) {    // (é aleatório) com valor igual a (f1 - 1)
-                l = proximo(l);
-                cabeca = devolve_cabeca (l) ;
-            }
-        }
-        coor_final = *cabeca ;
-        return coor_final;
+    while ( num_casa[cabeca->linha][cabeca->coluna] != (f1 - 1)) {
+        l = proximo(l);
+        cabeca = devolve_cabeca (l) ;
+    }
+    coor_final = *cabeca ;
+    return coor_final;
 }
 
 // Temos a coordenada t. Queremos saber se essa casa está ao lado de alguma com valor n-1. Para isso corremos todas as posições do tabuleiro até 
@@ -109,15 +80,24 @@ COORDENADA estrategia_floodfill ( ESTADO * e ) {
     COORDENADA coor_final;                                                      // é a coordenada que vamos retornar no final
 
     LISTA l = criar_lista();                                                    // lista de posições vazias
-    COORDENADA possiveljogada = vizinhas ( e , l ) ;
+    l = vizinhas ( e , l ) ;
 
+    COORDENADA *cabeca;
     int num_casa[8][8] ;
+    int f2 = 0;
 
-    if ( possiveljogada.linha != 3 
-      || possiveljogada.coluna != 4 ) {
-          coor_final = possiveljogada ;
+    LISTA l1 = l ;
+    while ( l1 != NULL && f2 == 0) {
+        cabeca = devolve_cabeca (l1) ;
+        if ((e->jogador_atual == 1 && cabeca->linha == 7 && cabeca->coluna == 0 )
+         || (e->jogador_atual == 2 && cabeca->linha == 0 && cabeca->coluna == 7 )) {
+            coor_final = *cabeca ;
+            f2 = 1 ;
+        }
+        l1 = proximo(l1);
     }
-    else {    
+
+    if ( f2 == 0 ) {    
         int f1 = 0 ;                                                            // flag 1 (explicação em baixo)
         //int f2 = 0 ;                                                            // flag 2 (explicação em baixo)
         int c1 ;                                                                // variáveis cujos valores serão determinados à frente
@@ -134,83 +114,28 @@ COORDENADA estrategia_floodfill ( ESTADO * e ) {
             c2 = 0 ;
         }
 
-
+        for (int a = 0;a<8;a++){
+            for (int b = 0;b<8;b++){
+                if ( a == 0 && b == 7 )
+                    num_casa[a][b] = c2;
+                else if ( a == 7 && b == 0 )
+                        num_casa[a][b] = c1;
+                     else num_casa[a][b] = -1;
+                printf ("%d",num_casa[a][b]);
+            }
+            printf("\n");
+        }
+        printf("\n");
 
         while ( f1 == 0 ) {
+  
+            n++ ; 
+            nn = 0 ;
+            printf ("%d\n\n",n);
+            COORDENADA t ;
 
-            num_casa[0][0] = -1 ;
-            num_casa[0][1] = -1 ;
-            num_casa[0][2] = -1 ;
-            num_casa[0][3] = -1 ;
-            num_casa[0][4] = -1 ;
-            num_casa[0][5] = -1 ;
-            num_casa[0][6] = -1 ;
-            num_casa[0][7] = c2 ;
-            num_casa[1][0] = -1 ;
-            num_casa[1][1] = -1 ;
-            num_casa[1][2] = -1 ;
-            num_casa[1][3] = -1 ;
-            num_casa[1][4] = -1 ;
-            num_casa[1][5] = -1 ;
-            num_casa[1][6] = -1 ;
-            num_casa[1][7] = -1 ;
-            num_casa[2][0] = -1 ;
-            num_casa[2][1] = -1 ;
-            num_casa[2][2] = -1 ;
-            num_casa[2][3] = -1 ;
-            num_casa[2][4] = -1 ;
-            num_casa[2][5] = -1 ;
-            num_casa[2][6] = -1 ;
-            num_casa[2][7] = -1 ;
-            num_casa[3][0] = -1 ;
-            num_casa[3][1] = -1 ;
-            num_casa[3][2] = -1 ;
-            num_casa[3][3] = -1 ;
-            num_casa[3][4] = -1 ;
-            num_casa[3][5] = -1 ;
-            num_casa[3][6] = -1 ;
-            num_casa[3][7] = -1 ;
-            num_casa[4][0] = -1 ;
-            num_casa[4][1] = -1 ;
-            num_casa[4][2] = -1 ;
-            num_casa[4][3] = -1 ;
-            num_casa[4][4] = -1 ;
-            num_casa[4][5] = -1 ;
-            num_casa[4][6] = -1 ;
-            num_casa[4][7] = -1 ;
-            num_casa[5][0] = -1 ;
-            num_casa[5][1] = -1 ;
-            num_casa[5][2] = -1 ;
-            num_casa[5][3] = -1 ;
-            num_casa[5][4] = -1 ;
-            num_casa[5][5] = -1 ;
-            num_casa[5][6] = -1 ;
-            num_casa[5][7] = -1 ;
-            num_casa[6][0] = -1 ;
-            num_casa[6][1] = -1 ;
-            num_casa[6][2] = -1 ;
-            num_casa[6][3] = -1 ;
-            num_casa[6][4] = -1 ;
-            num_casa[6][5] = -1 ;
-            num_casa[6][6] = -1 ;
-            num_casa[6][7] = -1 ;
-            num_casa[7][0] = c1 ;
-            num_casa[7][1] = -1 ;
-            num_casa[7][2] = -1 ;
-            num_casa[7][3] = -1 ;
-            num_casa[7][4] = -1 ;
-            num_casa[7][5] = -1 ;
-            num_casa[7][6] = -1 ;
-            num_casa[7][7] = -1 ;
-
-
-            n++ ;                                                               // incrementa-se o n para mudar o número que se coloca na matriz num_casa
-            nn = 0 ;                                                            // nn representa quantas vezes se vai escrever o numero n em num_casa
-                                                                              // no ciclo abaixo
-            COORDENADA t ;                                                      // t representa a posição que vamos averiguar se colocamos o valor n
-
-            for ( t.linha = 0 ; f1 == 0 && t.linha != 7 ; t.linha++ ) {
-                for ( t.coluna = 0 ; f1 == 0 && t.coluna != 7 ; t.coluna++ ) {
+            for ( t.linha = 0 ; f1 == 0 && t.linha < 8 ; t.linha++ ) {
+                for ( t.coluna = 0 ; f1 == 0 && t.coluna < 8 ; t.coluna++ ) {
                     if ( num_casa[t.linha][t.coluna] == -1 ) {
 
                         if (eaolado ( t , num_casa , n )) {
@@ -231,15 +156,40 @@ COORDENADA estrategia_floodfill ( ESTADO * e ) {
                 }
             }
 
-            if ( nn == 0 )                                                      // no fim de cada ciclo, é necessário ver se atribuímos o valor n a alguma
-                f1 = -1 ;                                                     // casa neste ciclo. Se isso não acontecer, é porque não há caminho possível
-                                                                                          // desde a casa detino até à casa ondee o jogador se encontra. É atribuído
+            for (int a = 0;a<8;a++){
+                for (int b = 0;b<8;b++){
+                    if (num_casa[a][b] < 0)
+                        printf ("%d", num_casa[a][b]);
+                    else 
+                        printf (" %d", num_casa[a][b]);
+                }
+                printf ("\n");
+            }
+            printf ("\n");
+
+            if ( nn == 0 )
+                f1 = -1 ;
+
         }
+
         printf("%d\n",f1);
-        coor_final = aux (f1 , l , num_casa);                                                                     // o valor -1 à flag 1, para parar o ciclo maior, informando que não há caminho.
+        if (f1 > 0) coor_final = aux ( f1 , l , num_casa);
+        else {
+            cabeca = devolve_cabeca (l);
+            coor_final = *cabeca ;
+        }
+
+       /* cabeca = devolve_cabeca ;
+
+        if (f1 > 0) {
+            while ( num_casa[(*cabeca).linha][(*cabeca).coluna] != (f1 - 1)) {
+                l = proximo(l);
+                cabeca = devolve_cabeca (l) ;
+                printf ("%d %d \n", (*cabeca).linha , (*cabeca).coluna );
+            }
+            coor_final = *cabeca ;
+        }     */
     }
-        
-    
 
     return coor_final;
 
