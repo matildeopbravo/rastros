@@ -396,9 +396,9 @@ int interpretador(ESTADO *e) {
 
                         if ( n == 1 )
                             coordaefetuar = estrategia_paridade(e);
-                        else
+                        else 
                             coordaefetuar = estrategia_floodfill(e);
-
+                        
                         t = jogar(e,coordaefetuar);
                         mostrar_tabuleiro(e,stdout);
                         e->flag_pos = 0;

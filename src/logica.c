@@ -3,7 +3,6 @@
 #include "dados.h"
 #include "listas.h"
 
-/*------------------Funções correspondentes a estratégia Floodfill---------------------------------*/
 
 // {3,4} é a coordenada de controlo
 COORDENADA vizinhas ( ESTADO *e , LISTA posicoesvazias ) {
@@ -62,6 +61,20 @@ COORDENADA vizinhas ( ESTADO *e , LISTA posicoesvazias ) {
     return coordaserjogada;
 }
 
+/*------------------Funções correspondentes a estratégia Floodfill---------------------------------*/
+COORDENADA aux (int f1 , LISTA l , int num_casa[8][8]){
+    COORDENADA coor_final;
+    COORDENADA * cabeca ;
+    cabeca = devolve_cabeca(l);
+        if ( f1 > 0 ){                                                        // se houver caminho possível, encontrar a primeira casa 
+            while ( num_casa[cabeca->linha][cabeca->coluna] != (f1 - 1)) {    // (é aleatório) com valor igual a (f1 - 1)
+                l = proximo(l);
+                cabeca = devolve_cabeca (l) ;
+            }
+        }
+        coor_final = *cabeca ;
+        return coor_final;
+}
 
 // Temos a coordenada t. Queremos saber se essa casa está ao lado de alguma com valor n-1. Para isso corremos todas as posições do tabuleiro até 
 // encontrarmos alguma ao lado da coordenada que temos ou chegarmos ao fim do tabuleiro.
@@ -93,104 +106,140 @@ int eaolado ( COORDENADA t , int num_casa[8][8] , int n ) {
 }
 
 COORDENADA estrategia_floodfill ( ESTADO * e ) {
-
     COORDENADA coor_final;                                                      // é a coordenada que vamos retornar no final
 
     LISTA l = criar_lista();                                                    // lista de posições vazias
     COORDENADA possiveljogada = vizinhas ( e , l ) ;
 
+    int num_casa[8][8] ;
+
     if ( possiveljogada.linha != 3 
       || possiveljogada.coluna != 4 ) {
           coor_final = possiveljogada ;
     }
-    else {
-
-        COORDENADA cf;                                                          // é a coordenada da casa para onde a peça se deve dirigir
+    else {    
         int f1 = 0 ;                                                            // flag 1 (explicação em baixo)
-        int f2 = 0 ;                                                            // flag 2 (explicação em baixo)
+        //int f2 = 0 ;                                                            // flag 2 (explicação em baixo)
         int c1 ;                                                                // variáveis cujos valores serão determinados à frente
         int c2 ;
         int nn ;                                                                // explicação mais à frente
-        int num_casa[8][8] = {{ -1 , -1 , -1 , -1 , -1 , -1 , -1 , c2 },        // matriz que representa qual o número que tem cada casa do tabuleiro;
-                              { -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 },      // para perceber melhor isso, consultar este vídeo:
-                              { -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 },      // https://www.youtube.com/watch?v=k0XFafeGjsI
-                              { -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 },      // -1 é um valor pré-definido e significa que não lhe foi atribuído valor
-                              { -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 },      // o valor de c1 e c2 vai depender de qual jogador está a jogar,
-                              { -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 },      // será -1 ou 0.
-                              { -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 },
-                              { c1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 }};
-
         int n = 0 ;                                                             // é a variável que vai dar valor às casas no num_casa
 
         if ( e->jogador_atual == 1 ) {                                           // ao saber qual o jogador_atual,
-            cf.linha = 7 ;                                                     // conseguimos saber qual a peça para onde ele ganha o jogo
-            cf.coluna = 0 ;                                                    // e desse modo atribuir valor a c1 e c2
-            c1 = 0 ;
-            c2 = -1 ;
+            c1 = 0 ;                                                           // conseguimos saber qual a peça para onde ele ganha o jogo
+            c2 = -1 ;                                                          // e desse modo atribuir valor a c1 e c2
         }  
         else {
-            cf.linha = 0 ;
-            cf.coluna = 7 ;
             c1 = -1 ;
             c2 = 0 ;
         }
 
-        while ( f1 == 0 ) {                                                     // a flag 1 muda quando atingimos a posição onde o jogador está ( f1 > 0 )
-                                                                              // ou quando se conclui que não há caminho possível até lá ( f1 == -1 )
+
+
+        while ( f1 == 0 ) {
+
+            num_casa[0][0] = -1 ;
+            num_casa[0][1] = -1 ;
+            num_casa[0][2] = -1 ;
+            num_casa[0][3] = -1 ;
+            num_casa[0][4] = -1 ;
+            num_casa[0][5] = -1 ;
+            num_casa[0][6] = -1 ;
+            num_casa[0][7] = c2 ;
+            num_casa[1][0] = -1 ;
+            num_casa[1][1] = -1 ;
+            num_casa[1][2] = -1 ;
+            num_casa[1][3] = -1 ;
+            num_casa[1][4] = -1 ;
+            num_casa[1][5] = -1 ;
+            num_casa[1][6] = -1 ;
+            num_casa[1][7] = -1 ;
+            num_casa[2][0] = -1 ;
+            num_casa[2][1] = -1 ;
+            num_casa[2][2] = -1 ;
+            num_casa[2][3] = -1 ;
+            num_casa[2][4] = -1 ;
+            num_casa[2][5] = -1 ;
+            num_casa[2][6] = -1 ;
+            num_casa[2][7] = -1 ;
+            num_casa[3][0] = -1 ;
+            num_casa[3][1] = -1 ;
+            num_casa[3][2] = -1 ;
+            num_casa[3][3] = -1 ;
+            num_casa[3][4] = -1 ;
+            num_casa[3][5] = -1 ;
+            num_casa[3][6] = -1 ;
+            num_casa[3][7] = -1 ;
+            num_casa[4][0] = -1 ;
+            num_casa[4][1] = -1 ;
+            num_casa[4][2] = -1 ;
+            num_casa[4][3] = -1 ;
+            num_casa[4][4] = -1 ;
+            num_casa[4][5] = -1 ;
+            num_casa[4][6] = -1 ;
+            num_casa[4][7] = -1 ;
+            num_casa[5][0] = -1 ;
+            num_casa[5][1] = -1 ;
+            num_casa[5][2] = -1 ;
+            num_casa[5][3] = -1 ;
+            num_casa[5][4] = -1 ;
+            num_casa[5][5] = -1 ;
+            num_casa[5][6] = -1 ;
+            num_casa[5][7] = -1 ;
+            num_casa[6][0] = -1 ;
+            num_casa[6][1] = -1 ;
+            num_casa[6][2] = -1 ;
+            num_casa[6][3] = -1 ;
+            num_casa[6][4] = -1 ;
+            num_casa[6][5] = -1 ;
+            num_casa[6][6] = -1 ;
+            num_casa[6][7] = -1 ;
+            num_casa[7][0] = c1 ;
+            num_casa[7][1] = -1 ;
+            num_casa[7][2] = -1 ;
+            num_casa[7][3] = -1 ;
+            num_casa[7][4] = -1 ;
+            num_casa[7][5] = -1 ;
+            num_casa[7][6] = -1 ;
+            num_casa[7][7] = -1 ;
+
+
             n++ ;                                                               // incrementa-se o n para mudar o número que se coloca na matriz num_casa
             nn = 0 ;                                                            // nn representa quantas vezes se vai escrever o numero n em num_casa
                                                                               // no ciclo abaixo
             COORDENADA t ;                                                      // t representa a posição que vamos averiguar se colocamos o valor n
-            t.linha = 0 ;
-            t.coluna = 0 ;
 
-            while ( f2 == 0 ) {                                                 // a flag 2 muda se chegamos ao fim das casas do tabuleiro para este valor n
+            for ( t.linha = 0 ; f1 == 0 && t.linha != 7 ; t.linha++ ) {
+                for ( t.coluna = 0 ; f1 == 0 && t.coluna != 7 ; t.coluna++ ) {
+                    if ( num_casa[t.linha][t.coluna] == -1 ) {
 
-                if ( num_casa[t.linha][t.coluna] == -1 ) {                      // só colocamos valor n nas casas que ainda só têm o valor -1 (pré-definido)
+                        if (eaolado ( t , num_casa , n )) {
 
-                    if (eaolado ( t , num_casa , n )) {                          // função auxiliar que testa se a casa está ao lado de alguma casa com
-                                                                              // valor já definido (>=0)
-                        if (e->tab[t.linha][t.coluna] == VAZIO ) {              // se a casa for vazia,
-                            num_casa[t.linha][t.coluna] = n ;                 // atribuimos-lhe o valor n,
-                            nn++ ;                                            // e incrementa-se nn
-                        }
-                        else {
-                            if (e->tab[t.linha][t.coluna] == BRANCA ) {         // mesmo processo do que se a casa for vazia
-                                num_casa[t.linha][t.coluna] = n ;             // acrescentando apenas a mudança do valor da flag 1 para n
-                                f1 = n ;                                      // o que vai fazer com que este ciclo pare
-                                nn++ ;                                        // (porque chegou à casa destino e já podemos concluir o que pretendemos)
+                            if (e->tab[t.linha][t.coluna] == VAZIO ) {
+                                num_casa[t.linha][t.coluna] = n ;
+                                nn++ ;
+                            }
+                            else {
+                                if (e->tab[t.linha][t.coluna] == BRANCA ) {
+                                    num_casa[t.linha][t.coluna] = n ;
+                                    f1 = n ;
+                                    nn++ ;
+                                }
                             }
                         }
                     }
                 }
-
-                if (t.linha == 7 && t.coluna == 7)                              // na ultima casa do tabuleiro,
-                    f2 = 1 ;                                                  // é necessário mudar a flag 2 para parar o ciclo
-                else {                                                          // se não estivermos na ultima casa do tabuleiro, temos de ir para a
-                    if (t.coluna == 7) {                                      // seguinte que, no caso de estar na ultima coluna,
-                        t.coluna = 0 ;                                        // será na primeira coluna
-                        t.linha++;                                            // da linha seguinte
-                    }
-                    else t.coluna++;                                          // se não estivermos na última coluna é só ir para a coluna seguinte e ficar
-                }                                                             // na mesma linha
-                    
             }
 
             if ( nn == 0 )                                                      // no fim de cada ciclo, é necessário ver se atribuímos o valor n a alguma
                 f1 = -1 ;                                                     // casa neste ciclo. Se isso não acontecer, é porque não há caminho possível
-                                                                              // desde a casa detino até à casa ondee o jogador se encontra. É atribuído
-        }                                                                     // o valor -1 à flag 1, para parar o ciclo maior, informando que não há caminho.
-
-        COORDENADA * cabeca = devolve_cabeca(l);
-
-        if ( f1 > 0 )                                                           // se houver caminho possível, encontrar a primeira casa 
-            while ( num_casa[cabeca->linha][cabeca->coluna] != (f1 - 1)) {    // (é aleatório) com valor igual a (f1 - 1)
-                l = proximo(l);
-                cabeca = devolve_cabeca (l) ;
-            }
-
-        coor_final = *cabeca ;                                                  // retornar a coordenada dessa casa
+                                                                                          // desde a casa detino até à casa ondee o jogador se encontra. É atribuído
+        }
+        printf("%d\n",f1);
+        coor_final = aux (f1 , l , num_casa);                                                                     // o valor -1 à flag 1, para parar o ciclo maior, informando que não há caminho.
     }
+        
+    
 
     return coor_final;
 
