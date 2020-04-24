@@ -3,7 +3,44 @@
 #include "dados.h"
 #include "listas.h"
 
+COORDENADA jogada_prioridade(LISTA posicoesvazias, ESTADO *e,COORDENADA coordaserjogada){
 
+    COORDENADA coordvizinha[8];
+     
+    int h = 0;
+    for (int i = 1 ;i >= -1;i--){
+        for (int j = -1;j <= 1;j++,h++){
+            
+            coordvizinha[h].linha = ((e->ultima_jogada).linha) + i;
+            coordvizinha[h].coluna = ((e->ultima_jogada).coluna) + j;
+             
+             if ((obter_estado_casa(e,coordvizinha[h]) == UM)
+             && (coordvizinha[h].linha >= 0)
+             && (coordvizinha[h].linha <= 7)
+             && (coordvizinha[h].coluna >= 0)
+             && (coordvizinha[h].coluna <= 7)
+             && e->jogador_atual == 1) 
+             {
+             coordaserjogada = coordvizinha[h];
+             j = 2;
+             i = -2;
+             }
+             if ((obter_estado_casa(e,coordvizinha[h]) == DOIS)
+             && (coordvizinha[h].linha >= 0)
+             && (coordvizinha[h].linha <= 7)
+             && (coordvizinha[h].coluna >= 0)
+             && (coordvizinha[h].coluna <= 7)
+             && e->jogador_atual == 2) 
+             {
+             coordaserjogada = coordvizinha[h];
+             j = 2;
+             i = -2;
+               
+            }   
+        }
+    }
+    return coordaserjogada;
+}
 // {3,4} é a coordenada de controlo
 LISTA vizinhas ( ESTADO *e , LISTA posicoesvazias ) {
 
@@ -26,7 +63,7 @@ LISTA vizinhas ( ESTADO *e , LISTA posicoesvazias ) {
              && (coordvizinha[h].coluna >= 0)
              && (coordvizinha[h].coluna <= 7)) {
                 posicoesvazias = insere_cabeca(posicoesvazias, &(coordvizinha[h]));
-                printf("%d %d \n", coordvizinha[h].linha , coordvizinha[h].coluna );
+                printf("Possível jogada: %c%d\n", coordvizinha[h].coluna + 'a',8 -  coordvizinha[h].linha);
             }   
         }
     }
@@ -35,33 +72,38 @@ LISTA vizinhas ( ESTADO *e , LISTA posicoesvazias ) {
 }
 
 /*------------------Funções correspondentes a estratégia Floodfill---------------------------------*/
+
 COORDENADA aux ( int f1 , LISTA l , int num_casa[8][8]){
+    
     COORDENADA coor_final;
     COORDENADA * cabeca ;
     cabeca = devolve_cabeca(l);
+    
     while ( num_casa[cabeca->linha][cabeca->coluna] != (f1 - 1)) {
+   
         l = proximo(l);
         cabeca = devolve_cabeca (l) ;
     }
+
     coor_final = *cabeca ;
     return coor_final;
 }
 
-// Temos a coordenada t. Queremos saber se essa casa está ao lado de alguma com valor n-1. Para isso corremos todas as posições do tabuleiro até 
+// Temos a coordenada t. Queremos saber se a CASA no tabuleiro correspondente a essa coordenada t
+// está ao lado de alguma com valor n-1. Para isso corremos todas as posições do tabuleiro até 
 // encontrarmos alguma ao lado da coordenada que temos ou chegarmos ao fim do tabuleiro.
 
 int eaolado ( COORDENADA t , int num_casa[8][8] , int n ) {                 
-    int f = 0 ;                                                             // flag que será usada no ciclo
-    int l = 0 , c = 0 ;                                                     // primeira posição do tabuleiro é linha 0 coluna 0
+    int f = 0 ;// flag que será usada no ciclo
+    int l = 0 , c = 0 ; // primeira posição do tabuleiro é linha 0 coluna 0
 
     while ( f == 0 ) {
+        if (c == 7 && l == 7) // verificamos se chegou ao fim do tabuleiro.Se isso acontecer, mudamos a flag,
+            f = 2 ;          //  parando o ciclo e informando que não está ao lado de nenhuma casa
 
-        if (c == 7 && l == 7)                                               // verificamos se chegou ao fim do tabuleiro se isso acontecer, mudamos a flag,
-            f = 2 ;                                                         //  parando o ciclo e informando que não está ao lado de nenhuma casa
-                                                                          // nas condições que queríamos (a não ser que a condição seguinte se verifique)
-        if (num_casa[l][c] == (n-1) ) {                                     // verificamos que tem valor (n-1)
-            if ( abs(t.linha - l) <= 1 && abs(t.coluna - c) <= 1 )          // verificamos que está ao lado da nossa coordenada dada
-                f = 1 ;                                                     // alterar a flag, parando o ciclo, e indicando aquilo que acabamos de verificar
+        if (num_casa[l][c] == (n-1) ) {  // verificação de se a casa tem valor (n-1)
+            if ( abs(t.linha - l) <= 1 && abs(t.coluna - c) <= 1 )    // verificamos que está ao lado da nossa coordenada dada
+                f = 1 ;                                               // alterar a flag, parando o ciclo, e indicando aquilo que acabamos de verificar
         }
                                                                             // mudar a posição do tabuleiro, se este ainda não tiver chegado ao fim
         if (c == 7 && l != 7) {                                             // se estiver na ultima coluna,
@@ -76,62 +118,45 @@ int eaolado ( COORDENADA t , int num_casa[8][8] , int n ) {
 
 }
 
-COORDENADA estrategia_floodfill ( ESTADO * e ) {
-    COORDENADA coor_final;                                                      // é a coordenada que vamos retornar no final
+void inicializa_num_casa(int num_casa[8][8],ESTADO *e){
+        /* variáveis que preencherão as casas especiais do tabuleiro, UM e DOIS, mediante
+        o jogador atual*/
+        int casa1 ;
+        int casa2 ; 
 
-    LISTA l = criar_lista();                                                    // lista de posições vazias
-    l = vizinhas ( e , l ) ;
-
-    COORDENADA *cabeca;
-    int num_casa[8][8] ;
-    int f2 = 0;
-
-    LISTA l1 = l ;
-    while ( l1 != NULL && f2 == 0) {
-        cabeca = devolve_cabeca (l1) ;
-        if ((e->jogador_atual == 1 && cabeca->linha == 7 && cabeca->coluna == 0 )
-         || (e->jogador_atual == 2 && cabeca->linha == 0 && cabeca->coluna == 7 )) {
-            coor_final = *cabeca ;
-            f2 = 1 ;
-        }
-        l1 = proximo(l1);
-    }
-
-    if ( f2 == 0 ) {    
-        int f1 = 0 ;                                                            // flag 1 (explicação em baixo)
-        //int f2 = 0 ;                                                            // flag 2 (explicação em baixo)
-        int c1 ;                                                                // variáveis cujos valores serão determinados à frente
-        int c2 ;
-        int nn ;                                                                // explicação mais à frente
-        int n = 0 ;                                                             // é a variável que vai dar valor às casas no num_casa
-
-        if ( e->jogador_atual == 1 ) {                                           // ao saber qual o jogador_atual,
-            c1 = 0 ;                                                           // conseguimos saber qual a peça para onde ele ganha o jogo
-            c2 = -1 ;                                                          // e desse modo atribuir valor a c1 e c2
+        if ( e->jogador_atual == 1 ) 
+        {                             
+            casa1 = 0 ; // O algoritimo floodfill terá como ponto de partida a casa que o jogador atual quer chegar.
+            casa2 = -1 ; // Tal casa recebe o valor de 0, a outra -1.                  
         }  
         else {
-            c1 = -1 ;
-            c2 = 0 ;
+            casa1 = -1 ;//raciocínio análogo ao anterior.
+            casa2 = 0 ;
         }
-
+        /*Ciclo que vai inicializar nossa matriz auxiliar com valores -1(exceto nas casas UM E DOIS)*/
         for (int a = 0;a<8;a++){
-            for (int b = 0;b<8;b++){
+            for (int b = 0;b<8;b++)
+            {
                 if ( a == 0 && b == 7 )
-                    num_casa[a][b] = c2;
+                    num_casa[a][b] = casa2;
                 else if ( a == 7 && b == 0 )
-                        num_casa[a][b] = c1;
-                     else num_casa[a][b] = -1;
-                printf ("%d",num_casa[a][b]);
+                    num_casa[a][b] = casa1;
+                else num_casa[a][b] = -1;
             }
-            printf("\n");
         }
-        printf("\n");
+}
 
-        while ( f1 == 0 ) {
+int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e){
+    int f1,nn,n;
+    f1 = 0;
+    nn = 0;
+    n = 0;
+    printf ("\n->Atribuição de valor dado para cada casa do tabuleiro:\n\n");
+
+    while ( f1 == 0 ) {
   
             n++ ; 
             nn = 0 ;
-            printf ("%d\n\n",n);
             COORDENADA t ;
 
             for ( t.linha = 0 ; f1 == 0 && t.linha < 8 ; t.linha++ ) {
@@ -158,40 +183,89 @@ COORDENADA estrategia_floodfill ( ESTADO * e ) {
 
             for (int a = 0;a<8;a++){
                 for (int b = 0;b<8;b++){
-                    if (num_casa[a][b] < 0)
+                    if (num_casa[a][b] < 0 && f1 != 0)
                         printf ("%d", num_casa[a][b]);
-                    else 
+                    else if (f1!= 0)
                         printf (" %d", num_casa[a][b]);
                 }
+                if (f1!= 0)
                 printf ("\n");
             }
+            if (f1!= 0)
             printf ("\n");
 
             if ( nn == 0 )
                 f1 = -1 ;
 
         }
-
-        printf("%d\n",f1);
-        if (f1 > 0) coor_final = aux ( f1 , l , num_casa);
-        else {
-            cabeca = devolve_cabeca (l);
-            coor_final = *cabeca ;
+        if (f1 != -1){
+        printf (" ---------------\n");
+        printf (" a b c d e f g h\n");
         }
+        else printf("\n->Não há necessidade de dar valor a nada... \nNão dá mais para chegar a minha casinha, algoritimo floddfill é inútil aqui :(\n");
+    return f1;
+}
 
-       /* cabeca = devolve_cabeca ;
+COORDENADA auxiliar_floodfill(ESTADO *e,LISTA posicoesvazias,COORDENADA coordaserjogada){
+     COORDENADA *cabeca;//váriavel auxiliar para retirar valores da lista ligada
+     int num_casa[8][8] ;//matriz auxiliar que é o cerne da estratégia
+     COORDENADA coordpossiveis[8];
+     LISTA guarda = posicoesvazias;
+     int f1;
+     
+     f1 = 0;
+     //processo para corrigir a problemática da matriz ocupar memória indesejada
+     while (posicoesvazias!=NULL){
+        cabeca = devolve_cabeca(posicoesvazias);
+        coordpossiveis[f1] = *cabeca;
+        f1++;
+        posicoesvazias = proximo(posicoesvazias);
+     }
+     posicoesvazias = guarda;
 
-        if (f1 > 0) {
-            while ( num_casa[(*cabeca).linha][(*cabeca).coluna] != (f1 - 1)) {
-                l = proximo(l);
-                cabeca = devolve_cabeca (l) ;
-                printf ("%d %d \n", (*cabeca).linha , (*cabeca).coluna );
-            }
-            coor_final = *cabeca ;
-        }     */
+     inicializa_num_casa(num_casa,e);
+      //processo (reverso)para corrigir a problemática da matriz ocupar memória indesejada
+     f1 = 0;
+     while (posicoesvazias!=NULL){
+        posicoesvazias->valor = &coordpossiveis[f1];
+        f1++;
+        posicoesvazias = proximo(posicoesvazias);
+     }
+     posicoesvazias = guarda;
+
+     f1 = preenche_valor_das_casas(num_casa,e);
+     
+        if (f1 > 0)  coordaserjogada = aux (f1,posicoesvazias,num_casa);
+        else {
+            cabeca = devolve_cabeca (posicoesvazias);
+            coordaserjogada = *cabeca ;
+        }
+        //fazer caso em que não há como chegar
+return coordaserjogada;
+}
+
+COORDENADA estrategia_floodfill ( ESTADO * e ) {
+    LISTA l = criar_lista();// lista das possíveis jogadas
+    COORDENADA coordaserjogada; // é a coordenada que vamos retornar no final
+  
+    printf ("\n => Resumo da estratégia efetuada (floodfill) \n\n")  ;
+    l = vizinhas (e,l) ;//inicialização da lista ligada com as possiveis jogadas a se fazer
+    coordaserjogada.linha  = 3;
+    coordaserjogada.coluna = 4;
+     
+    /*Verifica se existe alguma jogada com prioridade máxima(vitoria)*/
+    coordaserjogada = jogada_prioridade(l,e,coordaserjogada);
+        
+    /*Caso a condição abaixo se verificar é porque nenhuma das possíveis jogadas era uma jogada
+    vitotiosa, e então vamos aplicar o algoritimo do floodfill*/
+    if ((obter_estado_casa(e,coordaserjogada) != DOIS)
+     && (obter_estado_casa(e,coordaserjogada) != UM)) {    
+
+        coordaserjogada = auxiliar_floodfill(e,l,coordaserjogada);                              
+        printf("\n->Jogada escolhida a partir da heurística floodfill : %c%d  ", coordaserjogada.coluna + 'a',8 -  coordaserjogada.linha); 
     }
 
-    return coor_final;
+    return  coordaserjogada;
 
 }
 
