@@ -196,7 +196,7 @@ int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int in){
 
             for (int a = 0;a<8;a++){
                 for (int b = 0;b<8;b++){
-                    if (num_casa[a][b] < 0 && f1 != 0)
+                    if ((num_casa[a][b] < 0 || num_casa[a][b] > 9 ) && f1 != 0)
                         printf ("%d", num_casa[a][b]);
                     else if (f1!= 0)
                         printf (" %d", num_casa[a][b]);
