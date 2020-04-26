@@ -41,9 +41,6 @@ typedef struct {
 	COORDENADA jogador2;
 } JOGADA;
 
-typedef struct {
-	CASA tabcopia[8][8];	
-} TABULEIRO;
 /**
 \brief Tipo de dados para o tipo JOGADAS
 */
