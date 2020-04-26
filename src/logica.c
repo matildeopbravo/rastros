@@ -3,9 +3,9 @@
 #include "dados.h"
 #include "listas.h"
 
-
 COORDENADA insere_possiveis_jogadas ( ESTADO *e , LISTA *posicoesvazias,COORDENADA coord_escolhida ) {
 
+    printf("-> Possíveis jogadas : ");
     COORDENADA coordvizinha[8];//array que vai auxiliar no preenchimento da lista acima
  
     int h = 0;
@@ -21,7 +21,7 @@ COORDENADA insere_possiveis_jogadas ( ESTADO *e , LISTA *posicoesvazias,COORDENA
                  && (coordvizinha[h].coluna >= 0) && (coordvizinha[h].coluna <= 7))
                {
                     *posicoesvazias = insere_cabeca(*posicoesvazias, &(coordvizinha[h]));
-                    printf("Possível jogada: %c%d\n", coordvizinha[h].coluna + 'a',8 -  coordvizinha[h].linha);
+                    printf(" %c%d ", coordvizinha[h].coluna + 'a',8 -  coordvizinha[h].linha);
                }
             /* Este if analisa uma das situações de prioridade MÀXIMA- VITÓRIA
             O ciclo deve ser interrompido dado que já achamos a jogada*/
@@ -48,10 +48,10 @@ COORDENADA insere_possiveis_jogadas ( ESTADO *e , LISTA *posicoesvazias,COORDENA
                }
          }
     }
+        printf("\n");
 
     return coord_escolhida;
 }
-
 
 COORDENADA aux ( int f1 , LISTA l , int num_casa[8][8]){
     
@@ -73,27 +73,27 @@ COORDENADA aux ( int f1 , LISTA l , int num_casa[8][8]){
 // está ao lado de alguma com valor n-1. Para isso corremos todas as posições do tabuleiro até 
 // encontrarmos alguma ao lado da coordenada que temos ou chegarmos ao fim do tabuleiro.
 
-int eaolado ( COORDENADA t , int num_casa[8][8] , int n ) {                 
-    int f = 0 ;// flag que será usada no ciclo
-    int l = 0 , c = 0 ; // primeira posição do tabuleiro é linha 0 coluna 0
+int verifica_adjacencia ( COORDENADA t , int num_casa[8][8] , int valor ) {                 
+    int flag = 0 ;// flag que será usada no ciclo
+    int linha = 0 , coluna = 0 ; // primeira posição do tabuleiro é linha 0 coluna 0
 
-    while ( f == 0 ) {
-        if (c == 7 && l == 7) // verificamos se chegou ao fim do tabuleiro.Se isso acontecer, mudamos a flag,
-            f = 2 ;          //  parando o ciclo e informando que não está ao lado de nenhuma casa
+    while ( flag == 0 ) {
+        if (coluna == 7 && linha == 7) // verificamos se chegou ao fim do tabuleiro.Se isso acontecer, mudamos a flag,
+            flag = 2 ;          //  parando o ciclo e informando que não está ao lado de nenhuma casa
 
-        if (num_casa[l][c] == (n-1) ) {  // verificação de se a casa tem valor (n-1)
-            if ( abs(t.linha - l) <= 1 && abs(t.coluna - c) <= 1 )    // verificamos que está ao lado da nossa coordenada dada
-                f = 1 ;                                               // alterar a flag, parando o ciclo, e indicando aquilo que acabamos de verificar
+        if (num_casa[linha][coluna] == (valor-1) ) {  // verificação de se a casa tem valor (n-1)
+            if ( abs(t.linha - linha) <= 1 && abs(t.coluna - coluna) <= 1 )    // verificamos que está ao lado da nossa coordenada dada
+                flag = 1 ;                                               // alterar a flag, parando o ciclo, e indicando aquilo que acabamos de verificar
         }
                                                                             // mudar a posição do tabuleiro, se este ainda não tiver chegado ao fim
-        if (c == 7 && l != 7) {                                             // se estiver na ultima coluna,
-            c = 0 ;                                                       // passar para a primeira coluna
-            l++;                                                          // da linha seguinte
+        if (coluna == 7 && linha != 7) {                                             // se estiver na ultima coluna,
+            coluna = 0 ;                                                       // passar para a primeira coluna
+            linha++;                                                          // da linha seguinte
         }
-        else c++;                                                         // senão simplesmente vai-se para a coluna seguinte da mesma linha
+        else coluna++;                                                         // senão simplesmente vai-se para a coluna seguinte da mesma linha
     }
 
-    if ( f == 1 ) return 1 ;                                                // a flag com valor 1 indica que a função tem valor 1
+    if ( flag == 1 ) return 1 ;                                                // a flag com valor 1 indica que a função tem valor 1
     else return 0;                                                          // a flag com valor 2 indica que a função tem valor 0
 
 }
@@ -145,7 +145,7 @@ int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int flag){
                 for ( t.coluna = 0 ; f1 == 0 && t.coluna < 8 ; t.coluna++ ) {
                     if ( num_casa[t.linha][t.coluna] == -1 ) {
 
-                        if (eaolado ( t , num_casa , n )) {
+                        if (verifica_adjacencia(t,num_casa,n)) {
 
                             if (e->tab[t.linha][t.coluna] == VAZIO ) {
                                 if (( flag == 2 )
@@ -274,7 +274,7 @@ COORDENADA estrategia_floodfill ( ESTADO * e ) {
     LISTA possiveis_jogadas = criar_lista();//lista das possíveis jogadas
     COORDENADA coord_escolhida; //coordenada que vamos retornar no final
   
-    printf ("\n => Resumo da estratégia efetuada (floodfill) \n\n")  ;
+    printf ("\n => Resumo da estratégia efetuada (floodfill) \n\n") ;
     
     coord_escolhida.linha  = 3;
     coord_escolhida.coluna = 4;
@@ -460,7 +460,8 @@ COORDENADA estrategia_paridade(ESTADO *e){
     
 /* ciclo que vai analisar quais das POSIÇÕES VIZINHAS estão VAZIAS e armazená-las na LISTA ligada
 criada para esse fim */
-  
+    printf ("\n => Resumo da estratégia efetuada (paridade) \n\n")  ;
+    
     coord_escolhida = insere_possiveis_jogadas(e,&possiveis_jogadas,coord_escolhida);
     /* Caso a coordaserjogada for uma das casas da vitória para o jogador atual, então quer dizer
     que o ciclo anterior encontrou uma jogada de prioridade MÁXIMA: a jogada da vitória. Caso 
@@ -487,7 +488,7 @@ criada para esse fim */
             coord_escolhida = *cabeca;
         }
         
-        printf("\n->Jogada escolhida a partir da heurística da paridade : %c%d  ",(*cabeca).coluna + 'a',8 - (*cabeca).linha); 
+        printf("\n->Jogada escolhida a partir da heurística da paridade : %c%d  \n",(*cabeca).coluna + 'a',8 - (*cabeca).linha); 
     }
     else printf("\n->Você não me deu hipóteses...Parabéns pelo segundo lugar\n");
 
