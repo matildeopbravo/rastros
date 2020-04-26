@@ -3,52 +3,11 @@
 #include "dados.h"
 #include "listas.h"
 
-COORDENADA jogada_prioridade(LISTA posicoesvazias, ESTADO *e,COORDENADA coordaserjogada){
 
-    COORDENADA coordvizinha[8];
-     
-    int h = 0;
-    for (int i = 1 ;i >= -1;i--){
-        for (int j = -1;j <= 1;j++,h++){
-            
-            coordvizinha[h].linha = ((e->ultima_jogada).linha) + i;
-            coordvizinha[h].coluna = ((e->ultima_jogada).coluna) + j;
-             
-             if ((obter_estado_casa(e,coordvizinha[h]) == UM)
-             && (coordvizinha[h].linha >= 0)
-             && (coordvizinha[h].linha <= 7)
-             && (coordvizinha[h].coluna >= 0)
-             && (coordvizinha[h].coluna <= 7)
-             && e->jogador_atual == 1) 
-             {
-             coordaserjogada = coordvizinha[h];
-             j = 2;
-             i = -2;
-             }
-             if ((obter_estado_casa(e,coordvizinha[h]) == DOIS)
-             && (coordvizinha[h].linha >= 0)
-             && (coordvizinha[h].linha <= 7)
-             && (coordvizinha[h].coluna >= 0)
-             && (coordvizinha[h].coluna <= 7)
-             && e->jogador_atual == 2) 
-             {
-             coordaserjogada = coordvizinha[h];
-             j = 2;
-             i = -2;
-               
-            }   
-        }
-    }
-    return coordaserjogada;
-}
-// {3,4} é a coordenada de controlo
-LISTA vizinhas ( ESTADO *e , LISTA posicoesvazias ) {
+COORDENADA insere_possiveis_jogadas ( ESTADO *e , LISTA *posicoesvazias,COORDENADA coord_escolhida ) {
 
     COORDENADA coordvizinha[8];//array que vai auxiliar no preenchimento da lista acima
-    COORDENADA coordaserjogada;//coordenada escolhida resultado de aplicar a função
-    coordaserjogada.linha = 3;  // Inicialização da coordenada com este valor com fins na condição
-    coordaserjogada.coluna = 4; //presente no próximo 'if'.
-
+ 
     int h = 0;
     for (int i = 1 ;i >= -1;i--){
         for (int j = -1;j <= 1;j++,h++){
@@ -58,17 +17,39 @@ LISTA vizinhas ( ESTADO *e , LISTA posicoesvazias ) {
              
             /* Este primeiro if é a situação de preenchimento normal*/
             if ((obter_estado_casa(e,coordvizinha[h]) == VAZIO)
-             && (coordvizinha[h].linha >= 0)
-             && (coordvizinha[h].linha <= 7)
-             && (coordvizinha[h].coluna >= 0)
-             && (coordvizinha[h].coluna <= 7)) {
-                posicoesvazias = insere_cabeca(posicoesvazias, &(coordvizinha[h]));
-                printf("Possível jogada: %c%d\n", coordvizinha[h].coluna + 'a',8 -  coordvizinha[h].linha);
-            }   
-        }
+                 && (coordvizinha[h].linha >= 0) && (coordvizinha[h].linha <= 7)
+                 && (coordvizinha[h].coluna >= 0) && (coordvizinha[h].coluna <= 7))
+               {
+                    *posicoesvazias = insere_cabeca(*posicoesvazias, &(coordvizinha[h]));
+                    printf("Possível jogada: %c%d\n", coordvizinha[h].coluna + 'a',8 -  coordvizinha[h].linha);
+               }
+            /* Este if analisa uma das situações de prioridade MÀXIMA- VITÓRIA
+            O ciclo deve ser interrompido dado que já achamos a jogada*/
+            if ((e->jogador_atual == 1 )
+                && (obter_estado_casa(e,coordvizinha[h]) == UM)
+                && (coordvizinha[h].linha >= 0)  && (coordvizinha[h].linha <= 7)
+                && (coordvizinha[h].coluna >= 0) && (coordvizinha[h].coluna <= 7))
+               {
+                coord_escolhida = coordvizinha[h];
+                j = 1;
+                i = -1;
+               }
+
+            /* Este if analisa a outra situações de prioridade MÀXIMA- VITÓRIA
+            O ciclo deve ser interrompido dado que já achamos a jogada*/
+            if ((e->jogador_atual == 2 
+                &&   obter_estado_casa(e,coordvizinha[h]) == DOIS)
+                && (coordvizinha[h].linha >= 0) && (coordvizinha[h].linha <= 7)
+                && (coordvizinha[h].coluna >= 0) && (coordvizinha[h].coluna <= 7))
+               {
+                coord_escolhida = coordvizinha[h];
+                j = 1;
+                i = -1;
+               }
+         }
     }
 
-    return posicoesvazias;
+    return coord_escolhida;
 }
 
 /*------------------Funções correspondentes a estratégia Floodfill---------------------------------*/
@@ -241,76 +222,85 @@ COORDENADA floodfill_inversa ( int num_casa[8][8] , LISTA l , ESTADO *e ) {
     return coor_final;
 }
 
-COORDENADA auxiliar_floodfill(ESTADO *e,LISTA posicoesvazias,COORDENADA coordaserjogada){
+void guarda_jogadas(LISTA possiveis_jogadas,COORDENADA jogadas_possiveis[8],COORDENADA *cabeca){
+    int contador = 0;
+    
+    while (possiveis_jogadas!=NULL){
+        cabeca = devolve_cabeca(possiveis_jogadas);
+        jogadas_possiveis[contador] = *cabeca;
+        contador++;
+        possiveis_jogadas = proximo(possiveis_jogadas);
+    }
+}
+
+void recupera_jogadas(LISTA possiveis_jogadas,COORDENADA jogadas_possiveis[8]){
+    int contador = 0;
+    while (possiveis_jogadas!=NULL){
+        possiveis_jogadas->valor = &jogadas_possiveis[contador];
+        contador++;
+        possiveis_jogadas = proximo(possiveis_jogadas);
+    }
+
+} 
+
+COORDENADA auxiliar_floodfill(ESTADO *e,LISTA possiveis_jogadas,COORDENADA coord_escolhida){
     COORDENADA *cabeca;//váriavel auxiliar para retirar valores da lista ligada
+    cabeca = &coord_escolhida; //inicialização para prevenir warnings
     int num_casa[8][8] ;//matriz auxiliar que é o cerne da estratégia
+    //variáveis para operações de rotina de gestão de memória
     COORDENADA coordpossiveis[8];
-    LISTA guarda = posicoesvazias;
     int f1;
      
-    f1 = 0;
     //processo para corrigir a problemática da matriz ocupar memória indesejada
-    while (posicoesvazias!=NULL){
-        cabeca = devolve_cabeca(posicoesvazias);
-        coordpossiveis[f1] = *cabeca;
-        f1++;
-        posicoesvazias = proximo(posicoesvazias);
-    }
-    posicoesvazias = guarda;
+    guarda_jogadas(possiveis_jogadas,coordpossiveis,cabeca);
 
     inicializa_num_casa(num_casa,e,1);
+
     //processo (reverso)para corrigir a problemática da matriz ocupar memória indesejada
-    f1 = 0;
-    while (posicoesvazias!=NULL){
-        posicoesvazias->valor = &coordpossiveis[f1];
-        f1++;
-        posicoesvazias = proximo(posicoesvazias);
-    }
-    posicoesvazias = guarda;
+    recupera_jogadas(possiveis_jogadas,coordpossiveis);
 
     f1 = preenche_valor_das_casas(num_casa,e,1);
      
-        if (f1 > 0) coordaserjogada = aux (f1,posicoesvazias,num_casa);
+        if (f1 > 0) coord_escolhida = aux (f1,possiveis_jogadas,num_casa);
         else {
             //inicializa_num_casa(num_casa,e,2);
             //preenche_valor_das_casas(num_casa,e,2);
-            coordaserjogada = floodfill_inversa ( num_casa , posicoesvazias , e );
+            coord_escolhida = floodfill_inversa ( num_casa , possiveis_jogadas, e );
             //cabeca = devolve_cabeca (posicoesvazias);
             //coordaserjogada = *cabeca ;
         }
         //fazer caso em que não há como chegar
-return coordaserjogada;
+return coord_escolhida;
 }
 
 COORDENADA estrategia_floodfill ( ESTADO * e ) {
-    LISTA l = criar_lista();// lista das possíveis jogadas
-    COORDENADA coordaserjogada; // é a coordenada que vamos retornar no final
+    LISTA possiveis_jogadas = criar_lista();//lista das possíveis jogadas
+    COORDENADA coord_escolhida; //coordenada que vamos retornar no final
   
     printf ("\n => Resumo da estratégia efetuada (floodfill) \n\n")  ;
-    l = vizinhas (e,l) ;//inicialização da lista ligada com as possiveis jogadas a se fazer
-    coordaserjogada.linha  = 3;
-    coordaserjogada.coluna = 4;
-     
-    /*Verifica se existe alguma jogada com prioridade máxima(vitoria)*/
-    coordaserjogada = jogada_prioridade(l,e,coordaserjogada);
+    
+    coord_escolhida.linha  = 3;
+    coord_escolhida.coluna = 4;
+    
+    coord_escolhida = insere_possiveis_jogadas (e,&possiveis_jogadas,coord_escolhida) ;//inicialização da lista ligada com as possiveis jogadas a se fazer
         
     /*Caso a condição abaixo se verificar é porque nenhuma das possíveis jogadas era uma jogada
-    vitotiosa, e então vamos aplicar o algoritimo do floodfill*/
-    if ((obter_estado_casa(e,coordaserjogada) != DOIS)
-     && (obter_estado_casa(e,coordaserjogada) != UM)) {    
+    vitoriosa, e então vamos aplicar o algoritimo do floodfill*/
+    if ((obter_estado_casa(e,coord_escolhida) != DOIS)
+     && (obter_estado_casa(e,coord_escolhida) != UM)) {    
 
-        coordaserjogada = auxiliar_floodfill(e,l,coordaserjogada);                              
-        printf("\n->Jogada escolhida a partir da heurística floodfill : %c%d  ", coordaserjogada.coluna + 'a',8 -  coordaserjogada.linha); 
+        coord_escolhida = auxiliar_floodfill(e,possiveis_jogadas,coord_escolhida);                              
+        printf("\n->Jogada escolhida a partir da heurística floodfill : %c%d  ", coord_escolhida.coluna + 'a',8 -  coord_escolhida.linha); 
     }
 
-    return  coordaserjogada;
+    return  coord_escolhida;
 
 }
 
 
 /*------------------Funções correspondentes a estratégia Paridade----------------------------------*/
 
-int aux_1_indice(ESTADO * e,int paridade[8]){
+int aux_1_indice(int paridade[8]){
     int resultado = 65; /*inicialização da variável com uma quantidade que eu evite ser aleatória e
     é de nosso conhecimento que nenhuma área será maior que isso*/
     int indicedajogadaaefetuar = 9;/*inicialização análoga a anterior porém com índices. Servirá para
@@ -342,7 +332,7 @@ int aux_1_indice(ESTADO * e,int paridade[8]){
     return indicedajogadaaefetuar;
 }
 
-int aux_2_indice(ESTADO * e,int paridade[8]){
+int aux_2_indice(int paridade[8]){
     int resultado = 65; /*inicialização da variável com uma quantidade que eu evite ser aleatória e
     é de nosso conhecimento que nenhuma área será maior que isso*/
     int indicedajogadaaefetuar = 9;/*inicialização análoga a anterior porém com índices. Servirá para
@@ -379,9 +369,9 @@ int  jogadaaefetuar(ESTADO * e,int paridade[8]){
     int indice_jogada_a_efetuar;
 
     if (e->jogador_atual == 1)
-        indice_jogada_a_efetuar = aux_1_indice(e,paridade);
+        indice_jogada_a_efetuar = aux_1_indice(paridade);
     else 
-        indice_jogada_a_efetuar =  aux_2_indice(e,paridade); 
+        indice_jogada_a_efetuar =  aux_2_indice(paridade); 
    
     return indice_jogada_a_efetuar;
 }
@@ -413,133 +403,101 @@ int calcula_area(COORDENADA * possiveljogada, ESTADO * e){
     return area;
 }
 
+void transfere_tabuleiro (CASA tabuleiro_1[8][8],CASA tabuleiro_2[8][8]){
+        for (int i= 0; i < 8; i++){
+            for (int j = 0; j < 8; j++){  
+                tabuleiro_1[i][j] = tabuleiro_2[i][j]; 
+            } 
+        } 
+}
+
 /*Função auxiliar da "estrategia_paridade" que preenche o array paridade(que armazena a área restante para cada possível 
 jogada) com as respetivas áreas de cada possível jogada*/
-void auxiliarparidade (ESTADO *e,LISTA posicoesvazias,int paridade[8],COORDENADA *cabeca){
+void auxiliarparidade (ESTADO *e,LISTA possiveis_jogadas,int paridade[8],COORDENADA *cabeca){
+    
     CASA tabcopia[8][8];//matriz auxiliar criada de forma a não ser perdido o conteúdo do tabuleiro inicial
-    int cont = 0; 
+    int contador = 0;
+    //variáveis para operações de rotina de gestão de memória
+    COORDENADA coord_possiveis[8];
+    COORDENADA coord_possiveis2[8];
+    LISTA guarda_lista = possiveis_jogadas;
 
+    guarda_jogadas(possiveis_jogadas,coord_possiveis2,cabeca);
+  
     printf("\n->Área que sobra mediante cada possível jogada\n") ;
    
-    while (posicoesvazias != NULL) {
+    while (possiveis_jogadas != NULL) {
+        
+        guarda_jogadas(possiveis_jogadas,coord_possiveis,cabeca);
+        transfere_tabuleiro(tabcopia,e->tab);
+        recupera_jogadas(possiveis_jogadas,coord_possiveis);
 
-        for (int i= 0; i < 8; i++){
-            for (int j = 0; j < 8; j++){   
-                tabcopia[i][j] = e->tab[i][j]; 
-            } 
-        }
-
-        cabeca = devolve_cabeca(posicoesvazias);
+        cabeca = devolve_cabeca(possiveis_jogadas);
         printf("%c%d -> ",(*cabeca).coluna + 'a',8 - (*cabeca).linha); 
         altera_casa(e,(COORDENADA){(e->ultima_jogada).linha,(e->ultima_jogada).coluna}, PRETA);
         altera_casa(e,(COORDENADA){(*cabeca).linha,(*cabeca).coluna}, BRANCA);
-        paridade[cont] = calcula_area((posicoesvazias->valor),e);
+        paridade[contador] = calcula_area(((possiveis_jogadas)->valor),e);
 
-        printf("Área : %d\n",paridade[cont]);
-        cont++;
-        posicoesvazias = posicoesvazias->prox;
+        printf("Área : %d\n",paridade[contador]);
+        contador++;
+        possiveis_jogadas = (possiveis_jogadas)->prox;
         
         // DEVO VOLTAR O TABUELIRO ANTIGO
-        for (int i= 0; i < 8; i++){
-            for (int j = 0; j < 8; j++){
-                e->tab[i][j] = tabcopia[i][j];
-            }
-        }
+        transfere_tabuleiro(e->tab,tabcopia);
     }
+    possiveis_jogadas = guarda_lista;
+    recupera_jogadas(possiveis_jogadas,coord_possiveis2);
 }
 
 /* Função Principal da heurística da Paridade*/
 //Devolve a melhor jogada possível;
 COORDENADA estrategia_paridade(ESTADO *e){
     
-    LISTA posicoesvazias;//lista ligada que armazena as possíveis jogadas
-    posicoesvazias = criar_lista(); 
-    COORDENADA coordvizinha[8];//array que vai auxiliar no preenchimento da lista acima
-    COORDENADA coordaserjogada;//coordenada escolhida resultado de aplicar a função
-    coordaserjogada.linha = 3;  // Inicialização da coordenada com este valor com fins na condição
-    coordaserjogada.coluna = 4; //presente no próximo 'if'.
+    LISTA possiveis_jogadas = criar_lista(); //lista ligada que armazena as possíveis jogadas
+    COORDENADA coord_escolhida;//coordenada escolhida resultado de aplicar a função
+    
+    coord_escolhida.linha = 3;  // Inicialização da coordenada com este valor com fins na condição
+    coord_escolhida.coluna = 4; //presente no próximo 'if'.
+    
     COORDENADA *cabeca;//apontador auxiliar para retirar o conteúdo do apontador void da lista ligada
+    cabeca = &coord_escolhida;//inicialização
     int paridade[8] =  {-1,-1,-1,-1,-1,-1,-1,-1,};//array que armazena a área restante para cada possível jogada
     /* o array acima é inicializado com -1 para efeitos no momento de desprezar certas jogadas  */ 
-
+    
 /* ciclo que vai analisar quais das POSIÇÕES VIZINHAS estão VAZIAS e armazená-las na LISTA ligada
 criada para esse fim */
   
-    int h = 0;
-    for (int i = 1 ;i >= -1;i--){
-        for (int j = -1;j <= 1;j++,h++){
-            
-            coordvizinha[h].linha = ((e->ultima_jogada).linha) + i;
-            coordvizinha[h].coluna = ((e->ultima_jogada).coluna) + j;
-             
-            /* Este primeiro if é a situação de preenchimento normal*/
-            if ((obter_estado_casa(e,coordvizinha[h]) == VAZIO)
-             && (coordvizinha[h].linha >= 0)
-             && (coordvizinha[h].linha <= 7)
-             && (coordvizinha[h].coluna >= 0)
-             && (coordvizinha[h].coluna <= 7)) {
-                posicoesvazias = insere_cabeca(posicoesvazias, &(coordvizinha[h]));
-            }
-
-            /* Este if analisa uma das situações de prioridade MÀXIMA- VITÓRIA
-            O ciclo deve ser interrompido dado que já achamos a jogada*/
-            if ((e->jogador_atual == 1 )
-             && (obter_estado_casa(e,coordvizinha[h]) == UM)
-             && (coordvizinha[h].linha >= 0)
-             && (coordvizinha[h].linha <= 7)
-             && (coordvizinha[h].coluna >= 0)
-             && (coordvizinha[h].coluna <= 7)) {
-
-                coordaserjogada = coordvizinha[h];
-                j = 1;
-                i = -1;
-            }
-
-            /* Este if analisa a outra situações de prioridade MÀXIMA- VITÓRIA
-            O ciclo deve ser interrompido dado que já achamos a jogada*/
-            if ((e->jogador_atual == 2 
-             &&   obter_estado_casa(e,coordvizinha[h]) == DOIS)
-             && (coordvizinha[h].linha >= 0)
-             && (coordvizinha[h].linha <= 7)
-             && (coordvizinha[h].coluna >= 0)
-             && (coordvizinha[h].coluna <= 7)){
-                   
-                coordaserjogada = coordvizinha[h];
-                j = 1;
-                i = -1;
-            }                  
-        }
-    }
-    
+    coord_escolhida = insere_possiveis_jogadas(e,&possiveis_jogadas,coord_escolhida);
     /* Caso a coordaserjogada for uma das casas da vitória para o jogador atual, então quer dizer
     que o ciclo anterior encontrou uma jogada de prioridade MÁXIMA: a jogada da vitória. Caso 
     contrário então entrará em ação a escolha com base na paridade*/
-    
-    if ((obter_estado_casa(e,coordaserjogada) != DOIS)
-     && (obter_estado_casa(e,coordaserjogada) != UM)){
+
+
+    if ((obter_estado_casa(e,coord_escolhida) != DOIS)
+     && (obter_estado_casa(e,coord_escolhida) != UM)){
     
         /*Função auxiliar que preenche o array paridade com as respetivas áreas de cada possível jogada*/
-        auxiliarparidade(e,posicoesvazias,paridade,cabeca);
-
+        auxiliarparidade(e,possiveis_jogadas,paridade,cabeca);
+        
         /*Função auxiliar que devolverá o índice do array paridade escolhido. Como o array paridade
         possui as áreas respetivas de cada possível jogada, o índice escolhido estará de acordo com
         a posição da jogada na lista ligada*/
         int indice_da_jogada_escolhida;
-        indice_da_jogada_escolhida = jogadaaefetuar(e,paridade);     
+        indice_da_jogada_escolhida = jogadaaefetuar(e,paridade); 
             
         /*Mediante o índice escolhido na função anterior, será então retirada a melhor jogada possível
         na lista ligada*/
-        for (int i = indice_da_jogada_escolhida; i >= 0;i--,posicoesvazias = posicoesvazias->prox){
+        for (int i = indice_da_jogada_escolhida; i >= 0;i--,possiveis_jogadas = possiveis_jogadas->prox){
             if (i == 0)
-                cabeca = devolve_cabeca(posicoesvazias);        
-            coordaserjogada = *cabeca;
+                cabeca = devolve_cabeca(possiveis_jogadas);        
+            coord_escolhida = *cabeca;
         }
         
         printf("\n->Jogada escolhida a partir da heurística da paridade : %c%d  ",(*cabeca).coluna + 'a',8 - (*cabeca).linha); 
     }
     else printf("\n->Você não me deu hipóteses...Parabéns pelo segundo lugar\n");
 
-    return (coordaserjogada);
+    return (coord_escolhida);
 }
 
 /*-------------------------------------------------------------------------------------------------------------*/

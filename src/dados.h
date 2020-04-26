@@ -4,6 +4,7 @@ Definição da Struct principal e protótipos das funções úteis a camada de d
 */
 #ifndef CAMADA_DADOS_H
 #define CAMADA_DADOS_H
+
 /**
 \brief Tipo de dados para o tipo CASA
 */
@@ -39,6 +40,10 @@ typedef struct {
 	COORDENADA jogador1;
 	COORDENADA jogador2;
 } JOGADA;
+
+typedef struct {
+	CASA tabcopia[8][8];	
+} TABULEIRO;
 /**
 \brief Tipo de dados para o tipo JOGADAS
 */
