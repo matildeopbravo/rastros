@@ -52,7 +52,6 @@ COORDENADA insere_possiveis_jogadas ( ESTADO *e , LISTA *posicoesvazias,COORDENA
     return coord_escolhida;
 }
 
-/*------------------Funções correspondentes a estratégia Floodfill---------------------------------*/
 
 COORDENADA aux ( int f1 , LISTA l , int num_casa[8][8]){
     
@@ -99,14 +98,14 @@ int eaolado ( COORDENADA t , int num_casa[8][8] , int n ) {
 
 }
 
-void inicializa_num_casa(int num_casa[8][8],ESTADO *e, int in){
+void inicializa_num_casa(int num_casa[8][8],ESTADO *e, int flag){
         /* variáveis que preencherão as casas especiais do tabuleiro, UM e DOIS, mediante
         o jogador atual*/
         int casa1 ;
         int casa2 ; 
 
-        if (( e->jogador_atual == 1 && in == 1)
-         || ( e->jogador_atual == 2 && in == 2)) 
+        if (( e->jogador_atual == 1 && flag == 1)
+         || ( e->jogador_atual == 2 && flag == 2)) 
         {                             
             casa1 = 0 ; // O algoritimo floodfill terá como ponto de partida a casa que o jogador atual quer chegar.
             casa2 = -1 ; // Tal casa recebe o valor de 0, a outra -1.                  
@@ -128,7 +127,8 @@ void inicializa_num_casa(int num_casa[8][8],ESTADO *e, int in){
         }
 }
 
-int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int in){
+int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int flag){
+    
     int f1,nn,n;
     f1 = 0;
     nn = 0;
@@ -148,7 +148,7 @@ int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int in){
                         if (eaolado ( t , num_casa , n )) {
 
                             if (e->tab[t.linha][t.coluna] == VAZIO ) {
-                                if (( in == 2 )
+                                if (( flag == 2 )
                                  || ( e->jogador_atual == 1 && (t.linha > 1 || t.coluna < 6))
                                  || ( e->jogador_atual == 2 && (t.linha < 6 || t.coluna > 1))) {
                                     num_casa[t.linha][t.coluna] = n ;
@@ -158,7 +158,7 @@ int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int in){
                             else {
                                 if (e->tab[t.linha][t.coluna] == BRANCA ) {
                                     num_casa[t.linha][t.coluna] = n ;
-                                    if ( in == 1 )
+                                    if ( flag == 1 )
                                         f1 = n ;
                                     nn++ ;
                                 }
@@ -169,7 +169,7 @@ int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int in){
             }
 
             if ( nn == 0 ) {
-                if ( in == 1 )
+                if ( flag == 1 )
                     f1 = -1 ;
                 else
                     f1 = n ;
@@ -244,12 +244,13 @@ void recupera_jogadas(LISTA possiveis_jogadas,COORDENADA jogadas_possiveis[8]){
 } 
 
 COORDENADA auxiliar_floodfill(ESTADO *e,LISTA possiveis_jogadas,COORDENADA coord_escolhida){
+    
     COORDENADA *cabeca;//váriavel auxiliar para retirar valores da lista ligada
     cabeca = &coord_escolhida; //inicialização para prevenir warnings
     int num_casa[8][8] ;//matriz auxiliar que é o cerne da estratégia
     //variáveis para operações de rotina de gestão de memória
     COORDENADA coordpossiveis[8];
-    int f1;
+    int flag;
      
     //processo para corrigir a problemática da matriz ocupar memória indesejada
     guarda_jogadas(possiveis_jogadas,coordpossiveis,cabeca);
@@ -259,17 +260,13 @@ COORDENADA auxiliar_floodfill(ESTADO *e,LISTA possiveis_jogadas,COORDENADA coord
     //processo (reverso)para corrigir a problemática da matriz ocupar memória indesejada
     recupera_jogadas(possiveis_jogadas,coordpossiveis);
 
-    f1 = preenche_valor_das_casas(num_casa,e,1);
+    flag = preenche_valor_das_casas(num_casa,e,1);
      
-        if (f1 > 0) coord_escolhida = aux (f1,possiveis_jogadas,num_casa);
+        if (flag > 0) coord_escolhida = aux (flag,possiveis_jogadas,num_casa);
         else {
-            //inicializa_num_casa(num_casa,e,2);
-            //preenche_valor_das_casas(num_casa,e,2);
-            coord_escolhida = floodfill_inversa ( num_casa , possiveis_jogadas, e );
-            //cabeca = devolve_cabeca (posicoesvazias);
-            //coordaserjogada = *cabeca ;
-        }
-        //fazer caso em que não há como chegar
+              coord_escolhida = floodfill_inversa (num_casa,possiveis_jogadas,e);
+             }
+
 return coord_escolhida;
 }
 
@@ -296,9 +293,6 @@ COORDENADA estrategia_floodfill ( ESTADO * e ) {
     return  coord_escolhida;
 
 }
-
-
-/*------------------Funções correspondentes a estratégia Paridade----------------------------------*/
 
 int aux_1_indice(int paridade[8]){
     int resultado = 65; /*inicialização da variável com uma quantidade que eu evite ser aleatória e
