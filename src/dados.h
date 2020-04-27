@@ -24,7 +24,8 @@ typedef enum {/** Correspondente ao comando gr. Função de salvar a partida*/
 			  QUIT = 3, /** Correspondente ao comando jog. Função de mostrar a melhor jogada*/
 			  JOG = 4,/** Correspondente a mvoltar a jogar a aprtida a partir de uma jogada anterior*/
 			  POS = 5,
-              MOVS = 6
+              MOVS = 6,
+			  JOG2 = 7,
 			  } COMANDO;
 /**
 \brief Tipo de informação para o tipo COORDENADA

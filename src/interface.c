@@ -169,6 +169,7 @@ COMANDO verifica_comando( char * token ) {
     if(!strcmp(token,"pos")) return POS;
     if(!strcmp(token,"movs")) return MOVS;
     if(!strcmp(token,"jog")) return  JOG;
+    if(!strcmp(token,"jog2")) return  JOG2;
     return 0;
 }
 
@@ -203,6 +204,7 @@ void ler_tabuleiro(ESTADO * e, FILE * fp) {
 }
 
 //Auxiliar da função "ler" que lê a parte correspondente as jogadas
+//Auxiliar da função "ler" que lê a parte correspondente as jogadas
 void ler_jogadas(ESTADO * e, FILE * fp) {
     char col1 ,col2;
     int lin1,lin2;
@@ -210,13 +212,14 @@ void ler_jogadas(ESTADO * e, FILE * fp) {
     int num_jogadas = obter_numero_de_jogadas(e); 
     int ultimo_jog = obter_ultimo_jogador(e);
 
+
     while ( fgetc(fp) != '\n' ) ;
 
     for (int i = 0 ; i < num_jogadas; i++ ) {
         while ( fgetc(fp) != ':' ) ;
         if ( i == (num_jogadas - 1) && ultimo_jog == 1 ) {
             fscanf ( fp , " %c%d\n" , &col1 , &lin1 ) ;
-            jog = (JOGADA) {.jogador1 = (COORDENADA){8- lin1,col1 - 'a'}, .jogador2={}};
+            jog = (JOGADA) {.jogador1 = (COORDENADA){8- lin1,col1 - 'a'}, .jogador2={0}};
         }   
         else {
             fscanf(fp," %c%d %c%d\n",&col1,&lin1,&col2,&lin2);
@@ -248,8 +251,8 @@ int interpretador(ESTADO *e) {
     int t =0;
     char linha[BUF_SIZE], col[2], lin[2];
 
-    int salva_num_jogadas;
-    int salva_jogador_atual;
+    int salva_num_jogadas = 0;
+    int salva_jogador_atual = 0;
 
     mostrar_tabuleiro(e,stdout);
 
@@ -303,11 +306,14 @@ int interpretador(ESTADO *e) {
         else {
             char * token = strtok(linha," ");
             if (!strcmp(linha,"movs\n")) token = "movs";
-            //if (!strcmp(linha,"jog\n")) token = "jog";
+            if (!strcmp(linha,"jog\n")) token = "jog";
+            if (!strcmp(linha,"jog2\n")) token = "jog2";
             COMANDO cmd = verifica_comando(token);
 
-            if( cmd && (cmd == MOVS || /*cmd == JOG ||*/ (token = strtok(NULL, "\n")))) {
+
+            if( cmd && (cmd == MOVS || cmd == JOG || cmd == JOG2 || (token = strtok(NULL, "\n")))) {
                 /*Situação em que foi digitado o comando gravar*/
+        
                 if(cmd == GRAVAR) {
                     if (e->flag_pos == 1){
 
@@ -377,11 +383,6 @@ int interpretador(ESTADO *e) {
                 }
 
                 if (cmd == JOG){
-                    int n = atoi (token) ;
-
-                    if (( n != 1 ) && ( n != 2 ))
-                        printf ("inválido\n");
-                    else {
 
                         if (e->flag_pos == 1){
                             salva_jogador_atual = e->jogador_atual;
@@ -393,16 +394,31 @@ int interpretador(ESTADO *e) {
                         }
 
                         COORDENADA coordaefetuar;
-
-                        if ( n == 1 )
-                            coordaefetuar = estrategia_paridade(e);
-                        else 
-                            coordaefetuar = estrategia_floodfill(e);
+                        coordaefetuar = estrategia_paridade(e);
                         
                         t = jogar(e,coordaefetuar);
                         mostrar_tabuleiro(e,stdout);
                         e->flag_pos = 0;
-                    }
+                
+                }
+                if (cmd == JOG2){
+
+                        if (e->flag_pos == 1){
+                            salva_jogador_atual = e->jogador_atual;
+                            salva_num_jogadas = e->num_jogadas;
+                            e->jogador_atual = 1;
+                            e->num_jogadas = (e->guarda_num_jogadas_pos) + 1;
+                            //Sei que a jogada nesse comando é sempre válida
+                            altera_tabuleiro(e);
+                        }
+
+                        COORDENADA coordaefetuar;
+                        coordaefetuar = estrategia_floodfill(e);
+                        
+                        t = jogar(e,coordaefetuar);
+                        mostrar_tabuleiro(e,stdout);
+                        e->flag_pos = 0;
+                
                 }
             }      
             else {
