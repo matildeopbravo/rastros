@@ -218,11 +218,11 @@ void ler_jogadas(ESTADO * e, FILE * fp) {
     for (int i = 0 ; i < num_jogadas; i++ ) {
         while ( fgetc(fp) != ':' ) ;
         if ( i == (num_jogadas - 1) && ultimo_jog == 1 ) {
-            fscanf ( fp , " %c%d\n" , &col1 , &lin1 ) ;
+            if (fscanf ( fp , " %c%d\n" , &col1 , &lin1 )){} ;
             jog = (JOGADA) {.jogador1 = (COORDENADA){8- lin1,col1 - 'a'}, .jogador2={0}};
         }   
         else {
-            fscanf(fp," %c%d %c%d\n",&col1,&lin1,&col2,&lin2);
+            if (fscanf(fp," %c%d %c%d\n",&col1,&lin1,&col2,&lin2)){};
             jog = (JOGADA) {(COORDENADA){8 - lin1,col1 - 'a'}, (COORDENADA){8- lin2,col2 - 'a'}};
         }
         acrescenta_jogada(e,i,jog);
