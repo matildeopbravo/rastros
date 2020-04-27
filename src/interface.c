@@ -382,7 +382,7 @@ int interpretador(ESTADO *e) {
                     else printf ("inválido\n");
                 }
 
-                if (cmd == JOG){
+                if (cmd == JOG && !(token = strtok(NULL, "\n"))){
 
                         if (e->flag_pos == 1){
                             salva_jogador_atual = e->jogador_atual;
@@ -401,7 +401,8 @@ int interpretador(ESTADO *e) {
                         e->flag_pos = 0;
                 
                 }
-                if (cmd == JOG2){
+ 
+                if (cmd == JOG2 && !(token = strtok(NULL, "\n"))){
 
                         if (e->flag_pos == 1){
                             salva_jogador_atual = e->jogador_atual;
@@ -420,6 +421,8 @@ int interpretador(ESTADO *e) {
                         e->flag_pos = 0;
                 
                 }
+                
+                
             }      
             else {
                 printf ("inválido\n");
