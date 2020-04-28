@@ -36,8 +36,18 @@ Devolve 1 caso for válida, retorna 0 caso contrário.
 int verifica_valida ( ESTADO *e , COORDENADA jog_ant , COORDENADA jog_efet);
 
 COORDENADA estrategia_paridade(ESTADO *e);
-
+/**
+\brief  Calcula a área  restante (casas vazias possíveis de chegar) do tabuleiro simulada a partir de uma possível jogada
+@param possiveljogada apontador para coordenada que será o ponto de partida do calculo da área restante
+@param e apontador para o estado do jogo
+*/
 int calcula_area(COORDENADA * possiveljogada, ESTADO * e);
+/**
+\brief  Dado um tabuleiro1 e um tabuleiro2, transfere os dados do tabuleiro 2 para o tabuleiro 1.
+@param tabuleiro_1 matriz com a informação de um tabuleiro do jogo
+@param tabuleiro_2 matriz com a informação de outro tabuleiro do jogo
+*/
+void transfere_tabuleiro (CASA tabuleiro_1[8][8],CASA tabuleiro_2[8][8]);
 
 COORDENADA estrategia_floodfill ( ESTADO * e ) ;
 /**
@@ -143,5 +153,12 @@ int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int flag);
 @param e apontador para o estado do jogo
 */
 COORDENADA floodfill_inversa ( int num_casa[8][8] , LISTA possiveis_jogadas , ESTADO *e );
+/**
+\brief Dada uma coordenada, verifica se a casa correspondente no tabuleiro está vazia ou não, tomando já a precaução
+de limitar qual é a zona de memória do tabuleiro, sem correr risco de verificar algo que não pertence ao tabuleiro
+@param e apontador para o estado do jogo
+@param coordenada Coordenada a verificar a casa do tabuleiro
+*/
+int verifica_casa_vazia(ESTADO *e, COORDENADA coordenada);
 
 #endif

@@ -3,6 +3,21 @@
 #include "dados.h"
 #include "listas.h"
 
+int verifica_casa_vazia(ESTADO *e, COORDENADA coordenada){
+    int result = 0;
+
+    if ((obter_estado_casa(e,coordenada) == VAZIO)
+        && (coordenada.linha >= 0)
+        && (coordenada.linha <= 7)
+        && (coordenada.coluna >= 0)
+        && (coordenada.coluna <= 7))
+    {
+        result = 1;
+    }    
+
+return result;
+}
+
 COORDENADA * duplica_coordenada(COORDENADA coordenada){
     COORDENADA * coordenada_duplicada;
         coordenada_duplicada = (COORDENADA *)malloc(sizeof(COORDENADA));
@@ -23,9 +38,7 @@ COORDENADA insere_possiveis_jogadas ( ESTADO *e , LISTA *posicoesvazias,COORDENA
             coord_vizinha.coluna = ((obtem_ultima_jogada(e)).coluna) + j;
              
             /* Este primeiro if é a situação de preenchimento normal*/
-            if ((obter_estado_casa(e,coord_vizinha) == VAZIO)
-                 && (coord_vizinha.linha >= 0) && (coord_vizinha.linha <= 7)
-                 && (coord_vizinha.coluna >= 0) && (coord_vizinha.coluna <= 7))
+            if (verifica_casa_vazia(e,coord_vizinha))
                {
                     coord_duplicada = duplica_coordenada(coord_vizinha);
                     *posicoesvazias = insere_cabeca(*posicoesvazias,coord_duplicada);
@@ -45,7 +58,7 @@ COORDENADA insere_possiveis_jogadas ( ESTADO *e , LISTA *posicoesvazias,COORDENA
 
             /* Este if analisa a outra situações de prioridade MÀXIMA- VITÓRIA
             O ciclo deve ser interrompido dado que já achamos a jogada*/
-            if ((obter_jogador_atual(e))
+            if ((obter_jogador_atual(e) ==  2)
                 &&  obter_estado_casa(e,coord_vizinha) == DOIS
                 && (coord_vizinha.linha >= 0) && (coord_vizinha.linha <= 7)
                 && (coord_vizinha.coluna >= 0) && (coord_vizinha.coluna <= 7))
@@ -385,7 +398,7 @@ int  jogadaaefetuar(ESTADO * e,int paridade[8]){
     return indice_jogada_a_efetuar;
 }
 
-/* Calcula A ÁREA RESTANTE simulada a partir de uma POSSÍVEL JOGADA*/
+
 int calcula_area(COORDENADA * possiveljogada, ESTADO * e){ 
     COORDENADA coordvizinha;
     int area = 0;
@@ -396,11 +409,7 @@ int calcula_area(COORDENADA * possiveljogada, ESTADO * e){
             coordvizinha.linha = ((*possiveljogada).linha) + i;
             coordvizinha.coluna = ((*possiveljogada).coluna) + j;
 
-            if ((obter_estado_casa(e,coordvizinha) == VAZIO)
-             && (coordvizinha.linha >= 0)
-             && (coordvizinha.linha <= 7)
-             && (coordvizinha.coluna >= 0)
-             && (coordvizinha.coluna <= 7)) {
+            if (verifica_casa_vazia(e,coordvizinha)) {
                 area++;
                 altera_casa(e,(COORDENADA){(*possiveljogada).linha,(*possiveljogada).coluna}, PRETA);
                 altera_casa(e,(COORDENADA){coordvizinha.linha,coordvizinha.coluna}, BRANCA);// simbólico
