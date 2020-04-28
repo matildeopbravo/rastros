@@ -149,6 +149,11 @@ void altera_numero_comandos(ESTADO *e,int numerocomandos);
 @param e Apontador para o estado
 */
 void incrementa_comandos(ESTADO *e);
+/**
+\brief Devolve a última jogada efetuada
+@param e Apontador para o estado
+*/
+COORDENADA obtem_ultima_jogada(ESTADO * e);
 
 
 COORDENADA obtem_coordenada(ESTADO * e,int indice_jogada, int jogador);

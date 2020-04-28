@@ -105,3 +105,7 @@ void incrementa_comandos(ESTADO *e){
     e->num_comandos = e->num_comandos + 1;
 
 }
+
+COORDENADA obtem_ultima_jogada(ESTADO * e){
+    return (e->ultima_jogada);
+}

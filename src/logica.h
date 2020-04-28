@@ -62,22 +62,6 @@ quando é possível chegar na cada da vitória e quando não é. Mediante os 2 c
 */
 void inicializa_num_casa(int num_casa[8][8],ESTADO *e, int flag);
 /**
-\brief Guarda as possíveis jogadas a efetuar ,que estão na lista ligada dada como argumento, no array
-jogadas_possíveis dado como argumento. Tal função serve para gestão de memória quando existem matrizes
-na função chamadora.
-@param possiveis_jogadas lista ligada com as possíveis jogadas a efetuar pelo jogador atual
-@param jogadas_possiveis array de coordenadas que armazenará o conteúdo da lisa possiveis_jogadas
-@param cabeca apontador para coordenada que retira os valores da lista ligada mediante a necessidade
-*/
-void guarda_jogadas(LISTA possiveis_jogadas,COORDENADA jogadas_possiveis[8],COORDENADA *cabeca);
-/**
-\brief Função reversa a da "guarda_jogadas" que coloca na lista ligada dada como argumento as 
-coordenadas presentes no array jogadas_possiveis dado como argumento.
-@param possiveis_jogadas lista ligada com as possíveis jogadas a efetuar pelo jogador atual
-@param jogadas_possiveis array de coordenadas que armazenará o conteúdo da lisa possiveis_jogadas
-*/
-void recupera_jogadas(LISTA possiveis_jogadas,COORDENADA jogadas_possiveis[8]);
-/**
 \brief Função invocada pela funcção "estratégia_floodfill" para melhor organização e gestão de memória
 da mesma. Realiza o processo da escolha da melhor jogada a ser efetuada (que é devolvida pela função).
 É a função cerne do raciocínio em si por trás de tal estratégia.
@@ -107,5 +91,20 @@ retirar a  jogada desejada (pois ela terá tal valor devolvido).
 @param flag Indicador se devo preencher supondo que quero encontrar o caminho mais curto para minha casa ou o mais longo para a casa da derrota
 */
 int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int flag);
+/**
+\brief Duplica uma coordenada e coloca ela num endereço novo. Possui utilidade no preenchimento da lista
+ligada de modo a evitar perder seu conteúdo mais tarde.
+@param coordenada Coordenada a ser duplicada e colocada num endereço novo
+*/
+COORDENADA * duplica_coordenada(COORDENADA coordenada);
+/**
+\brief Recebe o valor dado a casa tual de acordo com a estratégia floodfill, e devolve uma das casas
+vizinhas armazenadas na lista ligada intitulada como "possiveis_jogadas" que tenha o valor da casa atual
+subtraido por 1.
+@param valor_casa_atual número dado a casa atual do jogador a partir da estratégia floodfill
+@param possiveis_jogadas lista ligada que armazenará as possíveis jogadas a se fazer
+@param num_casa matriz com os valores numéricos dados a cada possível casa do tabuleiro a partir da estratégia floodfill
+*/
+COORDENADA devolve_coordenada_flood ( int valor_casa_atual , LISTA possiveis_jogadas , int num_casa[8][8])
 
 #endif
