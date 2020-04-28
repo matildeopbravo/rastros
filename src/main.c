@@ -4,6 +4,8 @@
 #include "interface.h"
 #include "logica.h"
 
+
+
 int main () {
  
         ESTADO *  estado;

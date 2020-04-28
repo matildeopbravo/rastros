@@ -77,11 +77,8 @@ COORDENADA devolve_coordenada_flood ( int valor_casa_atual , LISTA possiveis_jog
     return coor_final;
 }
 
-// Temos a coordenada t. Queremos saber se a CASA no tabuleiro correspondente a essa coordenada t
-// está ao lado de alguma com valor n-1. Para isso corremos todas as posições do tabuleiro até 
-// encontrarmos alguma ao lado da coordenada que temos ou chegarmos ao fim do tabuleiro.
 
-int verifica_adjacencia ( COORDENADA t , int num_casa[8][8] , int valor ) {                 
+int verifica_adjacencia ( COORDENADA coord , int num_casa[8][8] , int valor ) {                 
     int flag = 0 ;// flag que será usada no ciclo
     int linha = 0 , coluna = 0 ; // primeira posição do tabuleiro é linha 0 coluna 0
 
@@ -90,7 +87,7 @@ int verifica_adjacencia ( COORDENADA t , int num_casa[8][8] , int valor ) {
             flag = 2 ;          //  parando o ciclo e informando que não está ao lado de nenhuma casa
 
         if (num_casa[linha][coluna] == (valor-1) ) {  // verificação de se a casa tem valor (n-1)
-            if ( abs(t.linha - linha) <= 1 && abs(t.coluna - coluna) <= 1 )    // verificamos que está ao lado da nossa coordenada dada
+            if ( abs(coord.linha - linha) <= 1 && abs(coord.coluna - coluna) <= 1 )    // verificamos que está ao lado da nossa coordenada dada
                 flag = 1 ;                                               // alterar a flag, parando o ciclo, e indicando aquilo que acabamos de verificar
         }
                                                                             // mudar a posição do tabuleiro, se este ainda não tiver chegado ao fim
@@ -134,6 +131,19 @@ void inicializa_num_casa(int num_casa[8][8],ESTADO *e, int flag){
         }
 }
 
+int verifica_quadrante (ESTADO *e,COORDENADA coord){
+
+    int result = 0;
+    
+    if ((obter_jogador_atual(e) == 1 && (coord.linha > 1 || coord.coluna < 6))
+       || (obter_jogador_atual(e)== 2 && (coord.linha < 6 || coord.coluna > 1)))
+       {
+       result = 1;
+       }
+return result;
+
+}
+
 int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int flag){
     
     int valor_casa_atual,//Indicará o valor dado a casa que o jogador está(util para indicar que chegamos ao fim da função ao preencher esta variável- mudará seu valor de 0 para outro)
@@ -159,15 +169,27 @@ int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int flag){
                  preenchida) e se ela é uma casa adjacente a uma outra casa com "valor_casa_do_ciclo - 1"*/
                  if ( num_casa[coord.linha][coord.coluna] == -1
                     && (verifica_adjacencia(coord,num_casa,valor_casa_do_ciclo))) {
-                           
-                           if (e->tab[coord.linha][coord.coluna] == VAZIO ) {
-                                if (( flag == 2 )
-                                 || ( e->jogador_atual == 1 && (coord.linha > 1 || coord.coluna < 6))
-                                 || ( e->jogador_atual == 2 && (coord.linha < 6 || coord.coluna > 1))) {
-                                    num_casa[coord.linha][coord.coluna] = valor_casa_do_ciclo ;
-                                    caminho_encontrado++ ;
+                       
+                       /*Precisamos testar se a casa potencial a ser preenchida é VAZIA,
+                       dado que uma casa não VAZIA não poderá fazer parte do caminho*/
+
+                       if (e->tab[coord.linha][coord.coluna] == VAZIO ) {
+                            
+                           /*Caso a CASA for fazia devemos nos preocupar apenas com uma situação:
+                           se a flag for diferente de 1  e a casa estiver no quadrante de perigo(quando
+                           verifica_quadrante devolve 0) não preencheremos a casa pois isso significa que
+                           o caminho mais rápido para vitória pode correr o risco de passar por uma casa que pode
+                           garantir a derrota na próxima jogada. Se estiver procurando o caminho mais longo para 
+                           derrota isso é irrelevante, por isso a condição abaixo preencherá tal casa caso as situções
+                           ditas acima não se verificarem*/
+
+                           if (( flag == 2 ) || verifica_quadrante(e,coord)) 
+                                {
+                                 num_casa[coord.linha][coord.coluna] = valor_casa_do_ciclo ;
+                                 caminho_encontrado++;
                                 } 
                             }
+
                             else {
                                 if (e->tab[coord.linha][coord.coluna] == BRANCA ) {
                                     num_casa[coord.linha][coord.coluna] = valor_casa_do_ciclo ;
@@ -176,10 +198,15 @@ int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int flag){
                                     caminho_encontrado++ ;
                                 }
                             }
-                        }
-                    
+                         }
+                     }
                 }
-            }
+            
+            /*Caso não for encontrado caminho podemos estar na situação que estamos a procura do caminho mais rapido para
+            vitoria ou o mais lento para derrota, caso estivermos na primeira situação metemos o valor_casa_atual a -1 para na função chamadora
+            saber que é preciso aplicar o floodfill_inverso, caso contrário quer dizer que já estamos a aplicar o floodfill inverso 
+            e mesmo assim não há caminho, logo devolvemos o valor_casa_atual como o valor_casa_do_ciclo para fins na escolha
+            qualquer na floodfill inversa*/
 
             if ( caminho_encontrado == 0 ) {
                 if ( flag == 1 )
@@ -188,6 +215,8 @@ int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int flag){
                     valor_casa_atual = valor_casa_do_ciclo ;
             }
 
+          //Prints apenas para guiar no que está acontecendo
+   
             for (int a = 0;a<8;a++){
                 for (int b = 0;b<8;b++){
                     if ((num_casa[a][b] < 0 || num_casa[a][b] > 9 ) && valor_casa_atual != 0)
@@ -210,25 +239,25 @@ int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int flag){
     return valor_casa_atual;
 }
 
-COORDENADA floodfill_inversa ( int num_casa[8][8] , LISTA l , ESTADO *e ) {
+COORDENADA floodfill_inversa ( int num_casa[8][8] , LISTA possiveis_jogadas , ESTADO *e ) {
 
     COORDENADA coor_final;
     COORDENADA * cabeca ;
-    cabeca = devolve_cabeca(l);
+    cabeca = devolve_cabeca(possiveis_jogadas);
     COORDENADA * cabecamax = cabeca;
     int numcabecamax = -1 ;
     
     inicializa_num_casa(num_casa,e,2);
     preenche_valor_das_casas(num_casa,e,2);
 
-    while ( l != NULL ) {
-        cabeca = devolve_cabeca (l) ;
+    while ( possiveis_jogadas != NULL ) {
+        cabeca = devolve_cabeca (possiveis_jogadas) ;
         if (num_casa[cabeca->linha][cabeca->coluna] > numcabecamax) {
             numcabecamax = num_casa[cabeca->linha][cabeca->coluna]  ;
             cabecamax = cabeca ;
             printf ("%d %d %d\n", num_casa[cabeca->linha][cabeca->coluna] , cabeca->linha, cabeca->coluna );
         }
-        l = proximo(l);
+        possiveis_jogadas = proximo(possiveis_jogadas);
     }
 
     coor_final = *cabecamax ;

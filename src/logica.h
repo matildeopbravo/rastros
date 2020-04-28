@@ -105,6 +105,43 @@ subtraido por 1.
 @param possiveis_jogadas lista ligada que armazenará as possíveis jogadas a se fazer
 @param num_casa matriz com os valores numéricos dados a cada possível casa do tabuleiro a partir da estratégia floodfill
 */
-COORDENADA devolve_coordenada_flood ( int valor_casa_atual , LISTA possiveis_jogadas , int num_casa[8][8])
+COORDENADA devolve_coordenada_flood ( int valor_casa_atual , LISTA possiveis_jogadas , int num_casa[8][8]);
+/**
+\brief Temos a coordenada "coord". Queremos saber se a CASA no tabuleiro correspondente a essa coordenada "coord"
+está ao lado de alguma com valor (valor-1.) Para isso corremos todas as posições do tabuleiro até 
+encontrarmos alguma ao lado da coordenada que temos ou chegarmos ao fim do tabuleiro.
+@param coord Coordenada que queremos verificar a adjacência
+@param num_casa matriz com os valores numéricos dados a cada possível casa do tabuleiro a partir da estratégia floodfill
+@param valor dado a casa atual que queremos verificar a adjacência com casas com (valor -1 ).
+*/
+int verifica_adjacencia ( COORDENADA coord , int num_casa[8][8] , int valor );
+/**
+\brief Verifica se a coordenada "coord" faz parte de uma das casas que, se for escolhida como casa jogada pelo jogador
+atual, na próxima jogada ele perderá a partida pois tal casa pertencia as casas que estão ao redor de sua casa da derrota.
+Por tanto tal função devolve 1 se a coord estiver no quadrante seguro, isto é, sem ser ao redor da casa da derrota, e
+devolve 0 caso contrário.
+@param coord Coordenada que queremos verificar  em qual quadrante está
+@param e apontador para o estado do jogo
+*/
+int verifica_quadrante (ESTADO *e,COORDENADA coord);
+/**
+\brief Preenche o valor de cada casa do tabuleiro de acordo com a estratégia floodfill. Começa por preencher as casas
+ao redor da casa destino com o valor da (casa destino + 1). Tal processo se aplica iterativamente sempre preenchendo casas
+adijacentes a uma casa com valor n, com o valor n + 1. Tal processo se verifica até conseguir chegar na minha casa atual, o que significa
+que existe um caminho para o destino, ou caso contrário saberei que não existe. A função devolve -1 quando não existe caminho
+mais curto para vitória e devolve um valor diferente de 1, que será correspondente ao valor n dado a minha casa atual(sendo ele
+o parãmetro utilizado posteriormente para retirar a melhor jogada que será a vizinha com valor n - 1).
+@param num_casa matriz com os valores numéricos(de cada casa do tabuleiro) inicializados a -1 que seráo agora preenchidos pela função
+@param e apontador para o estado do jogo
+@param flag indica se estou usando a função para encontrar o caminho mais curto para vitória ou o mais longo para derrota
+*/
+int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int flag);
+/**
+\brief Realiza a estratégia floodfill inversamente, procurando o caminho mais longo para derrota. Devolve a melhor jogada a se fazer
+@param num_casa matriz com os valores numéricos dados a cada possível casa do tabuleiro
+@param e possiveis_jogadas lista ligada com as possveis_jogadas
+@param e apontador para o estado do jogo
+*/
+COORDENADA floodfill_inversa ( int num_casa[8][8] , LISTA possiveis_jogadas , ESTADO *e );
 
 #endif
