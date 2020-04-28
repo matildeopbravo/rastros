@@ -242,6 +242,13 @@ void ler (ESTADO * e, char * nome_ficheiro) {
         fclose(fp);
     }
 
+void alterna_situacao_pos (int *salva_num_jogadas, int *salva_jogador_atual, ESTADO *estado){
+     *salva_num_jogadas = obter_numero_de_jogadas(estado);
+     *salva_jogador_atual =  obter_jogador_atual(estado);
+     estado->num_jogadas = estado->guarda_num_jogadas_pos + 1;
+     estado->jogador_atual = 1;
+}    
+
 int interpretador(ESTADO *e) {
     int t =0;
     char linha[BUF_SIZE], col[2], lin[2];
@@ -254,16 +261,11 @@ int interpretador(ESTADO *e) {
     while(t != 2) { // t = 2 coorresponde a vitória
 
         if (e->flag_pos==1){
-
-            salva_num_jogadas = e->num_jogadas;
-            salva_jogador_atual = e->jogador_atual;
-            e->num_jogadas = e->guarda_num_jogadas_pos + 1;
-            e->jogador_atual = 1;
+           alterna_situacao_pos(&salva_num_jogadas,&salva_jogador_atual,e);
+           mostrar_prompt (e);
             
-            mostrar_prompt (e);
-            
-            e->jogador_atual = salva_jogador_atual;
-            e->num_jogadas = salva_num_jogadas;
+           e->jogador_atual = salva_jogador_atual;
+           e->num_jogadas = salva_num_jogadas;
     
         }
         else
@@ -279,11 +281,7 @@ int interpretador(ESTADO *e) {
                 COORDENADA coord = { '8' - *lin , *col -'a'};
 
                 if (e->flag_pos == 1){
-                    salva_jogador_atual = e->jogador_atual;
-                    salva_num_jogadas = e->num_jogadas;
-                    e->jogador_atual = 1;
-                    e->num_jogadas = (e->guarda_num_jogadas_pos) + 1;
-                    
+                    alterna_situacao_pos(&salva_num_jogadas,&salva_jogador_atual,e);                    
                     altera_tabuleiro(e);
                 }
                 t = jogar ( e,coord);
@@ -312,12 +310,9 @@ int interpretador(ESTADO *e) {
                 if(cmd == GRAVAR) {
                     if (e->flag_pos == 1){
 
-                        salva_jogador_atual = e->jogador_atual;
-                        salva_num_jogadas = e->num_jogadas;
-                        e->jogador_atual = 1;
-                        e->num_jogadas = (e->guarda_num_jogadas_pos) + 1;
+                    alterna_situacao_pos(&salva_num_jogadas,&salva_jogador_atual,e);
+                    altera_tabuleiro(e);
                     
-                        altera_tabuleiro(e);
                     }
                         gravar(e,token);
 
@@ -336,11 +331,7 @@ int interpretador(ESTADO *e) {
                 if(cmd == MOVS) {
                     if (e->flag_pos == 1){
 
-                        salva_num_jogadas = e->num_jogadas;
-                        salva_jogador_atual = e->jogador_atual;
-                        e->num_jogadas = (e->guarda_num_jogadas_pos) + 1; /* soma-se um pois o comando "pos" exige um tratamento especial*/
-                        e->jogador_atual = 1;
-                           
+                        alterna_situacao_pos(&salva_num_jogadas,&salva_jogador_atual,e);   
                         mostrar_jogadas(e,stdout);
                            
                         e->jogador_atual = salva_jogador_atual;
@@ -380,10 +371,7 @@ int interpretador(ESTADO *e) {
                 if (cmd == JOG && !(token = strtok(NULL, "\n"))){
 
                         if (e->flag_pos == 1){
-                            salva_jogador_atual = e->jogador_atual;
-                            salva_num_jogadas = e->num_jogadas;
-                            e->jogador_atual = 1;
-                            e->num_jogadas = (e->guarda_num_jogadas_pos) + 1;
+                            alterna_situacao_pos(&salva_num_jogadas,&salva_jogador_atual,e);
                             //Sei que a jogada nesse comando é sempre válida
                             altera_tabuleiro(e);
                         }
@@ -400,10 +388,7 @@ int interpretador(ESTADO *e) {
                 if (cmd == JOG2 && !(token = strtok(NULL, "\n"))){
 
                         if (e->flag_pos == 1){
-                            salva_jogador_atual = e->jogador_atual;
-                            salva_num_jogadas = e->num_jogadas;
-                            e->jogador_atual = 1;
-                            e->num_jogadas = (e->guarda_num_jogadas_pos) + 1;
+                            alterna_situacao_pos(&salva_num_jogadas,&salva_jogador_atual,e);
                             //Sei que a jogada nesse comando é sempre válida
                             altera_tabuleiro(e);
                         }

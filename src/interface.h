@@ -110,4 +110,13 @@ efetuado um comando "pos" .
 */
 void altera_tabuleiro(ESTADO *estado);
 
+/** 
+\brief Função de rotina criada pois tais processos feitos por ela é comum a diversas partes do interpretador. É ativada quando
+a flag_pos = 1, por tanto há que preparar o código para tais situações de "pos" encadeados. Tal função realiza tais operações de preparação.
+@param salva_num_jogadas apontador para um inteiro que representa o número de jogadas salvo na função chamadora
+@param salva_jogador_atual apontador para um inteiro que representa o jogador_atual salvo na função chamadora
+@param estado Appontador para o estado do jogo
+*/
+void alterna_situacao_pos (int *salva_num_jogadas, int *salva_jogador_atual, ESTADO *estado);
+
 #endif

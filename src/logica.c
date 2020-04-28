@@ -185,7 +185,7 @@ int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int flag){
                        if (e->tab[coord.linha][coord.coluna] == VAZIO ) {
                             
                            /*Caso a CASA for fazia devemos nos preocupar apenas com uma situação:
-                           se a flag for diferente de 1  e a casa estiver no quadrante de perigo(quando
+                           se a flag for diferente de 2  e a casa estiver no quadrante de perigo(quando
                            verifica_quadrante devolve 0) não preencheremos a casa pois isso significa que
                            o caminho mais rápido para vitória pode correr o risco de passar por uma casa que pode
                            garantir a derrota na próxima jogada. Se estiver procurando o caminho mais longo para 
