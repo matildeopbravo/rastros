@@ -32,8 +32,12 @@ Devolve 1 caso for válida, retorna 0 caso contrário.
 @param c Coordenada da jogada anterior
 @param c Coordenada da jogada efetuada
 */
-
 int verifica_valida ( ESTADO *e , COORDENADA jog_ant , COORDENADA jog_efet);
+/**
+\brief Função principal da heurística da paridade. Devolve a melhor jogada possível tendo em conta tal estratégia
+que procura sempre a jogada que deixará uma restante par do tabuleiro.
+@param e Apontador para o estado
+*/
 
 COORDENADA estrategia_paridade(ESTADO *e);
 /**
@@ -48,7 +52,11 @@ int calcula_area(COORDENADA * possiveljogada, ESTADO * e);
 @param tabuleiro_2 matriz com a informação de outro tabuleiro do jogo
 */
 void transfere_tabuleiro (CASA tabuleiro_1[8][8],CASA tabuleiro_2[8][8]);
-
+/**
+\brief Função principal da heurística floodfill. Devolve a melhor jogada possível tendo em conta tal estratégia
+que procura sempre a jogada que faz parte de um caminho mais curto para vitória ou mais longo para derrota.
+@param e Apontador para o estado
+*/
 COORDENADA estrategia_floodfill ( ESTADO * e ) ;
 /**
 \brief Preenche a lista (*posicoesvazias) com as possíveis jogadas que o jogador atual consegue
@@ -149,7 +157,7 @@ int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int flag);
 /**
 \brief Realiza a estratégia floodfill inversamente, procurando o caminho mais longo para derrota. Devolve a melhor jogada a se fazer
 @param num_casa matriz com os valores numéricos dados a cada possível casa do tabuleiro
-@param e possiveis_jogadas lista ligada com as possveis_jogadas
+@param possiveis_jogadas lista ligada com as possveis_jogadas
 @param e apontador para o estado do jogo
 */
 COORDENADA floodfill_inversa ( int num_casa[8][8] , LISTA possiveis_jogadas , ESTADO *e );
@@ -160,5 +168,14 @@ de limitar qual é a zona de memória do tabuleiro, sem correr risco de verifica
 @param coordenada Coordenada a verificar a casa do tabuleiro
 */
 int verifica_casa_vazia(ESTADO *e, COORDENADA coordenada);
+/**
+\brief Função auxiliar da "estrategia_paridade" que preenche o array paridade(que armazena a área restante para cada possível 
+jogada) com as respetivas áreas de cada possível jogada.
+@param e apontador para o estado do jogo
+@param possiveis_jogadas lista ligada com as possveis_jogadas
+@param paridade array que armazena a área restante para cada possível jogada
+@param cabeca apontador para coordenada que serve para retirar valores da lista ligada
+*/
+void auxiliarparidade (ESTADO *e,LISTA possiveis_jogadas,int paridade[8],COORDENADA *cabeca);
 
 #endif

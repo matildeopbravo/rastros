@@ -429,8 +429,6 @@ void transfere_tabuleiro (CASA tabuleiro_1[8][8],CASA tabuleiro_2[8][8]){
         } 
 }
 
-/*Função auxiliar da "estrategia_paridade" que preenche o array paridade(que armazena a área restante para cada possível 
-jogada) com as respetivas áreas de cada possível jogada*/
 void auxiliarparidade (ESTADO *e,LISTA possiveis_jogadas,int paridade[8],COORDENADA *cabeca){
     
     CASA tabcopia[8][8];//matriz auxiliar criada de forma a não ser perdido o conteúdo do tabuleiro inicial
@@ -460,11 +458,8 @@ void auxiliarparidade (ESTADO *e,LISTA possiveis_jogadas,int paridade[8],COORDEN
         transfere_tabuleiro(e->tab,tabcopia);
     }
     possiveis_jogadas = guarda_lista;
-
 }
 
-/* Função Principal da heurística da Paridade*/
-//Devolve a melhor jogada possível;
 COORDENADA estrategia_paridade(ESTADO *e){
     
     LISTA possiveis_jogadas = criar_lista(); //lista ligada que armazena as possíveis jogadas
@@ -515,7 +510,6 @@ criada para esse fim */
     return (coord_escolhida);
 }
 
-/*-------------------------------------------------------------------------------------------------------------*/
 
 int verifica_valida ( ESTADO *e , COORDENADA jog_ant , COORDENADA jog_efet) {
 

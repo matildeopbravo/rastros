@@ -6,18 +6,18 @@
 #define CAMADA_INTERFACE_H
 
 /**
-\brief Função que apresenta o estado do tabuleiro. 
-Recorre a carácteres especiais, bem com os números e letras das linhas e colunas correspondentes. 
-O tabuleiro é apresentado na stream fornecida como argumento será um apontador para um ficheiro ou stdout.
+\brief Mostra o tabuleiro no ecrã como também o insere num ficheiro quando efetuado o comando "gr".
+O tabuleiro é apresentado na stream fornecida como argumento que  será um apontador para um ficheiro ou stdout.
+Sempre que efetuamos esse comando "alteramos o tabuleiro", isto é, preenchemos ele do zero, algo que é útil em diversas situações
+e potencial de ser reaproveitado tanto para apresentar o tabuleiro após jogadas normais como para apresentar o tabuleiro após um comando
+"pos".
 @param estado Apontador para o estado
 @param stream Apontador para FILE
 */
 void mostrar_tabuleiro(ESTADO * estado, FILE * stream);
 /**
 \brief Função que apresenta o prompt, o qual contém o número do jogador atual,o número e jogadas e o número de comandos efetuados.
-O prompt é apresentado na stream fornecida como argumento que será um apontador para um ficheiro ou stdout.
 @param e Apontador para o estado
-@param stream Apontador para FILE
 */
 void mostrar_prompt(ESTADO * e);
 /**
@@ -40,7 +40,7 @@ Além disso,lê o input do utilizador e interpreta os comandos/jogadas que este 
 */
 int interpretador(ESTADO *e);
 /**
-\brief Função que verifica se o comando escrito pelo utilizador é "ler" ou "gr"
+\brief Função que verifica se o comando escrito pelo utilizador é um dos possíveis de serem feitos
 @param token Apontador para caracter
 */
 COMANDO verifica_comando( char * token );
@@ -86,7 +86,7 @@ void ler_prompt(ESTADO *e,FILE* file_pointer);
 /** 
 \brief Função que dado um nome de um ficheiro, grava o tabuleiro, o prompt e a a lista de jogadas no mesmo.
 @param e Apontador para o estado
-@param nome_ficheiro Apontador para carácter (primeiro caracter do nome do ficheiro)
+@param nome_ficheiro Apontador para carácter (primeiro carácter do nome do ficheiro)
 */
 void gravar (ESTADO * e, char * nome_ficheiro);
 /** 
@@ -96,5 +96,18 @@ do prompt e da lista de jogadas.
 @param nome_ficheiro Apontador para carácter (primeiro caracter do nome do ficheiro)
 */
 void ler (ESTADO * e, char * nome_ficheiro);
+/** 
+\brief Função que verifica se um dado carácter, "token", é um digito ou não. Devolve 1 caso for digito, 0 caso contrário.  
+@param token Carácter a ser verificado se é digito
+*/
+int verificanumero (char token);
+/** 
+\brief Função que preenche o tabuleiro de acordo com as jogadas efetuadas até a n-ésima jogada, onde n é o número
+de jogadas atual. Útil utilizá-la sempre que é efetuada uma jogada de modo a se preocupar apenas em alterar o número de jogadas
+mediante a necessidade, podendo ser uma função reutilizada tanto para o comando se jogar normal como também após ter sido
+efetuado um comando "pos" .
+@param estado Appontador para o estado do jogo
+*/
+void altera_tabuleiro(ESTADO *estado);
 
 #endif

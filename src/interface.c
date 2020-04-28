@@ -19,8 +19,8 @@ void printarcampeao(ESTADO * estado){
     int campeao,jogadoratual;
     COORDENADA ultimajogada; 
 
-    ultimajogada  = estado -> ultima_jogada;
-    jogadoratual = estado -> jogador_atual;
+    ultimajogada  = obtem_ultima_jogada(estado);
+    jogadoratual = obter_jogador_atual(estado);
 
     campeao = verifica_fim (estado,ultimajogada.linha,ultimajogada.coluna,jogadoratual);
 
@@ -31,22 +31,23 @@ void printarcampeao(ESTADO * estado){
 }
 
 void altera_tabuleiro(ESTADO *estado){
-    int h;
+    
+    int contador;
     COORDENADA coord1;
     COORDENADA coord2;
 
     /*Ciclo que coloca o tabuleiro todo a VAZIO*/
-    for (int a = 0;a<8;a++){
-        for (int b = 0;b<8;b++){
-            estado->tab[a][b] = VAZIO;
+    for (int linha = 0;linha < 8;linha++){
+        for (int coluna = 0; coluna < 8 ; coluna++){
+            estado->tab[linha][coluna] = VAZIO;
         }
     }
-
+    /*Casos especiais*/
     estado->tab[0][7] = DOIS;
     estado->tab[7][0] = UM;
     
     /* Caso especial em que se foi feito "pos 0"*/    
-    if (estado->num_jogadas == 0){
+    if (obter_numero_de_jogadas(estado) == 0){
         estado->tab[3][4] = BRANCA;
        (estado->ultima_jogada).linha = 3;
        (estado->ultima_jogada).coluna = 4;}
@@ -54,25 +55,25 @@ void altera_tabuleiro(ESTADO *estado){
     else {
 
         /*Ciclo que coloca a PRETO todas as casas do tabuleiro que já foram ocupadas até a e-nésima jogada*/
-        for (h = 0; h < (estado->num_jogadas) - 1; h++){
+        for (contador = 0; contador < (obter_numero_de_jogadas(estado)) - 1; contador++){
 
-            coord1 = obtem_coordenada(estado,h,1);
-            coord2 = obtem_coordenada(estado,h,2);
+            coord1 = obtem_coordenada(estado,contador,1);
+            coord2 = obtem_coordenada(estado,contador,2);
         
             estado->tab[coord1.linha][coord1.coluna] = PRETA;
             estado->tab[coord2.linha][coord2.coluna] = PRETA;
         
         } 
         /* Caso o jogador atual for o 2, então falta preencher a BRANCO  a última jogada efetuada*/
-        if (estado->jogador_atual == 2){
-            coord1 = obtem_coordenada(estado,h,1);
+        if (obter_jogador_atual(estado) == 2){
+            coord1 = obtem_coordenada(estado,contador,1);
             estado->tab[coord1.linha][coord1.coluna] = BRANCA;
             (estado->ultima_jogada).linha = coord1.linha;
             (estado->ultima_jogada).coluna = coord1.coluna;
         }
         /* Caso o jogador atual for o 1, então falta preencher a BRANCO ua última jogada efetuada*/
-        if (estado->jogador_atual == 1){
-            coord2 = obtem_coordenada(estado,h - 1,2);
+        if (obter_jogador_atual(estado) == 1){
+            coord2 = obtem_coordenada(estado,contador - 1,2);
             estado->tab[coord2.linha][coord2.coluna] = BRANCA;
             (estado->ultima_jogada).linha = coord2.linha;
             (estado->ultima_jogada).coluna = coord2.coluna;
@@ -87,7 +88,6 @@ void altera_tabuleiro(ESTADO *estado){
     }
 }
 
-//Mostra o tabuleiro no ecrã como também o insere num ficheiro quando efetuado o comando "gr"
 void mostrar_tabuleiro(ESTADO * estado, FILE * stream) {
     altera_tabuleiro(estado);
     /*Ciclo que printa na tela o tabuleiro mediante o contéudo do tabuleiro*/
@@ -110,8 +110,6 @@ void mostrar_tabuleiro(ESTADO * estado, FILE * stream) {
             
 }
 
-
-//Mostra o prompt no ecrã como também o insere num ficheiro quando feito o comando "gr"
 void mostrar_prompt (ESTADO * e){
     int jogadoratual;
     int numerojogadas;
@@ -125,7 +123,6 @@ void mostrar_prompt (ESTADO * e){
    
 }
 
-//Mostra o histórico de jogadas no ecrã como também os insere num ficheiro após efetuado ocomando "gr"
 void mostrar_jogadas (ESTADO * e,  FILE * stream) {
     int numjogadas;
     if ( stream == stdout )
@@ -173,7 +170,7 @@ COMANDO verifica_comando( char * token ) {
     return 0;
 }
 
-//Auxiliar da função "ler" que lê a parte correspondente ao tabuleiro
+
 void ler_tabuleiro(ESTADO * e, FILE * fp) {
     char ponto;
     int jognvazias = 0 ;
@@ -203,8 +200,6 @@ void ler_tabuleiro(ESTADO * e, FILE * fp) {
     altera_num_jogadas(e,numerojogadas );
 }
 
-//Auxiliar da função "ler" que lê a parte correspondente as jogadas
-//Auxiliar da função "ler" que lê a parte correspondente as jogadas
 void ler_jogadas(ESTADO * e, FILE * fp) {
     char col1 ,col2;
     int lin1,lin2;
