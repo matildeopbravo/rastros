@@ -93,27 +93,23 @@ COORDENADA devolve_coordenada_flood ( int valor_casa_atual , LISTA possiveis_jog
 
 int verifica_adjacencia ( COORDENADA coord , int num_casa[8][8] , int valor ) {                 
     int flag = 0 ;// flag que será usada no ciclo
-    int linha = 0 , coluna = 0 ; // primeira posição do tabuleiro é linha 0 coluna 0
+    COORDENADA coord_vizinha;
 
-    while ( flag == 0 ) {
-        if (coluna == 7 && linha == 7) // verificamos se chegou ao fim do tabuleiro.Se isso acontecer, mudamos a flag,
-            flag = 2 ;          //  parando o ciclo e informando que não está ao lado de nenhuma casa
+    for (int i = 1 ;i >= -1;i--){
+        for (int j = -1;j <= 1;j++){
+            
+            coord_vizinha.linha = (coord.linha) + i;
+            coord_vizinha.coluna = (coord.coluna) + j;
 
-        if (num_casa[linha][coluna] == (valor-1) ) {  // verificação de se a casa tem valor (n-1)
-            if ( abs(coord.linha - linha) <= 1 && abs(coord.coluna - coluna) <= 1 )    // verificamos que está ao lado da nossa coordenada dada
-                flag = 1 ;                                               // alterar a flag, parando o ciclo, e indicando aquilo que acabamos de verificar
+            if (num_casa[coord_vizinha.linha][coord_vizinha.coluna] == (valor - 1)
+               && (coord_vizinha.linha >= 0) && (coord_vizinha.linha <= 7)
+               && (coord_vizinha.coluna >= 0) && (coord_vizinha.coluna <= 7))
+               {
+                   flag = 1;
+               }                               
         }
-                                                                            // mudar a posição do tabuleiro, se este ainda não tiver chegado ao fim
-        if (coluna == 7 && linha != 7) {                                             // se estiver na ultima coluna,
-            coluna = 0 ;                                                       // passar para a primeira coluna
-            linha++;                                                          // da linha seguinte
-        }
-        else coluna++;                                                         // senão simplesmente vai-se para a coluna seguinte da mesma linha
     }
-
-    if ( flag == 1 ) return 1 ;                                                // a flag com valor 1 indica que a função tem valor 1
-    else return 0;                                                          // a flag com valor 2 indica que a função tem valor 0
-
+return flag;   
 }
 
 void inicializa_num_casa(int num_casa[8][8],ESTADO *e, int flag){
