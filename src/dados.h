@@ -64,7 +64,7 @@ typedef struct {
 	int num_comandos;
 	/** Irá controlar se um novo cenário se iniciou ou não*/
 	int flag_pos;
-		
+	/** Guarda o número inserido no comando pos*/
 	int guarda_num_jogadas_pos;
 } ESTADO;
 
