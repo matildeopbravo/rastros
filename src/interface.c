@@ -232,15 +232,17 @@ void ler (ESTADO * e, char * nome_ficheiro) {
             ler_tabuleiro(e,fp);
             ler_jogadas(e,fp);
             if (e->jogador_atual == 1)
-            e->num_jogadas = e->num_jogadas + 1;
+               e->num_jogadas = e->num_jogadas + 1;
             mostrar_tabuleiro(e,stdout);
             mostrar_jogadas(e,stdout);
-           
+               
+            fclose(fp);
         }
-        else
+        else {
+        
             printf("Erro a ler ficheiro\n"); 
-        fclose(fp);
-    }
+        }
+}
 
 void alterna_situacao_pos (int *salva_num_jogadas, int *salva_jogador_atual, ESTADO *estado){
      *salva_num_jogadas = obter_numero_de_jogadas(estado);
@@ -296,11 +298,11 @@ int interpretador(ESTADO *e) {
                 }
         }
         // Situações em que foi digitado comandos
-        else {
-            char * token = strtok(linha," ");
-            if (!strcmp(linha,"movs\n")) token = "movs";
-            if (!strcmp(linha,"jog\n")) token = "jog";
-            if (!strcmp(linha,"jog2\n")) token = "jog2";
+            else {
+             char * token = strtok(linha," ");
+             if (!strcmp(linha,"movs\n")) token = "movs";
+             if (!strcmp(linha,"jog\n")) token = "jog";
+             if (!strcmp(linha,"jog2\n")) token = "jog2";
             COMANDO cmd = verifica_comando(token);
 
 
