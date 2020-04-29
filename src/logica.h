@@ -162,8 +162,8 @@ int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int flag);
 */
 COORDENADA floodfill_inversa ( int num_casa[8][8] , LISTA possiveis_jogadas , ESTADO *e );
 /**
-\brief Dada uma coordenada, verifica se a casa correspondente no tabuleiro está vazia ou não, tomando já a precaução
-de limitar qual é a zona de memória do tabuleiro, sem correr risco de verificar algo que não pertence ao tabuleiro
+\brief Dada uma coordenada, verifica se a casa correspondente no tabuleiro está vazia ou não.
+Devolve 1 caso estiver vazia,0 caso o contrário.
 @param e apontador para o estado do jogo
 @param coordenada Coordenada a verificar a casa do tabuleiro
 */
@@ -177,5 +177,23 @@ jogada) com as respetivas áreas de cada possível jogada.
 @param cabeca apontador para coordenada que serve para retirar valores da lista ligada
 */
 void auxiliarparidade (ESTADO *e,LISTA possiveis_jogadas,int paridade[8],COORDENADA *cabeca);
+/**
+\brief Devolve o Índice do array paridade que possui a melhor "jogada" (sendo escolhido a partir
+de um estudo sobre as áreas do array. A prioridade são as menores áreas pares. Caso não haver áreas pares,
+a prioridade passa a ser as maiores áreas ímpares). A flag dada como argumento tem função importante
+no que respeita "avisar" quando a função está a ser ativada para o jogador 2 ou 1. Isto é, a única diferença
+é a prioridade que é dada ao termos 2 áreas com o mesmo valor. No caso de ser o jogador 1 a prioridade é manter
+a primeira como escolhida, dado que vai corresponder a uma posição ,na lista ligada de possíveis jogadas, mais perto da
+sua casa destino. Caso for o jogador 2 o atual é feito o contrário.
+@param paridade array que armazena a área restante para cada possível jogada
+@param flag Indicador do jogador atual
+*/
+int devolve_indice_paridade(int paridade[8],int flag);
+/**
+\brief Dada uma coordenada, verifica se esta é uma coordenada válida de ser jogada, isto é, esta dentro
+dos limites de memória do tabuleiro.
+@param coordenada Coordenada a verificar se está nos limites do tabuleiro.
+*/
+int verifica_limite_tabuleiro(COORDENADA coordenada);
 
 #endif

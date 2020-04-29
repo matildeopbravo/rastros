@@ -6,11 +6,17 @@
 int verifica_casa_vazia(ESTADO *e, COORDENADA coordenada){
     int result = 0;
 
-    if ((obter_estado_casa(e,coordenada) == VAZIO)
-        && (coordenada.linha >= 0)
-        && (coordenada.linha <= 7)
-        && (coordenada.coluna >= 0)
-        && (coordenada.coluna <= 7))
+    if ((obter_estado_casa(e,coordenada) == VAZIO))
+        result = 1;    
+
+return result;
+}
+
+int verifica_limite_tabuleiro(COORDENADA coordenada){
+    int result = 0;
+
+    if ((coordenada.linha >= 0) && (coordenada.linha <= 7)
+     && (coordenada.coluna >= 0)&& (coordenada.coluna <= 7))
     {
         result = 1;
     }    
@@ -38,7 +44,8 @@ COORDENADA insere_possiveis_jogadas ( ESTADO *e , LISTA *posicoesvazias,COORDENA
             coord_vizinha.coluna = ((obtem_ultima_jogada(e)).coluna) + j;
              
             /* Este primeiro if é a situação de preenchimento normal*/
-            if (verifica_casa_vazia(e,coord_vizinha))
+            if (verifica_casa_vazia(e,coord_vizinha)
+               && verifica_limite_tabuleiro(coord_vizinha))
                {
                     coord_duplicada = duplica_coordenada(coord_vizinha);
                     *posicoesvazias = insere_cabeca(*posicoesvazias,coord_duplicada);
@@ -48,8 +55,7 @@ COORDENADA insere_possiveis_jogadas ( ESTADO *e , LISTA *posicoesvazias,COORDENA
             O ciclo deve ser interrompido dado que já achamos a jogada*/
             if ((obter_jogador_atual(e) == 1 )
                 && (obter_estado_casa(e,coord_vizinha) == UM)
-                && (coord_vizinha.linha >= 0)  && (coord_vizinha.linha <= 7)
-                && (coord_vizinha.coluna >= 0) && (coord_vizinha.coluna <= 7))
+                &&  verifica_limite_tabuleiro(coord_vizinha))
                {
                 coord_escolhida = coord_vizinha;
                 j = 1;
@@ -59,9 +65,8 @@ COORDENADA insere_possiveis_jogadas ( ESTADO *e , LISTA *posicoesvazias,COORDENA
             /* Este if analisa a outra situações de prioridade MÀXIMA- VITÓRIA
             O ciclo deve ser interrompido dado que já achamos a jogada*/
             if ((obter_jogador_atual(e) ==  2)
-                &&  obter_estado_casa(e,coord_vizinha) == DOIS
-                && (coord_vizinha.linha >= 0) && (coord_vizinha.linha <= 7)
-                && (coord_vizinha.coluna >= 0) && (coord_vizinha.coluna <= 7))
+                && obter_estado_casa(e,coord_vizinha) == DOIS
+                && verifica_limite_tabuleiro(coord_vizinha))
                {
                 coord_escolhida = coord_vizinha;
                 j = 1;
@@ -102,11 +107,9 @@ int verifica_adjacencia ( COORDENADA coord , int num_casa[8][8] , int valor ) {
             coord_vizinha.coluna = (coord.coluna) + j;
 
             if (num_casa[coord_vizinha.linha][coord_vizinha.coluna] == (valor - 1)
-               && (coord_vizinha.linha >= 0) && (coord_vizinha.linha <= 7)
-               && (coord_vizinha.coluna >= 0) && (coord_vizinha.coluna <= 7))
-               {
-                   flag = 1;
-               }                               
+               && verifica_limite_tabuleiro(coord_vizinha))
+                flag = 1;
+                                              
         }
     }
 return flag;   
@@ -318,7 +321,7 @@ COORDENADA estrategia_floodfill ( ESTADO * e ) {
 
 }
 
-int aux_1_indice(int paridade[8]){
+int devolve_indice_paridade(int paridade[8],int flag){
     int resultado = 65; /*inicialização da variável com uma quantidade que eu evite ser aleatória e
     é de nosso conhecimento que nenhuma área será maior que isso*/
     int indicedajogadaaefetuar = 9;/*inicialização análoga a anterior porém com índices. Servirá para
@@ -330,6 +333,7 @@ int aux_1_indice(int paridade[8]){
         if (paridade[i] % 2 == 0 && paridade[i] <= resultado){
             indicedajogadaaefetuar = i;
             resultado = paridade[i];
+            if (flag == 2) i = 9;
         }
     }
 
@@ -343,6 +347,7 @@ int aux_1_indice(int paridade[8]){
             if (paridade[i] >= resultado){
                 indicedajogadaaefetuar = i;
                 resultado = paridade[i];
+                if (flag == 2) i = 9;
             }
         }   
     }
@@ -350,46 +355,13 @@ int aux_1_indice(int paridade[8]){
     return indicedajogadaaefetuar;
 }
 
-int aux_2_indice(int paridade[8]){
-    int resultado = 65; /*inicialização da variável com uma quantidade que eu evite ser aleatória e
-    é de nosso conhecimento que nenhuma área será maior que isso*/
-    int indicedajogadaaefetuar = 9;/*inicialização análoga a anterior porém com índices. Servirá para
-    indicar que, caso sair do pŕoximo ciclo for e continuar sendo 9 o valor de tal variável, então
-    não há jogadas com área par para efetuar e por tanto devo escolher uma com área ímpar*/
-
-    /*Ciclo que escolhe a menor área par do array*/    
-    for (int i = 0; i <8;i++){
-        if (paridade[i] % 2 == 0 && paridade[i] < resultado){
-            indicedajogadaaefetuar = i;
-            resultado = paridade[i];
-        }
-    }
-
-    /*Situação em que não existem jogadas com área restante par.
-    Por tanto devo jogar para a MAIOR área ímpar(dado que diminuirá
-    as probabilidades de eu ser encurralado)* pois a longo prazo
-    o cenário pode mudar*/
-    if (indicedajogadaaefetuar == 9){
-        resultado = 0;
-        for (int i = 0; i < 8;i++){
-            if (paridade[i] > resultado){
-                indicedajogadaaefetuar = i;
-                resultado = paridade[i];
-            }
-        }
-    }
-
-    return indicedajogadaaefetuar;
-}
-
-/*Devolve o índice escolhida da melhor jogada a efetuar*/
 int  jogadaaefetuar(ESTADO * e,int paridade[8]){
     int indice_jogada_a_efetuar;
 
     if (e->jogador_atual == 1)
-        indice_jogada_a_efetuar = aux_1_indice(paridade);
+        indice_jogada_a_efetuar = devolve_indice_paridade(paridade,1);
     else 
-        indice_jogada_a_efetuar =  aux_2_indice(paridade); 
+        indice_jogada_a_efetuar = devolve_indice_paridade(paridade,2); 
    
     return indice_jogada_a_efetuar;
 }
@@ -405,7 +377,8 @@ int calcula_area(COORDENADA * possiveljogada, ESTADO * e){
             coordvizinha.linha = ((*possiveljogada).linha) + i;
             coordvizinha.coluna = ((*possiveljogada).coluna) + j;
 
-            if (verifica_casa_vazia(e,coordvizinha)) {
+            if (verifica_casa_vazia(e,coordvizinha)
+               && verifica_limite_tabuleiro(coordvizinha)) {
                 area++;
                 altera_casa(e,(COORDENADA){(*possiveljogada).linha,(*possiveljogada).coluna}, PRETA);
                 altera_casa(e,(COORDENADA){coordvizinha.linha,coordvizinha.coluna}, BRANCA);// simbólico
