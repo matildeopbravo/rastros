@@ -6,6 +6,9 @@ ex: src/main.o src/dados.o src/interface.o src/logica.o src/listas.o
 
 run: ex
 	src/rastros
+all : ex src/bot-main.o src/bot.o 
+	$(CC) $(CFLAGS) -o bot src/bot-main.o src/bot.o src/logica.o src/interface.o src/dados.o src/listas.o
+   
 
 clean:
 	@rm -f src/*.o
