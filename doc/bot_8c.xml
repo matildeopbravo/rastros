@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="bot_8c" kind="file" language="C++">
+    <compoundname>bot.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">time.h</includes>
+    <includes refid="dados_8h" local="yes">../projeto/dados.h</includes>
+    <includes refid="interface_8h" local="yes">../projeto/interface.h</includes>
+    <includes refid="logica_8h" local="yes">../projeto/logica.h</includes>
+    <includes refid="bot_8h" local="yes">bot.h</includes>
+    <incdepgraph>
+      <node id="14">
+        <label>../projeto/dados.h</label>
+        <link refid="dados_8h"/>
+      </node>
+      <node id="11">
+        <label>stdlib.h</label>
+      </node>
+      <node id="9">
+        <label>bot/bot.c</label>
+        <link refid="bot_8c"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>bot.h</label>
+        <link refid="bot_8h"/>
+      </node>
+      <node id="17">
+        <label>listas.h</label>
+        <link refid="listas_8h"/>
+      </node>
+      <node id="15">
+        <label>../projeto/interface.h</label>
+        <link refid="interface_8h"/>
+      </node>
+      <node id="16">
+        <label>../projeto/logica.h</label>
+        <link refid="logica_8h"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>string.h</label>
+      </node>
+      <node id="13">
+        <label>time.h</label>
+      </node>
+      <node id="10">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="bot_8c_1a0b73ce203e43dbd80141314fc5627515" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void jogar_bot</definition>
+        <argsstring>(ESTADO *e)</argsstring>
+        <name>jogar_bot</name>
+        <param>
+          <type><ref refid="structESTADO" kindref="compound">ESTADO</ref> *</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bot/bot.c" line="10" column="1" bodyfile="bot/bot.c" bodystart="10" bodyend="29"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;time.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../projeto/dados.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../projeto/interface.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../projeto/logica.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="bot_8h" kindref="compound">bot.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>jogar_bot(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e)<sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>cord;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>srand(time(NULL));<sp/><sp/></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>r<sp/>=<sp/>rand()<sp/>%<sp/>2;<sp/><sp/></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="dados_8h_1a6cd0b387bdee9e18003c78852394aa63" kindref="member">obter_numero_de_jogadas</ref>(e)<sp/>&lt;=<sp/>2)<sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cord<sp/>=<sp/>r<sp/>?<sp/><ref refid="logica_8h_1adce50d8ee37c0296fcab65772db0fc57" kindref="member">estrategia_floodfill</ref>(e)<sp/>:<sp/><ref refid="logica_8h_1a105c7792d2784bd2c00f5e707266bc46" kindref="member">estrategia_paridade</ref>(e);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cord<sp/>=<sp/><ref refid="logica_8h_1adce50d8ee37c0296fcab65772db0fc57" kindref="member">estrategia_floodfill</ref>(e);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cord.linha<sp/>==<sp/>3<sp/>&amp;&amp;<sp/>cord.coluna<sp/>==<sp/>4)<sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cord<sp/>=<sp/><ref refid="logica_8h_1a105c7792d2784bd2c00f5e707266bc46" kindref="member">estrategia_paridade</ref>(e);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="logica_8h_1a53472e75f056ceb02b5387193021838a" kindref="member">jogar</ref>(e,cord);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="bot/bot.c"/>
+  </compounddef>
+</doxygen>
