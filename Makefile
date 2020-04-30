@@ -6,10 +6,11 @@ ex: projeto/main.o projeto/dados.o projeto/interface.o projeto/logica.o projeto/
 
 run: ex
 	projeto/rastros
-all: ex bot/bot bot/bot-main.o bot/bot.o 
+
+all: ex bot/bot-main.o bot/bot.o 
 	$(CC) $(CFLAGS) -o bot/bot bot/bot-main.o bot/bot.o projeto/logica.o projeto/interface.o projeto/dados.o projeto/listas.o
    
 
 clean:
-	@rm -rf projeto/bot/*.o projeto/*.o projeto/rastros projeto/bot/bot
+	@rm -rf projeto/*.o projeto/rastros bot/bot bot/*.o 
 

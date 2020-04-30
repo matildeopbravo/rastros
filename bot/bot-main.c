@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../dados.h"
-#include "../logica.h"
-#include "../interface.h"
+#include "../projeto/dados.h"
+#include "../projeto/logica.h"
+#include "../projeto/interface.h"
 #include "bot.h"
 
 int main (int argc, char *argv[]) {
