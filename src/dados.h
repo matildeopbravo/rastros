@@ -66,6 +66,8 @@ typedef struct {
 	int flag_pos;
 	/** Guarda o número inserido no comando pos*/
 	int guarda_num_jogadas_pos;
+    /** Indica se é o bot a realizar a jogada */
+    int isBot;
 } ESTADO;
 
 /**
