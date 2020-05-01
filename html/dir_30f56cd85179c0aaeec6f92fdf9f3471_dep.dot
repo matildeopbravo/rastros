@@ -1,8 +1,0 @@
-digraph "bot" {
-  compound=true
-  node [ fontsize="10", fontname="Helvetica"];
-  edge [ labelfontsize="10", labelfontname="Helvetica"];
-  dir_30f56cd85179c0aaeec6f92fdf9f3471 [shape=box, label="bot", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_30f56cd85179c0aaeec6f92fdf9f3471.html"];
-  dir_7e5d7e004b344f685f59d01929914aa0 [shape=box label="projeto" URL="dir_7e5d7e004b344f685f59d01929914aa0.html"];
-  dir_30f56cd85179c0aaeec6f92fdf9f3471->dir_7e5d7e004b344f685f59d01929914aa0 [headlabel="6", labeldistance=1.5 headhref="dir_000000_000001.html"];
-}

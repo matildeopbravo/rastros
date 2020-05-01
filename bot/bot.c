@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "../projeto/dados.h"
-#include "../projeto/interface.h"
-#include "../projeto/logica.h"
+#include "dados.h"
+#include "interface.h"
+#include "logica.h"
 #include "bot.h"
    
 void jogar_bot(ESTADO * e) {
