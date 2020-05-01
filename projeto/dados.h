@@ -91,13 +91,6 @@ int obter_numero_de_jogadas(ESTADO *estado);
 */
 int obter_ultimo_jogador(ESTADO * estado);
 /**
-\brief Devolve uma jogada dado um índice para procurá-la, no histórico de jogadas, e o jogador correspondente.
-@param e Apontador para o estado
-@param indice_jogada Indice da jogada a ser procruada
-@param jogador jogador que vai ser buscada a jogada
-*/
-char * obtem_jogada(ESTADO *e, int indice_jogada, int jogador);
-/**
 \brief Devolve o número de comandos efetuados até então.
 @param estado Apontador para o estado
 */

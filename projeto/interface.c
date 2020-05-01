@@ -122,6 +122,16 @@ void mostrar_prompt (ESTADO * e){
     printf ("\nPlayer: %d |Jogada: %d  |comandos: %d  > ", jogadoratual,numerojogadas,numerocomandos);    
    
 }
+char * obtem_jogada(ESTADO * e, int indice_jogada, int jogador) {
+
+    char * str = (char*) malloc(sizeof(int) + 2 * sizeof(char));
+    COORDENADA c = obtem_coordenada(e,indice_jogada,jogador);
+    // sprintf(str,"%c%d",c.coluna + 'a', 8 -  c.linha);
+    sprintf(str,"%c%c",c.coluna + 'a',8 - c.linha + '0');
+    return(str);
+
+}
+
 
 void mostrar_jogadas (ESTADO * e,  FILE * stream) {
     int numjogadas;

@@ -87,15 +87,6 @@ COORDENADA obtem_coordenada(ESTADO * e,int indice_jogada, int jogador) {
     
 }
 
-char * obtem_jogada(ESTADO * e, int indice_jogada, int jogador) {
-
-    char * str = (char*)malloc(3 * sizeof(char));
-    COORDENADA c = obtem_coordenada(e,indice_jogada,jogador);
-    sprintf(str,"%c%c",c.coluna + 'a',8 - c.linha + 48);
-    return(str);
-
-}
-
 void acrescenta_jogada(ESTADO *e , int index, JOGADA jog) {
     e->jogadas[index]=jog;
 }
