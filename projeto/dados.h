@@ -160,4 +160,6 @@ COORDENADA obtem_ultima_jogada(ESTADO * e);
 
 COORDENADA obtem_coordenada(ESTADO * e,int indice_jogada, int jogador);
 
+void altera_isBot(ESTADO * e);
+
 #endif
