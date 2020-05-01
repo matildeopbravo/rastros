@@ -93,8 +93,8 @@ void mostrar_tabuleiro(ESTADO * estado, FILE * stream) {
     /*Ciclo que printa na tela o tabuleiro mediante o contéudo do tabuleiro*/
     int i , j ;
     for ( i = 0 ; i < 8 ; i++ ) {
-            if ( stream == stdout )
-            fprintf (stream, "%d ", 8 - i);
+        if ( stream == stdout )
+             fprintf (stream, "%d ", 8 - i);
         for ( j = 0 ; j < 8 ; j++ ) {
             CASA cs =(obter_estado_casa(estado, (COORDENADA){i,j}));
             if (cs == VAZIO) 
@@ -102,7 +102,8 @@ void mostrar_tabuleiro(ESTADO * estado, FILE * stream) {
             else
                 fputc(cs,stream);
         }
-        fputc('\n',stream) ;
+            fputc('\n',stream) ;
+    
     }
 
     if ( stream == stdout )
@@ -161,7 +162,8 @@ void gravar (ESTADO * e, char * nome_ficheiro) {
 
     if ( (fp = fopen(nome_ficheiro,"w+")) ) {
         mostrar_tabuleiro(e,fp);
-        fputc('\n',fp);
+        if((obter_numero_de_jogadas(e) !=1) || (obter_jogador_atual(e) != 1))
+           fputc('\n',fp);
         mostrar_jogadas(e,fp);         
     }
 
@@ -211,14 +213,14 @@ void ler_tabuleiro(ESTADO * e, FILE * fp) {
 }
 
 void ler_jogadas(ESTADO * e, FILE * fp) {
-    char col1 ,col2;
+    char col1 ,col2, c;
     int lin1,lin2;
     JOGADA jog;
     int num_jogadas = obter_numero_de_jogadas(e); 
     int ultimo_jog = obter_ultimo_jogador(e);
 
 
-    while ( fgetc(fp) != '\n' ) ;
+    while ( (c = fgetc(fp)) != '\n' && c != EOF  ) ;
 
     for (int i = 0 ; i < num_jogadas; i++ ) {
         while ( fgetc(fp) != ':' ) ;
