@@ -24,9 +24,10 @@ LISTA proximo(LISTA L) {
    return L->prox; 
 }
 LISTA remove_cabeca (LISTA L) {
-    LISTA r = L;
+    if(!L) return NULL;
+    LISTA r = L -> prox;
     free(L);
-    return r->prox;
+    return r;
 }
 
 int lista_esta_vazia(LISTA L) {

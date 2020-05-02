@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "listas.h"
+#include "dados.h"
 
 LISTA criar_lista() {
     return NULL;
@@ -23,15 +24,28 @@ LISTA proximo(LISTA L) {
    return L->prox; 
 }
 LISTA remove_cabeca (LISTA L) {
-    LISTA r = L;
+    if(!L) return NULL;
+    LISTA r = L -> prox;
     free(L);
-    return r->prox;
+    return r;
 }
 
 int lista_esta_vazia(LISTA L) {
     return(!L);
 }
 
+int comprimento_lista(LISTA L) {
+    int i = 0;
+    for(     ; L ; L = L-> prox,i++);        
+    return i;
     
+}
 
- 
+void print_lista(LISTA L) {
+    for(   ; L ; L = L->prox) {
+        COORDENADA  * v =(COORDENADA *) L->valor;
+        printf("%d %d \n",v->linha, v->coluna);
+    }
+
+
+}
