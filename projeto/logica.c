@@ -82,9 +82,10 @@ COORDENADA escolhe_aleatorio (LISTA lista) {
    int length = comprimento_lista(lista);           
    int random = rand() % length;
 
-   for(int i = 0; i < random ; i++, lista = lista->prox); 
-   return *(lista->valor);
-//   return *(COORDENADA *)(lista->valor); 
+   for(int i = 0; i < random ; i++){
+        lista = lista->prox; 
+   }
+    return *(COORDENADA *)(lista->valor); 
 }
 
 
@@ -97,7 +98,6 @@ COORDENADA devolve_coordenada_flood (int valor_casa_atual , LISTA possiveis_joga
      COORDENADA *  cabeca = devolve_cabeca(r);
     
         if (num_casa[cabeca->linha][cabeca->coluna] != (valor_casa_atual - 1)) {
-
            r = remove_cabeca(r); 
 
             if (ant) {
