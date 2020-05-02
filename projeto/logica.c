@@ -82,10 +82,9 @@ COORDENADA escolhe_aleatorio (LISTA lista) {
    int length = comprimento_lista(lista);           
    int random = rand() % length;
 
-   for(int i = 0; i < random ; i++){
-        lista = lista->prox; 
-   }
-    return *(COORDENADA *)(lista->valor); 
+   for(int i = 0; i < random ; i++, lista = lista->prox); 
+  // return *(lista->valor);
+ return *(COORDENADA *)(lista->valor); 
 }
 
 
@@ -98,6 +97,7 @@ COORDENADA devolve_coordenada_flood (int valor_casa_atual , LISTA possiveis_joga
      COORDENADA *  cabeca = devolve_cabeca(r);
     
         if (num_casa[cabeca->linha][cabeca->coluna] != (valor_casa_atual - 1)) {
+
            r = remove_cabeca(r); 
 
             if (ant) {
@@ -342,60 +342,39 @@ COORDENADA estrategia_floodfill ( ESTADO * e ) {
     return  coord_escolhida;
 
 }
-int aleatorio_paridade(int possiveis [], int N) {
 
-    int x = rand() % N ;
-    return possiveis[x];
-     
-}
 int devolve_indice_paridade(int paridade[8],int flag){
-
-    int possiveis_indices [8]; 
-    int i,j = 0;
-    int menor_area_par = 66;
-    int maior_area_impar = -1;
-    /*inicialização da variável com uma quantidade que eu evite ser aleatória e
+    int resultado = 65; /*inicialização da variável com uma quantidade que eu evite ser aleatória e
     é de nosso conhecimento que nenhuma área será maior que isso*/
-    
-    for (int i = 0; i < 8 ; i++) {
-       if (paridade[i] < menor_area_par && paridade[i] % 2 == 0) {
-           menor_area_par= paridade[i];
-        }
-       if (paridade[i] > maior_area_impar && paridade[i] % 2 != 0) {
-            maior_area_impar = paridade[i];
-        }
-    }
+    int indicedajogadaaefetuar = 9;/*inicialização análoga a anterior porém com índices. Servirá para
+    indicar que, caso sair do pŕoximo ciclo for e continuar sendo 9 o valor de tal variável, então
+    não há jogadas com área par para efetuar e por tanto devo escolher uma com área ímpar*/
 
     /*Ciclo que escolhe a menor área par do array*/    
-    if(menor_area_par != 66) {
-
-        for (i = 0,j=0; i <8;i++){
-           if(paridade[i] == menor_area_par) {
-
-                possiveis_indices[j] = i;
-                j++;
-         //       if (flag == 2) i = 9;
-            }
+    for (int i = 0; i <8;i++){
+        if (paridade[i] % 2 == 0 && paridade[i] <= resultado){
+            indicedajogadaaefetuar = i;
+            resultado = paridade[i];
+            if (flag == 2) i = 9;
         }
     }
-        
-    
+
     /*Situação em que não existem jogadas com área restante par.
     Por tanto devo jogar para a MAIOR área ímpar(dado que diminuirá
     as probabilidades de eu ser encurralado)* pois a longo prazo
     o cenário pode mudar*/
-    else {
-
-        for (i = 0,j = 0; i < 8;i++){
-            if (paridade[i] >= maior_area_impar){
-                possiveis_indices[j] = i;
-                j++;
-        //        if (flag == 2) i = 9;
+    if (indicedajogadaaefetuar == 9){
+        resultado = 0;
+        for (int i = 0; i < 8;i++){
+            if (paridade[i] >= resultado){
+                indicedajogadaaefetuar = i;
+                resultado = paridade[i];
+                if (flag == 2) i = 9;
             }
         }   
     }
 
-     return aleatorio_paridade(possiveis_indices,j);
+    return indicedajogadaaefetuar;
 }
 
 int  jogadaaefetuar(ESTADO * e,int paridade[8]){
@@ -475,11 +454,14 @@ void auxiliarparidade (ESTADO *e,LISTA possiveis_jogadas,int paridade[8],COORDEN
 COORDENADA estrategia_paridade(ESTADO *e){
     
     LISTA possiveis_jogadas = criar_lista(); //lista ligada que armazena as possíveis jogadas
-    COORDENADA coord_escolhida = {.linha = 3, .coluna = 4};//coordenada escolhida resultado de aplicar a função
+    COORDENADA coord_escolhida;//coordenada escolhida resultado de aplicar a função
+    
+    coord_escolhida.linha = 3;  // Inicialização da coordenada com este valor com fins na condição
+    coord_escolhida.coluna = 4; //presente no próximo 'if'.
     
     COORDENADA *cabeca;//apontador auxiliar para retirar o conteúdo do apontador void da lista ligada
     cabeca = &coord_escolhida;//inicialização
-    int paridade[8] =  {-1,-1,-1,-1,-1,-1,-1,-1};//array que armazena a área restante para cada possível jogada
+    int paridade[8] =  {-1,-1,-1,-1,-1,-1,-1,-1,};//array que armazena a área restante para cada possível jogada
     /* o array acima é inicializado com -1 para efeitos no momento de desprezar certas jogadas  */ 
     
 /* ciclo que vai analisar quais das POSIÇÕES VIZINHAS estão VAZIAS e armazená-las na LISTA ligada
