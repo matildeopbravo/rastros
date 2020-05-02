@@ -342,19 +342,37 @@ COORDENADA estrategia_floodfill ( ESTADO * e ) {
     return  coord_escolhida;
 
 }
+int elem (int x, int v [], int N){
+    int i;
+    for (i = 0; x != v[i] && i < N ; i++ );
+    return(x == v[i]);
+    
+}
+int aleatorio_paridade(int possiveis [], int N) {
 
+    int x = rand() % N ;
+    while(!elem(x,possiveis,N)) {
+        x = rand() % N ;
+    }
+    return x;
+     
+}
 int devolve_indice_paridade(int paridade[8],int flag){
     int resultado = 65; /*inicialização da variável com uma quantidade que eu evite ser aleatória e
     é de nosso conhecimento que nenhuma área será maior que isso*/
     int indicedajogadaaefetuar = 9;/*inicialização análoga a anterior porém com índices. Servirá para
-    indicar que, caso sair do pŕoximo ciclo for e continuar sendo 9 o valor de tal variável, então
-    não há jogadas com área par para efetuar e por tanto devo escolher uma com área ímpar*/
-
+    //indicar que, caso sair do pŕoximo ciclo for e continuar sendo 9 o valor de tal variável, então
+    //não há jogadas com área par para efetuar e por tanto devo escolher uma com área ímpar*/
+    int possiveis_indices [8]; 
+    int j = 0;
     /*Ciclo que escolhe a menor área par do array*/    
-    for (int i = 0; i <8;i++){
+    for (int i = 0,j=0; i <8;i++){
         if (paridade[i] % 2 == 0 && paridade[i] <= resultado){
-            indicedajogadaaefetuar = i;
+           indicedajogadaaefetuar = i;
             resultado = paridade[i];
+            possiveis_indices[j] = i;
+            j++;
+            
             if (flag == 2) i = 9;
         }
     }
@@ -365,16 +383,18 @@ int devolve_indice_paridade(int paridade[8],int flag){
     o cenário pode mudar*/
     if (indicedajogadaaefetuar == 9){
         resultado = 0;
-        for (int i = 0; i < 8;i++){
+        for (int i = 0,j = 0; i < 8;i++){
             if (paridade[i] >= resultado){
                 indicedajogadaaefetuar = i;
                 resultado = paridade[i];
+                possiveis_indices[j] = i;
+                j++;
                 if (flag == 2) i = 9;
             }
         }   
     }
-
-    return indicedajogadaaefetuar;
+    
+    return aleatorio_paridade(possiveis_indices,j);
 }
 
 int  jogadaaefetuar(ESTADO * e,int paridade[8]){
@@ -454,14 +474,11 @@ void auxiliarparidade (ESTADO *e,LISTA possiveis_jogadas,int paridade[8],COORDEN
 COORDENADA estrategia_paridade(ESTADO *e){
     
     LISTA possiveis_jogadas = criar_lista(); //lista ligada que armazena as possíveis jogadas
-    COORDENADA coord_escolhida;//coordenada escolhida resultado de aplicar a função
-    
-    coord_escolhida.linha = 3;  // Inicialização da coordenada com este valor com fins na condição
-    coord_escolhida.coluna = 4; //presente no próximo 'if'.
+    COORDENADA coord_escolhida = {.linha = 3, .coluna = 4};//coordenada escolhida resultado de aplicar a função
     
     COORDENADA *cabeca;//apontador auxiliar para retirar o conteúdo do apontador void da lista ligada
     cabeca = &coord_escolhida;//inicialização
-    int paridade[8] =  {-1,-1,-1,-1,-1,-1,-1,-1,};//array que armazena a área restante para cada possível jogada
+    int paridade[8] =  {-1,-1,-1,-1,-1,-1,-1,-1};//array que armazena a área restante para cada possível jogada
     /* o array acima é inicializado com -1 para efeitos no momento de desprezar certas jogadas  */ 
     
 /* ciclo que vai analisar quais das POSIÇÕES VIZINHAS estão VAZIAS e armazená-las na LISTA ligada
