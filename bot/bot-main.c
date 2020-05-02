@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "dados.h"
 #include "logica.h"
 #include "interface.h"
@@ -7,6 +8,7 @@
 
 int main (int argc, char *argv[]) {
 
+    srand(time(NULL));
     if (argc == 3) {
 
        ESTADO *e = inicializar_estado();

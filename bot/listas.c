@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "listas.h"
+#include "dados.h"
 
 LISTA criar_lista() {
     return NULL;
@@ -32,6 +33,18 @@ int lista_esta_vazia(LISTA L) {
     return(!L);
 }
 
+int comprimento_lista(LISTA L) {
+    int i = 0;
+    for(     ; L ; L = L-> prox,i++);        
+    return i;
     
+}
 
- 
+void print_lista(LISTA L) {
+    for(   ; L ; L = L->prox) {
+        COORDENADA  * v =(COORDENADA *) L->valor;
+        printf("%d %d \n",v->linha, v->coluna);
+    }
+
+
+}

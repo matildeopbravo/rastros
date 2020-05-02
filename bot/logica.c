@@ -58,8 +58,7 @@ COORDENADA insere_possiveis_jogadas ( ESTADO *e , LISTA *posicoesvazias,COORDENA
                 &&  verifica_limite_tabuleiro(coord_vizinha))
                {
                 coord_escolhida = coord_vizinha;
-                j = 1;
-                i = -1;
+                break;
                }
 
             /* Este if analisa a outra situações de prioridade MÀXIMA- VITÓRIA
@@ -69,8 +68,7 @@ COORDENADA insere_possiveis_jogadas ( ESTADO *e , LISTA *posicoesvazias,COORDENA
                 && verifica_limite_tabuleiro(coord_vizinha))
                {
                 coord_escolhida = coord_vizinha;
-                j = 1;
-                i = -1;
+                break;
                }
          }
     }
@@ -79,23 +77,47 @@ COORDENADA insere_possiveis_jogadas ( ESTADO *e , LISTA *posicoesvazias,COORDENA
     return coord_escolhida;
 }
 
-COORDENADA devolve_coordenada_flood ( int valor_casa_atual , LISTA possiveis_jogadas , int num_casa[8][8]){
-    
-    COORDENADA coor_final;
-    COORDENADA * cabeca ;
-    cabeca = devolve_cabeca(possiveis_jogadas);
-    
-    while ( num_casa[cabeca->linha][cabeca->coluna] != (valor_casa_atual - 1)) {
-   
-        possiveis_jogadas = proximo(possiveis_jogadas);
-        cabeca = devolve_cabeca (possiveis_jogadas) ;
-    }
 
-    coor_final = *cabeca ;
-    return coor_final;
+COORDENADA escolhe_aleatorio (LISTA lista) {
+   int length = comprimento_lista(lista);           
+   int random = rand() % length;
+
+   for(int i = 0; i < random ; i++, lista++); 
+   return *(COORDENADA *)(lista->valor); 
 }
 
 
+COORDENADA devolve_coordenada_flood (int valor_casa_atual , LISTA possiveis_jogadas , int num_casa[8][8]){
+        
+    print_lista(possiveis_jogadas);
+    printf("O comprimento é %d ", comprimento_lista(possiveis_jogadas));
+    COORDENADA * cabeca = devolve_cabeca(possiveis_jogadas);
+    LISTA r = possiveis_jogadas;
+    LISTA ant = NULL;
+
+    while(r != NULL) {
+    
+        if (num_casa[cabeca->linha][cabeca->coluna] != (valor_casa_atual - 1)) {
+
+            r = remove_cabeca(r); 
+
+            if (ant) {
+                ant->prox =r;
+                ant = r;
+            }
+            else {
+                possiveis_jogadas = r;
+            }
+        }
+        else {
+             ant = r;
+            r = proximo(r);
+        }
+        cabeca = devolve_cabeca(r);
+    }
+ //  return escolhe_aleatorio(possiveis_jogadas);
+   return((COORDENADA) {0,5});
+}
 int verifica_adjacencia ( COORDENADA coord , int num_casa[8][8] , int valor ) {                 
     int flag = 0 ;// flag que será usada no ciclo
     COORDENADA coord_vizinha;
@@ -282,7 +304,7 @@ COORDENADA auxiliar_floodfill(ESTADO *e,LISTA possiveis_jogadas,COORDENADA coord
     int num_casa[8][8] ;//matriz auxiliar que é o cerne da estratégia
     int valor_casa_atual; //Indicará se será preciso fazer a floodfill inversa ou não
      
-    inicializa_num_casa(num_casa,e,1);//inicializa o tabuleiro com valores -1(exceto nos casos especiais das extremidades)
+    inicializa_num_casa(num_casa,e,1); //inicializa o tabuleiro com valores -1(exceto nos casos especiais das extremidades)
 
     valor_casa_atual = preenche_valor_das_casas(num_casa,e,1);
      

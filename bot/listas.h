@@ -37,4 +37,7 @@ LISTA remove_cabeca(LISTA L);
 */
 int lista_esta_vazia(LISTA L);
 
+int comprimento_lista(LISTA L); 
+void print_lista(LISTA L);
+    
 #endif

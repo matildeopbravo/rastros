@@ -195,5 +195,6 @@ dos limites de memória do tabuleiro.
 @param coordenada Coordenada a verificar se está nos limites do tabuleiro.
 */
 int verifica_limite_tabuleiro(COORDENADA coordenada);
+COORDENADA escolhe_aleatorio (LISTA lista);
 
 #endif
