@@ -362,10 +362,7 @@ int interpretador(ESTADO *e) {
                         e->guarda_num_jogadas_pos = i;//componente da struct que armazena o que foi digitado no "Pos"
 
                         if (i!=0){
-                            e->num_jogadas = i + 1;/* É feito +1 porque ao fazer "pos 1" por exemplo, quero estar no ínicio da jogada 2,
-                            ou seja, a primeira jogada já foi feita. Como a primeira jogada está no índice 0 do array jogadas,
-                            e, a condição de paragem na mostrar_tabuleiro está feita com a ideia de que o número de jogadas é o "atual"
-                            e não aquele que já foi feito, então para mostrar a primeira jogada devo aumentar em um o número de jogadas.*/
+                            e->num_jogadas = i + 1;
                         }
                         else e->num_jogadas = 0; /* o zero é condição especial*/
                              
@@ -373,8 +370,6 @@ int interpretador(ESTADO *e) {
                         e->jogador_atual = 1;
                          
                         mostrar_tabuleiro(e,stdout);
-                        /*Como posso fazer "pos"encadeado, devo manter sempre o num_jogadas atual*/
-                        //Processo de repor o que foi salvo
                         e->num_jogadas = salva_num_jogadas;
                         e->jogador_atual = salva_jogador_atual;
                         e->flag_pos = 1;//Flag de aviso que o comando pos foi dado
@@ -413,10 +408,8 @@ int interpretador(ESTADO *e) {
                         t = jogar(e,coordaefetuar);
                         mostrar_tabuleiro(e,stdout);
                         e->flag_pos = 0;
-                
                 }
-                
-                
+                                
             }      
             else {
                 printf ("inválido\n");
@@ -425,11 +418,9 @@ int interpretador(ESTADO *e) {
         }
               
         if(t != 3) incrementa_comandos(e);
-
     }
 
     printarcampeao(e); 
     return 1;
     
-
 }
