@@ -627,7 +627,6 @@ int verifica_fim ( ESTADO *e , int l , int c, int j ) {
     return 0 ;
 
 }
-int n = 0;
 int jogar( ESTADO *e , COORDENADA jog_efet ) {
  
     COORDENADA jog_ant = e->ultima_jogada;

@@ -8,8 +8,8 @@ Definição da lista ligada que armazena as possíveis jogadas a serem efetuadas
 /**
 \brief Lista que vai armazenar as possíveis jogadas a se efetuar
 */
-typedef struct lista {/* apontador para um valor de qualquer tipo*/
-    void * valor;  /* apontador para o proximo elemento da lista*/
+typedef struct lista {/** apontador para um valor de qualquer tipo*/
+    void * valor;  /** apontador para o proximo elemento da lista*/
     struct lista *  prox;
 } *LISTA;
 /**

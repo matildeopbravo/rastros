@@ -37,9 +37,9 @@ typedef struct {/** Correspondente à linha de uma coordenada */
 /**
 \brief Tipo de dados para o tipo JOGADA
 */
-typedef struct {
-	COORDENADA jogador1; /* Movimento efetuado pelo jogador 1  */
-	COORDENADA jogador2; /* Movimento efetuado pelo jogador 2  */
+typedef struct {/** Movimento efetuado pelo jogador 1  */
+	COORDENADA jogador1; /** Movimento efetuado pelo jogador 2  */
+	COORDENADA jogador2; 
 } JOGADA;
 
 /**

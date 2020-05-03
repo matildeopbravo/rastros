@@ -1,8 +1,0 @@
-var searchData=
-[
-  ['pos_74',['pos',['../bot_2interface_8h.html#aa6b1d54b3b688e0b316ce980dde89a49',1,'pos(ESTADO *e, ESTADO *copia_estado, char *token):&#160;interface.h'],['../projeto_2interface_8h.html#aa6b1d54b3b688e0b316ce980dde89a49',1,'pos(ESTADO *e, ESTADO *copia_estado, char *token):&#160;interface.h'],['../bot_2dados_8h.html#aba243e468d4afc4cc209ed6adf5251b5a91743bc3932693c4b8a6ca984e8a8437',1,'POS():&#160;dados.h'],['../projeto_2dados_8h.html#aba243e468d4afc4cc209ed6adf5251b5a91743bc3932693c4b8a6ca984e8a8437',1,'POS():&#160;dados.h']]],
-  ['preenche_5fvalor_5fdas_5fcasas_75',['preenche_valor_das_casas',['../bot_2logica_8h.html#ac62ec1b8cfc401f9972b69d144fc5809',1,'preenche_valor_das_casas(int num_casa[8][8], ESTADO *e, int flag):&#160;logica.c'],['../projeto_2logica_8h.html#ac62ec1b8cfc401f9972b69d144fc5809',1,'preenche_valor_das_casas(int num_casa[8][8], ESTADO *e, int flag):&#160;logica.c']]],
-  ['preta_76',['PRETA',['../bot_2dados_8h.html#aba91601f16d4c485b2d9b8c429f27039a007278eb3827d19891b47cdd3ac8846d',1,'PRETA():&#160;dados.h'],['../projeto_2dados_8h.html#aba91601f16d4c485b2d9b8c429f27039a007278eb3827d19891b47cdd3ac8846d',1,'PRETA():&#160;dados.h']]],
-  ['printar_5fcampeao_77',['printar_campeao',['../bot_2interface_8h.html#ae617e972a55e52efc4670271ba5443a4',1,'printar_campeao(ESTADO *estado):&#160;interface.h'],['../projeto_2interface_8h.html#ae617e972a55e52efc4670271ba5443a4',1,'printar_campeao(ESTADO *estado):&#160;interface.h']]],
-  ['proximo_78',['proximo',['../bot_2listas_8h.html#ad9380152361127432c55c1c6067e05ae',1,'proximo(LISTA L):&#160;listas.c'],['../projeto_2listas_8h.html#ad9380152361127432c55c1c6067e05ae',1,'proximo(LISTA L):&#160;listas.c']]]
-];

@@ -1,5 +1,6 @@
 /**
 @file bot.h
+Ficheiro que invoca a função jogar_bot  que escolhe a melhor estrategia para o bot
 */
 
 #ifndef BOT_H

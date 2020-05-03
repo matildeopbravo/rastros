@@ -1,6 +1,8 @@
 /**
 @file logica.h
+Definição de funções que tratam da logica do programa, entre as quais, funções que implementa os algoritmos floodfill e paridade e funções que verificam o fim do jogo.
 */
+
 #include "listas.h"
 #ifndef CAMADA_LOGICA_H
 #define CAMADA_LOGICA_H
@@ -188,7 +190,7 @@ sua casa destino. Caso for o jogador 2 o atual é feito o contrário.
 @param paridade array que armazena a área restante para cada possível jogada
 @param flag Indicador do jogador atual
 */
-int devolve_indice_paridade(int paridade[8],int flag);
+int devolve_indice_paridade(int paridade[8]);
 /**
 \brief Dada uma coordenada, verifica se esta é uma coordenada válida de ser jogada , isto é, esta dentro
 dos limites de memória do tabuleiro.

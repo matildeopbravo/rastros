@@ -1,5 +1,6 @@
 /**
 @file interface.h
+Funções que lidam maioritariamente com input/output do utilizador e de ficheiros
 */
 
 #ifndef CAMADA_INTERFACE_H
@@ -38,7 +39,7 @@ void mostrar_jogadas (ESTADO * e,  FILE * stream);
 \brief Funcão que apresenta no ecrã o vencedor do jogo atual 
 @param estado Apontador para o estado
 */
-void printar_campeao(ESTADO * estado);
+void printarcampeao(ESTADO * estado);
 /** 
 \brief Função que controla o Input/Output do jogo. 
 Apresenta no ecrã, em primeiro lugar, o estado atual do tabuleiro e o prompt.
