@@ -449,7 +449,8 @@ criada para esse fim */
 
 
     if ((obter_estado_casa(e,coord_escolhida) != DOIS)
-     && (obter_estado_casa(e,coord_escolhida) != UM)){
+     && (obter_estado_casa(e,coord_escolhida) != UM) 
+     && (!lista_esta_vazia(possiveis_jogadas))){
     
         /*Função auxiliar que preenche o array paridade com as respetivas áreas de cada possível jogada*/
         auxiliarparidade(e,possiveis_jogadas,paridade,cabeca);
@@ -468,6 +469,14 @@ criada para esse fim */
             coord_escolhida = *cabeca;
         }
         
+    }
+    /*Quando não há mais opção*/
+    if (lista_esta_vazia(possiveis_jogadas) && 
+    (obter_estado_casa(e,coord_escolhida) != DOIS)
+     && (obter_estado_casa(e,coord_escolhida) != UM )){
+        if (obter_jogador_atual(e) == 1)
+        coord_escolhida = (COORDENADA) {0,7};
+        else  coord_escolhida = (COORDENADA) {7,0};
     }
 
     return (coord_escolhida);

@@ -474,16 +474,18 @@ void auxiliarparidade (ESTADO *e,LISTA possiveis_jogadas,int paridade[8],COORDEN
 COORDENADA estrategia_paridade(ESTADO *e){
     
     LISTA possiveis_jogadas = criar_lista(); //lista ligada que armazena as possíveis jogadas
-    COORDENADA coord_escolhida = {.linha = 3, .coluna = 4};//coordenada escolhida resultado de aplicar a função
+    COORDENADA coord_escolhida;//coordenada escolhida resultado de aplicar a função
+    
+    coord_escolhida.linha = 3;  // Inicialização da coordenada com este valor com fins na condição
+    coord_escolhida.coluna = 4; //presente no próximo 'if'.
     
     COORDENADA *cabeca;//apontador auxiliar para retirar o conteúdo do apontador void da lista ligada
     cabeca = &coord_escolhida;//inicialização
-    int paridade[8] =  {-1,-1,-1,-1,-1,-1,-1,-1};//array que armazena a área restante para cada possível jogada
+    int paridade[8] =  {-1,-1,-1,-1,-1,-1,-1,-1,};//array que armazena a área restante para cada possível jogada
     /* o array acima é inicializado com -1 para efeitos no momento de desprezar certas jogadas  */ 
     
 /* ciclo que vai analisar quais das POSIÇÕES VIZINHAS estão VAZIAS e armazená-las na LISTA ligada
 criada para esse fim */
-    printf ("\n => Resumo da estratégia efetuada (paridade) \n\n")  ;
     
     coord_escolhida = insere_possiveis_jogadas(e,&possiveis_jogadas,coord_escolhida);
     /* Caso a coordaserjogada for uma das casas da vitória para o jogador atual, então quer dizer
@@ -492,7 +494,8 @@ criada para esse fim */
 
 
     if ((obter_estado_casa(e,coord_escolhida) != DOIS)
-     && (obter_estado_casa(e,coord_escolhida) != UM)){
+     && (obter_estado_casa(e,coord_escolhida) != UM) 
+     && (!lista_esta_vazia(possiveis_jogadas))){
     
         /*Função auxiliar que preenche o array paridade com as respetivas áreas de cada possível jogada*/
         auxiliarparidade(e,possiveis_jogadas,paridade,cabeca);
@@ -511,12 +514,19 @@ criada para esse fim */
             coord_escolhida = *cabeca;
         }
         
-        printf("\n->Jogada escolhida a partir da heurística da paridade : %c%d  \n",(*cabeca).coluna + 'a',8 - (*cabeca).linha); 
     }
-    else printf("\n->Você não me deu hipóteses...Parabéns pelo segundo lugar\n");
+    /*Quando não há mais opção*/
+    if (lista_esta_vazia(possiveis_jogadas) && 
+    (obter_estado_casa(e,coord_escolhida) != DOIS)
+     && (obter_estado_casa(e,coord_escolhida) != UM )){
+        if (obter_jogador_atual(e) == 1)
+        coord_escolhida = (COORDENADA) {0,7};
+        else  coord_escolhida = (COORDENADA) {7,0};
+    }
 
     return (coord_escolhida);
 }
+
 
 
 int verifica_valida ( ESTADO *e , COORDENADA jog_ant , COORDENADA jog_efet) {
