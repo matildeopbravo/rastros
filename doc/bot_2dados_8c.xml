@@ -320,6 +320,58 @@
         </inbodydescription>
         <location file="bot/dados.c" line="61" column="6" bodyfile="bot/dados.c" bodystart="61" bodyend="70"/>
       </memberdef>
+      <memberdef kind="function" id="bot_2dados_8c_1a71bdba7a3e31ab34484adad76bc7c445" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="bot_2dados_8h_1aba91601f16d4c485b2d9b8c429f27039" kindref="member">CASA</ref></type>
+        <definition>CASA obter_estado_casa2</definition>
+        <argsstring>(ESTADO *e, int linha, int coluna)</argsstring>
+        <name>obter_estado_casa2</name>
+        <param>
+          <type><ref refid="structESTADO" kindref="compound">ESTADO</ref> *</type>
+          <declname>e</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>linha</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>coluna</declname>
+        </param>
+        <briefdescription>
+<para>Dado uma linha e uma coluna, devolve a CASA correspondente no tabuleiro. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Apontador para o estado </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>linha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>linha da casa </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coluna</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>coluna da casa </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bot/dados.c" line="71" column="6" bodyfile="bot/dados.c" bodystart="71" bodyend="73"/>
+      </memberdef>
       <memberdef kind="function" id="bot_2dados_8c_1a32f1b5cc763870c658ab48d4f4fe5037" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void altera_casa</definition>
@@ -370,7 +422,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/dados.c" line="72" column="6" bodyfile="bot/dados.c" bodystart="72" bodyend="75"/>
+        <location file="bot/dados.c" line="75" column="6" bodyfile="bot/dados.c" bodystart="75" bodyend="78"/>
       </memberdef>
       <memberdef kind="function" id="bot_2dados_8c_1ac513714cdb4fb130ad6115e4cf4f6564" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -410,7 +462,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/dados.c" line="78" column="6" bodyfile="bot/dados.c" bodystart="78" bodyend="80"/>
+        <location file="bot/dados.c" line="81" column="6" bodyfile="bot/dados.c" bodystart="81" bodyend="83"/>
       </memberdef>
       <memberdef kind="function" id="bot_2dados_8c_1ab37d4ae84264e9f2d4a969e281748738" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
@@ -462,7 +514,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/dados.c" line="82" column="12" bodyfile="bot/dados.c" bodystart="82" bodyend="88"/>
+        <location file="bot/dados.c" line="85" column="12" bodyfile="bot/dados.c" bodystart="85" bodyend="91"/>
       </memberdef>
       <memberdef kind="function" id="bot_2dados_8c_1ac5e4b055f466394a26960e68c4acc707" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -514,7 +566,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/dados.c" line="90" column="6" bodyfile="bot/dados.c" bodystart="90" bodyend="92"/>
+        <location file="bot/dados.c" line="93" column="6" bodyfile="bot/dados.c" bodystart="93" bodyend="95"/>
       </memberdef>
       <memberdef kind="function" id="bot_2dados_8c_1a6223634d44bd7e166a8d649d9fcf0a0f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -542,7 +594,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/dados.c" line="94" column="6" bodyfile="bot/dados.c" bodystart="94" bodyend="98"/>
+        <location file="bot/dados.c" line="97" column="6" bodyfile="bot/dados.c" bodystart="97" bodyend="101"/>
       </memberdef>
       <memberdef kind="function" id="bot_2dados_8c_1a4b23ec5c002fb4f3725b02d7c486282a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
@@ -570,7 +622,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/dados.c" line="100" column="12" bodyfile="bot/dados.c" bodystart="100" bodyend="102"/>
+        <location file="bot/dados.c" line="103" column="12" bodyfile="bot/dados.c" bodystart="103" bodyend="105"/>
       </memberdef>
       <memberdef kind="function" id="bot_2dados_8c_1a163a8a7a74510c297dff863363c09f16" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -598,7 +650,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/dados.c" line="104" column="6" bodyfile="bot/dados.c" bodystart="104" bodyend="107"/>
+        <location file="bot/dados.c" line="107" column="6" bodyfile="bot/dados.c" bodystart="107" bodyend="110"/>
       </memberdef>
       <memberdef kind="function" id="bot_2dados_8c_1a0e515961048596d9a921bf0abc127d2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -626,7 +678,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/dados.c" line="109" column="5" bodyfile="bot/dados.c" bodystart="109" bodyend="111"/>
+        <location file="bot/dados.c" line="112" column="5" bodyfile="bot/dados.c" bodystart="112" bodyend="114"/>
       </memberdef>
       <memberdef kind="function" id="bot_2dados_8c_1a51f275eac46d8203926cfbd03954a094" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -666,7 +718,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/dados.c" line="113" column="6" bodyfile="bot/dados.c" bodystart="113" bodyend="116"/>
+        <location file="bot/dados.c" line="117" column="6" bodyfile="bot/dados.c" bodystart="117" bodyend="120"/>
       </memberdef>
       <memberdef kind="function" id="bot_2dados_8c_1afe7ce08eb320b5bffe145656c39c55ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -718,7 +770,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/dados.c" line="117" column="6" bodyfile="bot/dados.c" bodystart="117" bodyend="122"/>
+        <location file="bot/dados.c" line="121" column="6" bodyfile="bot/dados.c" bodystart="121" bodyend="126"/>
       </memberdef>
       <memberdef kind="function" id="bot_2dados_8c_1a018f0502108cf18e6e17a609a8868860" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -770,7 +822,153 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/dados.c" line="124" column="6" bodyfile="bot/dados.c" bodystart="124" bodyend="127"/>
+        <location file="bot/dados.c" line="128" column="6" bodyfile="bot/dados.c" bodystart="128" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="function" id="bot_2dados_8c_1a2e386e7df2db2feff534fe400c1da727" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void altera_jogadas_pos</definition>
+        <argsstring>(ESTADO *e, int valor)</argsstring>
+        <name>altera_jogadas_pos</name>
+        <param>
+          <type><ref refid="structESTADO" kindref="compound">ESTADO</ref> *</type>
+          <declname>e</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>valor</declname>
+        </param>
+        <briefdescription>
+<para>Altera o valor do guarda_num_jogadas_pos do estado para o valor dado. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Apontador para o estado </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>valor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>valor a colocar na flag </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bot/dados.c" line="134" column="6" bodyfile="bot/dados.c" bodystart="134" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="bot_2dados_8c_1a8e5c53021231ef1496d87728b203da3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void acrescenta_coordenada</definition>
+        <argsstring>(ESTADO *e, COORDENADA efetuada, int jog)</argsstring>
+        <name>acrescenta_coordenada</name>
+        <param>
+          <type><ref refid="structESTADO" kindref="compound">ESTADO</ref> *</type>
+          <declname>e</declname>
+        </param>
+        <param>
+          <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
+          <declname>efetuada</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>jog</declname>
+        </param>
+        <briefdescription>
+<para>Acrescenta uma coordenada à lista de jogadas. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Apontador para o estado </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>efetuada</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Coordenada correspondente à jogada efetuada </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>jog</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Jogador a que realizou a jogada </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bot/dados.c" line="138" column="6" bodyfile="bot/dados.c" bodystart="138" bodyend="148"/>
+      </memberdef>
+      <memberdef kind="function" id="bot_2dados_8c_1aefa0e7516d3bf7fe878759fec93e68d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int devolve_linha</definition>
+        <argsstring>(COORDENADA c)</argsstring>
+        <name>devolve_linha</name>
+        <param>
+          <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+<para>Devolve a linha de uma coordenada. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bot/dados.c" line="150" column="5" bodyfile="bot/dados.c" bodystart="150" bodyend="152"/>
+      </memberdef>
+      <memberdef kind="function" id="bot_2dados_8c_1a6ad8385b5dad64eeaeb9e7bc3e0b1ee7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int devolve_coluna</definition>
+        <argsstring>(COORDENADA c)</argsstring>
+        <name>devolve_coluna</name>
+        <param>
+          <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+<para>Devolve a coluna de uma coordenada. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bot/dados.c" line="153" column="5" bodyfile="bot/dados.c" bodystart="153" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="bot_2dados_8c_1ab1e83f3fa9838305353f08b1d31c09b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int devolve_isBot</definition>
+        <argsstring>(ESTADO *e)</argsstring>
+        <name>devolve_isBot</name>
+        <param>
+          <type><ref refid="structESTADO" kindref="compound">ESTADO</ref> *</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+<para>Devolve o valor da flag isBot. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bot/dados.c" line="156" column="5" bodyfile="bot/dados.c" bodystart="156" bodyend="158"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -848,65 +1046,96 @@
 <codeline lineno="68"><highlight class="normal"></highlight></codeline>
 <codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>t<sp/>;</highlight></codeline>
 <codeline lineno="70"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"></highlight></codeline>
-<codeline lineno="72"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1a32f1b5cc763870c658ab48d4f4fe5037" kindref="member">altera_casa</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e,<sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>c,<sp/><ref refid="bot_2dados_8h_1aba91601f16d4c485b2d9b8c429f27039" kindref="member">CASA</ref><sp/>casa)<sp/>{</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"></highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>e-&gt;<ref refid="structESTADO_1ae03c399b73d7a92d7f7ced83e91e5b6f" kindref="member">tab</ref>[c.<ref refid="structCOORDENADA_1aefe14bcc5a066ac3b21500cc3d28c06f" kindref="member">linha</ref>][c.<ref refid="structCOORDENADA_1adfbc8d4856ce807139fdf62e00aed29a" kindref="member">coluna</ref>]<sp/>=<sp/>casa;</highlight></codeline>
-<codeline lineno="75"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><ref refid="bot_2dados_8h_1aba91601f16d4c485b2d9b8c429f27039" kindref="member">CASA</ref><sp/><ref refid="bot_2dados_8h_1a71bdba7a3e31ab34484adad76bc7c445" kindref="member">obter_estado_casa2</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>linha,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>coluna)<sp/>{</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>e-&gt;<ref refid="structESTADO_1ae03c399b73d7a92d7f7ced83e91e5b6f" kindref="member">tab</ref>[linha][coluna];</highlight></codeline>
+<codeline lineno="73"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1a32f1b5cc763870c658ab48d4f4fe5037" kindref="member">altera_casa</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e,<sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>c,<sp/><ref refid="bot_2dados_8h_1aba91601f16d4c485b2d9b8c429f27039" kindref="member">CASA</ref><sp/>casa)<sp/>{</highlight></codeline>
 <codeline lineno="76"><highlight class="normal"></highlight></codeline>
-<codeline lineno="77"><highlight class="normal"></highlight></codeline>
-<codeline lineno="78"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1ac513714cdb4fb130ad6115e4cf4f6564" kindref="member">altera_ultima_jogada</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e,<sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>c)<sp/>{</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>e-&gt;<ref refid="structESTADO_1a4896a5c5c1f40b43fb795623327e3f47" kindref="member">ultima_jogada</ref><sp/>=<sp/>(<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref>)<sp/>{c.<ref refid="structCOORDENADA_1aefe14bcc5a066ac3b21500cc3d28c06f" kindref="member">linha</ref>,c.<ref refid="structCOORDENADA_1adfbc8d4856ce807139fdf62e00aed29a" kindref="member">coluna</ref>};</highlight></codeline>
-<codeline lineno="80"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"></highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2dados_8h_1ab37d4ae84264e9f2d4a969e281748738" kindref="member">obtem_coordenada</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e,</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>indice_jogada,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jogador)<sp/>{</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structJOGADA" kindref="compound">JOGADA</ref><sp/>jog<sp/>=<sp/>e-&gt;<ref refid="structESTADO_1afae43b87a488fad0f2b56a18bad31d18" kindref="member">jogadas</ref>[indice_jogada];</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>c;</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>c<sp/>=<sp/>jogador<sp/>==<sp/>1<sp/>?<sp/>jog.<ref refid="structJOGADA_1a93d9306cb0c49b66b7d9a615bffe0149" kindref="member">jogador1</ref><sp/>:<sp/>jog.<ref refid="structJOGADA_1ab46b16dfbdc7f2af9430c8dcdac0914b" kindref="member">jogador2</ref>;</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>c;</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="88"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"></highlight></codeline>
-<codeline lineno="90"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1ac5e4b055f466394a26960e68c4acc707" kindref="member">acrescenta_jogada</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e<sp/>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index,<sp/><ref refid="structJOGADA" kindref="compound">JOGADA</ref><sp/>jog)<sp/>{</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>e-&gt;<ref refid="structESTADO_1afae43b87a488fad0f2b56a18bad31d18" kindref="member">jogadas</ref>[index]=jog;</highlight></codeline>
-<codeline lineno="92"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="93"><highlight class="normal"></highlight></codeline>
-<codeline lineno="94"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1a6223634d44bd7e166a8d649d9fcf0a0f" kindref="member">incrementa_comandos</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e){</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>e-&gt;<ref refid="structESTADO_1abe6faacdd6111160bf9a354f44b95b38" kindref="member">num_comandos</ref><sp/>=<sp/>e-&gt;<ref refid="structESTADO_1abe6faacdd6111160bf9a354f44b95b38" kindref="member">num_comandos</ref><sp/>+<sp/>1;</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"></highlight></codeline>
-<codeline lineno="98"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"></highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2dados_8h_1a4b23ec5c002fb4f3725b02d7c486282a" kindref="member">obtem_ultima_jogada</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e){</highlight></codeline>
-<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(e-&gt;<ref refid="structESTADO_1a4896a5c5c1f40b43fb795623327e3f47" kindref="member">ultima_jogada</ref>);</highlight></codeline>
-<codeline lineno="102"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="103"><highlight class="normal"></highlight></codeline>
-<codeline lineno="104"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1a163a8a7a74510c297dff863363c09f16" kindref="member">altera_isBot</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e)<sp/>{</highlight></codeline>
-<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/>e-&gt;<ref refid="structESTADO_1aed0811b2232af2fb6d00942c1aea3731" kindref="member">isBot</ref><sp/>=<sp/>!(e-&gt;<ref refid="structESTADO_1aed0811b2232af2fb6d00942c1aea3731" kindref="member">isBot</ref>);</highlight></codeline>
-<codeline lineno="107"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="108"><highlight class="normal"></highlight></codeline>
-<codeline lineno="109"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1a0e515961048596d9a921bf0abc127d2e" kindref="member">devolve_flagpos</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e)<sp/>{</highlight></codeline>
-<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(e-&gt;<ref refid="structESTADO_1adde8d015fd9e3226ed7dbf0132af564c" kindref="member">flag_pos</ref>);</highlight></codeline>
-<codeline lineno="111"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="112"><highlight class="normal"></highlight></codeline>
-<codeline lineno="113"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1a51f275eac46d8203926cfbd03954a094" kindref="member">altera_flag</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>valor)<sp/>{</highlight></codeline>
-<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>e-&gt;<ref refid="structESTADO_1adde8d015fd9e3226ed7dbf0132af564c" kindref="member">flag_pos</ref><sp/>=<sp/>valor;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>e-&gt;<ref refid="structESTADO_1ae03c399b73d7a92d7f7ced83e91e5b6f" kindref="member">tab</ref>[c.<ref refid="structCOORDENADA_1aefe14bcc5a066ac3b21500cc3d28c06f" kindref="member">linha</ref>][c.<ref refid="structCOORDENADA_1adfbc8d4856ce807139fdf62e00aed29a" kindref="member">coluna</ref>]<sp/>=<sp/>casa;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1ac513714cdb4fb130ad6115e4cf4f6564" kindref="member">altera_ultima_jogada</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e,<sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>c)<sp/>{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>e-&gt;<ref refid="structESTADO_1a4896a5c5c1f40b43fb795623327e3f47" kindref="member">ultima_jogada</ref><sp/>=<sp/>(<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref>)<sp/>{c.<ref refid="structCOORDENADA_1aefe14bcc5a066ac3b21500cc3d28c06f" kindref="member">linha</ref>,c.<ref refid="structCOORDENADA_1adfbc8d4856ce807139fdf62e00aed29a" kindref="member">coluna</ref>};</highlight></codeline>
+<codeline lineno="83"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2dados_8h_1ab37d4ae84264e9f2d4a969e281748738" kindref="member">obtem_coordenada</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e,</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>indice_jogada,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jogador)<sp/>{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structJOGADA" kindref="compound">JOGADA</ref><sp/>jog<sp/>=<sp/>e-&gt;<ref refid="structESTADO_1afae43b87a488fad0f2b56a18bad31d18" kindref="member">jogadas</ref>[indice_jogada];</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>c;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>c<sp/>=<sp/>jogador<sp/>==<sp/>1<sp/>?<sp/>jog.<ref refid="structJOGADA_1a93d9306cb0c49b66b7d9a615bffe0149" kindref="member">jogador1</ref><sp/>:<sp/>jog.<ref refid="structJOGADA_1ab46b16dfbdc7f2af9430c8dcdac0914b" kindref="member">jogador2</ref>;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>c;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="91"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1ac5e4b055f466394a26960e68c4acc707" kindref="member">acrescenta_jogada</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e<sp/>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index,<sp/><ref refid="structJOGADA" kindref="compound">JOGADA</ref><sp/>jog)<sp/>{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>e-&gt;<ref refid="structESTADO_1afae43b87a488fad0f2b56a18bad31d18" kindref="member">jogadas</ref>[index]=jog;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1a6223634d44bd7e166a8d649d9fcf0a0f" kindref="member">incrementa_comandos</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e){</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>e-&gt;<ref refid="structESTADO_1abe6faacdd6111160bf9a354f44b95b38" kindref="member">num_comandos</ref><sp/>=<sp/>e-&gt;<ref refid="structESTADO_1abe6faacdd6111160bf9a354f44b95b38" kindref="member">num_comandos</ref><sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2dados_8h_1a4b23ec5c002fb4f3725b02d7c486282a" kindref="member">obtem_ultima_jogada</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e){</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(e-&gt;<ref refid="structESTADO_1a4896a5c5c1f40b43fb795623327e3f47" kindref="member">ultima_jogada</ref>);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1a163a8a7a74510c297dff863363c09f16" kindref="member">altera_isBot</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e)<sp/>{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/>e-&gt;<ref refid="structESTADO_1aed0811b2232af2fb6d00942c1aea3731" kindref="member">isBot</ref><sp/>=<sp/>!(e-&gt;<ref refid="structESTADO_1aed0811b2232af2fb6d00942c1aea3731" kindref="member">isBot</ref>);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1a0e515961048596d9a921bf0abc127d2e" kindref="member">devolve_flagpos</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e)<sp/>{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(e-&gt;<ref refid="structESTADO_1adde8d015fd9e3226ed7dbf0132af564c" kindref="member">flag_pos</ref>);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="115"><highlight class="normal"></highlight></codeline>
-<codeline lineno="116"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="117"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1afe7ce08eb320b5bffe145656c39c55ad" kindref="member">alterna_situacao_pos</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*salva_num_jogadas,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*salva_jogador_atual,<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*estado){</highlight></codeline>
-<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>*salva_num_jogadas<sp/>=<sp/><ref refid="bot_2dados_8h_1a6cd0b387bdee9e18003c78852394aa63" kindref="member">obter_numero_de_jogadas</ref>(estado);</highlight></codeline>
-<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>*salva_jogador_atual<sp/>=<sp/><sp/><ref refid="bot_2dados_8h_1ad6e326e4ffa57ca1ae0c75377ecefc8c" kindref="member">obter_jogador_atual</ref>(estado);</highlight></codeline>
-<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="bot_2dados_8h_1ac3d98006c88cb2122e77da54b6679c4c" kindref="member">altera_num_jogadas</ref>(estado,estado-&gt;<ref refid="structESTADO_1ad5bfac1569295b5ec32cf578c3001197" kindref="member">guarda_num_jogadas_pos</ref><sp/>+<sp/>1);</highlight></codeline>
-<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="bot_2dados_8h_1aadad77c46e7c0add3fe53b9331ecd298" kindref="member">altera_jogador_atual</ref>(estado,1);</highlight></codeline>
-<codeline lineno="122"><highlight class="normal">}<sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="123"><highlight class="normal"></highlight></codeline>
-<codeline lineno="124"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1a018f0502108cf18e6e17a609a8868860" kindref="member">recupera_valores</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jogador_atual,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_jogadas)<sp/>{</highlight></codeline>
-<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bot_2dados_8h_1aadad77c46e7c0add3fe53b9331ecd298" kindref="member">altera_jogador_atual</ref>(e,jogador_atual);</highlight></codeline>
-<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bot_2dados_8h_1ac3d98006c88cb2122e77da54b6679c4c" kindref="member">altera_num_jogadas</ref>(e,<sp/>num_jogadas);</highlight></codeline>
-<codeline lineno="127"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="128"><highlight class="normal"></highlight></codeline>
-<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1a51f275eac46d8203926cfbd03954a094" kindref="member">altera_flag</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>valor)<sp/>{</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>e-&gt;<ref refid="structESTADO_1adde8d015fd9e3226ed7dbf0132af564c" kindref="member">flag_pos</ref><sp/>=<sp/>valor;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1afe7ce08eb320b5bffe145656c39c55ad" kindref="member">alterna_situacao_pos</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*salva_num_jogadas,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*salva_jogador_atual,<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*estado){</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>*salva_num_jogadas<sp/>=<sp/><ref refid="bot_2dados_8h_1a6cd0b387bdee9e18003c78852394aa63" kindref="member">obter_numero_de_jogadas</ref>(estado);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>*salva_jogador_atual<sp/>=<sp/><sp/><ref refid="bot_2dados_8h_1ad6e326e4ffa57ca1ae0c75377ecefc8c" kindref="member">obter_jogador_atual</ref>(estado);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="bot_2dados_8h_1ac3d98006c88cb2122e77da54b6679c4c" kindref="member">altera_num_jogadas</ref>(estado,estado-&gt;<ref refid="structESTADO_1ad5bfac1569295b5ec32cf578c3001197" kindref="member">guarda_num_jogadas_pos</ref><sp/>+<sp/>1);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="bot_2dados_8h_1aadad77c46e7c0add3fe53b9331ecd298" kindref="member">altera_jogador_atual</ref>(estado,1);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal">}<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1a018f0502108cf18e6e17a609a8868860" kindref="member">recupera_valores</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jogador_atual,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_jogadas)<sp/>{</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bot_2dados_8h_1aadad77c46e7c0add3fe53b9331ecd298" kindref="member">altera_jogador_atual</ref>(e,jogador_atual);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bot_2dados_8h_1ac3d98006c88cb2122e77da54b6679c4c" kindref="member">altera_num_jogadas</ref>(e,<sp/>num_jogadas);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1a2e386e7df2db2feff534fe400c1da727" kindref="member">altera_jogadas_pos</ref><sp/>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>valor)<sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>e-&gt;<ref refid="structESTADO_1ad5bfac1569295b5ec32cf578c3001197" kindref="member">guarda_num_jogadas_pos</ref><sp/>=<sp/>valor;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1a8e5c53021231ef1496d87728b203da3a" kindref="member">acrescenta_coordenada</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e,<sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>efetuada,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jog)<sp/>{</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_jogadas<sp/>=<sp/><ref refid="bot_2dados_8h_1a6cd0b387bdee9e18003c78852394aa63" kindref="member">obter_numero_de_jogadas</ref>(e);<sp/></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(jog<sp/>==<sp/>1)<sp/>{</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>e-&gt;<ref refid="structESTADO_1afae43b87a488fad0f2b56a18bad31d18" kindref="member">jogadas</ref>[num_jogadas-1].jogador1<sp/>=<sp/>efetuada;<sp/></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>e-&gt;<ref refid="structESTADO_1afae43b87a488fad0f2b56a18bad31d18" kindref="member">jogadas</ref>[num_jogadas-1].jogador2<sp/>=<sp/>efetuada;<sp/></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1aefa0e7516d3bf7fe878759fec93e68d9" kindref="member">devolve_linha</ref>(<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>c)<sp/>{</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>c.<ref refid="structCOORDENADA_1aefe14bcc5a066ac3b21500cc3d28c06f" kindref="member">linha</ref>;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1a6ad8385b5dad64eeaeb9e7bc3e0b1ee7" kindref="member">devolve_coluna</ref>(<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>c)<sp/>{</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>c.<ref refid="structCOORDENADA_1adfbc8d4856ce807139fdf62e00aed29a" kindref="member">coluna</ref>;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1ab1e83f3fa9838305353f08b1d31c09b0" kindref="member">devolve_isBot</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e)<sp/>{</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>e-&gt;<ref refid="structESTADO_1aed0811b2232af2fb6d00942c1aea3731" kindref="member">isBot</ref>;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="bot/dados.c"/>
   </compounddef>

@@ -81,9 +81,9 @@ COORDENADA escolhe_aleatorio (LISTA lista) {
    int random = rand() % length;
 
    for(int i = 0; i < random ; i++){
-        lista = lista->prox; 
+        lista = proximo(lista);
    }
-    return *(COORDENADA *)(lista->valor); 
+   return *(COORDENADA *) devolve_cabeca(lista);
 }
 
 
@@ -95,18 +95,18 @@ COORDENADA devolve_coordenada_flood (int valor_casa_atual , LISTA possiveis_joga
     while(r != NULL) {
      COORDENADA *  cabeca = devolve_cabeca(r);
     
-        if (num_casa[cabeca->linha][cabeca->coluna] != (valor_casa_atual - 1)) {
+        if (num_casa[devolve_linha(*cabeca)][devolve_coluna(*cabeca)] != (valor_casa_atual - 1)) {
            r = remove_cabeca(r); 
 
             if (ant) {
-                ant->prox =r;
+                liga_lista(ant,r);
             }
             else {
                 possiveis_jogadas = r;
             }
         }
         else {
-             ant = r;
+            ant = r;
             r = proximo(r);
         }
     }
@@ -199,8 +199,7 @@ int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int flag){
                        
                        /*Precisamos testar se a casa potencial a ser preenchida é VAZIA,
                        dado que uma casa não VAZIA não poderá fazer parte do caminho*/
-
-                       if (e->tab[coord.linha][coord.coluna] == VAZIO ) {
+                        if(obter_estado_casa(e,coord) ==  VAZIO) {
                             
                            if (( flag == 2 ) || verifica_quadrante(e,coord)) 
                                 {
@@ -210,7 +209,8 @@ int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int flag){
                             }
 
                             else {
-                                if (e->tab[coord.linha][coord.coluna] == BRANCA ) {
+                                
+                                if (obter_estado_casa(e,coord) == BRANCA ) {
                                     num_casa[coord.linha][coord.coluna] = valor_casa_do_ciclo ;
                                     if ( flag == 1 )
                                         valor_casa_atual = valor_casa_do_ciclo ;
@@ -246,14 +246,16 @@ COORDENADA floodfill_inversa ( int num_casa[8][8] , LISTA possiveis_jogadas , ES
     cabeca = devolve_cabeca(possiveis_jogadas);
     COORDENADA * cabecamax = cabeca;
     int numcabecamax = -1 ;
+    int linha = devolve_linha(*cabeca);
+    int coluna = devolve_coluna(*cabeca);
     
     inicializa_num_casa(num_casa,e,2);
     preenche_valor_das_casas(num_casa,e,2);
 
     while ( possiveis_jogadas != NULL ) {
         cabeca = devolve_cabeca (possiveis_jogadas) ;
-        if (num_casa[cabeca->linha][cabeca->coluna] > numcabecamax) {
-            numcabecamax = num_casa[cabeca->linha][cabeca->coluna]  ;
+        if (num_casa[linha][coluna] > numcabecamax) {
+            numcabecamax = num_casa[linha][coluna]  ;
             cabecamax = cabeca ;
         }
         possiveis_jogadas = proximo(possiveis_jogadas);
@@ -277,7 +279,7 @@ COORDENADA auxiliar_floodfill(ESTADO *e,LISTA possiveis_jogadas,COORDENADA coord
 
            coord_escolhida = devolve_coordenada_flood (valor_casa_atual,possiveis_jogadas,num_casa);
         }
-        else if (e->isBot){
+        else if (devolve_isBot(e)){
             coord_escolhida = (COORDENADA) {3,4};
         }
         else if (lista_esta_vazia(possiveis_jogadas)!=1){
@@ -416,14 +418,13 @@ void auxiliarparidade (ESTADO *e,LISTA possiveis_jogadas,int paridade[8],COORDEN
         transfere_tabuleiro(tabcopia,e->tab);
 
         cabeca = devolve_cabeca(possiveis_jogadas);
+       altera_casa(e, obtem_ultima_jogada(e), PRETA); 
+       altera_casa(e, *cabeca, BRANCA);
         
-        altera_casa(e,(COORDENADA){(e->ultima_jogada).linha,(e->ultima_jogada).coluna}, PRETA);
-        altera_casa(e,(COORDENADA){(*cabeca).linha,(*cabeca).coluna}, BRANCA);
-        
-        paridade[contador] = calcula_area(((possiveis_jogadas)->valor),e);
+        paridade[contador] = calcula_area(devolve_cabeca(possiveis_jogadas),e);
 
         contador++;
-        possiveis_jogadas = (possiveis_jogadas)->prox;
+        possiveis_jogadas = proximo(possiveis_jogadas);
         
         // DEVO VOLTAR O TABUELIRO ANTIGO
         transfere_tabuleiro(e->tab,tabcopia);
@@ -468,7 +469,7 @@ criada para esse fim */
             
         /*Mediante o índice escolhido na função anterior, será então retirada a melhor jogada possível
         na lista ligada*/
-        for (int i = indice_da_jogada_escolhida; i >= 0;i--,possiveis_jogadas = possiveis_jogadas->prox){
+        for (int i = indice_da_jogada_escolhida; i >= 0;i--,possiveis_jogadas = proximo(possiveis_jogadas)){
             if (i == 0)
                 cabeca = devolve_cabeca(possiveis_jogadas);        
             coord_escolhida = *cabeca;
@@ -518,72 +519,77 @@ int verifica_fim ( ESTADO *e , int l , int c, int j ) {
  
     // Caso em que o jogador está no canto superior esquerdo
     if ( l == 0 && c == 0 ) {      
-        if ( e->tab[l][c+1]   == PRETA 
-          && e->tab[l+1][c]   == PRETA 
-          && e->tab[l+1][c+1] == PRETA ){
-       if (j == 1)
-            return 2 ;
-            else return 1 ;}}
+        if ( obter_estado_casa2(e, l, c+1) == PRETA 
+          && obter_estado_casa2(e, l+1, c)  == PRETA 
+          && obter_estado_casa2(e, l+1, c+1)  == PRETA ){
+            if (j == 1)
+               return 2 ;
+            else
+               return 1 ;}}
 
      // Caso em que o jogador está no canto inferior direito
     if ( l == 7 && c == 7 ) {      
-        if ( e->tab[l-1][c]   == PRETA 
-          && e->tab[l][c-1]   == PRETA 
-          && e->tab[l-1][c-1] == PRETA ){
-        if (j == 1)
-            return 2 ;
-            else return 1;}}
+        if ( obter_estado_casa2(e, l-1, c) == PRETA 
+          && obter_estado_casa2(e, l, c-1)  == PRETA 
+          && obter_estado_casa2(e, l-1, c-1)  == PRETA ){
+            if (j == 1)
+                 return 2 ;
+            else
+                return 1;}}
 
     if ( l == 0 ) {
-        if ( e->tab[l][c-1]   == PRETA 
-          && e->tab[l][c+1]   == PRETA 
-          && e->tab[l+1][c-1] == PRETA 
-          && e->tab[l+1][c]   == PRETA 
-          && e->tab[l+1][c+1] == PRETA ){
+        if ( obter_estado_casa2(e, l, c-1) == PRETA 
+          && obter_estado_casa2(e, l, c+1)  == PRETA 
+          && obter_estado_casa2(e, l+1, c-1)  == PRETA 
+          && obter_estado_casa2(e,l+1,c) == PRETA 
+          && obter_estado_casa2(e, l+1, c+1) == PRETA){
             if (j == 1)
             return 2 ;
             else return 1;}
     }
 
     if ( l == 7 ) {
-        if ( e->tab[l][c-1]   == PRETA 
-          && e->tab[l][c+1]   == PRETA 
-          && e->tab[l-1][c-1] == PRETA 
-          && e->tab[l-1][c]   == PRETA 
-          && e->tab[l-1][c+1] == PRETA ){
+        if ( obter_estado_casa2(e, l, c-1) == PRETA 
+          && obter_estado_casa2(e, l, c+1)  == PRETA 
+          && obter_estado_casa2(e, l-1, c-1)  == PRETA 
+          && obter_estado_casa2(e,l-1,c) == PRETA 
+          && obter_estado_casa2(e, l-1, c+1) == PRETA){
+ 
            if (j == 1)
             return 2 ;
             else return 1;}
     }
 
     if ( c == 0 ) {
-        if ( e->tab[l-1][c]   == PRETA 
-          && e->tab[l+1][c]   == PRETA 
-          && e->tab[l+1][c+1] == PRETA 
-          && e->tab[l][c+1]   == PRETA 
-          && e->tab[l-1][c+1] == PRETA ){
+        if ( obter_estado_casa2(e, l-1, c) == PRETA 
+          && obter_estado_casa2(e, l+1, c)  == PRETA 
+          && obter_estado_casa2(e, l+1, c+1)  == PRETA 
+          && obter_estado_casa2(e,l,c+1) == PRETA 
+          && obter_estado_casa2(e, l-1, c+1) == PRETA){
+
            if (j == 1)
             return 2 ;
             else return 1;}}
 
     if ( c == 7 ) {
-        if ( e->tab[l-1][c]   == PRETA 
-          && e->tab[l+1][c]   == PRETA 
-          && e->tab[l+1][c-1] == PRETA 
-          && e->tab[l][c-1]   == PRETA 
-          && e->tab[l-1][c-1] == PRETA ){
+        if ( obter_estado_casa2(e, l-1, c) == PRETA 
+          && obter_estado_casa2(e, l+1, c)  == PRETA 
+          && obter_estado_casa2(e, l+1, c-1)  == PRETA 
+          && obter_estado_casa2(e,l,c-1) == PRETA 
+          && obter_estado_casa2(e, l-1, c-1) == PRETA){
+
             if (j == 1)
             return 2 ;
             else return 1;}}
+    if ( obter_estado_casa2(e, l-1, c) == PRETA 
+          && obter_estado_casa2(e, l+1, c)  == PRETA 
+          && obter_estado_casa2(e, l+1, c-1)  == PRETA 
+          && obter_estado_casa2(e,l,c-1) == PRETA 
+          && obter_estado_casa2(e, l-1, c-1) == PRETA
+          && obter_estado_casa2(e,l+1,c+1) == PRETA 
+         && obter_estado_casa2(e,l,c+1) == PRETA 
+         && obter_estado_casa2(e,l-1,c+1) == PRETA ){
 
-    if ( e->tab[l-1][c]   == PRETA 
-      && e->tab[l+1][c]   == PRETA 
-      && e->tab[l+1][c-1] == PRETA 
-      && e->tab[l][c-1]   == PRETA 
-      && e->tab[l-1][c-1] == PRETA 
-      && e->tab[l+1][c+1] == PRETA 
-      && e->tab[l][c+1]   == PRETA 
-      && e->tab[l-1][c+1] == PRETA ){
         if (j == 1)
             return 2 ;
             else return 1;}
@@ -593,13 +599,13 @@ int verifica_fim ( ESTADO *e , int l , int c, int j ) {
 }
 int jogar( ESTADO *e , COORDENADA jog_efet ) {
  
-    COORDENADA jog_ant = e->ultima_jogada;
+    COORDENADA jog_ant = obtem_ultima_jogada(e); 
     int lin_atual =  jog_ant.linha ;
     int col_atual = jog_ant.coluna ;
 
     int prox_lin = jog_efet.linha ;
     int prox_col = jog_efet.coluna ;
-    int num_jogadas = obter_numero_de_jogadas(e);
+    int jogador_atual = obter_jogador_atual(e);
   
 
     if (verifica_valida ( e , jog_ant , jog_efet ) ) {
@@ -612,18 +618,13 @@ int jogar( ESTADO *e , COORDENADA jog_efet ) {
 
         int t = verifica_fim ( e , prox_lin , prox_col , obter_jogador_atual(e));
         // Condição para verificar se há um ganhador
-                 
-        if ( obter_jogador_atual (e) == 1 ) {
-            
-            e->jogadas[num_jogadas-1].jogador1 = jog_efet ;
-            e -> jogador_atual = 2 ;
-            
+        acrescenta_coordenada(e,jog_efet,jogador_atual); 
+        if ( jogador_atual == 1 ) { 
+            altera_jogador_atual(e,2);
         }
         else {
-            e->jogadas[num_jogadas-1].jogador2 = jog_efet ;
-            e -> jogador_atual = 1 ;
-            e->num_jogadas++;
- 
+            altera_jogador_atual(e,1);
+            altera_num_jogadas(e, obter_numero_de_jogadas(e) + 1); 
         }
     if (t!=0) return 2;
     else 

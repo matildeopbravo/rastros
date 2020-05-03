@@ -68,6 +68,9 @@ CASA obter_estado_casa(ESTADO *e, COORDENADA c) {
 
     return t ;
 }
+CASA obter_estado_casa2(ESTADO *e, int linha, int coluna) {
+    return e->tab[linha][coluna];
+}
 
 void altera_casa(ESTADO * e, COORDENADA c, CASA casa) {
 
@@ -110,6 +113,7 @@ int devolve_flagpos(ESTADO * e) {
     return (e->flag_pos);
 }
 
+
 void altera_flag(ESTADO * e, int valor) {
     e->flag_pos = valor;
 
@@ -124,6 +128,33 @@ void alterna_situacao_pos (int *salva_num_jogadas, int *salva_jogador_atual, EST
 void recupera_valores(ESTADO * e, int jogador_atual, int num_jogadas) {
     altera_jogador_atual(e,jogador_atual);
     altera_num_jogadas(e, num_jogadas);
+}
+
+
+void altera_jogadas_pos (ESTADO * e, int valor) {
+    e->guarda_num_jogadas_pos = valor;
+}
+
+void acrescenta_coordenada(ESTADO * e, COORDENADA efetuada, int jog) {
+    int num_jogadas = obter_numero_de_jogadas(e); 
+    if (jog == 1) {
+       e->jogadas[num_jogadas-1].jogador1 = efetuada; 
+    }
+    else {
+
+       e->jogadas[num_jogadas-1].jogador2 = efetuada; 
+    }
+
+}
+
+int devolve_linha(COORDENADA c) {
+    return c.linha;
+}
+int devolve_coluna(COORDENADA c) {
+    return c.coluna;
+}
+int devolve_isBot(ESTADO * e) {
+    return e->isBot;
 }
 
 

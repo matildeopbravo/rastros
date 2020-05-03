@@ -102,6 +102,13 @@ int obter_numero_de_comandos(ESTADO *estado);
 */
 CASA obter_estado_casa(ESTADO *e, COORDENADA c);
 /**
+\brief Dado uma linha e uma coluna, devolve a CASA correspondente no tabuleiro.
+@param e Apontador para o estado
+@param linha linha da casa
+@param coluna coluna da casa
+*/
+CASA obter_estado_casa2(ESTADO *e, int linha, int coluna);
+/**
 \brief Dado uma coordenada e uma CASA, coloca a CASA dada na coordenada do tabuleiro correspondente.
 @param e Apontador para o estado
 @param c Coordenada
@@ -193,4 +200,32 @@ void altera_flag(ESTADO * e, int valor);
 */
 
 void recupera_valores(ESTADO * e, int jogador_atual, int num_jogadas);
+/**
+\brief Altera o valor do guarda_num_jogadas_pos do estado para o valor dado.
+@param e Apontador para o estado
+@param valor valor a colocar na flag
+*/
+void altera_jogadas_pos (ESTADO * e, int valor);
+/**
+\brief Acrescenta uma coordenada à lista de jogadas 
+@param e Apontador para o estado
+@param efetuada Coordenada correspondente à jogada efetuada
+@param jog Jogador a que realizou a jogada
+*/
+void acrescenta_coordenada(ESTADO * e, COORDENADA efetuada, int jog);
+/**
+\brief Devolve a linha de uma coordenada. 
+*/
+int devolve_linha(COORDENADA c);
+/**
+\brief Devolve a coluna de uma coordenada. 
+*/
+int devolve_coluna(COORDENADA c);
+/**
+\brief Devolve o valor da flag isBot
+*/
+int devolve_isBot(ESTADO * e); 
+
+
+
 #endif

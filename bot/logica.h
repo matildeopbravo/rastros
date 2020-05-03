@@ -2,6 +2,7 @@
 @file logica.h
 Definição de funções que tratam da logica do programa, entre as quais, funções que implementa os algoritmos floodfill e paridade e funções que verificam o fim do jogo.
 */
+
 #include "listas.h"
 #ifndef CAMADA_LOGICA_H
 #define CAMADA_LOGICA_H

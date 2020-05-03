@@ -40,4 +40,7 @@ int comprimento_lista(LISTA L) {
     return i;
     
 }
+void liga_lista(LISTA Lprincipal, LISTA Lacrescenta) {
+    Lprincipal->prox=Lacrescenta;
+}
 

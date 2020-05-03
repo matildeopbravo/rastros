@@ -39,19 +39,18 @@ void altera_tabuleiro(ESTADO *estado){
     /*Ciclo que coloca o tabuleiro todo a VAZIO*/
     for (int linha = 0;linha < 8;linha++){
         for (int coluna = 0; coluna < 8 ; coluna++){
-            estado->tab[linha][coluna] = VAZIO;
+            altera_casa(estado, (COORDENADA) {linha,coluna}, VAZIO);
         }
     }
     /*Casos especiais*/
-    estado->tab[0][7] = DOIS;
-    estado->tab[7][0] = UM;
+    altera_casa(estado,(COORDENADA) {0,7}, DOIS );
+    altera_casa(estado,(COORDENADA) {7,0}, UM );
     
     /* Caso especial em que se foi feito "pos 0"*/    
     if (obter_numero_de_jogadas(estado) == 0){
-        estado->tab[3][4] = BRANCA;
-       (estado->ultima_jogada).linha = 3;
-       (estado->ultima_jogada).coluna = 4;}
-
+        altera_casa(estado,(COORDENADA) {3,4}, BRANCA);
+        altera_ultima_jogada(estado, (COORDENADA) {3,4});
+    }
     else {
 
         /*Ciclo que coloca a PRETO todas as casas do tabuleiro que já foram ocupadas até a e-nésima jogada*/
@@ -59,31 +58,28 @@ void altera_tabuleiro(ESTADO *estado){
 
             coord1 = obtem_coordenada(estado,contador,1);
             coord2 = obtem_coordenada(estado,contador,2);
-        
-            estado->tab[coord1.linha][coord1.coluna] = PRETA;
-            estado->tab[coord2.linha][coord2.coluna] = PRETA;
+            altera_casa(estado, coord1, PRETA);
+            altera_casa(estado, coord2, PRETA);
         
         } 
         /* Caso o jogador atual for o 2, então falta preencher a BRANCO  a última jogada efetuada*/
         if (obter_jogador_atual(estado) == 2){
             coord1 = obtem_coordenada(estado,contador,1);
-            estado->tab[coord1.linha][coord1.coluna] = BRANCA;
-            (estado->ultima_jogada).linha = coord1.linha;
-            (estado->ultima_jogada).coluna = coord1.coluna;
+            altera_casa(estado,coord1, BRANCA);
+            altera_ultima_jogada(estado, coord1);
         }
         /* Caso o jogador atual for o 1, então falta preencher a BRANCO ua última jogada efetuada*/
         if (obter_jogador_atual(estado) == 1){
             coord2 = obtem_coordenada(estado,contador - 1,2);
-            estado->tab[coord2.linha][coord2.coluna] = BRANCA;
-            (estado->ultima_jogada).linha = coord2.linha;
-            (estado->ultima_jogada).coluna = coord2.coluna;
+            altera_casa(estado,coord2,BRANCA);
+            altera_ultima_jogada(estado,coord2);
 
         }
         /* Preenchimento da posição inicial a PRETO é sempre necessário, dado que ela não está presente em nenhuma das listas.
         apenas quando nenhuma jogada foi efetuada ainda é  que não devo fazer nada */
-        if ((estado->num_jogadas == 1 && estado->jogador_atual == 2)
-        || (estado->num_jogadas > 1)){
-            estado->tab[3][4] = PRETA;
+        if ((obter_numero_de_jogadas(estado) == 1 && obter_jogador_atual(estado) == 2)
+        || (obter_numero_de_jogadas(estado) > 1)){
+            altera_casa(estado, (COORDENADA) {3,4}, PRETA);
         }
     }
 }
@@ -138,9 +134,9 @@ void mostrar_jogadas (ESTADO * e,  FILE * stream) {
     if ( stream == stdout )
         fprintf (stream,"\n");
 
-    if (e->jogador_atual == 1)
-    numjogadas = e->num_jogadas  - 1;
-    else numjogadas = e->num_jogadas;
+    if (obter_jogador_atual(e) == 1)
+    numjogadas = obter_numero_de_jogadas(e)  - 1;
+    else numjogadas = obter_numero_de_jogadas(e);
 
     for(int i = 0; i < numjogadas; i++) {
         if ( i < 9 ) 
@@ -242,8 +238,8 @@ void ler (ESTADO * e, char * nome_ficheiro) {
            
             ler_tabuleiro(e,fp);
             ler_jogadas(e,fp);
-            if (e->jogador_atual == 1)
-               e->num_jogadas = e->num_jogadas + 1;
+            if (obter_jogador_atual(e) == 1)
+            altera_num_jogadas(e, obter_numero_de_jogadas(e) + 1);
             mostrar_tabuleiro(e,stdout);
             mostrar_jogadas(e,stdout);
                
@@ -341,7 +337,7 @@ int interpretador(ESTADO *e) {
                     int i = atoi(token);
                     if ((i>=0)&&(i < obter_numero_de_jogadas(e)) && verificanumero(token[0])==1 ) {   
                         salva_num_jogadas = obter_numero_de_jogadas(e); //variável local que repõe o num_jogadas original
-                        e->guarda_num_jogadas_pos = i;//componente da struct que armazena o que foi digitado no "Pos"
+                        altera_jogadas_pos(e,i);//componente da struct que armazena o que foi digitado no "Pos"
 
                         if (i!=0){
                             altera_num_jogadas(e,i+1);
@@ -373,7 +369,6 @@ int interpretador(ESTADO *e) {
                         mostrar_tabuleiro(e,stdout);
                         altera_flag(e,0);
                 }
-                                
             }      
             else {
                 printf ("inválido\n");

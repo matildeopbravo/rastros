@@ -69,7 +69,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/logica.h" line="15" column="5" bodyfile="bot/logica.c" bodystart="588" bodyend="631" declfile="bot/logica.h" declline="15" declcolumn="5"/>
+        <location file="bot/logica.h" line="16" column="5" bodyfile="bot/logica.c" bodystart="594" bodyend="632" declfile="bot/logica.h" declline="16" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="bot_2logica_8h_1aaa3fd9c526e661b27383a69e5a5277f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -134,7 +134,7 @@ encurralado&quot;. Retorna 0 caso não se verifique nenhum, em contrapartida dev
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/logica.h" line="25" column="5" bodyfile="bot/logica.c" bodystart="507" bodyend="586" declfile="bot/logica.h" declline="25" declcolumn="5"/>
+        <location file="bot/logica.h" line="26" column="5" bodyfile="bot/logica.c" bodystart="509" bodyend="593" declfile="bot/logica.h" declline="26" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="bot_2logica_8h_1ad3f8800d9f979e4b250c2603de7dcadd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -186,7 +186,7 @@ encurralado&quot;. Retorna 0 caso não se verifique nenhum, em contrapartida dev
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/logica.h" line="36" column="5" bodyfile="bot/logica.c" bodystart="487" bodyend="505" declfile="bot/logica.h" declline="36" declcolumn="5"/>
+        <location file="bot/logica.h" line="37" column="5" bodyfile="bot/logica.c" bodystart="489" bodyend="507" declfile="bot/logica.h" declline="37" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="bot_2logica_8h_1a105c7792d2784bd2c00f5e707266bc46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
@@ -214,7 +214,7 @@ encurralado&quot;. Retorna 0 caso não se verifique nenhum, em contrapartida dev
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/logica.h" line="43" column="12" bodyfile="bot/logica.c" bodystart="429" bodyend="484" declfile="bot/logica.h" declline="43" declcolumn="12"/>
+        <location file="bot/logica.h" line="44" column="12" bodyfile="bot/logica.c" bodystart="429" bodyend="485" declfile="bot/logica.h" declline="44" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="bot_2logica_8h_1aa8293a66c6ce9efae086fba59bb8c884" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -254,7 +254,7 @@ encurralado&quot;. Retorna 0 caso não se verifique nenhum, em contrapartida dev
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/logica.h" line="49" column="5" bodyfile="bot/logica.c" bodystart="371" bodyend="392" declfile="bot/logica.h" declline="49" declcolumn="5"/>
+        <location file="bot/logica.h" line="50" column="5" bodyfile="bot/logica.c" bodystart="372" bodyend="393" declfile="bot/logica.h" declline="50" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="bot_2logica_8h_1a62f43dfd205580f152712e9f18276103" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -296,7 +296,7 @@ encurralado&quot;. Retorna 0 caso não se verifique nenhum, em contrapartida dev
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/logica.h" line="55" column="6" bodyfile="bot/logica.c" bodystart="394" bodyend="400" declfile="bot/logica.h" declline="55" declcolumn="6"/>
+        <location file="bot/logica.h" line="56" column="6" bodyfile="bot/logica.c" bodystart="395" bodyend="401" declfile="bot/logica.h" declline="56" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="bot_2logica_8h_1adce50d8ee37c0296fcab65772db0fc57" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
@@ -343,7 +343,7 @@ Função principal da heurística floodfill. Devolve a melhor jogada possível t
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/logica.h" line="61" column="12" bodyfile="bot/logica.c" bodystart="297" bodyend="318" declfile="bot/logica.h" declline="61" declcolumn="12"/>
+        <location file="bot/logica.h" line="62" column="12" bodyfile="bot/logica.c" bodystart="293" bodyend="315" declfile="bot/logica.h" declline="62" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="bot_2logica_8h_1ab50719b4d8ccd4926730de9ab6b1bf26" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
@@ -403,7 +403,7 @@ Função principal da heurística floodfill. Devolve a melhor jogada possível t
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/logica.h" line="73" column="12" bodyfile="bot/logica.c" bodystart="34" bodyend="76" declfile="bot/logica.h" declline="73" declcolumn="12"/>
+        <location file="bot/logica.h" line="74" column="12" bodyfile="bot/logica.c" bodystart="34" bodyend="76" declfile="bot/logica.h" declline="74" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="bot_2logica_8h_1a4b7227ac52e72c662be8e60fcab31f81" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -456,7 +456,7 @@ Função principal da heurística floodfill. Devolve a melhor jogada possível t
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/logica.h" line="82" column="6" bodyfile="bot/logica.c" bodystart="134" bodyend="160" declfile="bot/logica.h" declline="82" declcolumn="6"/>
+        <location file="bot/logica.h" line="83" column="6" bodyfile="bot/logica.c" bodystart="134" bodyend="160" declfile="bot/logica.h" declline="83" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="bot_2logica_8h_1a827c627b01e9d538ab33ec1be379cdfc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
@@ -508,7 +508,7 @@ Função principal da heurística floodfill. Devolve a melhor jogada possível t
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/logica.h" line="91" column="12" bodyfile="bot/logica.c" bodystart="275" bodyend="295" declfile="bot/logica.h" declline="91" declcolumn="12"/>
+        <location file="bot/logica.h" line="92" column="12" bodyfile="bot/logica.c" bodystart="269" bodyend="291" declfile="bot/logica.h" declline="92" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="bot_2logica_8h_1ac62ec1b8cfc401f9972b69d144fc5809" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -612,7 +612,7 @@ Dá para cada casa do tabuleiro um valor específico. Tal valor será importante
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/logica.h" line="112" column="5" bodyfile="bot/logica.c" bodystart="175" bodyend="248" declfile="bot/logica.h" declline="112" declcolumn="5"/>
+        <location file="bot/logica.h" line="113" column="5" bodyfile="bot/logica.c" bodystart="175" bodyend="240" declfile="bot/logica.h" declline="113" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="bot_2logica_8h_1a3fc83e127140c4d6149cb87cb7152917" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref> *</type>
@@ -640,7 +640,7 @@ Dá para cada casa do tabuleiro um valor específico. Tal valor será importante
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/logica.h" line="118" column="13" bodyfile="bot/logica.c" bodystart="27" bodyend="32" declfile="bot/logica.h" declline="118" declcolumn="13"/>
+        <location file="bot/logica.h" line="119" column="13" bodyfile="bot/logica.c" bodystart="27" bodyend="32" declfile="bot/logica.h" declline="119" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="bot_2logica_8h_1a121fc1e4e0bc77a026906d18f984d7ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
@@ -693,7 +693,7 @@ Dá para cada casa do tabuleiro um valor específico. Tal valor será importante
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/logica.h" line="127" column="12" bodyfile="bot/logica.c" bodystart="89" bodyend="114" declfile="bot/logica.h" declline="127" declcolumn="12"/>
+        <location file="bot/logica.h" line="128" column="12" bodyfile="bot/logica.c" bodystart="90" bodyend="114" declfile="bot/logica.h" declline="128" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="bot_2logica_8h_1ab3d83ee5bb070d6530437278b415b636" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -746,7 +746,7 @@ Dá para cada casa do tabuleiro um valor específico. Tal valor será importante
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/logica.h" line="136" column="5" bodyfile="bot/logica.c" bodystart="115" bodyend="132" declfile="bot/logica.h" declline="136" declcolumn="5"/>
+        <location file="bot/logica.h" line="137" column="5" bodyfile="bot/logica.c" bodystart="115" bodyend="132" declfile="bot/logica.h" declline="137" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="bot_2logica_8h_1a6eceb14c20dfd2dc46fe7500803bd534" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -786,7 +786,7 @@ Dá para cada casa do tabuleiro um valor específico. Tal valor será importante
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/logica.h" line="145" column="5" bodyfile="bot/logica.c" bodystart="162" bodyend="173" declfile="bot/logica.h" declline="145" declcolumn="5"/>
+        <location file="bot/logica.h" line="146" column="5" bodyfile="bot/logica.c" bodystart="162" bodyend="173" declfile="bot/logica.h" declline="146" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="bot_2logica_8h_1aa7ade6abbed3330a0561ce9e7efcfc11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
@@ -839,7 +839,7 @@ Dá para cada casa do tabuleiro um valor específico. Tal valor será importante
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/logica.h" line="164" column="12" bodyfile="bot/logica.c" bodystart="250" bodyend="272" declfile="bot/logica.h" declline="164" declcolumn="12"/>
+        <location file="bot/logica.h" line="165" column="12" bodyfile="bot/logica.c" bodystart="242" bodyend="266" declfile="bot/logica.h" declline="165" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="bot_2logica_8h_1a18183af7ccb1fd6405a5f39b1f56ef96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -879,7 +879,7 @@ Dá para cada casa do tabuleiro um valor específico. Tal valor será importante
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/logica.h" line="171" column="5" bodyfile="bot/logica.c" bodystart="6" bodyend="13" declfile="bot/logica.h" declline="171" declcolumn="5"/>
+        <location file="bot/logica.h" line="172" column="5" bodyfile="bot/logica.c" bodystart="6" bodyend="13" declfile="bot/logica.h" declline="172" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="bot_2logica_8h_1a99bdf7c3a8419ede03a430e02a07f815" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -944,7 +944,7 @@ Dá para cada casa do tabuleiro um valor específico. Tal valor será importante
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/logica.h" line="180" column="6" bodyfile="bot/logica.c" bodystart="402" bodyend="427" declfile="bot/logica.h" declline="180" declcolumn="6"/>
+        <location file="bot/logica.h" line="181" column="6" bodyfile="bot/logica.c" bodystart="403" bodyend="427" declfile="bot/logica.h" declline="181" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="bot_2logica_8h_1ad795e2ccc8ebc647d3bc2fb9966bdf2f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -981,7 +981,7 @@ Dá para cada casa do tabuleiro um valor específico. Tal valor será importante
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/logica.h" line="192" column="5" bodyfile="bot/logica.c" bodystart="319" bodyend="360" declfile="bot/logica.h" declline="192" declcolumn="5"/>
+        <location file="bot/logica.h" line="193" column="5" bodyfile="bot/logica.c" bodystart="317" bodyend="359" declfile="bot/logica.h" declline="193" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="bot_2logica_8h_1a47d04407ac67a91a6572ff5011640928" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -1009,7 +1009,7 @@ Dá para cada casa do tabuleiro um valor específico. Tal valor será importante
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/logica.h" line="198" column="5" bodyfile="bot/logica.c" bodystart="15" bodyend="25" declfile="bot/logica.h" declline="198" declcolumn="5"/>
+        <location file="bot/logica.h" line="199" column="5" bodyfile="bot/logica.c" bodystart="15" bodyend="25" declfile="bot/logica.h" declline="199" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="bot_2logica_8h_1a6b7af3834ab9d82aa443aa046de1ca60" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
@@ -1037,7 +1037,7 @@ Dá para cada casa do tabuleiro um valor específico. Tal valor será importante
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/logica.h" line="203" column="12" bodyfile="bot/logica.c" bodystart="79" bodyend="86" declfile="bot/logica.h" declline="203" declcolumn="12"/>
+        <location file="bot/logica.h" line="204" column="12" bodyfile="bot/logica.c" bodystart="79" bodyend="87" declfile="bot/logica.h" declline="204" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="bot_2logica_8h_1a859b6fa3715b706976d64748916a4253" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -1066,7 +1066,7 @@ Dá para cada casa do tabuleiro um valor específico. Tal valor será importante
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/logica.h" line="209" column="6" bodyfile="bot/logica.c" bodystart="362" bodyend="368" declfile="bot/logica.h" declline="209" declcolumn="6"/>
+        <location file="bot/logica.h" line="210" column="6" bodyfile="bot/logica.c" bodystart="361" bodyend="369" declfile="bot/logica.h" declline="210" declcolumn="6"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -1076,36 +1076,36 @@ Dá para cada casa do tabuleiro um valor específico. Tal valor será importante
     </detaileddescription>
     <programlisting>
 <codeline lineno="1"></codeline>
-<codeline lineno="5"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="bot_2listas_8h" kindref="compound">listas.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>CAMADA_LOGICA_H</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CAMADA_LOGICA_H</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1a53472e75f056ceb02b5387193021838a" kindref="member">jogar</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*estado,<sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>c);</highlight></codeline>
-<codeline lineno="25"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1aaa3fd9c526e661b27383a69e5a5277f0" kindref="member">verifica_fim</ref><sp/>(<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e<sp/>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>l<sp/>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>c,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j<sp/>);</highlight></codeline>
-<codeline lineno="36"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1ad3f8800d9f979e4b250c2603de7dcadd" kindref="member">verifica_valida</ref><sp/>(<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e<sp/>,<sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>jog_ant<sp/>,<sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>jog_efet);</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2logica_8h_1a105c7792d2784bd2c00f5e707266bc46" kindref="member">estrategia_paridade</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e);</highlight></codeline>
-<codeline lineno="49"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1aa8293a66c6ce9efae086fba59bb8c884" kindref="member">calcula_area</ref>(<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>*<sp/>possiveljogada,<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e);</highlight></codeline>
-<codeline lineno="55"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1a62f43dfd205580f152712e9f18276103" kindref="member">transfere_tabuleiro</ref><sp/>(<ref refid="bot_2dados_8h_1aba91601f16d4c485b2d9b8c429f27039" kindref="member">CASA</ref><sp/>tabuleiro_1[8][8],<ref refid="bot_2dados_8h_1aba91601f16d4c485b2d9b8c429f27039" kindref="member">CASA</ref><sp/>tabuleiro_2[8][8]);</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2logica_8h_1adce50d8ee37c0296fcab65772db0fc57" kindref="member">estrategia_floodfill</ref><sp/>(<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e<sp/>)<sp/>;</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2logica_8h_1ab50719b4d8ccd4926730de9ab6b1bf26" kindref="member">insere_possiveis_jogadas</ref><sp/>(<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e<sp/>,<sp/><ref refid="structlista" kindref="compound">LISTA</ref><sp/>*posicoesvazias,<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>coord_escolhida<sp/>);</highlight></codeline>
-<codeline lineno="82"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1a4b7227ac52e72c662be8e60fcab31f81" kindref="member">inicializa_num_casa</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_casa[8][8],<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>flag);</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2logica_8h_1a827c627b01e9d538ab33ec1be379cdfc" kindref="member">auxiliar_floodfill</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e,<ref refid="structlista" kindref="compound">LISTA</ref><sp/>possiveis_jogadas,<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>coord_escolhida);</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2logica_8h_1adce50d8ee37c0296fcab65772db0fc57" kindref="member">estrategia_floodfill</ref><sp/>(<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e<sp/>);</highlight></codeline>
-<codeline lineno="112"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1ac62ec1b8cfc401f9972b69d144fc5809" kindref="member">preenche_valor_das_casas</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_casa[8][8],<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>flag);</highlight></codeline>
-<codeline lineno="118"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>*<sp/><ref refid="bot_2logica_8h_1a3fc83e127140c4d6149cb87cb7152917" kindref="member">duplica_coordenada</ref>(<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>coordenada);</highlight></codeline>
-<codeline lineno="127"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2logica_8h_1a121fc1e4e0bc77a026906d18f984d7ea" kindref="member">devolve_coordenada_flood</ref><sp/>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>valor_casa_atual<sp/>,<sp/><ref refid="structlista" kindref="compound">LISTA</ref><sp/>possiveis_jogadas<sp/>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_casa[8][8]);</highlight></codeline>
-<codeline lineno="136"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1ab3d83ee5bb070d6530437278b415b636" kindref="member">verifica_adjacencia</ref><sp/>(<sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>coord<sp/>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_casa[8][8]<sp/>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structlista_1a3033d6b547266ff408f8a26871f7e758" kindref="member">valor</ref><sp/>);</highlight></codeline>
-<codeline lineno="145"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1a6eceb14c20dfd2dc46fe7500803bd534" kindref="member">verifica_quadrante</ref><sp/>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e,<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>coord);</highlight></codeline>
-<codeline lineno="157"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1ac62ec1b8cfc401f9972b69d144fc5809" kindref="member">preenche_valor_das_casas</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_casa[8][8],<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>flag);</highlight></codeline>
-<codeline lineno="164"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2logica_8h_1aa7ade6abbed3330a0561ce9e7efcfc11" kindref="member">floodfill_inversa</ref><sp/>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_casa[8][8]<sp/>,<sp/><ref refid="structlista" kindref="compound">LISTA</ref><sp/>possiveis_jogadas<sp/>,<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e<sp/>);</highlight></codeline>
-<codeline lineno="171"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1a18183af7ccb1fd6405a5f39b1f56ef96" kindref="member">verifica_casa_vazia</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e,<sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>coordenada);</highlight></codeline>
-<codeline lineno="180"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1a99bdf7c3a8419ede03a430e02a07f815" kindref="member">auxiliarparidade</ref><sp/>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e,<ref refid="structlista" kindref="compound">LISTA</ref><sp/>possiveis_jogadas,</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>paridade[8],<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>*cabeca);</highlight></codeline>
-<codeline lineno="192"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1ad795e2ccc8ebc647d3bc2fb9966bdf2f" kindref="member">devolve_indice_paridade</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>paridade[8]);</highlight></codeline>
-<codeline lineno="198"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1a47d04407ac67a91a6572ff5011640928" kindref="member">verifica_limite_tabuleiro</ref>(<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>coordenada);</highlight></codeline>
-<codeline lineno="203"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2logica_8h_1a6b7af3834ab9d82aa443aa046de1ca60" kindref="member">escolhe_aleatorio</ref><sp/>(<ref refid="structlista" kindref="compound">LISTA</ref><sp/><ref refid="structlista" kindref="compound">lista</ref>);</highlight></codeline>
-<codeline lineno="209"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="bot_2logica_8h_1a859b6fa3715b706976d64748916a4253" kindref="member">jogadaaefetuar</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>paridade[8]);</highlight></codeline>
-<codeline lineno="210"><highlight class="normal"></highlight></codeline>
-<codeline lineno="211"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="6"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="bot_2listas_8h" kindref="compound">listas.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>CAMADA_LOGICA_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CAMADA_LOGICA_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1a53472e75f056ceb02b5387193021838a" kindref="member">jogar</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*estado,<sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>c);</highlight></codeline>
+<codeline lineno="26"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1aaa3fd9c526e661b27383a69e5a5277f0" kindref="member">verifica_fim</ref><sp/>(<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e<sp/>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>l<sp/>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>c,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j<sp/>);</highlight></codeline>
+<codeline lineno="37"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1ad3f8800d9f979e4b250c2603de7dcadd" kindref="member">verifica_valida</ref><sp/>(<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e<sp/>,<sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>jog_ant<sp/>,<sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>jog_efet);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2logica_8h_1a105c7792d2784bd2c00f5e707266bc46" kindref="member">estrategia_paridade</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e);</highlight></codeline>
+<codeline lineno="50"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1aa8293a66c6ce9efae086fba59bb8c884" kindref="member">calcula_area</ref>(<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>*<sp/>possiveljogada,<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e);</highlight></codeline>
+<codeline lineno="56"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1a62f43dfd205580f152712e9f18276103" kindref="member">transfere_tabuleiro</ref><sp/>(<ref refid="bot_2dados_8h_1aba91601f16d4c485b2d9b8c429f27039" kindref="member">CASA</ref><sp/>tabuleiro_1[8][8],<ref refid="bot_2dados_8h_1aba91601f16d4c485b2d9b8c429f27039" kindref="member">CASA</ref><sp/>tabuleiro_2[8][8]);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2logica_8h_1adce50d8ee37c0296fcab65772db0fc57" kindref="member">estrategia_floodfill</ref><sp/>(<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e<sp/>)<sp/>;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2logica_8h_1ab50719b4d8ccd4926730de9ab6b1bf26" kindref="member">insere_possiveis_jogadas</ref><sp/>(<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e<sp/>,<sp/><ref refid="structlista" kindref="compound">LISTA</ref><sp/>*posicoesvazias,<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>coord_escolhida<sp/>);</highlight></codeline>
+<codeline lineno="83"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1a4b7227ac52e72c662be8e60fcab31f81" kindref="member">inicializa_num_casa</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_casa[8][8],<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>flag);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2logica_8h_1a827c627b01e9d538ab33ec1be379cdfc" kindref="member">auxiliar_floodfill</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e,<ref refid="structlista" kindref="compound">LISTA</ref><sp/>possiveis_jogadas,<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>coord_escolhida);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2logica_8h_1adce50d8ee37c0296fcab65772db0fc57" kindref="member">estrategia_floodfill</ref><sp/>(<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e<sp/>);</highlight></codeline>
+<codeline lineno="113"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1ac62ec1b8cfc401f9972b69d144fc5809" kindref="member">preenche_valor_das_casas</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_casa[8][8],<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>flag);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>*<sp/><ref refid="bot_2logica_8h_1a3fc83e127140c4d6149cb87cb7152917" kindref="member">duplica_coordenada</ref>(<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>coordenada);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2logica_8h_1a121fc1e4e0bc77a026906d18f984d7ea" kindref="member">devolve_coordenada_flood</ref><sp/>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>valor_casa_atual<sp/>,<sp/><ref refid="structlista" kindref="compound">LISTA</ref><sp/>possiveis_jogadas<sp/>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_casa[8][8]);</highlight></codeline>
+<codeline lineno="137"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1ab3d83ee5bb070d6530437278b415b636" kindref="member">verifica_adjacencia</ref><sp/>(<sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>coord<sp/>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_casa[8][8]<sp/>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structlista_1a3033d6b547266ff408f8a26871f7e758" kindref="member">valor</ref><sp/>);</highlight></codeline>
+<codeline lineno="146"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1a6eceb14c20dfd2dc46fe7500803bd534" kindref="member">verifica_quadrante</ref><sp/>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e,<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>coord);</highlight></codeline>
+<codeline lineno="158"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1ac62ec1b8cfc401f9972b69d144fc5809" kindref="member">preenche_valor_das_casas</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_casa[8][8],<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>flag);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2logica_8h_1aa7ade6abbed3330a0561ce9e7efcfc11" kindref="member">floodfill_inversa</ref><sp/>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_casa[8][8]<sp/>,<sp/><ref refid="structlista" kindref="compound">LISTA</ref><sp/>possiveis_jogadas<sp/>,<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e<sp/>);</highlight></codeline>
+<codeline lineno="172"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1a18183af7ccb1fd6405a5f39b1f56ef96" kindref="member">verifica_casa_vazia</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e,<sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>coordenada);</highlight></codeline>
+<codeline lineno="181"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1a99bdf7c3a8419ede03a430e02a07f815" kindref="member">auxiliarparidade</ref><sp/>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e,<ref refid="structlista" kindref="compound">LISTA</ref><sp/>possiveis_jogadas,</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>paridade[8],<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>*cabeca);</highlight></codeline>
+<codeline lineno="193"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1ad795e2ccc8ebc647d3bc2fb9966bdf2f" kindref="member">devolve_indice_paridade</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>paridade[8]);</highlight></codeline>
+<codeline lineno="199"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1a47d04407ac67a91a6572ff5011640928" kindref="member">verifica_limite_tabuleiro</ref>(<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>coordenada);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2logica_8h_1a6b7af3834ab9d82aa443aa046de1ca60" kindref="member">escolhe_aleatorio</ref><sp/>(<ref refid="structlista" kindref="compound">LISTA</ref><sp/><ref refid="structlista" kindref="compound">lista</ref>);</highlight></codeline>
+<codeline lineno="210"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="bot_2logica_8h_1a859b6fa3715b706976d64748916a4253" kindref="member">jogadaaefetuar</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>paridade[8]);</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
     <location file="bot/logica.h"/>
   </compounddef>

@@ -161,6 +161,46 @@
         </inbodydescription>
         <location file="bot/listas.c" line="37" column="5" bodyfile="bot/listas.c" bodystart="37" bodyend="42"/>
       </memberdef>
+      <memberdef kind="function" id="bot_2listas_8c_1abfa97f473a811df5552e617d5751f656" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void liga_lista</definition>
+        <argsstring>(LISTA Lprincipal, LISTA Lacrescenta)</argsstring>
+        <name>liga_lista</name>
+        <param>
+          <type><ref refid="bot_2listas_8h_1ac294034fbe3bf9846e0465051a477f55" kindref="member">LISTA</ref></type>
+          <declname>Lprincipal</declname>
+        </param>
+        <param>
+          <type><ref refid="bot_2listas_8h_1ac294034fbe3bf9846e0465051a477f55" kindref="member">LISTA</ref></type>
+          <declname>Lacrescenta</declname>
+        </param>
+        <briefdescription>
+<para>Liga duas listas. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lista</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>cujo campo proximo sera alterado </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lista</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>para a qual apontara o campo proximo da outa lista </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bot/listas.c" line="43" column="6" bodyfile="bot/listas.c" bodystart="43" bodyend="45"/>
+      </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
@@ -209,7 +249,10 @@
 <codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="42"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2listas_8h_1abfa97f473a811df5552e617d5751f656" kindref="member">liga_lista</ref>(<ref refid="structlista" kindref="compound">LISTA</ref><sp/>Lprincipal,<sp/><ref refid="structlista" kindref="compound">LISTA</ref><sp/>Lacrescenta)<sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>Lprincipal-&gt;<ref refid="structlista_1a1e728b6c9bd42373ddd7a2a8d77a1a51" kindref="member">prox</ref>=Lacrescenta;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="bot/listas.c"/>
   </compounddef>

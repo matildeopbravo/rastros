@@ -42,6 +42,7 @@
     <member refid="bot_2dados_8c_1ac3d98006c88cb2122e77da54b6679c4c" kind="function"><name>altera_num_jogadas</name></member>
     <member refid="bot_2dados_8c_1a8da46968cf5f25193cda4074b0566f83" kind="function"><name>altera_numero_comandos</name></member>
     <member refid="bot_2dados_8c_1a6faa68373203923729ed38657aa0f768" kind="function"><name>obter_estado_casa</name></member>
+    <member refid="bot_2dados_8c_1a71bdba7a3e31ab34484adad76bc7c445" kind="function"><name>obter_estado_casa2</name></member>
     <member refid="bot_2dados_8c_1a32f1b5cc763870c658ab48d4f4fe5037" kind="function"><name>altera_casa</name></member>
     <member refid="bot_2dados_8c_1ac513714cdb4fb130ad6115e4cf4f6564" kind="function"><name>altera_ultima_jogada</name></member>
     <member refid="bot_2dados_8c_1ab37d4ae84264e9f2d4a969e281748738" kind="function"><name>obtem_coordenada</name></member>
@@ -53,6 +54,11 @@
     <member refid="bot_2dados_8c_1a51f275eac46d8203926cfbd03954a094" kind="function"><name>altera_flag</name></member>
     <member refid="bot_2dados_8c_1afe7ce08eb320b5bffe145656c39c55ad" kind="function"><name>alterna_situacao_pos</name></member>
     <member refid="bot_2dados_8c_1a018f0502108cf18e6e17a609a8868860" kind="function"><name>recupera_valores</name></member>
+    <member refid="bot_2dados_8c_1a2e386e7df2db2feff534fe400c1da727" kind="function"><name>altera_jogadas_pos</name></member>
+    <member refid="bot_2dados_8c_1a8e5c53021231ef1496d87728b203da3a" kind="function"><name>acrescenta_coordenada</name></member>
+    <member refid="bot_2dados_8c_1aefa0e7516d3bf7fe878759fec93e68d9" kind="function"><name>devolve_linha</name></member>
+    <member refid="bot_2dados_8c_1a6ad8385b5dad64eeaeb9e7bc3e0b1ee7" kind="function"><name>devolve_coluna</name></member>
+    <member refid="bot_2dados_8c_1ab1e83f3fa9838305353f08b1d31c09b0" kind="function"><name>devolve_isBot</name></member>
   </compound>
   <compound refid="projeto_2dados_8c" kind="file"><name>dados.c</name>
     <member refid="projeto_2dados_8c_1a7e0c7e26fb685d9ab501e19b05e6954f" kind="function"><name>inicializar_estado</name></member>
@@ -64,6 +70,7 @@
     <member refid="projeto_2dados_8c_1ac3d98006c88cb2122e77da54b6679c4c" kind="function"><name>altera_num_jogadas</name></member>
     <member refid="projeto_2dados_8c_1a8da46968cf5f25193cda4074b0566f83" kind="function"><name>altera_numero_comandos</name></member>
     <member refid="projeto_2dados_8c_1a6faa68373203923729ed38657aa0f768" kind="function"><name>obter_estado_casa</name></member>
+    <member refid="projeto_2dados_8c_1a71bdba7a3e31ab34484adad76bc7c445" kind="function"><name>obter_estado_casa2</name></member>
     <member refid="projeto_2dados_8c_1a32f1b5cc763870c658ab48d4f4fe5037" kind="function"><name>altera_casa</name></member>
     <member refid="projeto_2dados_8c_1ac513714cdb4fb130ad6115e4cf4f6564" kind="function"><name>altera_ultima_jogada</name></member>
     <member refid="projeto_2dados_8c_1ab37d4ae84264e9f2d4a969e281748738" kind="function"><name>obtem_coordenada</name></member>
@@ -75,6 +82,11 @@
     <member refid="projeto_2dados_8c_1a51f275eac46d8203926cfbd03954a094" kind="function"><name>altera_flag</name></member>
     <member refid="projeto_2dados_8c_1afe7ce08eb320b5bffe145656c39c55ad" kind="function"><name>alterna_situacao_pos</name></member>
     <member refid="projeto_2dados_8c_1a018f0502108cf18e6e17a609a8868860" kind="function"><name>recupera_valores</name></member>
+    <member refid="projeto_2dados_8c_1a2e386e7df2db2feff534fe400c1da727" kind="function"><name>altera_jogadas_pos</name></member>
+    <member refid="projeto_2dados_8c_1a8e5c53021231ef1496d87728b203da3a" kind="function"><name>acrescenta_coordenada</name></member>
+    <member refid="projeto_2dados_8c_1aefa0e7516d3bf7fe878759fec93e68d9" kind="function"><name>devolve_linha</name></member>
+    <member refid="projeto_2dados_8c_1a6ad8385b5dad64eeaeb9e7bc3e0b1ee7" kind="function"><name>devolve_coluna</name></member>
+    <member refid="projeto_2dados_8c_1ab1e83f3fa9838305353f08b1d31c09b0" kind="function"><name>devolve_isBot</name></member>
   </compound>
   <compound refid="bot_2dados_8h" kind="file"><name>dados.h</name>
     <member refid="bot_2dados_8h_1aba91601f16d4c485b2d9b8c429f27039" kind="enum"><name>CASA</name></member>
@@ -110,6 +122,7 @@
     <member refid="bot_2dados_8h_1a071b57019f202cf0b969952fa4d0a497" kind="function"><name>obter_ultimo_jogador</name></member>
     <member refid="bot_2dados_8h_1a3bb87e3be75e75fe7c9d9fda11cb0079" kind="function"><name>obter_numero_de_comandos</name></member>
     <member refid="bot_2dados_8h_1a6faa68373203923729ed38657aa0f768" kind="function"><name>obter_estado_casa</name></member>
+    <member refid="bot_2dados_8h_1a71bdba7a3e31ab34484adad76bc7c445" kind="function"><name>obter_estado_casa2</name></member>
     <member refid="bot_2dados_8h_1a32f1b5cc763870c658ab48d4f4fe5037" kind="function"><name>altera_casa</name></member>
     <member refid="bot_2dados_8h_1ac513714cdb4fb130ad6115e4cf4f6564" kind="function"><name>altera_ultima_jogada</name></member>
     <member refid="bot_2dados_8h_1ac3d98006c88cb2122e77da54b6679c4c" kind="function"><name>altera_num_jogadas</name></member>
@@ -124,6 +137,11 @@
     <member refid="bot_2dados_8h_1a0e515961048596d9a921bf0abc127d2e" kind="function"><name>devolve_flagpos</name></member>
     <member refid="bot_2dados_8h_1a51f275eac46d8203926cfbd03954a094" kind="function"><name>altera_flag</name></member>
     <member refid="bot_2dados_8h_1a018f0502108cf18e6e17a609a8868860" kind="function"><name>recupera_valores</name></member>
+    <member refid="bot_2dados_8h_1a2e386e7df2db2feff534fe400c1da727" kind="function"><name>altera_jogadas_pos</name></member>
+    <member refid="bot_2dados_8h_1a8e5c53021231ef1496d87728b203da3a" kind="function"><name>acrescenta_coordenada</name></member>
+    <member refid="bot_2dados_8h_1aefa0e7516d3bf7fe878759fec93e68d9" kind="function"><name>devolve_linha</name></member>
+    <member refid="bot_2dados_8h_1a6ad8385b5dad64eeaeb9e7bc3e0b1ee7" kind="function"><name>devolve_coluna</name></member>
+    <member refid="bot_2dados_8h_1ab1e83f3fa9838305353f08b1d31c09b0" kind="function"><name>devolve_isBot</name></member>
   </compound>
   <compound refid="projeto_2dados_8h" kind="file"><name>dados.h</name>
     <member refid="projeto_2dados_8h_1aba91601f16d4c485b2d9b8c429f27039" kind="enum"><name>CASA</name></member>
@@ -159,6 +177,7 @@
     <member refid="projeto_2dados_8h_1a071b57019f202cf0b969952fa4d0a497" kind="function"><name>obter_ultimo_jogador</name></member>
     <member refid="projeto_2dados_8h_1a3bb87e3be75e75fe7c9d9fda11cb0079" kind="function"><name>obter_numero_de_comandos</name></member>
     <member refid="projeto_2dados_8h_1a6faa68373203923729ed38657aa0f768" kind="function"><name>obter_estado_casa</name></member>
+    <member refid="projeto_2dados_8h_1a71bdba7a3e31ab34484adad76bc7c445" kind="function"><name>obter_estado_casa2</name></member>
     <member refid="projeto_2dados_8h_1a32f1b5cc763870c658ab48d4f4fe5037" kind="function"><name>altera_casa</name></member>
     <member refid="projeto_2dados_8h_1ac513714cdb4fb130ad6115e4cf4f6564" kind="function"><name>altera_ultima_jogada</name></member>
     <member refid="projeto_2dados_8h_1ac3d98006c88cb2122e77da54b6679c4c" kind="function"><name>altera_num_jogadas</name></member>
@@ -173,6 +192,11 @@
     <member refid="projeto_2dados_8h_1a0e515961048596d9a921bf0abc127d2e" kind="function"><name>devolve_flagpos</name></member>
     <member refid="projeto_2dados_8h_1a51f275eac46d8203926cfbd03954a094" kind="function"><name>altera_flag</name></member>
     <member refid="projeto_2dados_8h_1a018f0502108cf18e6e17a609a8868860" kind="function"><name>recupera_valores</name></member>
+    <member refid="projeto_2dados_8h_1a2e386e7df2db2feff534fe400c1da727" kind="function"><name>altera_jogadas_pos</name></member>
+    <member refid="projeto_2dados_8h_1a8e5c53021231ef1496d87728b203da3a" kind="function"><name>acrescenta_coordenada</name></member>
+    <member refid="projeto_2dados_8h_1aefa0e7516d3bf7fe878759fec93e68d9" kind="function"><name>devolve_linha</name></member>
+    <member refid="projeto_2dados_8h_1a6ad8385b5dad64eeaeb9e7bc3e0b1ee7" kind="function"><name>devolve_coluna</name></member>
+    <member refid="projeto_2dados_8h_1ab1e83f3fa9838305353f08b1d31c09b0" kind="function"><name>devolve_isBot</name></member>
   </compound>
   <compound refid="bot_2interface_8c" kind="file"><name>interface.c</name>
     <member refid="bot_2interface_8c_1a6821bafc3c88dfb2e433a095df9940c6" kind="define"><name>BUF_SIZE</name></member>
@@ -252,6 +276,7 @@
     <member refid="bot_2listas_8c_1a9026a681a68322b5ec7f07137b864cbd" kind="function"><name>remove_cabeca</name></member>
     <member refid="bot_2listas_8c_1a4c10928f7acaa4e3de3760cea0dfd9c0" kind="function"><name>lista_esta_vazia</name></member>
     <member refid="bot_2listas_8c_1a9dccd83713f51567593766bc7a7a18f7" kind="function"><name>comprimento_lista</name></member>
+    <member refid="bot_2listas_8c_1abfa97f473a811df5552e617d5751f656" kind="function"><name>liga_lista</name></member>
   </compound>
   <compound refid="projeto_2listas_8c" kind="file"><name>listas.c</name>
     <member refid="projeto_2listas_8c_1ae3b99323b6f8f35d80bb69ff1a27985e" kind="function"><name>criar_lista</name></member>
@@ -261,6 +286,7 @@
     <member refid="projeto_2listas_8c_1a9026a681a68322b5ec7f07137b864cbd" kind="function"><name>remove_cabeca</name></member>
     <member refid="projeto_2listas_8c_1a4c10928f7acaa4e3de3760cea0dfd9c0" kind="function"><name>lista_esta_vazia</name></member>
     <member refid="projeto_2listas_8c_1a9dccd83713f51567593766bc7a7a18f7" kind="function"><name>comprimento_lista</name></member>
+    <member refid="projeto_2listas_8c_1abfa97f473a811df5552e617d5751f656" kind="function"><name>liga_lista</name></member>
   </compound>
   <compound refid="bot_2listas_8h" kind="file"><name>listas.h</name>
     <member refid="bot_2listas_8h_1ac294034fbe3bf9846e0465051a477f55" kind="typedef"><name>LISTA</name></member>
@@ -271,6 +297,7 @@
     <member refid="bot_2listas_8h_1a9026a681a68322b5ec7f07137b864cbd" kind="function"><name>remove_cabeca</name></member>
     <member refid="bot_2listas_8h_1a4c10928f7acaa4e3de3760cea0dfd9c0" kind="function"><name>lista_esta_vazia</name></member>
     <member refid="bot_2listas_8h_1a9dccd83713f51567593766bc7a7a18f7" kind="function"><name>comprimento_lista</name></member>
+    <member refid="bot_2listas_8h_1abfa97f473a811df5552e617d5751f656" kind="function"><name>liga_lista</name></member>
   </compound>
   <compound refid="projeto_2listas_8h" kind="file"><name>listas.h</name>
     <member refid="projeto_2listas_8h_1ac294034fbe3bf9846e0465051a477f55" kind="typedef"><name>LISTA</name></member>
@@ -281,6 +308,7 @@
     <member refid="projeto_2listas_8h_1a9026a681a68322b5ec7f07137b864cbd" kind="function"><name>remove_cabeca</name></member>
     <member refid="projeto_2listas_8h_1a4c10928f7acaa4e3de3760cea0dfd9c0" kind="function"><name>lista_esta_vazia</name></member>
     <member refid="projeto_2listas_8h_1a9dccd83713f51567593766bc7a7a18f7" kind="function"><name>comprimento_lista</name></member>
+    <member refid="projeto_2listas_8h_1abfa97f473a811df5552e617d5751f656" kind="function"><name>liga_lista</name></member>
   </compound>
   <compound refid="bot_2logica_8c" kind="file"><name>logica.c</name>
     <member refid="bot_2logica_8c_1a18183af7ccb1fd6405a5f39b1f56ef96" kind="function"><name>verifica_casa_vazia</name></member>

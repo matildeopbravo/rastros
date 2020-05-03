@@ -36,10 +36,14 @@ LISTA remove_cabeca(LISTA L);
 \brief verifica se a lista está vazia. Devolve 1 se estiver
 */
 int lista_esta_vazia(LISTA L);
-
 /**
 \brief Calcula o comprimento da lista ligada
 */
-int comprimento_lista(LISTA L); 
-    
+int comprimento_lista(LISTA L);    
+/**
+\brief Liga duas listas
+@param lista cujo campo proximo sera alterado
+@param lista para a qual apontara o campo proximo da outa lista
+*/
+void liga_lista(LISTA Lprincipal, LISTA Lacrescenta);
 #endif
