@@ -10,14 +10,19 @@
 void jogar_bot(ESTADO * e) {
    
     COORDENADA cord;
+    COORDENADA cord2;
+    ESTADO estado_copia = *e;
         
-
     cord = estrategia_floodfill(e);
-
-    if (cord.linha == 3 && cord.coluna == 4) {
-           cord = estrategia_paridade(e);     
+    if (cord.linha != 3 || cord.coluna != 4){
+    jogar(e,cord);
+    cord2 = estrategia_paridade(e);
     }
-    
+
+    if ((cord.linha == 3 && cord.coluna == 4) || (jogar(e,cord2) == 2)) {
+           cord = estrategia_paridade(&estado_copia);     
+    }
+    *e = estado_copia;
     jogar(e,cord);
     
 }
