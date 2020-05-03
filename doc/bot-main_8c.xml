@@ -106,7 +106,7 @@
 <codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(argc<sp/>==<sp/>3)<sp/>{</highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e<sp/>=<sp/><ref refid="bot_2dados_8h_1a7e0c7e26fb685d9ab501e19b05e6954f" kindref="member">inicializar_estado</ref>();</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>altera_isBot(e);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bot_2dados_8h_1a163a8a7a74510c297dff863363c09f16" kindref="member">altera_isBot</ref>(e);</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bot_2interface_8h_1a898e00d9cc5f81872bcad1e42b198c36" kindref="member">ler</ref>(e,<sp/>argv[1]);<sp/></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bot_8h_1a0b73ce203e43dbd80141314fc5627515" kindref="member">jogar_bot</ref>(e);</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bot_2interface_8h_1af41bd6121813ccf79152e32bc63d28ee" kindref="member">gravar</ref>(e,<sp/>argv[2]);</highlight></codeline>

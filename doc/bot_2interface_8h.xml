@@ -231,7 +231,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/interface.h" line="49" column="5" bodyfile="bot/interface.c" bodystart="265" bodyend="425" declfile="bot/interface.h" declline="49" declcolumn="5"/>
+        <location file="bot/interface.h" line="49" column="5" bodyfile="bot/interface.c" bodystart="258" bodyend="390" declfile="bot/interface.h" declline="49" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="bot_2interface_8h_1a435cb58c045dbe7fd28f87ba619ea3ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="bot_2dados_8h_1aba243e468d4afc4cc209ed6adf5251b5" kindref="member">COMANDO</ref></type>
@@ -650,58 +650,6 @@
         </inbodydescription>
         <location file="bot/interface.h" line="119" column="6" bodyfile="bot/interface.c" bodystart="33" bodyend="89" declfile="bot/interface.h" declline="119" declcolumn="6"/>
       </memberdef>
-      <memberdef kind="function" id="bot_2interface_8h_1afe7ce08eb320b5bffe145656c39c55ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void alterna_situacao_pos</definition>
-        <argsstring>(int *salva_num_jogadas, int *salva_jogador_atual, ESTADO *estado)</argsstring>
-        <name>alterna_situacao_pos</name>
-        <param>
-          <type>int *</type>
-          <declname>salva_num_jogadas</declname>
-        </param>
-        <param>
-          <type>int *</type>
-          <declname>salva_jogador_atual</declname>
-        </param>
-        <param>
-          <type><ref refid="structESTADO" kindref="compound">ESTADO</ref> *</type>
-          <declname>estado</declname>
-        </param>
-        <briefdescription>
-<para>Função de rotina criada pois tais processos feitos por ela é comum a diversas partes do interpretador. É ativada quando a flag_pos = 1, por tanto há que preparar o código para tais situações de &quot;pos&quot; encadeados. Tal função realiza tais operações de preparação. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>salva_num_jogadas</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>apontador para um inteiro que representa o número de jogadas salvo na função chamadora </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>salva_jogador_atual</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>apontador para um inteiro que representa o jogador_atual salvo na função chamadora </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>estado</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Apontador para o estado do jogo </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="bot/interface.h" line="128" column="6" bodyfile="bot/interface.c" bodystart="258" bodyend="263" declfile="bot/interface.h" declline="128" declcolumn="6"/>
-      </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
@@ -730,10 +678,7 @@
 <codeline lineno="106"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2interface_8h_1a898e00d9cc5f81872bcad1e42b198c36" kindref="member">ler</ref><sp/>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>nome_ficheiro);</highlight></codeline>
 <codeline lineno="111"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2interface_8h_1a932b1167634e8f55788e89f6b8b91081" kindref="member">verificanumero</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>token);</highlight></codeline>
 <codeline lineno="119"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2interface_8h_1a3dcaa3f4bfab0f1e7c4597697edf2d14" kindref="member">altera_tabuleiro</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*estado);</highlight></codeline>
-<codeline lineno="120"><highlight class="normal"></highlight></codeline>
-<codeline lineno="128"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2interface_8h_1afe7ce08eb320b5bffe145656c39c55ad" kindref="member">alterna_situacao_pos</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*salva_num_jogadas,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*salva_jogador_atual,<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*estado);</highlight></codeline>
-<codeline lineno="129"><highlight class="normal"></highlight></codeline>
-<codeline lineno="130"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
     <location file="bot/interface.h"/>
   </compounddef>

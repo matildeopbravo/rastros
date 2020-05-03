@@ -832,12 +832,195 @@
           <declname>e</declname>
         </param>
         <briefdescription>
+<para>Altera a flag do isBot do estado para o seu contrário. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Apontador para o estado </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="bot/dados.h" line="161" column="6" bodyfile="bot/dados.c" bodystart="104" bodyend="107" declfile="bot/dados.h" declline="161" declcolumn="6"/>
+        <location file="bot/dados.h" line="165" column="6" bodyfile="bot/dados.c" bodystart="104" bodyend="107" declfile="bot/dados.h" declline="165" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="bot_2dados_8h_1afe7ce08eb320b5bffe145656c39c55ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void alterna_situacao_pos</definition>
+        <argsstring>(int *salva_num_jogadas, int *salva_jogador_atual, ESTADO *estado)</argsstring>
+        <name>alterna_situacao_pos</name>
+        <param>
+          <type>int *</type>
+          <declname>salva_num_jogadas</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>salva_jogador_atual</declname>
+        </param>
+        <param>
+          <type><ref refid="structESTADO" kindref="compound">ESTADO</ref> *</type>
+          <declname>estado</declname>
+        </param>
+        <briefdescription>
+<para>Função de rotina criada pois tais processos feitos por ela é comum a diversas partes do interpretador. É ativada quando a flag_pos = 1, por tanto há que preparar o código para tais situações de &quot;pos&quot; encadeados. Tal função realiza tais operações de preparação. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>salva_num_jogadas</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>apontador para um inteiro que representa o número de jogadas salvo na função chamadora </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>salva_jogador_atual</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>apontador para um inteiro que representa o jogador_atual salvo na função chamadora </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>estado</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Apontador para o estado do jogo </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bot/dados.h" line="174" column="6" bodyfile="bot/dados.c" bodystart="117" bodyend="122" declfile="bot/dados.h" declline="174" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="bot_2dados_8h_1a0e515961048596d9a921bf0abc127d2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int devolve_flagpos</definition>
+        <argsstring>(ESTADO *e)</argsstring>
+        <name>devolve_flagpos</name>
+        <param>
+          <type><ref refid="structESTADO" kindref="compound">ESTADO</ref> *</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+<para>Devolve a flag_pos do estado, dado um estado. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Apontador para o estado </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bot/dados.h" line="180" column="5" bodyfile="bot/dados.c" bodystart="109" bodyend="111" declfile="bot/dados.h" declline="180" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="bot_2dados_8h_1a51f275eac46d8203926cfbd03954a094" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void altera_flag</definition>
+        <argsstring>(ESTADO *e, int valor)</argsstring>
+        <name>altera_flag</name>
+        <param>
+          <type><ref refid="structESTADO" kindref="compound">ESTADO</ref> *</type>
+          <declname>e</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>valor</declname>
+        </param>
+        <briefdescription>
+<para>Altera a flag_pos do estado para o valor dado. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Apontador para o estado </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>valor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>valor a colocar na flag </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bot/dados.h" line="187" column="6" bodyfile="bot/dados.c" bodystart="113" bodyend="116" declfile="bot/dados.h" declline="187" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="bot_2dados_8h_1a018f0502108cf18e6e17a609a8868860" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void recupera_valores</definition>
+        <argsstring>(ESTADO *e, int jogador_atual, int num_jogadas)</argsstring>
+        <name>recupera_valores</name>
+        <param>
+          <type><ref refid="structESTADO" kindref="compound">ESTADO</ref> *</type>
+          <declname>e</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>jogador_atual</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>num_jogadas</declname>
+        </param>
+        <briefdescription>
+<para>Altera o jogador atual e o num de jogados de acordo com os argumentos fornecidos. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Apontador para o estado </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>jogador_atual</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>jogador a ser colocado no estado como jogador atual </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>num_jogdas</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>numero a ser colocado no numero de jogadas </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bot/dados.h" line="195" column="6" bodyfile="bot/dados.c" bodystart="124" bodyend="127" declfile="bot/dados.h" declline="195" declcolumn="6"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -871,8 +1054,8 @@
 <codeline lineno="35" refid="structCOORDENADA_1adfbc8d4856ce807139fdf62e00aed29a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structCOORDENADA_1adfbc8d4856ce807139fdf62e00aed29a" kindref="member">coluna</ref>;<sp/></highlight></codeline>
 <codeline lineno="36"><highlight class="normal">}<sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref>;</highlight></codeline>
 <codeline lineno="40" refid="structJOGADA" refkind="compound"><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="41" refid="structJOGADA_1a93d9306cb0c49b66b7d9a615bffe0149" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="structJOGADA_1a93d9306cb0c49b66b7d9a615bffe0149" kindref="member">jogador1</ref>;<sp/></highlight><highlight class="comment">/*<sp/>Movimento<sp/>efetuado<sp/>pelo<sp/>jogador<sp/>1<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="42" refid="structJOGADA_1ab46b16dfbdc7f2af9430c8dcdac0914b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="structJOGADA_1ab46b16dfbdc7f2af9430c8dcdac0914b" kindref="member">jogador2</ref>;<sp/></highlight><highlight class="comment">/*<sp/>Movimento<sp/>efetuado<sp/>pelo<sp/>jogador<sp/>2<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="structJOGADA_1a93d9306cb0c49b66b7d9a615bffe0149" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="structJOGADA_1a93d9306cb0c49b66b7d9a615bffe0149" kindref="member">jogador1</ref>;<sp/></highlight></codeline>
+<codeline lineno="42" refid="structJOGADA_1ab46b16dfbdc7f2af9430c8dcdac0914b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="structJOGADA_1ab46b16dfbdc7f2af9430c8dcdac0914b" kindref="member">jogador2</ref>;<sp/></highlight></codeline>
 <codeline lineno="43"><highlight class="normal">}<sp/><ref refid="structJOGADA" kindref="compound">JOGADA</ref>;</highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight></codeline>
 <codeline lineno="48" refid="bot_2dados_8h_1a94c221d29a1760f008b7834093259b7d" refkind="member"><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="structJOGADA" kindref="compound">JOGADA</ref><sp/><ref refid="bot_2dados_8h_1a94c221d29a1760f008b7834093259b7d" kindref="member">JOGADAS</ref>[32];</highlight></codeline>
@@ -903,10 +1086,13 @@
 <codeline lineno="146"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1a6223634d44bd7e166a8d649d9fcf0a0f" kindref="member">incrementa_comandos</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e);</highlight></codeline>
 <codeline lineno="151"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2dados_8h_1a4b23ec5c002fb4f3725b02d7c486282a" kindref="member">obtem_ultima_jogada</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e);</highlight></codeline>
 <codeline lineno="159"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2dados_8h_1ab37d4ae84264e9f2d4a969e281748738" kindref="member">obtem_coordenada</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e,</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>indice_jogada,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jogador);</highlight></codeline>
-<codeline lineno="160"><highlight class="normal"></highlight></codeline>
-<codeline lineno="161"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>altera_isBot(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e);</highlight></codeline>
-<codeline lineno="162"><highlight class="normal"></highlight></codeline>
-<codeline lineno="163"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="165"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1a163a8a7a74510c297dff863363c09f16" kindref="member">altera_isBot</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1afe7ce08eb320b5bffe145656c39c55ad" kindref="member">alterna_situacao_pos</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*salva_num_jogadas,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*salva_jogador_atual,<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*estado);</highlight></codeline>
+<codeline lineno="180"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1a0e515961048596d9a921bf0abc127d2e" kindref="member">devolve_flagpos</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e);</highlight></codeline>
+<codeline lineno="187"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1a51f275eac46d8203926cfbd03954a094" kindref="member">altera_flag</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>valor);</highlight></codeline>
+<codeline lineno="195"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1a018f0502108cf18e6e17a609a8868860" kindref="member">recupera_valores</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jogador_atual,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_jogadas);</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
     <location file="bot/dados.h"/>
   </compounddef>
