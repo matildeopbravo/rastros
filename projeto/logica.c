@@ -122,8 +122,8 @@ int verifica_adjacencia ( COORDENADA coord , int num_casa[8][8] , int valor ) {
             coord_vizinha.linha = (coord.linha) + i;
             coord_vizinha.coluna = (coord.coluna) + j;
 
-            if (num_casa[coord_vizinha.linha][coord_vizinha.coluna] == (valor - 1)
-               && verifica_limite_tabuleiro(coord_vizinha))
+            if (verifica_limite_tabuleiro(coord_vizinha)
+            && num_casa[coord_vizinha.linha][coord_vizinha.coluna] == (valor - 1))
                 flag = 1;
                                               
         }
@@ -180,9 +180,10 @@ int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int flag){
 
     //Inicialização das variáveis
     valor_casa_atual = caminho_encontrado =  valor_casa_do_ciclo = 0;
-   
+
     while ( valor_casa_atual == 0 ) {
-  
+
+        
         valor_casa_do_ciclo++; // Toda vez que começa o ciclo incrementamos o valor das casas a preencher(para dar segmento a formação do caminho) 
         caminho_encontrado = 0 ;//Toda vez que o ciclo começa deve se partir do princípio que ainda não encontramos um possível caminho até ser dito o contrário
         COORDENADA coord;
@@ -225,7 +226,13 @@ int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int flag){
             saber que é preciso aplicar o floodfill_inverso, caso contrário quer dizer que já estamos a aplicar o floodfill inverso 
             e mesmo assim não há caminho, logo devolvemos o valor_casa_atual como o valor_casa_do_ciclo para fins na escolha
             qualquer na floodfill inversa*/
+            if ( caminho_encontrado == 0 ) {
+                if ( flag == 1 )
+                    valor_casa_atual = -1 ;
+                else
+                    valor_casa_atual = valor_casa_do_ciclo ;
 
+              }
         }
 
        
@@ -263,17 +270,19 @@ COORDENADA auxiliar_floodfill(ESTADO *e,LISTA possiveis_jogadas,COORDENADA coord
     int valor_casa_atual; //Indicará se será preciso fazer a floodfill inversa ou não
 
     inicializa_num_casa(num_casa,e,1); //inicializa o tabuleiro com valores -1(exceto nos casos especiais das extremidades)
-
+ printf("cheguei\n");
     valor_casa_atual = preenche_valor_das_casas(num_casa,e,1);
-     
+  
         if (valor_casa_atual > 0 && !lista_esta_vazia(possiveis_jogadas)){
+
            coord_escolhida = devolve_coordenada_flood (valor_casa_atual,possiveis_jogadas,num_casa);
         }
         else if (e->isBot){
             coord_escolhida = (COORDENADA) {3,4};
         }
-        else if (!lista_esta_vazia(possiveis_jogadas))
-              coord_escolhida = floodfill_inversa (num_casa,possiveis_jogadas,e);
+        else if (lista_esta_vazia(possiveis_jogadas)!=1){
+    
+              coord_escolhida = floodfill_inversa (num_casa,possiveis_jogadas,e);}
         
          if (lista_esta_vazia(possiveis_jogadas)){
              if (obter_jogador_atual(e) == 1)
