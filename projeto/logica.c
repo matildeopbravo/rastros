@@ -348,38 +348,30 @@ COORDENADA estrategia_floodfill ( ESTADO * e ) {
     return  coord_escolhida;
 
 }
-int elem (int x, int v [], int N){
-    int i;
-    for (i = 0; x != v[i] && i < N ; i++ );
-    return(x == v[i]);
-    
-}
-int aleatorio_paridade(int possiveis [], int N) {
 
-    int x = rand() % N ;
-    while(!elem(x,possiveis,N)) {
-        x = rand() % N ;
-    }
-    return x;
-     
-}
-int devolve_indice_paridade(int paridade[8],int flag){
-    int resultado = 65; /*inicialização da variável com uma quantidade que eu evite ser aleatória e
+int devolve_indice_paridade(int paridade[8]){
+    int jogadas_possiveis [8]; 
+    int menor_par = 66, maior_impar = -1;
+     /*inicialização da variável com uma quantidade que eu evite ser aleatória e
     é de nosso conhecimento que nenhuma área será maior que isso*/
-    int indicedajogadaaefetuar = 9;/*inicialização análoga a anterior porém com índices. Servirá para
-    //indicar que, caso sair do pŕoximo ciclo for e continuar sendo 9 o valor de tal variável, então
-    //não há jogadas com área par para efetuar e por tanto devo escolher uma com área ímpar*/
-    int possiveis_indices [8]; 
-    int j = 0;
+    int j = 0,i = 0;
+
+    for (i = 0; i < 8 ; i++) {
+        if(paridade[i] <= menor_par && paridade[i] % 2 == 0) {
+                menor_par = paridade[i];
+        }
+        if(paridade[i] >= maior_impar && paridade[i] % 2 != 0) {
+                maior_impar = paridade[i];
+        }
+    }
     /*Ciclo que escolhe a menor área par do array*/    
-    for (int i = 0,j=0; i <8;i++){
-        if (paridade[i] % 2 == 0 && paridade[i] <= resultado){
-           indicedajogadaaefetuar = i;
-            resultado = paridade[i];
-            possiveis_indices[j] = i;
-            j++;
-            
-            if (flag == 2) i = 9;
+    if (menor_par != 66 ) {
+
+        for (i = 0; i <8;i++){
+             if (paridade[i] == menor_par){
+                 jogadas_possiveis[j] = i;
+                 j++;
+             }
         }
     }
 
@@ -387,29 +379,27 @@ int devolve_indice_paridade(int paridade[8],int flag){
     Por tanto devo jogar para a MAIOR área ímpar(dado que diminuirá
     as probabilidades de eu ser encurralado)* pois a longo prazo
     o cenário pode mudar*/
-    if (indicedajogadaaefetuar == 9){
-        resultado = 0;
-        for (int i = 0,j = 0; i < 8;i++){
-            if (paridade[i] >= resultado){
-                indicedajogadaaefetuar = i;
-                resultado = paridade[i];
-                possiveis_indices[j] = i;
-                j++;
-                if (flag == 2) i = 9;
-            }
-        }   
+    else {
+
+            for (int i = 0; i < 8;i++){
+                 if (paridade[i] == maior_impar){
+                    jogadas_possiveis[j] = i;
+                    j++;
+                  }
+            }   
     }
-    
-    return aleatorio_paridade(possiveis_indices,j);
+
+    int x = rand() % j ;
+    printf ("\naqui %d",x);
+    return jogadas_possiveis[x];
 }
 
-int  jogadaaefetuar(ESTADO * e,int paridade[8]){
+int  jogadaaefetuar(int paridade[8]){
     int indice_jogada_a_efetuar;
 
-    if (e->jogador_atual == 1)
-        indice_jogada_a_efetuar = devolve_indice_paridade(paridade,1);
-    else 
-        indice_jogada_a_efetuar = devolve_indice_paridade(paridade,2); 
+
+        indice_jogada_a_efetuar = devolve_indice_paridade(paridade);
+
    
     return indice_jogada_a_efetuar;
 }
@@ -478,7 +468,7 @@ void auxiliarparidade (ESTADO *e,LISTA possiveis_jogadas,int paridade[8],COORDEN
 }
 
 COORDENADA estrategia_paridade(ESTADO *e){
-    
+    int indice_da_jogada_escolhida = -1;
     LISTA possiveis_jogadas = criar_lista(); //lista ligada que armazena as possíveis jogadas
     COORDENADA coord_escolhida;//coordenada escolhida resultado de aplicar a função
     
@@ -509,8 +499,8 @@ criada para esse fim */
         /*Função auxiliar que devolverá o índice do array paridade escolhido. Como o array paridade
         possui as áreas respetivas de cada possível jogada, o índice escolhido estará de acordo com
         a posição da jogada na lista ligada*/
-        int indice_da_jogada_escolhida;
-        indice_da_jogada_escolhida = jogadaaefetuar(e,paridade); 
+
+        indice_da_jogada_escolhida = jogadaaefetuar(paridade); 
             
         /*Mediante o índice escolhido na função anterior, será então retirada a melhor jogada possível
         na lista ligada*/
@@ -524,7 +514,9 @@ criada para esse fim */
     /*Quando não há mais opção*/
     if (lista_esta_vazia(possiveis_jogadas) && 
     (obter_estado_casa(e,coord_escolhida) != DOIS)
-     && (obter_estado_casa(e,coord_escolhida) != UM )){
+     && (obter_estado_casa(e,coord_escolhida) != UM)
+     &&  indice_da_jogada_escolhida == -1)
+     {   
         if (obter_jogador_atual(e) == 1)
         coord_escolhida = (COORDENADA) {0,7};
         else  coord_escolhida = (COORDENADA) {7,0};

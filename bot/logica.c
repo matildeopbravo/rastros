@@ -430,7 +430,7 @@ COORDENADA estrategia_paridade(ESTADO *e){
     
     LISTA possiveis_jogadas = criar_lista(); //lista ligada que armazena as possíveis jogadas
     COORDENADA coord_escolhida;//coordenada escolhida resultado de aplicar a função
-    
+    int indice_da_jogada_escolhida = -1;
     coord_escolhida.linha = 3;  // Inicialização da coordenada com este valor com fins na condição
     coord_escolhida.coluna = 4; //presente no próximo 'if'.
     
@@ -458,7 +458,7 @@ criada para esse fim */
         /*Função auxiliar que devolverá o índice do array paridade escolhido. Como o array paridade
         possui as áreas respetivas de cada possível jogada, o índice escolhido estará de acordo com
         a posição da jogada na lista ligada*/
-        int indice_da_jogada_escolhida;
+       
         indice_da_jogada_escolhida = jogadaaefetuar(paridade); 
             
         /*Mediante o índice escolhido na função anterior, será então retirada a melhor jogada possível
@@ -473,7 +473,8 @@ criada para esse fim */
     /*Quando não há mais opção*/
     if (lista_esta_vazia(possiveis_jogadas) && 
     (obter_estado_casa(e,coord_escolhida) != DOIS)
-     && (obter_estado_casa(e,coord_escolhida) != UM )){
+     && (obter_estado_casa(e,coord_escolhida) != UM)
+     &&  indice_da_jogada_escolhida == -1){
         if (obter_jogador_atual(e) == 1)
         coord_escolhida = (COORDENADA) {0,7};
         else  coord_escolhida = (COORDENADA) {7,0};
