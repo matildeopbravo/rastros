@@ -270,7 +270,7 @@ COORDENADA auxiliar_floodfill(ESTADO *e,LISTA possiveis_jogadas,COORDENADA coord
     int valor_casa_atual; //Indicará se será preciso fazer a floodfill inversa ou não
 
     inicializa_num_casa(num_casa,e,1); //inicializa o tabuleiro com valores -1(exceto nos casos especiais das extremidades)
- printf("cheguei\n");
+
     valor_casa_atual = preenche_valor_das_casas(num_casa,e,1);
   
         if (valor_casa_atual > 0 && !lista_esta_vazia(possiveis_jogadas)){
