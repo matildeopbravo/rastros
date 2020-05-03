@@ -37,9 +37,9 @@ typedef struct {/** Correspondente à linha de uma coordenada */
 /**
 \brief Tipo de dados para o tipo JOGADA
 */
-typedef struct {
-	COORDENADA jogador1; /* Movimento efetuado pelo jogador 1  */
-	COORDENADA jogador2; /* Movimento efetuado pelo jogador 2  */
+typedef struct {/** Movimento efetuado pelo jogador 1  */
+	COORDENADA jogador1; /** Movimento efetuado pelo jogador 2  */
+	COORDENADA jogador2; 
 } JOGADA;
 
 /**
@@ -157,7 +157,40 @@ COORDENADA obtem_ultima_jogada(ESTADO * e);
 */
 
 COORDENADA obtem_coordenada(ESTADO * e,int indice_jogada, int jogador);
+/**
+\brief Altera a flag do isBot do estado para o seu contrário 
+@param e Apontador para o estado
+*/
 
 void altera_isBot(ESTADO * e);
 
+/** 
+\brief Função de rotina criada pois tais processos feitos por ela é comum a diversas partes do interpretador. É ativada quando
+a flag_pos = 1, por tanto há que preparar o código para tais situações de "pos" encadeados. Tal função realiza tais operações de preparação.
+@param salva_num_jogadas apontador para um inteiro que representa o número de jogadas salvo na função chamadora
+@param salva_jogador_atual apontador para um inteiro que representa o jogador_atual salvo na função chamadora
+@param estado Apontador para o estado do jogo
+*/
+void alterna_situacao_pos (int *salva_num_jogadas, int *salva_jogador_atual, ESTADO *estado);
+/**
+\brief Devolve a flag_pos  do estado, dado um estado.
+@param e Apontador para o estado
+*/
+
+int devolve_flagpos(ESTADO * e);
+/**
+\brief Altera a flag_pos do estado para o valor dado.
+@param e Apontador para o estado
+@param valor valor a colocar na flag
+*/
+
+void altera_flag(ESTADO * e, int valor);
+/**
+\brief Altera o jogador atual e o num de jogados de acordo com os argumentos fornecidos.
+@param e Apontador para o estado
+@param jogador_atual jogador a ser colocado no estado como jogador atual
+@param num_jogdas numero a ser colocado no numero de jogadas
+*/
+
+void recupera_valores(ESTADO * e, int jogador_atual, int num_jogadas);
 #endif

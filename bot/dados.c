@@ -106,3 +106,24 @@ void altera_isBot(ESTADO * e) {
    e->isBot = !(e->isBot);
 }
 
+int devolve_flagpos(ESTADO * e) {
+    return (e->flag_pos);
+}
+
+void altera_flag(ESTADO * e, int valor) {
+    e->flag_pos = valor;
+
+}
+void alterna_situacao_pos (int *salva_num_jogadas, int *salva_jogador_atual, ESTADO *estado){
+     *salva_num_jogadas = obter_numero_de_jogadas(estado);
+     *salva_jogador_atual =  obter_jogador_atual(estado);
+     altera_num_jogadas(estado,estado->guarda_num_jogadas_pos + 1);
+     altera_jogador_atual(estado,1);
+}    
+
+void recupera_valores(ESTADO * e, int jogador_atual, int num_jogadas) {
+    altera_jogador_atual(e,jogador_atual);
+    altera_num_jogadas(e, num_jogadas);
+}
+
+

@@ -1,0 +1,198 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="bot_2listas_8h" kind="file" language="C++">
+    <compoundname>listas.h</compoundname>
+    <includedby refid="bot_2logica_8h" local="yes">bot/logica.h</includedby>
+    <includedby refid="bot_2listas_8c" local="yes">bot/listas.c</includedby>
+    <includedby refid="bot_2logica_8c" local="yes">bot/logica.c</includedby>
+    <invincdepgraph>
+      <node id="3">
+        <label>bot/bot-main.c</label>
+        <link refid="bot-main_8c"/>
+      </node>
+      <node id="2">
+        <label>bot/logica.h</label>
+        <link refid="bot_2logica_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>bot/listas.h</label>
+        <link refid="bot_2listas_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structlista" prot="public">lista</innerclass>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="bot_2listas_8h_1ac294034fbe3bf9846e0465051a477f55" prot="public" static="no">
+        <type>struct <ref refid="structlista" kindref="compound">lista</ref> *</type>
+        <definition>typedef struct lista * LISTA</definition>
+        <argsstring></argsstring>
+        <name>LISTA</name>
+        <briefdescription>
+<para>Lista que vai armazenar as possíveis jogadas a se efetuar. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bot/listas.h" line="14" column="8"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="bot_2listas_8h_1ae3b99323b6f8f35d80bb69ff1a27985e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="bot_2listas_8h_1ac294034fbe3bf9846e0465051a477f55" kindref="member">LISTA</ref></type>
+        <definition>LISTA criar_lista</definition>
+        <argsstring>()</argsstring>
+        <name>criar_lista</name>
+        <briefdescription>
+<para>Inicializa uma lista ligada. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bot/listas.h" line="18" column="7" bodyfile="bot/listas.c" bodystart="6" bodyend="8" declfile="bot/listas.h" declline="18" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="bot_2listas_8h_1a37ba5fc3cfddb6bc94d4b54b00bc696e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="bot_2listas_8h_1ac294034fbe3bf9846e0465051a477f55" kindref="member">LISTA</ref></type>
+        <definition>LISTA insere_cabeca</definition>
+        <argsstring>(LISTA L, void *valor)</argsstring>
+        <name>insere_cabeca</name>
+        <param>
+          <type><ref refid="bot_2listas_8h_1ac294034fbe3bf9846e0465051a477f55" kindref="member">LISTA</ref></type>
+          <declname>L</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>valor</declname>
+        </param>
+        <briefdescription>
+<para>Insere um elemento na lista ligada(na primeira posição) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bot/listas.h" line="22" column="7" bodyfile="bot/listas.c" bodystart="10" bodyend="17" declfile="bot/listas.h" declline="22" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="bot_2listas_8h_1abfcb205f3eb670157be0d1221021714b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void* devolve_cabeca</definition>
+        <argsstring>(LISTA L)</argsstring>
+        <name>devolve_cabeca</name>
+        <param>
+          <type><ref refid="bot_2listas_8h_1ac294034fbe3bf9846e0465051a477f55" kindref="member">LISTA</ref></type>
+          <declname>L</declname>
+        </param>
+        <briefdescription>
+<para>Devolve o primeiro valor da lista ligada. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bot/listas.h" line="26" column="7" bodyfile="bot/listas.c" bodystart="18" bodyend="21" declfile="bot/listas.h" declline="26" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="bot_2listas_8h_1ad9380152361127432c55c1c6067e05ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="bot_2listas_8h_1ac294034fbe3bf9846e0465051a477f55" kindref="member">LISTA</ref></type>
+        <definition>LISTA proximo</definition>
+        <argsstring>(LISTA L)</argsstring>
+        <name>proximo</name>
+        <param>
+          <type><ref refid="bot_2listas_8h_1ac294034fbe3bf9846e0465051a477f55" kindref="member">LISTA</ref></type>
+          <declname>L</declname>
+        </param>
+        <briefdescription>
+<para>Devolve o endereço da segunda componente da lista ligada. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bot/listas.h" line="30" column="7" bodyfile="bot/listas.c" bodystart="23" bodyend="25" declfile="bot/listas.h" declline="30" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="bot_2listas_8h_1a9026a681a68322b5ec7f07137b864cbd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="bot_2listas_8h_1ac294034fbe3bf9846e0465051a477f55" kindref="member">LISTA</ref></type>
+        <definition>LISTA remove_cabeca</definition>
+        <argsstring>(LISTA L)</argsstring>
+        <name>remove_cabeca</name>
+        <param>
+          <type><ref refid="bot_2listas_8h_1ac294034fbe3bf9846e0465051a477f55" kindref="member">LISTA</ref></type>
+          <declname>L</declname>
+        </param>
+        <briefdescription>
+<para>remove o primeiro elemento da lista ligada </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bot/listas.h" line="34" column="7" bodyfile="bot/listas.c" bodystart="26" bodyend="31" declfile="bot/listas.h" declline="34" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="bot_2listas_8h_1a4c10928f7acaa4e3de3760cea0dfd9c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int lista_esta_vazia</definition>
+        <argsstring>(LISTA L)</argsstring>
+        <name>lista_esta_vazia</name>
+        <param>
+          <type><ref refid="bot_2listas_8h_1ac294034fbe3bf9846e0465051a477f55" kindref="member">LISTA</ref></type>
+          <declname>L</declname>
+        </param>
+        <briefdescription>
+<para>verifica se a lista está vazia. Devolve 1 se estiver </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bot/listas.h" line="38" column="5" bodyfile="bot/listas.c" bodystart="33" bodyend="35" declfile="bot/listas.h" declline="38" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="bot_2listas_8h_1a9dccd83713f51567593766bc7a7a18f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int comprimento_lista</definition>
+        <argsstring>(LISTA L)</argsstring>
+        <name>comprimento_lista</name>
+        <param>
+          <type><ref refid="bot_2listas_8h_1ac294034fbe3bf9846e0465051a477f55" kindref="member">LISTA</ref></type>
+          <declname>L</declname>
+        </param>
+        <briefdescription>
+<para>Calcula o comprimento da lista ligada. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bot/listas.h" line="43" column="5" bodyfile="bot/listas.c" bodystart="37" bodyend="42" declfile="bot/listas.h" declline="43" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Definição da lista ligada que armazena as possíveis jogadas a serem efetuadas e funções úteis para tal. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="6"><highlight class="preprocessor">#ifndef<sp/>LISTAS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LISTAS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="structlista" refkind="compound"><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structlista" kindref="compound">lista</ref><sp/>{</highlight></codeline>
+<codeline lineno="12" refid="structlista_1a3033d6b547266ff408f8a26871f7e758" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/><ref refid="structlista_1a3033d6b547266ff408f8a26871f7e758" kindref="member">valor</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="13" refid="structlista_1a1e728b6c9bd42373ddd7a2a8d77a1a51" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structlista" kindref="compound">lista</ref><sp/>*<sp/><sp/><ref refid="structlista_1a1e728b6c9bd42373ddd7a2a8d77a1a51" kindref="member">prox</ref>;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">}<sp/>*<ref refid="bot_2listas_8h_1ac294034fbe3bf9846e0465051a477f55" kindref="member">LISTA</ref>;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><ref refid="structlista" kindref="compound">LISTA</ref><sp/><ref refid="bot_2listas_8h_1ae3b99323b6f8f35d80bb69ff1a27985e" kindref="member">criar_lista</ref>();</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><ref refid="structlista" kindref="compound">LISTA</ref><sp/><ref refid="bot_2listas_8h_1a37ba5fc3cfddb6bc94d4b54b00bc696e" kindref="member">insere_cabeca</ref>(<ref refid="structlista" kindref="compound">LISTA</ref><sp/>L,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="structlista_1a3033d6b547266ff408f8a26871f7e758" kindref="member">valor</ref>);</highlight></codeline>
+<codeline lineno="26"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/><ref refid="bot_2listas_8h_1abfcb205f3eb670157be0d1221021714b" kindref="member">devolve_cabeca</ref>(<ref refid="structlista" kindref="compound">LISTA</ref><sp/>L);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><ref refid="structlista" kindref="compound">LISTA</ref><sp/><ref refid="bot_2listas_8h_1ad9380152361127432c55c1c6067e05ae" kindref="member">proximo</ref>(<ref refid="structlista" kindref="compound">LISTA</ref><sp/>L);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><ref refid="structlista" kindref="compound">LISTA</ref><sp/><ref refid="bot_2listas_8h_1a9026a681a68322b5ec7f07137b864cbd" kindref="member">remove_cabeca</ref>(<ref refid="structlista" kindref="compound">LISTA</ref><sp/>L);</highlight></codeline>
+<codeline lineno="38"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2listas_8h_1a4c10928f7acaa4e3de3760cea0dfd9c0" kindref="member">lista_esta_vazia</ref>(<ref refid="structlista" kindref="compound">LISTA</ref><sp/>L);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2listas_8h_1a9dccd83713f51567593766bc7a7a18f7" kindref="member">comprimento_lista</ref>(<ref refid="structlista" kindref="compound">LISTA</ref><sp/>L);<sp/></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="bot/listas.h"/>
+  </compounddef>
+</doxygen>

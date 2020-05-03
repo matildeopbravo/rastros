@@ -1,0 +1,330 @@
+\hypertarget{projeto_2interface_8h}{}\doxysection{projeto/interface.h File Reference}
+\label{projeto_2interface_8h}\index{projeto/interface.h@{projeto/interface.h}}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{projeto_2interface_8h_aeaf835741929328f7b63aa297cae7b9d}{mostrar\+\_\+tabuleiro}} (\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$estado, F\+I\+LE $\ast$stream)
+\begin{DoxyCompactList}\small\item\em Mostra o tabuleiro no ecrã como também o insere num ficheiro quando efetuado o comando \char`\"{}gr\char`\"{}. O tabuleiro é apresentado na stream fornecida como argumento que será um apontador para um ficheiro ou stdout. Sempre que efetuamos esse comando \char`\"{}alteramos o tabuleiro\char`\"{}, isto é, preenchemos ele do zero, algo que é útil em diversas situações e potencial de ser reaproveitado tanto para apresentar o tabuleiro após jogadas normais como para apresentar o tabuleiro após um comando \char`\"{}pos\char`\"{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projeto_2interface_8h_a1fd532d3d252ff42d406a15757e2a401}{mostrar\+\_\+prompt}} (\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$e)
+\begin{DoxyCompactList}\small\item\em Função que apresenta o prompt, o qual contém o número do jogador atual,o número e jogadas e o número de comandos efetuados. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{projeto_2interface_8h_a23d957b85a87301d978ca029c5f44e68}{obtem\+\_\+jogada}} (\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$e, int indice\+\_\+jogada, int jogador)
+\begin{DoxyCompactList}\small\item\em Devolve uma coordenada sob a forma de string formatada para ser apresentada ao utilizador. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projeto_2interface_8h_a7c17bb9ba6133664ce9e7ac864408e5a}{mostrar\+\_\+jogadas}} (\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$e, F\+I\+LE $\ast$stream)
+\begin{DoxyCompactList}\small\item\em Função que apresenta as jogadas efetuadas no jogo atual, ou seja, o array J\+O\+G\+A\+D\+AS do estado. As jogadas são apresentadas na stream fornecida como argumento que será um apontador para um ficheiro ou stdout. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projeto_2interface_8h_af66467059def42d9786fe354e061f517}{printarcampeao}} (\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$estado)
+\begin{DoxyCompactList}\small\item\em Funcão que apresenta no ecrã o vencedor do jogo atual. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{projeto_2interface_8h_a24da95ebeede4a540e37790ce8be359b}{interpretador}} (\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$e)
+\begin{DoxyCompactList}\small\item\em Função que controla o Input/\+Output do jogo. Apresenta no ecrã, em primeiro lugar, o estado atual do tabuleiro e o prompt. Além disso,lê o input do utilizador e interpreta os comandos/jogadas que este efetuar e chama as devidas funções. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{bot_2dados_8h_aba243e468d4afc4cc209ed6adf5251b5}{C\+O\+M\+A\+N\+DO}} \mbox{\hyperlink{projeto_2interface_8h_a435cb58c045dbe7fd28f87ba619ea3ee}{verifica\+\_\+comando}} (char $\ast$token)
+\begin{DoxyCompactList}\small\item\em Função que verifica se o comando escrito pelo utilizador é um dos possíveis de serem feitos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projeto_2interface_8h_a4feef22da348ee5e5790e65ebc8cfa9c}{guarda\+\_\+estado}} (\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$e, \mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$copia\+\_\+estado)
+\begin{DoxyCompactList}\small\item\em Função que guarda o estado atual do tabuleiroe das jogadas num \char`\"{}estado copia\char`\"{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projeto_2interface_8h_a99ce84fff9314f1690bc357232a62b17}{repor\+\_\+estado}} (\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$e, \mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$copia\+\_\+estado)
+\begin{DoxyCompactList}\small\item\em Função que guarda no estado atual o tabuleiro e as jogados do \char`\"{}estado copia\char`\"{}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{projeto_2interface_8h_aa6b1d54b3b688e0b316ce980dde89a49}{pos}} (\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$e, \mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$copia\+\_\+estado, char $\ast$token)
+\begin{DoxyCompactList}\small\item\em Função que guarda no estado atual o tabuleiro e as jogados do \char`\"{}estado copia\char`\"{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projeto_2interface_8h_acbc160d68b752a03bfda02407925385d}{ler\+\_\+tabuleiro}} (\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$e, F\+I\+LE $\ast$file\+\_\+pointer)
+\begin{DoxyCompactList}\small\item\em Função que lê o tabuleiro de um ficheiro e guarda no estado atual o array tab e a \mbox{\hyperlink{structCOORDENADA}{C\+O\+O\+R\+D\+E\+N\+A\+DA}} da última jogda. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projeto_2interface_8h_ae371cb491203403189792f5b9c099a91}{ler\+\_\+jogadas}} (\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$e, F\+I\+LE $\ast$file\+\_\+pointer)
+\begin{DoxyCompactList}\small\item\em Função que lê a lista de jogadas pela forma como foram gravadas no ficheiro. Ou seja, uma jogada em cada linha. Acrescenta cada jogada ao array J\+O\+G\+A\+D\+AS do estado atual. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projeto_2interface_8h_ad8252e5b7b8886a4a92cb9838c97b71e}{ler\+\_\+prompt}} (\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$e, F\+I\+LE $\ast$file\+\_\+pointer)
+\begin{DoxyCompactList}\small\item\em Função que lê o prompt que foi gravado num ficheiro. Atualiza o estado com os valores do número de jogadas, jogador atual número de comandos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projeto_2interface_8h_af41bd6121813ccf79152e32bc63d28ee}{gravar}} (\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$e, char $\ast$nome\+\_\+ficheiro)
+\begin{DoxyCompactList}\small\item\em Função que dado um nome de um ficheiro, grava o tabuleiro, o prompt e a a lista de jogadas no mesmo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projeto_2interface_8h_a898e00d9cc5f81872bcad1e42b198c36}{ler}} (\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$e, char $\ast$nome\+\_\+ficheiro)
+\begin{DoxyCompactList}\small\item\em Função que dado um nome de um ficheiro, lê do mesmo o estado do jogo através da leitura do tabuleiro, do prompt e da lista de jogadas. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{projeto_2interface_8h_a932b1167634e8f55788e89f6b8b91081}{verificanumero}} (char token)
+\begin{DoxyCompactList}\small\item\em Função que verifica se um dado carácter, \char`\"{}token\char`\"{}, é um digito ou não. Devolve 1 caso for digito, 0 caso contrário. ~\newline
+ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{projeto_2interface_8h_a3dcaa3f4bfab0f1e7c4597697edf2d14}{altera\+\_\+tabuleiro}} (\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$estado)
+\begin{DoxyCompactList}\small\item\em Função que preenche o tabuleiro de acordo com as jogadas efetuadas até a n-\/ésima jogada, onde n é o número de jogadas atual. Útil utilizá-\/la sempre que é efetuada uma jogada de modo a se preocupar apenas em alterar o número de jogadas mediante a necessidade, podendo ser uma função reutilizada tanto para o comando se jogar normal como também após ter sido efetuado um comando \char`\"{}pos\char`\"{} . \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Funções que lidam maioritariamente com input/output do utilizador e de ficheiros 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{projeto_2interface_8h_a3dcaa3f4bfab0f1e7c4597697edf2d14}\label{projeto_2interface_8h_a3dcaa3f4bfab0f1e7c4597697edf2d14}} 
+\index{interface.h@{interface.h}!altera\_tabuleiro@{altera\_tabuleiro}}
+\index{altera\_tabuleiro@{altera\_tabuleiro}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{altera\_tabuleiro()}{altera\_tabuleiro()}}
+{\footnotesize\ttfamily void altera\+\_\+tabuleiro (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$}]{estado }\end{DoxyParamCaption})}
+
+
+
+Função que preenche o tabuleiro de acordo com as jogadas efetuadas até a n-\/ésima jogada, onde n é o número de jogadas atual. Útil utilizá-\/la sempre que é efetuada uma jogada de modo a se preocupar apenas em alterar o número de jogadas mediante a necessidade, podendo ser uma função reutilizada tanto para o comando se jogar normal como também após ter sido efetuado um comando \char`\"{}pos\char`\"{} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em estado} & Appontador para o estado do jogo \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{projeto_2interface_8h_af41bd6121813ccf79152e32bc63d28ee}\label{projeto_2interface_8h_af41bd6121813ccf79152e32bc63d28ee}} 
+\index{interface.h@{interface.h}!gravar@{gravar}}
+\index{gravar@{gravar}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{gravar()}{gravar()}}
+{\footnotesize\ttfamily void gravar (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$}]{e,  }\item[{char $\ast$}]{nome\+\_\+ficheiro }\end{DoxyParamCaption})}
+
+
+
+Função que dado um nome de um ficheiro, grava o tabuleiro, o prompt e a a lista de jogadas no mesmo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & Apontador para o estado \\
+\hline
+{\em nome\+\_\+ficheiro} & Apontador para carácter (primeiro carácter do nome do ficheiro) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{projeto_2interface_8h_a4feef22da348ee5e5790e65ebc8cfa9c}\label{projeto_2interface_8h_a4feef22da348ee5e5790e65ebc8cfa9c}} 
+\index{interface.h@{interface.h}!guarda\_estado@{guarda\_estado}}
+\index{guarda\_estado@{guarda\_estado}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{guarda\_estado()}{guarda\_estado()}}
+{\footnotesize\ttfamily void guarda\+\_\+estado (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$}]{e,  }\item[{\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$}]{copia\+\_\+estado }\end{DoxyParamCaption})}
+
+
+
+Função que guarda o estado atual do tabuleiroe das jogadas num \char`\"{}estado copia\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Apontador} & para o estado atual \\
+\hline
+{\em Apontador} & para o estado copia \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{projeto_2interface_8h_a24da95ebeede4a540e37790ce8be359b}\label{projeto_2interface_8h_a24da95ebeede4a540e37790ce8be359b}} 
+\index{interface.h@{interface.h}!interpretador@{interpretador}}
+\index{interpretador@{interpretador}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{interpretador()}{interpretador()}}
+{\footnotesize\ttfamily int interpretador (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+Função que controla o Input/\+Output do jogo. Apresenta no ecrã, em primeiro lugar, o estado atual do tabuleiro e o prompt. Além disso,lê o input do utilizador e interpreta os comandos/jogadas que este efetuar e chama as devidas funções. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & Apontador para o estado \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{projeto_2interface_8h_a898e00d9cc5f81872bcad1e42b198c36}\label{projeto_2interface_8h_a898e00d9cc5f81872bcad1e42b198c36}} 
+\index{interface.h@{interface.h}!ler@{ler}}
+\index{ler@{ler}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{ler()}{ler()}}
+{\footnotesize\ttfamily void ler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$}]{e,  }\item[{char $\ast$}]{nome\+\_\+ficheiro }\end{DoxyParamCaption})}
+
+
+
+Função que dado um nome de um ficheiro, lê do mesmo o estado do jogo através da leitura do tabuleiro, do prompt e da lista de jogadas. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & Apontador para o estado \\
+\hline
+{\em nome\+\_\+ficheiro} & Apontador para carácter (primeiro caracter do nome do ficheiro) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{projeto_2interface_8h_ae371cb491203403189792f5b9c099a91}\label{projeto_2interface_8h_ae371cb491203403189792f5b9c099a91}} 
+\index{interface.h@{interface.h}!ler\_jogadas@{ler\_jogadas}}
+\index{ler\_jogadas@{ler\_jogadas}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{ler\_jogadas()}{ler\_jogadas()}}
+{\footnotesize\ttfamily void ler\+\_\+jogadas (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$}]{e,  }\item[{F\+I\+LE $\ast$}]{file\+\_\+pointer }\end{DoxyParamCaption})}
+
+
+
+Função que lê a lista de jogadas pela forma como foram gravadas no ficheiro. Ou seja, uma jogada em cada linha. Acrescenta cada jogada ao array J\+O\+G\+A\+D\+AS do estado atual. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & Apontador para o estado \\
+\hline
+{\em file\+\_\+pointer} & Apontador para F\+I\+LE \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{projeto_2interface_8h_ad8252e5b7b8886a4a92cb9838c97b71e}\label{projeto_2interface_8h_ad8252e5b7b8886a4a92cb9838c97b71e}} 
+\index{interface.h@{interface.h}!ler\_prompt@{ler\_prompt}}
+\index{ler\_prompt@{ler\_prompt}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{ler\_prompt()}{ler\_prompt()}}
+{\footnotesize\ttfamily void ler\+\_\+prompt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$}]{e,  }\item[{F\+I\+LE $\ast$}]{file\+\_\+pointer }\end{DoxyParamCaption})}
+
+
+
+Função que lê o prompt que foi gravado num ficheiro. Atualiza o estado com os valores do número de jogadas, jogador atual número de comandos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & Apontador para o estado \\
+\hline
+{\em file\+\_\+pointer} & Apontador para F\+I\+LE \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{projeto_2interface_8h_acbc160d68b752a03bfda02407925385d}\label{projeto_2interface_8h_acbc160d68b752a03bfda02407925385d}} 
+\index{interface.h@{interface.h}!ler\_tabuleiro@{ler\_tabuleiro}}
+\index{ler\_tabuleiro@{ler\_tabuleiro}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{ler\_tabuleiro()}{ler\_tabuleiro()}}
+{\footnotesize\ttfamily void ler\+\_\+tabuleiro (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$}]{e,  }\item[{F\+I\+LE $\ast$}]{file\+\_\+pointer }\end{DoxyParamCaption})}
+
+
+
+Função que lê o tabuleiro de um ficheiro e guarda no estado atual o array tab e a \mbox{\hyperlink{structCOORDENADA}{C\+O\+O\+R\+D\+E\+N\+A\+DA}} da última jogda. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & Apontador para o estado \\
+\hline
+{\em file\+\_\+pointer} & Apontador para F\+I\+LE \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{projeto_2interface_8h_a7c17bb9ba6133664ce9e7ac864408e5a}\label{projeto_2interface_8h_a7c17bb9ba6133664ce9e7ac864408e5a}} 
+\index{interface.h@{interface.h}!mostrar\_jogadas@{mostrar\_jogadas}}
+\index{mostrar\_jogadas@{mostrar\_jogadas}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{mostrar\_jogadas()}{mostrar\_jogadas()}}
+{\footnotesize\ttfamily void mostrar\+\_\+jogadas (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$}]{e,  }\item[{F\+I\+LE $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+Função que apresenta as jogadas efetuadas no jogo atual, ou seja, o array J\+O\+G\+A\+D\+AS do estado. As jogadas são apresentadas na stream fornecida como argumento que será um apontador para um ficheiro ou stdout. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & Apontador para o estado \\
+\hline
+{\em stream} & Apontador para F\+I\+LE \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{projeto_2interface_8h_a1fd532d3d252ff42d406a15757e2a401}\label{projeto_2interface_8h_a1fd532d3d252ff42d406a15757e2a401}} 
+\index{interface.h@{interface.h}!mostrar\_prompt@{mostrar\_prompt}}
+\index{mostrar\_prompt@{mostrar\_prompt}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{mostrar\_prompt()}{mostrar\_prompt()}}
+{\footnotesize\ttfamily void mostrar\+\_\+prompt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+Função que apresenta o prompt, o qual contém o número do jogador atual,o número e jogadas e o número de comandos efetuados. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & Apontador para o estado \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{projeto_2interface_8h_aeaf835741929328f7b63aa297cae7b9d}\label{projeto_2interface_8h_aeaf835741929328f7b63aa297cae7b9d}} 
+\index{interface.h@{interface.h}!mostrar\_tabuleiro@{mostrar\_tabuleiro}}
+\index{mostrar\_tabuleiro@{mostrar\_tabuleiro}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{mostrar\_tabuleiro()}{mostrar\_tabuleiro()}}
+{\footnotesize\ttfamily void mostrar\+\_\+tabuleiro (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$}]{estado,  }\item[{F\+I\+LE $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+Mostra o tabuleiro no ecrã como também o insere num ficheiro quando efetuado o comando \char`\"{}gr\char`\"{}. O tabuleiro é apresentado na stream fornecida como argumento que será um apontador para um ficheiro ou stdout. Sempre que efetuamos esse comando \char`\"{}alteramos o tabuleiro\char`\"{}, isto é, preenchemos ele do zero, algo que é útil em diversas situações e potencial de ser reaproveitado tanto para apresentar o tabuleiro após jogadas normais como para apresentar o tabuleiro após um comando \char`\"{}pos\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em estado} & Apontador para o estado \\
+\hline
+{\em stream} & Apontador para F\+I\+LE \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{projeto_2interface_8h_a23d957b85a87301d978ca029c5f44e68}\label{projeto_2interface_8h_a23d957b85a87301d978ca029c5f44e68}} 
+\index{interface.h@{interface.h}!obtem\_jogada@{obtem\_jogada}}
+\index{obtem\_jogada@{obtem\_jogada}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{obtem\_jogada()}{obtem\_jogada()}}
+{\footnotesize\ttfamily char$\ast$ obtem\+\_\+jogada (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$}]{e,  }\item[{int}]{indice\+\_\+jogada,  }\item[{int}]{jogador }\end{DoxyParamCaption})}
+
+
+
+Devolve uma coordenada sob a forma de string formatada para ser apresentada ao utilizador. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & Apontador para o estado \\
+\hline
+{\em indice\+\_\+jogada} & Indice da jogada a ser procruada \\
+\hline
+{\em jogador} & jogador que efetuou a jogada pretendida \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{projeto_2interface_8h_aa6b1d54b3b688e0b316ce980dde89a49}\label{projeto_2interface_8h_aa6b1d54b3b688e0b316ce980dde89a49}} 
+\index{interface.h@{interface.h}!pos@{pos}}
+\index{pos@{pos}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{pos()}{pos()}}
+{\footnotesize\ttfamily int pos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$}]{e,  }\item[{\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$}]{copia\+\_\+estado,  }\item[{char $\ast$}]{token }\end{DoxyParamCaption})}
+
+
+
+Função que guarda no estado atual o tabuleiro e as jogados do \char`\"{}estado copia\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Apontador} & para o estado atual \\
+\hline
+{\em Apontador} & para o estado copia \\
+\hline
+{\em Token} & que poderá corresponder ao número da jogada para qual se pretende voltar \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{projeto_2interface_8h_af66467059def42d9786fe354e061f517}\label{projeto_2interface_8h_af66467059def42d9786fe354e061f517}} 
+\index{interface.h@{interface.h}!printarcampeao@{printarcampeao}}
+\index{printarcampeao@{printarcampeao}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{printarcampeao()}{printarcampeao()}}
+{\footnotesize\ttfamily void printarcampeao (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$}]{estado }\end{DoxyParamCaption})}
+
+
+
+Funcão que apresenta no ecrã o vencedor do jogo atual. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em estado} & Apontador para o estado \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{projeto_2interface_8h_a99ce84fff9314f1690bc357232a62b17}\label{projeto_2interface_8h_a99ce84fff9314f1690bc357232a62b17}} 
+\index{interface.h@{interface.h}!repor\_estado@{repor\_estado}}
+\index{repor\_estado@{repor\_estado}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{repor\_estado()}{repor\_estado()}}
+{\footnotesize\ttfamily void repor\+\_\+estado (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$}]{e,  }\item[{\mbox{\hyperlink{structESTADO}{E\+S\+T\+A\+DO}} $\ast$}]{copia\+\_\+estado }\end{DoxyParamCaption})}
+
+
+
+Função que guarda no estado atual o tabuleiro e as jogados do \char`\"{}estado copia\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Apontador} & para o estado atual \\
+\hline
+{\em Apontador} & para o estado copia \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{projeto_2interface_8h_a435cb58c045dbe7fd28f87ba619ea3ee}\label{projeto_2interface_8h_a435cb58c045dbe7fd28f87ba619ea3ee}} 
+\index{interface.h@{interface.h}!verifica\_comando@{verifica\_comando}}
+\index{verifica\_comando@{verifica\_comando}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{verifica\_comando()}{verifica\_comando()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bot_2dados_8h_aba243e468d4afc4cc209ed6adf5251b5}{C\+O\+M\+A\+N\+DO}} verifica\+\_\+comando (\begin{DoxyParamCaption}\item[{char $\ast$}]{token }\end{DoxyParamCaption})}
+
+
+
+Função que verifica se o comando escrito pelo utilizador é um dos possíveis de serem feitos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em token} & Apontador para caracter \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{projeto_2interface_8h_a932b1167634e8f55788e89f6b8b91081}\label{projeto_2interface_8h_a932b1167634e8f55788e89f6b8b91081}} 
+\index{interface.h@{interface.h}!verificanumero@{verificanumero}}
+\index{verificanumero@{verificanumero}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{verificanumero()}{verificanumero()}}
+{\footnotesize\ttfamily int verificanumero (\begin{DoxyParamCaption}\item[{char}]{token }\end{DoxyParamCaption})}
+
+
+
+Função que verifica se um dado carácter, \char`\"{}token\char`\"{}, é um digito ou não. Devolve 1 caso for digito, 0 caso contrário. ~\newline
+ 
+
+
+\begin{DoxyParams}{Parameters}
+{\em token} & Carácter a ser verificado se é digito \\
+\hline
+\end{DoxyParams}

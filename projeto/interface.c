@@ -255,35 +255,21 @@ void ler (ESTADO * e, char * nome_ficheiro) {
         }
 }
 
-void alterna_situacao_pos (int *salva_num_jogadas, int *salva_jogador_atual, ESTADO *estado){
-     *salva_num_jogadas = obter_numero_de_jogadas(estado);
-     *salva_jogador_atual =  obter_jogador_atual(estado);
-     estado->num_jogadas = estado->guarda_num_jogadas_pos + 1;
-     estado->jogador_atual = 1;
-}    
-
 int interpretador(ESTADO *e) {
     int t =0;
     char linha[BUF_SIZE], col[2], lin[2];
-
-    int salva_num_jogadas = 0;
-    int salva_jogador_atual = 0;
-
+    int salva_num_jogadas = 0, salva_jogador_atual = 0;
+  
     mostrar_tabuleiro(e,stdout);
 
     while(t != 2) { // t = 2 coorresponde a vitória
 
-        if (e->flag_pos==1){
+        if (devolve_flagpos(e) ==1){
            alterna_situacao_pos(&salva_num_jogadas,&salva_jogador_atual,e);
-           mostrar_prompt (e);
-            
-           e->jogador_atual = salva_jogador_atual;
-           e->num_jogadas = salva_num_jogadas;
-    
+           mostrar_prompt (e); recupera_valores(e,salva_jogador_atual,salva_num_jogadas);              
         }
         else
             mostrar_prompt (e); 
-
         /*leitura do que foi digitado pelo jogador */
         if ((fgets(linha, BUF_SIZE, stdin) == NULL) || (!strcmp(linha,"Q\n")))
             return 0;
@@ -293,23 +279,22 @@ int interpretador(ESTADO *e) {
 
                 COORDENADA coord = { '8' - *lin , *col -'a'};
 
-                if (e->flag_pos == 1){
+                if (devolve_flagpos(e) == 1){
                     alterna_situacao_pos(&salva_num_jogadas,&salva_jogador_atual,e);                    
                     altera_tabuleiro(e);
                 }
-                t = jogar ( e,coord);
-                
+                t = jogar ( e,coord);                
                 if (t){
                     mostrar_tabuleiro(e,stdout);
-                    e->flag_pos = 0;
+                    altera_flag(e,0);
                 }
-                else if (e->flag_pos == 1) {
-                     e->num_jogadas = salva_num_jogadas;
-                     e->jogador_atual = salva_jogador_atual;
+                else if (devolve_flagpos(e) == 1) {
+
+                     recupera_valores(e,salva_jogador_atual,salva_num_jogadas);
                 }
         }
         // Situações em que foi digitado comandos
-            else {
+        else {
              char * token = strtok(linha," ");
              if (!strcmp(linha,"movs\n")) token = "movs";
              if (!strcmp(linha,"jog\n")) token = "jog";
@@ -321,7 +306,7 @@ int interpretador(ESTADO *e) {
                 /*Situação em que foi digitado o comando gravar*/
         
                 if(cmd == GRAVAR) {
-                    if (e->flag_pos == 1){
+                    if (devolve_flagpos(e) == 1){
 
                     alterna_situacao_pos(&salva_num_jogadas,&salva_jogador_atual,e);
                     altera_tabuleiro(e);
@@ -329,26 +314,24 @@ int interpretador(ESTADO *e) {
                     }
                         gravar(e,token);
 
-                    if (e->flag_pos == 1) {
-                        e->num_jogadas = salva_num_jogadas;
-                        e->jogador_atual = salva_jogador_atual;
+                    if (devolve_flagpos(e)== 1) {
+                       recupera_valores(e,salva_jogador_atual,salva_num_jogadas);
                     }
                 }
 
                 /*Situação em que foi digitado o comando ler*/
                 if(cmd == LER){
                     ler(e,token);
-                    e->flag_pos = 0;}
+                    altera_flag(e,0);
+                }
 
                 /*Situação em que foi digitado o comando movs*/    
                 if(cmd == MOVS) {
-                    if (e->flag_pos == 1){
+                    if (devolve_flagpos(e) == 1){
 
                         alterna_situacao_pos(&salva_num_jogadas,&salva_jogador_atual,e);   
                         mostrar_jogadas(e,stdout);
-                           
-                        e->jogador_atual = salva_jogador_atual;
-                        e->num_jogadas = salva_num_jogadas;
+                        recupera_valores(e,salva_jogador_atual,salva_num_jogadas);
                     }
                     else  
                         mostrar_jogadas(e,stdout);
@@ -357,56 +340,38 @@ int interpretador(ESTADO *e) {
                 if(cmd == POS) {
                     int i = atoi(token);
                     if ((i>=0)&&(i < obter_numero_de_jogadas(e)) && verificanumero(token[0])==1 ) {   
-                        salva_num_jogadas = e->num_jogadas; //variável local que repõe o num_jogadas original
+                        salva_num_jogadas = obter_numero_de_jogadas(e); //variável local que repõe o num_jogadas original
                         e->guarda_num_jogadas_pos = i;//componente da struct que armazena o que foi digitado no "Pos"
 
                         if (i!=0){
-                            e->num_jogadas = i + 1;
+                            altera_num_jogadas(e,i+1);
                         }
-                        else e->num_jogadas = 0; /* o zero é condição especial*/
+                        else
+                            altera_num_jogadas(e,0); 
                              
-                        salva_jogador_atual = e->jogador_atual;
-                        e->jogador_atual = 1;
-                         
+                        salva_jogador_atual =obter_jogador_atual(e);
+                        altera_jogador_atual(e,1);
                         mostrar_tabuleiro(e,stdout);
-                        e->num_jogadas = salva_num_jogadas;
-                        e->jogador_atual = salva_jogador_atual;
-                        e->flag_pos = 1;//Flag de aviso que o comando pos foi dado
+                        recupera_valores(e,salva_jogador_atual,salva_num_jogadas);
+                        altera_flag(e,1); //Flag de aviso que o comando pos foi dado
                     }  
                     else printf ("inválido\n");
+                        
                 }
 
-                if (cmd == JOG && !(token = strtok(NULL, "\n"))){
+                if((cmd == JOG || cmd == JOG2) && !(token = strtok(NULL,"\n"))) {
 
-                        if (e->flag_pos == 1){
+                        if (devolve_flagpos(e) == 1){
                             alterna_situacao_pos(&salva_num_jogadas,&salva_jogador_atual,e);
                             //Sei que a jogada nesse comando é sempre válida
                             altera_tabuleiro(e);
                         }
 
                         COORDENADA coordaefetuar;
-                        coordaefetuar = estrategia_paridade(e);
-                        
+                        coordaefetuar = cmd == JOG ? estrategia_paridade(e) : estrategia_floodfill(e);
                         t = jogar(e,coordaefetuar);
                         mostrar_tabuleiro(e,stdout);
-                        e->flag_pos = 0;
-                
-                }
- 
-                if (cmd == JOG2 && !(token = strtok(NULL, "\n"))){
-
-                        if (e->flag_pos == 1){
-                            alterna_situacao_pos(&salva_num_jogadas,&salva_jogador_atual,e);
-                            //Sei que a jogada nesse comando é sempre válida
-                            altera_tabuleiro(e);
-                        }
-
-                        COORDENADA coordaefetuar;
-                        coordaefetuar = estrategia_floodfill(e);
-                        
-                        t = jogar(e,coordaefetuar);
-                        mostrar_tabuleiro(e,stdout);
-                        e->flag_pos = 0;
+                        altera_flag(e,0);
                 }
                                 
             }      
