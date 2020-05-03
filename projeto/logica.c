@@ -304,15 +304,21 @@ COORDENADA auxiliar_floodfill(ESTADO *e,LISTA possiveis_jogadas,COORDENADA coord
 
     valor_casa_atual = preenche_valor_das_casas(num_casa,e,1);
      
-        if (valor_casa_atual > 0){
+        if (valor_casa_atual > 0 && !lista_esta_vazia(possiveis_jogadas)){
            coord_escolhida = devolve_coordenada_flood (valor_casa_atual,possiveis_jogadas,num_casa);
         }
         else if (e->isBot){
             coord_escolhida = (COORDENADA) {3,4};
         }
-        else {
+        else if (!lista_esta_vazia(possiveis_jogadas))
               coord_escolhida = floodfill_inversa (num_casa,possiveis_jogadas,e);
-        }
+        
+         if (lista_esta_vazia(possiveis_jogadas)){
+             if (obter_jogador_atual(e) == 1)
+             coord_escolhida = (COORDENADA) {0,7};
+             else  coord_escolhida = (COORDENADA) {7,0};
+
+         }
 
 return coord_escolhida;
 }
