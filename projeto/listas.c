@@ -41,11 +41,3 @@ int comprimento_lista(LISTA L) {
     
 }
 
-void print_lista(LISTA L) {
-    for(   ; L ; L = L->prox) {
-        COORDENADA  * v =(COORDENADA *) L->valor;
-        printf("%d %d \n",v->linha, v->coluna);
-    }
-
-
-}

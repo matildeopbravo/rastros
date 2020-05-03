@@ -20,7 +20,13 @@ void mostrar_tabuleiro(ESTADO * estado, FILE * stream);
 @param e Apontador para o estado
 */
 void mostrar_prompt(ESTADO * e);
-
+/**
+\brief Devolve uma coordenada sob a forma de string formatada para ser apresentada ao utilizador.
+@param e Apontador para o estado
+@param indice_jogada Indice da jogada a ser procruada
+@param jogador jogador que efetuou a jogada pretendida
+*/
+char * obtem_jogada(ESTADO *e, int indice_jogada, int jogador);
 /**
 \brief Função que apresenta as jogadas efetuadas no jogo atual, ou seja, o array JOGADAS do estado. 
 As jogadas são apresentadas na stream fornecida como argumento que será um apontador para um ficheiro ou stdout.

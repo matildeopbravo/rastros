@@ -8,8 +8,8 @@ Definição da lista ligada que armazena as possíveis jogadas a serem efetuadas
 /**
 \brief Lista que vai armazenar as possíveis jogadas a se efetuar
 */
-typedef struct lista {
-    void * valor; 
+typedef struct lista {/* apontador para um valor de qualquer tipo*/
+    void * valor;  /* apontador para o proximo elemento da lista*/
     struct lista *  prox;
 } *LISTA;
 /**
@@ -37,7 +37,9 @@ LISTA remove_cabeca(LISTA L);
 */
 int lista_esta_vazia(LISTA L);
 
+/**
+\brief Calcula o comprimento da lista ligada
+*/
 int comprimento_lista(LISTA L); 
-void print_lista(LISTA L);
     
 #endif

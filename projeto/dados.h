@@ -21,25 +21,25 @@ typedef enum {/** Casa da vitória para o jogador 1 */
 typedef enum {/** Correspondente ao comando gr. Função de salvar a partida*/
 	          GRAVAR =1 ,/** Correspondente ao comando lr. Função de carregar partida salva*/ 
 			  LER = 2,/** Correspondente ao comando Q.Função de sair da partida*/
-			  QUIT = 3, /** Correspondente ao comando jog. Função de mostrar a melhor jogada*/
-			  JOG = 4,/** Correspondente a mvoltar a jogar a aprtida a partir de uma jogada anterior*/
-			  POS = 5,
-              MOVS = 6,
+			  QUIT = 3, /** Correspondente ao comando jog que utiliza o algoritmo da paridade*/
+			  JOG = 4,/** Correspondente a voltar a jogar a partida a partir de uma jogada anterior*/
+			  POS = 5, /** Correspondente a apresentar as jogas efetuadas ao longo do jogo*/
+              MOVS = 6, /** Correspondente ao comando jog2 que utiliza o algoritmo floodfill*/
 			  JOG2 = 7,
 			  } COMANDO;
 /**
 \brief Tipo de informação para o tipo COORDENADA
 */
-typedef struct {
-	int linha;
+typedef struct {/** Correspondente à linha de uma coordenada */
+	int linha; /** Correspondente à coluna de uma coordenada */ 
 	int coluna;	
 } COORDENADA;
 /**
 \brief Tipo de dados para o tipo JOGADA
 */
 typedef struct {
-	COORDENADA jogador1;
-	COORDENADA jogador2;
+	COORDENADA jogador1; /* Movimento efetuado pelo jogador 1  */
+	COORDENADA jogador2; /* Movimento efetuado pelo jogador 2  */
 } JOGADA;
 
 /**
@@ -149,7 +149,12 @@ void incrementa_comandos(ESTADO *e);
 @param e Apontador para o estado
 */
 COORDENADA obtem_ultima_jogada(ESTADO * e);
-
+/**
+\brief Devolve uma jogada dado um índice para procurá-la, no histórico de jogadas, e o jogador correspondente.
+@param e Apontador para o estado
+@param indice_jogada Indice da jogada a ser procruada
+@param jogador jogador que vai ser buscada a jogada
+*/
 
 COORDENADA obtem_coordenada(ESTADO * e,int indice_jogada, int jogador);
 

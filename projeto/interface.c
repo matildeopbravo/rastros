@@ -133,7 +133,6 @@ char * obtem_jogada(ESTADO * e, int indice_jogada, int jogador) {
 
 }
 
-
 void mostrar_jogadas (ESTADO * e,  FILE * stream) {
     int numjogadas;
     if ( stream == stdout )

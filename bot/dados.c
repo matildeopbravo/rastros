@@ -106,12 +106,3 @@ void altera_isBot(ESTADO * e) {
    e->isBot = !(e->isBot);
 }
 
-char * obtem_jogada(ESTADO * e, int indice_jogada, int jogador) {
-
-    char * str = (char*) malloc(sizeof(int) + 2 * sizeof(char));
-    COORDENADA c = obtem_coordenada(e,indice_jogada,jogador);
-    // sprintf(str,"%c%d",c.coluna + 'a', 8 -  c.linha);
-    sprintf(str,"%c%c",c.coluna + 'a',8 - c.linha + '0');
-    return(str);
-
-}

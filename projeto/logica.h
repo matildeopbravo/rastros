@@ -190,10 +190,21 @@ sua casa destino. Caso for o jogador 2 o atual é feito o contrário.
 */
 int devolve_indice_paridade(int paridade[8],int flag);
 /**
-\brief Dada uma coordenada, verifica se esta é uma coordenada válida de ser jogada, isto é, esta dentro
+\brief Dada uma coordenada, verifica se esta é uma coordenada válida de ser jogada , isto é, esta dentro
 dos limites de memória do tabuleiro.
 @param coordenada Coordenada a verificar se está nos limites do tabuleiro.
 */
 int verifica_limite_tabuleiro(COORDENADA coordenada);
+/**
+\brief devolve um elemento (coordenada) aleatório de uma lista ligada
+@param lista Lista ligada com possíveis jogadas a se efetuar
+*/
+COORDENADA escolhe_aleatorio (LISTA lista);
+/**
+\brief devolve o índice do array paridade escolhido como índice representativo da melhor jogada sob
+a estratégia floodfilll
+@param paridade array com as áreas restantes possíveis para cada jogada que se pode efetuar
+*/
+int  jogadaaefetuar(int paridade[8]);
 
 #endif

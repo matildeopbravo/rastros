@@ -8,7 +8,6 @@
 
 int main () {
 
- 
         ESTADO *  estado;
         estado = inicializar_estado();
         interpretador(estado);

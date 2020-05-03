@@ -1,0 +1,1208 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="projeto_2logica_8h" kind="file" language="C++">
+    <compoundname>logica.h</compoundname>
+    <includes refid="projeto_2listas_8h" local="yes">listas.h</includes>
+    <includedby refid="projeto_2interface_8c" local="yes">projeto/interface.c</includedby>
+    <includedby refid="main_8c" local="yes">projeto/main.c</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>listas.h</label>
+        <link refid="projeto_2listas_8h"/>
+      </node>
+      <node id="1">
+        <label>projeto/logica.h</label>
+        <link refid="projeto_2logica_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="projeto_2logica_8h_1a53472e75f056ceb02b5387193021838a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int jogar</definition>
+        <argsstring>(ESTADO *estado, COORDENADA c)</argsstring>
+        <name>jogar</name>
+        <param>
+          <type><ref refid="structESTADO" kindref="compound">ESTADO</ref> *</type>
+          <declname>estado</declname>
+          <defname>e</defname>
+        </param>
+        <param>
+          <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
+          <declname>c</declname>
+          <defname>jog_efet</defname>
+        </param>
+        <briefdescription>
+<para>Executa a jogada em si. Se algum jogador vencer a partida, após a execução de uma jogada, retorna o valor 2. Se a jogada não for válida, a função retorna 0. Caso não for nenhum dos casos anteriores, devolve 1. Atualiza a struct principal mediante a jogada efetuada. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>estado</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Apontador para o estado </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Coordenada da jogada efetuada </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="projeto/logica.h" line="14" column="5" bodyfile="bot/logica.c" bodystart="588" bodyend="631" declfile="projeto/logica.h" declline="14" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="projeto_2logica_8h_1aaa3fd9c526e661b27383a69e5a5277f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int verifica_fim</definition>
+        <argsstring>(ESTADO *e, int l, int c, int j)</argsstring>
+        <name>verifica_fim</name>
+        <param>
+          <type><ref refid="structESTADO" kindref="compound">ESTADO</ref> *</type>
+          <declname>e</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>l</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+<para>Esta função verifica se o jogo chegou ao fim. Verifica as condições de fim de jogo,isto é, &quot;jogador atual nas extremidades 1 ou 2, ou jogador atual
+encurralado&quot;. Retorna 0 caso não se verifique nenhum, em contrapartida devolve o número do jogador vencedor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Apontador para o estado </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>l</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>linha da jogada efetuada </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>l</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>coluna da jogada efetuada </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>jogador atual </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="projeto/logica.h" line="24" column="5" bodyfile="bot/logica.c" bodystart="507" bodyend="586" declfile="projeto/logica.h" declline="24" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="projeto_2logica_8h_1ad3f8800d9f979e4b250c2603de7dcadd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int verifica_valida</definition>
+        <argsstring>(ESTADO *e, COORDENADA jog_ant, COORDENADA jog_efet)</argsstring>
+        <name>verifica_valida</name>
+        <param>
+          <type><ref refid="structESTADO" kindref="compound">ESTADO</ref> *</type>
+          <declname>e</declname>
+        </param>
+        <param>
+          <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
+          <declname>jog_ant</declname>
+        </param>
+        <param>
+          <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
+          <declname>jog_efet</declname>
+        </param>
+        <briefdescription>
+<para>Esta função verifica se a jogada que se pretende efetuar é válida. Para a jogada ser válida, é necessário que a casa para onde esta se pretende efetuar esteja: 1) Vazia (sendo do tipo VAZIO, UM ou DOIS); 2) A uma distância de 1 na horizontal, vertical, ou diagonal da casa atual. Devolve 1 caso for válida, retorna 0 caso contrário. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Apontador para o estado </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Coordenada da jogada anterior </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Coordenada da jogada efetuada </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="projeto/logica.h" line="35" column="5" bodyfile="bot/logica.c" bodystart="487" bodyend="505" declfile="projeto/logica.h" declline="35" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="projeto_2logica_8h_1a105c7792d2784bd2c00f5e707266bc46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
+        <definition>COORDENADA estrategia_paridade</definition>
+        <argsstring>(ESTADO *e)</argsstring>
+        <name>estrategia_paridade</name>
+        <param>
+          <type><ref refid="structESTADO" kindref="compound">ESTADO</ref> *</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+<para>Função principal da heurística da paridade. Devolve a melhor jogada possível tendo em conta tal estratégia que procura sempre a jogada que deixará uma restante par do tabuleiro. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Apontador para o estado </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="projeto/logica.h" line="42" column="12" bodyfile="bot/logica.c" bodystart="429" bodyend="484" declfile="projeto/logica.h" declline="42" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="projeto_2logica_8h_1aa8293a66c6ce9efae086fba59bb8c884" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int calcula_area</definition>
+        <argsstring>(COORDENADA *possiveljogada, ESTADO *e)</argsstring>
+        <name>calcula_area</name>
+        <param>
+          <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref> *</type>
+          <declname>possiveljogada</declname>
+        </param>
+        <param>
+          <type><ref refid="structESTADO" kindref="compound">ESTADO</ref> *</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+<para>Calcula a área restante (casas vazias possíveis de chegar) do tabuleiro simulada a partir de uma possível jogada. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>possiveljogada</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>apontador para coordenada que será o ponto de partida do calculo da área restante </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>apontador para o estado do jogo </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="projeto/logica.h" line="48" column="5" bodyfile="bot/logica.c" bodystart="371" bodyend="392" declfile="projeto/logica.h" declline="48" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="projeto_2logica_8h_1a62f43dfd205580f152712e9f18276103" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void transfere_tabuleiro</definition>
+        <argsstring>(CASA tabuleiro_1[8][8], CASA tabuleiro_2[8][8])</argsstring>
+        <name>transfere_tabuleiro</name>
+        <param>
+          <type><ref refid="bot_2dados_8h_1aba91601f16d4c485b2d9b8c429f27039" kindref="member">CASA</ref></type>
+          <declname>tabuleiro_1</declname>
+          <array>[8][8]</array>
+        </param>
+        <param>
+          <type><ref refid="bot_2dados_8h_1aba91601f16d4c485b2d9b8c429f27039" kindref="member">CASA</ref></type>
+          <declname>tabuleiro_2</declname>
+          <array>[8][8]</array>
+        </param>
+        <briefdescription>
+<para>Dado um tabuleiro1 e um tabuleiro2, transfere os dados do tabuleiro 2 para o tabuleiro 1. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tabuleiro_1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>matriz com a informação de um tabuleiro do jogo </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tabuleiro_2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>matriz com a informação de outro tabuleiro do jogo </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="projeto/logica.h" line="54" column="6" bodyfile="bot/logica.c" bodystart="394" bodyend="400" declfile="projeto/logica.h" declline="54" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="projeto_2logica_8h_1adce50d8ee37c0296fcab65772db0fc57" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
+        <definition>COORDENADA estrategia_floodfill</definition>
+        <argsstring>(ESTADO *e)</argsstring>
+        <name>estrategia_floodfill</name>
+        <param>
+          <type><ref refid="structESTADO" kindref="compound">ESTADO</ref> *</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+<para>Função principal da heurística floodfill. Devolve a melhor jogada possível tendo em conta tal estratégia que procura sempre a jogada que faz parte de um caminho mais curto para vitória ou mais longo para derrota. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Função principal da estratégia floodfill. Devolve a melhor jogada a ser efetuada pelo jogador atual. Para melhor organização tal função se ramifica numa função auxiliar que seleciona tal jogada. Caso for possível vencer a partida com base numa jogada tal funçãop auxiliar não é chamada e é devolvido o valor da coordenada da vitória.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Apontador para o estado</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>apontador para o estado</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Função principal da heurística floodfill. Devolve a melhor jogada possível tendo em conta tal estratégia que procura sempre a jogada que faz parte de um caminho mais curto para vitória ou mais longo para derrota.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>apontador para o estado</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Função principal da estratégia floodfill. Devolve a melhor jogada a ser efetuada pelo jogador atual. Para melhor organização tal função se ramifica numa função auxiliar que seleciona tal jogada. Caso for possível vencer a partida com base numa jogada tal funçãop auxiliar não é chamada e é devolvido o valor da coordenada da vitória.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Apontador para o estado</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>apontador para o estado</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Função principal da heurística floodfill. Devolve a melhor jogada possível tendo em conta tal estratégia que procura sempre a jogada que faz parte de um caminho mais curto para vitória ou mais longo para derrota.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>apontador para o estado </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="projeto/logica.h" line="60" column="12" bodyfile="bot/logica.c" bodystart="297" bodyend="318" declfile="projeto/logica.h" declline="60" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="projeto_2logica_8h_1ab50719b4d8ccd4926730de9ab6b1bf26" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
+        <definition>COORDENADA insere_possiveis_jogadas</definition>
+        <argsstring>(ESTADO *e, LISTA *posicoesvazias, COORDENADA coord_escolhida)</argsstring>
+        <name>insere_possiveis_jogadas</name>
+        <param>
+          <type><ref refid="structESTADO" kindref="compound">ESTADO</ref> *</type>
+          <declname>e</declname>
+        </param>
+        <param>
+          <type><ref refid="bot_2listas_8h_1ac294034fbe3bf9846e0465051a477f55" kindref="member">LISTA</ref> *</type>
+          <declname>posicoesvazias</declname>
+        </param>
+        <param>
+          <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
+          <declname>coord_escolhida</declname>
+        </param>
+        <briefdescription>
+<para>Preenche a lista (*posicoesvazias) com as possíveis jogadas que o jogador atual consegue efetuar. Retorna uma coordenada que vai servir mais a frente para ver se é preciso efetuar uma estratégia ou não. Caso a coordenada devolvida seja a mesma que a função recebeu como argumento (3,4), significa que ela não foi alterada em momento algum durante a função e por tanto não foi encontrado uma jogada que garanta vitória ao jogador atual(pois assim a coordenada a devolver seria a de tal jogada). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Apontador para o estado </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Apontador para o estado </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>posicoesvazias</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>apontador para uma lista(lista das possíveis jogadas) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coord_escolhida</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>coordenada a ser devolvida pela função </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="projeto/logica.h" line="72" column="12" bodyfile="bot/logica.c" bodystart="34" bodyend="76" declfile="projeto/logica.h" declline="72" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="projeto_2logica_8h_1a4b7227ac52e72c662be8e60fcab31f81" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void inicializa_num_casa</definition>
+        <argsstring>(int num_casa[8][8], ESTADO *e, int flag)</argsstring>
+        <name>inicializa_num_casa</name>
+        <param>
+          <type>int</type>
+          <declname>num_casa</declname>
+          <array>[8][8]</array>
+        </param>
+        <param>
+          <type><ref refid="structESTADO" kindref="compound">ESTADO</ref> *</type>
+          <declname>e</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>flag</declname>
+        </param>
+        <briefdescription>
+<para>Inicializa a matriz que vai conter o valor de cada casa do tabuleiro para o algoritimo floodfill. Tal inicialização dependerá da flag dada. Isto porque podemos fazer tal inicialização em 2 momentos distintos: quando é possível chegar na cada da vitória e quando não é. Mediante os 2 casos teremos uma inicialização diferente. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>num_casa</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Matriz com os valores de cada casa do tabuleiro </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Apontador para o estado </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>flag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>variável de aviso para diferenciar os 2 momentos distintos já enunciados </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="projeto/logica.h" line="81" column="6" bodyfile="bot/logica.c" bodystart="134" bodyend="160" declfile="projeto/logica.h" declline="81" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="projeto_2logica_8h_1a827c627b01e9d538ab33ec1be379cdfc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
+        <definition>COORDENADA auxiliar_floodfill</definition>
+        <argsstring>(ESTADO *e, LISTA possiveis_jogadas, COORDENADA coord_escolhida)</argsstring>
+        <name>auxiliar_floodfill</name>
+        <param>
+          <type><ref refid="structESTADO" kindref="compound">ESTADO</ref> *</type>
+          <declname>e</declname>
+        </param>
+        <param>
+          <type><ref refid="bot_2listas_8h_1ac294034fbe3bf9846e0465051a477f55" kindref="member">LISTA</ref></type>
+          <declname>possiveis_jogadas</declname>
+        </param>
+        <param>
+          <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
+          <declname>coord_escolhida</declname>
+        </param>
+        <briefdescription>
+<para>Função invocada pela funcção &quot;estratégia_floodfill&quot; para melhor organização e gestão de memória da mesma. Realiza o processo da escolha da melhor jogada a ser efetuada (que é devolvida pela função). É a função cerne do raciocínio em si por trás de tal estratégia. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>apontador para o estado </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>possiveis_jogadas</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>lista ligada com as possíveis jogadas a efetuar pelo jogador atual </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coord_escolhida</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>melhor coordenada a ser jogada, modificada e devolvida pela função. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="projeto/logica.h" line="90" column="12" bodyfile="bot/logica.c" bodystart="275" bodyend="295" declfile="projeto/logica.h" declline="90" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="projeto_2logica_8h_1ac62ec1b8cfc401f9972b69d144fc5809" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int preenche_valor_das_casas</definition>
+        <argsstring>(int num_casa[8][8], ESTADO *e, int flag)</argsstring>
+        <name>preenche_valor_das_casas</name>
+        <param>
+          <type>int</type>
+          <declname>num_casa</declname>
+          <array>[8][8]</array>
+        </param>
+        <param>
+          <type><ref refid="structESTADO" kindref="compound">ESTADO</ref> *</type>
+          <declname>e</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>flag</declname>
+        </param>
+        <briefdescription>
+<para>Dá para cada casa do tabuleiro um valor específico. Tal valor será importante para indicar o caminho mais curto para a casa da vitória(ou o mais longo para a casa da derrota mediante a flag dada como argumento). As casas não preenchidas aqui já foram preenchidas pela função que inicializa a matriz com os valores de cada casa do tabuleiro. É parado o preenchimento quando consigo chegar na casa onde estou partindo de um preenchimento com origem na casa que desejo chegar, e isto simboliza que encontrei o caimho mais curto para ela. Tal função devolve o valor que dei a casa onde estou subtraído por 1, sendo tal valor único, sevindo de guia para conseguir retirar a jogada desejada (pois ela terá tal valor devolvido). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Preenche o valor de cada casa do tabuleiro de acordo com a estratégia floodfill. Começa por preencher as casas ao redor da casa destino com o valor da (casa destino + 1). Tal processo se aplica iterativamente sempre preenchendo casas adijacentes a uma casa com valor n, com o valor n + 1. Tal processo se verifica até conseguir chegar na minha casa atual, o que significa que existe um caminho para o destino, ou caso contrário saberei que não existe. A função devolve -1 quando não existe caminho mais curto para vitória e devolve um valor diferente de 1, que será correspondente ao valor n dado a minha casa atual(sendo ele o parãmetro utilizado posteriormente para retirar a melhor jogada que será a vizinha com valor n - 1).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>num_casa</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>matriz com os valores de casa casa do tabuleiro </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>apontador para o estado </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>flag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Indicador se devo preencher supondo que quero encontrar o caminho mais curto para minha casa ou o mais longo para a casa da derrota</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>num_casa</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>matriz com os valores numéricos(de cada casa do tabuleiro) inicializados a -1 que seráo agora preenchidos pela função </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>apontador para o estado do jogo </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>flag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>indica se estou usando a função para encontrar o caminho mais curto para vitória ou o mais longo para derrota</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Dá para cada casa do tabuleiro um valor específico. Tal valor será importante para indicar o caminho mais curto para a casa da vitória(ou o mais longo para a casa da derrota mediante a flag dada como argumento). As casas não preenchidas aqui já foram preenchidas pela função que inicializa a matriz com os valores de cada casa do tabuleiro. É parado o preenchimento quando consigo chegar na casa onde estou partindo de um preenchimento com origem na casa que desejo chegar, e isto simboliza que encontrei o caimho mais curto para ela. Tal função devolve o valor que dei a casa onde estou subtraído por 1, sendo tal valor único, sevindo de guia para conseguir retirar a jogada desejada (pois ela terá tal valor devolvido).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>num_casa</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>matriz com os valores numéricos(de cada casa do tabuleiro) inicializados a -1 que seráo agora preenchidos pela função </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>apontador para o estado do jogo </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>flag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>indica se estou usando a função para encontrar o caminho mais curto para vitória ou o mais longo para derrota</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Preenche o valor de cada casa do tabuleiro de acordo com a estratégia floodfill. Começa por preencher as casas ao redor da casa destino com o valor da (casa destino + 1). Tal processo se aplica iterativamente sempre preenchendo casas adijacentes a uma casa com valor n, com o valor n + 1. Tal processo se verifica até conseguir chegar na minha casa atual, o que significa que existe um caminho para o destino, ou caso contrário saberei que não existe. A função devolve -1 quando não existe caminho mais curto para vitória e devolve um valor diferente de 1, que será correspondente ao valor n dado a minha casa atual(sendo ele o parãmetro utilizado posteriormente para retirar a melhor jogada que será a vizinha com valor n - 1).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>num_casa</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>matriz com os valores de casa casa do tabuleiro </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>apontador para o estado </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>flag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Indicador se devo preencher supondo que quero encontrar o caminho mais curto para minha casa ou o mais longo para a casa da derrota</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>num_casa</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>matriz com os valores numéricos(de cada casa do tabuleiro) inicializados a -1 que seráo agora preenchidos pela função </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>apontador para o estado do jogo </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>flag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>indica se estou usando a função para encontrar o caminho mais curto para vitória ou o mais longo para derrota</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Dá para cada casa do tabuleiro um valor específico. Tal valor será importante para indicar o caminho mais curto para a casa da vitória(ou o mais longo para a casa da derrota mediante a flag dada como argumento). As casas não preenchidas aqui já foram preenchidas pela função que inicializa a matriz com os valores de cada casa do tabuleiro. É parado o preenchimento quando consigo chegar na casa onde estou partindo de um preenchimento com origem na casa que desejo chegar, e isto simboliza que encontrei o caimho mais curto para ela. Tal função devolve o valor que dei a casa onde estou subtraído por 1, sendo tal valor único, sevindo de guia para conseguir retirar a jogada desejada (pois ela terá tal valor devolvido).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>num_casa</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>matriz com os valores numéricos(de cada casa do tabuleiro) inicializados a -1 que seráo agora preenchidos pela função </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>apontador para o estado do jogo </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>flag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>indica se estou usando a função para encontrar o caminho mais curto para vitória ou o mais longo para derrota </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="projeto/logica.h" line="111" column="5" bodyfile="bot/logica.c" bodystart="175" bodyend="248" declfile="projeto/logica.h" declline="111" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="projeto_2logica_8h_1a3fc83e127140c4d6149cb87cb7152917" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref> *</type>
+        <definition>COORDENADA* duplica_coordenada</definition>
+        <argsstring>(COORDENADA coordenada)</argsstring>
+        <name>duplica_coordenada</name>
+        <param>
+          <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
+          <declname>coordenada</declname>
+        </param>
+        <briefdescription>
+<para>Duplica uma coordenada e coloca ela num endereço novo. Possui utilidade no preenchimento da lista ligada de modo a evitar perder seu conteúdo mais tarde. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>coordenada</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Coordenada a ser duplicada e colocada num endereço novo </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="projeto/logica.h" line="117" column="13" bodyfile="bot/logica.c" bodystart="27" bodyend="32" declfile="projeto/logica.h" declline="117" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="projeto_2logica_8h_1a121fc1e4e0bc77a026906d18f984d7ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
+        <definition>COORDENADA devolve_coordenada_flood</definition>
+        <argsstring>(int valor_casa_atual, LISTA possiveis_jogadas, int num_casa[8][8])</argsstring>
+        <name>devolve_coordenada_flood</name>
+        <param>
+          <type>int</type>
+          <declname>valor_casa_atual</declname>
+        </param>
+        <param>
+          <type><ref refid="bot_2listas_8h_1ac294034fbe3bf9846e0465051a477f55" kindref="member">LISTA</ref></type>
+          <declname>possiveis_jogadas</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>num_casa</declname>
+          <array>[8][8]</array>
+        </param>
+        <briefdescription>
+<para>Recebe o valor dado a casa tual de acordo com a estratégia floodfill, e devolve uma das casas vizinhas armazenadas na lista ligada intitulada como &quot;possiveis_jogadas&quot; que tenha o valor da casa atual subtraido por 1. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>valor_casa_atual</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>número dado a casa atual do jogador a partir da estratégia floodfill </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>possiveis_jogadas</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>lista ligada que armazenará as possíveis jogadas a se fazer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>num_casa</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>matriz com os valores numéricos dados a cada possível casa do tabuleiro a partir da estratégia floodfill </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="projeto/logica.h" line="126" column="12" bodyfile="bot/logica.c" bodystart="89" bodyend="114" declfile="projeto/logica.h" declline="126" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="projeto_2logica_8h_1ab3d83ee5bb070d6530437278b415b636" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int verifica_adjacencia</definition>
+        <argsstring>(COORDENADA coord, int num_casa[8][8], int valor)</argsstring>
+        <name>verifica_adjacencia</name>
+        <param>
+          <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
+          <declname>coord</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>num_casa</declname>
+          <array>[8][8]</array>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>valor</declname>
+        </param>
+        <briefdescription>
+<para>Temos a coordenada &quot;coord&quot;. Queremos saber se a CASA no tabuleiro correspondente a essa coordenada &quot;coord&quot; está ao lado de alguma com valor (valor-1.) Para isso corremos todas as posições do tabuleiro até encontrarmos alguma ao lado da coordenada que temos ou chegarmos ao fim do tabuleiro. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>coord</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Coordenada que queremos verificar a adjacência </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>num_casa</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>matriz com os valores numéricos dados a cada possível casa do tabuleiro a partir da estratégia floodfill </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>valor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dado a casa atual que queremos verificar a adjacência com casas com (valor -1 ). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="projeto/logica.h" line="135" column="5" bodyfile="bot/logica.c" bodystart="115" bodyend="132" declfile="projeto/logica.h" declline="135" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="projeto_2logica_8h_1a6eceb14c20dfd2dc46fe7500803bd534" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int verifica_quadrante</definition>
+        <argsstring>(ESTADO *e, COORDENADA coord)</argsstring>
+        <name>verifica_quadrante</name>
+        <param>
+          <type><ref refid="structESTADO" kindref="compound">ESTADO</ref> *</type>
+          <declname>e</declname>
+        </param>
+        <param>
+          <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
+          <declname>coord</declname>
+        </param>
+        <briefdescription>
+<para>Verifica se a coordenada &quot;coord&quot; faz parte de uma das casas que, se for escolhida como casa jogada pelo jogador atual, na próxima jogada ele perderá a partida pois tal casa pertencia as casas que estão ao redor de sua casa da derrota. Por tanto tal função devolve 1 se a coord estiver no quadrante seguro, isto é, sem ser ao redor da casa da derrota, e devolve 0 caso contrário. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>coord</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Coordenada que queremos verificar em qual quadrante está </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>apontador para o estado do jogo </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="projeto/logica.h" line="144" column="5" bodyfile="bot/logica.c" bodystart="162" bodyend="173" declfile="projeto/logica.h" declline="144" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="projeto_2logica_8h_1aa7ade6abbed3330a0561ce9e7efcfc11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
+        <definition>COORDENADA floodfill_inversa</definition>
+        <argsstring>(int num_casa[8][8], LISTA possiveis_jogadas, ESTADO *e)</argsstring>
+        <name>floodfill_inversa</name>
+        <param>
+          <type>int</type>
+          <declname>num_casa</declname>
+          <array>[8][8]</array>
+        </param>
+        <param>
+          <type><ref refid="bot_2listas_8h_1ac294034fbe3bf9846e0465051a477f55" kindref="member">LISTA</ref></type>
+          <declname>possiveis_jogadas</declname>
+        </param>
+        <param>
+          <type><ref refid="structESTADO" kindref="compound">ESTADO</ref> *</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+<para>Realiza a estratégia floodfill inversamente, procurando o caminho mais longo para derrota. Devolve a melhor jogada a se fazer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>num_casa</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>matriz com os valores numéricos dados a cada possível casa do tabuleiro </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>possiveis_jogadas</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>lista ligada com as possveis_jogadas </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>apontador para o estado do jogo </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="projeto/logica.h" line="163" column="12" bodyfile="bot/logica.c" bodystart="250" bodyend="272" declfile="projeto/logica.h" declline="163" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="projeto_2logica_8h_1a18183af7ccb1fd6405a5f39b1f56ef96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int verifica_casa_vazia</definition>
+        <argsstring>(ESTADO *e, COORDENADA coordenada)</argsstring>
+        <name>verifica_casa_vazia</name>
+        <param>
+          <type><ref refid="structESTADO" kindref="compound">ESTADO</ref> *</type>
+          <declname>e</declname>
+        </param>
+        <param>
+          <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
+          <declname>coordenada</declname>
+        </param>
+        <briefdescription>
+<para>Dada uma coordenada, verifica se a casa correspondente no tabuleiro está vazia ou não. Devolve 1 caso estiver vazia,0 caso o contrário. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>apontador para o estado do jogo </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coordenada</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Coordenada a verificar a casa do tabuleiro </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="projeto/logica.h" line="170" column="5" bodyfile="bot/logica.c" bodystart="6" bodyend="13" declfile="projeto/logica.h" declline="170" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="projeto_2logica_8h_1a99bdf7c3a8419ede03a430e02a07f815" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void auxiliarparidade</definition>
+        <argsstring>(ESTADO *e, LISTA possiveis_jogadas, int paridade[8], COORDENADA *cabeca)</argsstring>
+        <name>auxiliarparidade</name>
+        <param>
+          <type><ref refid="structESTADO" kindref="compound">ESTADO</ref> *</type>
+          <declname>e</declname>
+        </param>
+        <param>
+          <type><ref refid="bot_2listas_8h_1ac294034fbe3bf9846e0465051a477f55" kindref="member">LISTA</ref></type>
+          <declname>possiveis_jogadas</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>paridade</declname>
+          <array>[8]</array>
+        </param>
+        <param>
+          <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref> *</type>
+          <declname>cabeca</declname>
+        </param>
+        <briefdescription>
+<para>Função auxiliar da &quot;estrategia_paridade&quot; que preenche o array paridade(que armazena a área restante para cada possível jogada) com as respetivas áreas de cada possível jogada. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>apontador para o estado do jogo </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>possiveis_jogadas</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>lista ligada com as possveis_jogadas </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>paridade</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>array que armazena a área restante para cada possível jogada </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cabeca</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>apontador para coordenada que serve para retirar valores da lista ligada </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="projeto/logica.h" line="179" column="6" bodyfile="bot/logica.c" bodystart="402" bodyend="427" declfile="projeto/logica.h" declline="179" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="projeto_2logica_8h_1a8a95c65b2b2fbb3a1b567b5aed560287" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int devolve_indice_paridade</definition>
+        <argsstring>(int paridade[8], int flag)</argsstring>
+        <name>devolve_indice_paridade</name>
+        <param>
+          <type>int</type>
+          <declname>paridade</declname>
+          <array>[8]</array>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>flag</declname>
+        </param>
+        <briefdescription>
+<para>Devolve o Índice do array paridade que possui a melhor &quot;jogada&quot; (sendo escolhido a partir de um estudo sobre as áreas do array. A prioridade são as menores áreas pares. Caso não haver áreas pares, a prioridade passa a ser as maiores áreas ímpares). A flag dada como argumento tem função importante no que respeita &quot;avisar&quot; quando a função está a ser ativada para o jogador 2 ou 1. Isto é, a única diferença é a prioridade que é dada ao termos 2 áreas com o mesmo valor. No caso de ser o jogador 1 a prioridade é manter a primeira como escolhida, dado que vai corresponder a uma posição ,na lista ligada de possíveis jogadas, mais perto da sua casa destino. Caso for o jogador 2 o atual é feito o contrário. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>paridade</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>array que armazena a área restante para cada possível jogada </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>flag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Indicador do jogador atual </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="projeto/logica.h" line="191" column="5" declfile="projeto/logica.h" declline="191" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="projeto_2logica_8h_1a47d04407ac67a91a6572ff5011640928" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int verifica_limite_tabuleiro</definition>
+        <argsstring>(COORDENADA coordenada)</argsstring>
+        <name>verifica_limite_tabuleiro</name>
+        <param>
+          <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
+          <declname>coordenada</declname>
+        </param>
+        <briefdescription>
+<para>Dada uma coordenada, verifica se esta é uma coordenada válida de ser jogada , isto é, esta dentro dos limites de memória do tabuleiro. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>coordenada</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Coordenada a verificar se está nos limites do tabuleiro. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="projeto/logica.h" line="197" column="5" bodyfile="bot/logica.c" bodystart="15" bodyend="25" declfile="projeto/logica.h" declline="197" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="projeto_2logica_8h_1a6b7af3834ab9d82aa443aa046de1ca60" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
+        <definition>COORDENADA escolhe_aleatorio</definition>
+        <argsstring>(LISTA lista)</argsstring>
+        <name>escolhe_aleatorio</name>
+        <param>
+          <type><ref refid="bot_2listas_8h_1ac294034fbe3bf9846e0465051a477f55" kindref="member">LISTA</ref></type>
+          <declname>lista</declname>
+        </param>
+        <briefdescription>
+<para>devolve um elemento (coordenada) aleatório de uma lista ligada </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lista</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Lista ligada com possíveis jogadas a se efetuar </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="projeto/logica.h" line="202" column="12" bodyfile="bot/logica.c" bodystart="79" bodyend="86" declfile="projeto/logica.h" declline="202" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="projeto_2logica_8h_1a859b6fa3715b706976d64748916a4253" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int jogadaaefetuar</definition>
+        <argsstring>(int paridade[8])</argsstring>
+        <name>jogadaaefetuar</name>
+        <param>
+          <type>int</type>
+          <declname>paridade</declname>
+          <array>[8]</array>
+        </param>
+        <briefdescription>
+<para>devolve o índice do array paridade escolhido como índice representativo da melhor jogada sob a estratégia floodfilll </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>paridade</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>array com as áreas restantes possíveis para cada jogada que se pode efetuar </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="projeto/logica.h" line="208" column="6" bodyfile="bot/logica.c" bodystart="362" bodyend="368" declfile="projeto/logica.h" declline="208" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="4"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="projeto_2listas_8h" kindref="compound">listas.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>CAMADA_LOGICA_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CAMADA_LOGICA_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1a53472e75f056ceb02b5387193021838a" kindref="member">jogar</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*estado,<sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>c);</highlight></codeline>
+<codeline lineno="24"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1aaa3fd9c526e661b27383a69e5a5277f0" kindref="member">verifica_fim</ref><sp/>(<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e<sp/>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>l<sp/>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>c,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j<sp/>);</highlight></codeline>
+<codeline lineno="35"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1ad3f8800d9f979e4b250c2603de7dcadd" kindref="member">verifica_valida</ref><sp/>(<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e<sp/>,<sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>jog_ant<sp/>,<sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>jog_efet);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2logica_8h_1a105c7792d2784bd2c00f5e707266bc46" kindref="member">estrategia_paridade</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e);</highlight></codeline>
+<codeline lineno="48"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1aa8293a66c6ce9efae086fba59bb8c884" kindref="member">calcula_area</ref>(<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>*<sp/>possiveljogada,<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e);</highlight></codeline>
+<codeline lineno="54"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1a62f43dfd205580f152712e9f18276103" kindref="member">transfere_tabuleiro</ref><sp/>(<ref refid="bot_2dados_8h_1aba91601f16d4c485b2d9b8c429f27039" kindref="member">CASA</ref><sp/>tabuleiro_1[8][8],<ref refid="bot_2dados_8h_1aba91601f16d4c485b2d9b8c429f27039" kindref="member">CASA</ref><sp/>tabuleiro_2[8][8]);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2logica_8h_1adce50d8ee37c0296fcab65772db0fc57" kindref="member">estrategia_floodfill</ref><sp/>(<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e<sp/>)<sp/>;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2logica_8h_1ab50719b4d8ccd4926730de9ab6b1bf26" kindref="member">insere_possiveis_jogadas</ref><sp/>(<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e<sp/>,<sp/><ref refid="structlista" kindref="compound">LISTA</ref><sp/>*posicoesvazias,<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>coord_escolhida<sp/>);</highlight></codeline>
+<codeline lineno="81"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1a4b7227ac52e72c662be8e60fcab31f81" kindref="member">inicializa_num_casa</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_casa[8][8],<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>flag);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2logica_8h_1a827c627b01e9d538ab33ec1be379cdfc" kindref="member">auxiliar_floodfill</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e,<ref refid="structlista" kindref="compound">LISTA</ref><sp/>possiveis_jogadas,<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>coord_escolhida);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2logica_8h_1adce50d8ee37c0296fcab65772db0fc57" kindref="member">estrategia_floodfill</ref><sp/>(<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e<sp/>);</highlight></codeline>
+<codeline lineno="111"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1ac62ec1b8cfc401f9972b69d144fc5809" kindref="member">preenche_valor_das_casas</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_casa[8][8],<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>flag);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>*<sp/><ref refid="bot_2logica_8h_1a3fc83e127140c4d6149cb87cb7152917" kindref="member">duplica_coordenada</ref>(<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>coordenada);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2logica_8h_1a121fc1e4e0bc77a026906d18f984d7ea" kindref="member">devolve_coordenada_flood</ref><sp/>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>valor_casa_atual<sp/>,<sp/><ref refid="structlista" kindref="compound">LISTA</ref><sp/>possiveis_jogadas<sp/>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_casa[8][8]);</highlight></codeline>
+<codeline lineno="135"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1ab3d83ee5bb070d6530437278b415b636" kindref="member">verifica_adjacencia</ref><sp/>(<sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>coord<sp/>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_casa[8][8]<sp/>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>valor<sp/>);</highlight></codeline>
+<codeline lineno="144"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1a6eceb14c20dfd2dc46fe7500803bd534" kindref="member">verifica_quadrante</ref><sp/>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e,<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>coord);</highlight></codeline>
+<codeline lineno="156"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1ac62ec1b8cfc401f9972b69d144fc5809" kindref="member">preenche_valor_das_casas</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_casa[8][8],<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>flag);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2logica_8h_1aa7ade6abbed3330a0561ce9e7efcfc11" kindref="member">floodfill_inversa</ref><sp/>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_casa[8][8]<sp/>,<sp/><ref refid="structlista" kindref="compound">LISTA</ref><sp/>possiveis_jogadas<sp/>,<sp/><ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e<sp/>);</highlight></codeline>
+<codeline lineno="170"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1a18183af7ccb1fd6405a5f39b1f56ef96" kindref="member">verifica_casa_vazia</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e,<sp/><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>coordenada);</highlight></codeline>
+<codeline lineno="179"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1a99bdf7c3a8419ede03a430e02a07f815" kindref="member">auxiliarparidade</ref><sp/>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*e,<ref refid="structlista" kindref="compound">LISTA</ref><sp/>possiveis_jogadas,</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>paridade[8],<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>*cabeca);</highlight></codeline>
+<codeline lineno="191"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1a8a95c65b2b2fbb3a1b567b5aed560287" kindref="member">devolve_indice_paridade</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>paridade[8],</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>flag);</highlight></codeline>
+<codeline lineno="197"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2logica_8h_1a47d04407ac67a91a6572ff5011640928" kindref="member">verifica_limite_tabuleiro</ref>(<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>coordenada);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/><ref refid="bot_2logica_8h_1a6b7af3834ab9d82aa443aa046de1ca60" kindref="member">escolhe_aleatorio</ref><sp/>(<ref refid="structlista" kindref="compound">LISTA</ref><sp/><ref refid="structlista" kindref="compound">lista</ref>);</highlight></codeline>
+<codeline lineno="208"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="bot_2logica_8h_1a859b6fa3715b706976d64748916a4253" kindref="member">jogadaaefetuar</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>paridade[8]);</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="projeto/logica.h"/>
+  </compounddef>
+</doxygen>
