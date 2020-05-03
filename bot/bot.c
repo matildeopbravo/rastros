@@ -14,13 +14,17 @@ void jogar_bot(ESTADO * e) {
     ESTADO estado_copia = *e;
         
     cord = estrategia_floodfill(e);
-    if (cord.linha != 3 || cord.coluna != 4){
+    if ((cord.linha != 3 || cord.coluna != 4)
+       && obter_estado_casa(e,cord) != UM
+       && obter_estado_casa(e,cord) != DOIS ){
     jogar(e,cord);
     cord2 = estrategia_paridade(e);
     }
-
+    if (obter_estado_casa(e,cord) != UM
+       && obter_estado_casa(e,cord) != DOIS){
     if ((cord.linha == 3 && cord.coluna == 4) || (jogar(e,cord2) == 2)) {
            cord = estrategia_paridade(&estado_copia);     
+    }
     }
     *e = estado_copia;
     jogar(e,cord);

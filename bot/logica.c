@@ -316,7 +316,7 @@ COORDENADA estrategia_floodfill ( ESTADO * e ) {
     return  coord_escolhida;
 
 }
-int devolve_indice_paridade(int paridade[8],int flag){
+int devolve_indice_paridade(int paridade[8]){
     int jogadas_possiveis [8]; 
     int menor_par = 66, maior_impar = -1;
      /*inicialização da variável com uma quantidade que eu evite ser aleatória e
@@ -359,13 +359,10 @@ int devolve_indice_paridade(int paridade[8],int flag){
     return jogadas_possiveis[x];
 }
 
-int  jogadaaefetuar(ESTADO * e,int paridade[8]){
+int  jogadaaefetuar(int paridade[8]){
     int indice_jogada_a_efetuar;
 
-    if (e->jogador_atual == 1)
-        indice_jogada_a_efetuar = devolve_indice_paridade(paridade,1);
-    else 
-        indice_jogada_a_efetuar = devolve_indice_paridade(paridade,2); 
+        indice_jogada_a_efetuar = devolve_indice_paridade(paridade); 
    
     return indice_jogada_a_efetuar;
 }
@@ -461,7 +458,7 @@ criada para esse fim */
         possui as áreas respetivas de cada possível jogada, o índice escolhido estará de acordo com
         a posição da jogada na lista ligada*/
         int indice_da_jogada_escolhida;
-        indice_da_jogada_escolhida = jogadaaefetuar(e,paridade); 
+        indice_da_jogada_escolhida = jogadaaefetuar(paridade); 
             
         /*Mediante o índice escolhido na função anterior, será então retirada a melhor jogada possível
         na lista ligada*/
