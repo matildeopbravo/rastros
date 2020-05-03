@@ -1297,9 +1297,7 @@
 <codeline lineno="223"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1a6ad8385b5dad64eeaeb9e7bc3e0b1ee7" kindref="member">devolve_coluna</ref>(<ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref><sp/>c);</highlight></codeline>
 <codeline lineno="227"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1ab1e83f3fa9838305353f08b1d31c09b0" kindref="member">devolve_isBot</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e);<sp/></highlight></codeline>
 <codeline lineno="228"><highlight class="normal"></highlight></codeline>
-<codeline lineno="229"><highlight class="normal"></highlight></codeline>
-<codeline lineno="230"><highlight class="normal"></highlight></codeline>
-<codeline lineno="231"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
     <location file="bot/dados.h"/>
   </compounddef>

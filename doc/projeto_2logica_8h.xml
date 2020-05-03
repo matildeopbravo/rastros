@@ -70,7 +70,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="projeto/logica.h" line="16" column="5" bodyfile="bot/logica.c" bodystart="594" bodyend="632" declfile="projeto/logica.h" declline="16" declcolumn="5"/>
+        <location file="projeto/logica.h" line="16" column="5" bodyfile="bot/logica.c" bodystart="601" bodyend="638" declfile="projeto/logica.h" declline="16" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="projeto_2logica_8h_1aaa3fd9c526e661b27383a69e5a5277f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -135,7 +135,7 @@ encurralado&quot;. Retorna 0 caso não se verifique nenhum, em contrapartida dev
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="projeto/logica.h" line="26" column="5" bodyfile="bot/logica.c" bodystart="509" bodyend="593" declfile="projeto/logica.h" declline="26" declcolumn="5"/>
+        <location file="projeto/logica.h" line="26" column="5" bodyfile="bot/logica.c" bodystart="516" bodyend="600" declfile="projeto/logica.h" declline="26" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="projeto_2logica_8h_1ad3f8800d9f979e4b250c2603de7dcadd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -187,7 +187,7 @@ encurralado&quot;. Retorna 0 caso não se verifique nenhum, em contrapartida dev
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="projeto/logica.h" line="37" column="5" bodyfile="bot/logica.c" bodystart="489" bodyend="507" declfile="projeto/logica.h" declline="37" declcolumn="5"/>
+        <location file="projeto/logica.h" line="37" column="5" bodyfile="bot/logica.c" bodystart="496" bodyend="514" declfile="projeto/logica.h" declline="37" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="projeto_2logica_8h_1a105c7792d2784bd2c00f5e707266bc46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
@@ -215,7 +215,7 @@ encurralado&quot;. Retorna 0 caso não se verifique nenhum, em contrapartida dev
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="projeto/logica.h" line="44" column="12" bodyfile="bot/logica.c" bodystart="429" bodyend="485" declfile="projeto/logica.h" declline="44" declcolumn="12"/>
+        <location file="projeto/logica.h" line="44" column="12" bodyfile="bot/logica.c" bodystart="437" bodyend="492" declfile="projeto/logica.h" declline="44" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="projeto_2logica_8h_1aa8293a66c6ce9efae086fba59bb8c884" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -255,7 +255,7 @@ encurralado&quot;. Retorna 0 caso não se verifique nenhum, em contrapartida dev
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="projeto/logica.h" line="50" column="5" bodyfile="bot/logica.c" bodystart="372" bodyend="393" declfile="projeto/logica.h" declline="50" declcolumn="5"/>
+        <location file="projeto/logica.h" line="50" column="5" bodyfile="bot/logica.c" bodystart="380" bodyend="401" declfile="projeto/logica.h" declline="50" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="projeto_2logica_8h_1a62f43dfd205580f152712e9f18276103" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -297,7 +297,7 @@ encurralado&quot;. Retorna 0 caso não se verifique nenhum, em contrapartida dev
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="projeto/logica.h" line="56" column="6" bodyfile="bot/logica.c" bodystart="395" bodyend="401" declfile="projeto/logica.h" declline="56" declcolumn="6"/>
+        <location file="projeto/logica.h" line="56" column="6" bodyfile="bot/logica.c" bodystart="403" bodyend="409" declfile="projeto/logica.h" declline="56" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="projeto_2logica_8h_1adce50d8ee37c0296fcab65772db0fc57" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
@@ -372,7 +372,7 @@ Função principal da heurística floodfill. Devolve a melhor jogada possível t
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="projeto/logica.h" line="62" column="12" bodyfile="bot/logica.c" bodystart="293" bodyend="315" declfile="projeto/logica.h" declline="62" declcolumn="12"/>
+        <location file="projeto/logica.h" line="62" column="12" bodyfile="bot/logica.c" bodystart="302" bodyend="323" declfile="projeto/logica.h" declline="62" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="projeto_2logica_8h_1ab50719b4d8ccd4926730de9ab6b1bf26" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
@@ -432,7 +432,7 @@ Função principal da heurística floodfill. Devolve a melhor jogada possível t
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="projeto/logica.h" line="74" column="12" bodyfile="bot/logica.c" bodystart="34" bodyend="76" declfile="projeto/logica.h" declline="74" declcolumn="12"/>
+        <location file="projeto/logica.h" line="74" column="12" bodyfile="bot/logica.c" bodystart="38" bodyend="81" declfile="projeto/logica.h" declline="74" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="projeto_2logica_8h_1a4b7227ac52e72c662be8e60fcab31f81" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -485,7 +485,7 @@ Função principal da heurística floodfill. Devolve a melhor jogada possível t
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="projeto/logica.h" line="83" column="6" bodyfile="bot/logica.c" bodystart="134" bodyend="160" declfile="projeto/logica.h" declline="83" declcolumn="6"/>
+        <location file="projeto/logica.h" line="83" column="6" bodyfile="bot/logica.c" bodystart="140" bodyend="166" declfile="projeto/logica.h" declline="83" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="projeto_2logica_8h_1a827c627b01e9d538ab33ec1be379cdfc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
@@ -537,7 +537,7 @@ Função principal da heurística floodfill. Devolve a melhor jogada possível t
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="projeto/logica.h" line="92" column="12" bodyfile="bot/logica.c" bodystart="269" bodyend="291" declfile="projeto/logica.h" declline="92" declcolumn="12"/>
+        <location file="projeto/logica.h" line="92" column="12" bodyfile="bot/logica.c" bodystart="275" bodyend="297" declfile="projeto/logica.h" declline="92" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="projeto_2logica_8h_1ac62ec1b8cfc401f9972b69d144fc5809" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -717,7 +717,7 @@ Dá para cada casa do tabuleiro um valor específico. Tal valor será importante
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="projeto/logica.h" line="113" column="5" bodyfile="bot/logica.c" bodystart="175" bodyend="240" declfile="projeto/logica.h" declline="113" declcolumn="5"/>
+        <location file="projeto/logica.h" line="113" column="5" bodyfile="bot/logica.c" bodystart="184" bodyend="248" declfile="projeto/logica.h" declline="113" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="projeto_2logica_8h_1a3fc83e127140c4d6149cb87cb7152917" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref> *</type>
@@ -745,7 +745,7 @@ Dá para cada casa do tabuleiro um valor específico. Tal valor será importante
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="projeto/logica.h" line="119" column="13" bodyfile="bot/logica.c" bodystart="27" bodyend="32" declfile="projeto/logica.h" declline="119" declcolumn="13"/>
+        <location file="projeto/logica.h" line="119" column="13" bodyfile="bot/logica.c" bodystart="28" bodyend="36" declfile="projeto/logica.h" declline="119" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="projeto_2logica_8h_1a121fc1e4e0bc77a026906d18f984d7ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
@@ -798,7 +798,7 @@ Dá para cada casa do tabuleiro um valor específico. Tal valor será importante
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="projeto/logica.h" line="128" column="12" bodyfile="bot/logica.c" bodystart="90" bodyend="114" declfile="projeto/logica.h" declline="128" declcolumn="12"/>
+        <location file="projeto/logica.h" line="128" column="12" bodyfile="bot/logica.c" bodystart="95" bodyend="119" declfile="projeto/logica.h" declline="128" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="projeto_2logica_8h_1ab3d83ee5bb070d6530437278b415b636" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -851,7 +851,7 @@ Dá para cada casa do tabuleiro um valor específico. Tal valor será importante
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="projeto/logica.h" line="137" column="5" bodyfile="bot/logica.c" bodystart="115" bodyend="132" declfile="projeto/logica.h" declline="137" declcolumn="5"/>
+        <location file="projeto/logica.h" line="137" column="5" bodyfile="bot/logica.c" bodystart="120" bodyend="138" declfile="projeto/logica.h" declline="137" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="projeto_2logica_8h_1a6eceb14c20dfd2dc46fe7500803bd534" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -891,7 +891,7 @@ Dá para cada casa do tabuleiro um valor específico. Tal valor será importante
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="projeto/logica.h" line="146" column="5" bodyfile="bot/logica.c" bodystart="162" bodyend="173" declfile="projeto/logica.h" declline="146" declcolumn="5"/>
+        <location file="projeto/logica.h" line="146" column="5" bodyfile="bot/logica.c" bodystart="168" bodyend="182" declfile="projeto/logica.h" declline="146" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="projeto_2logica_8h_1aa7ade6abbed3330a0561ce9e7efcfc11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
@@ -944,7 +944,7 @@ Dá para cada casa do tabuleiro um valor específico. Tal valor será importante
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="projeto/logica.h" line="165" column="12" bodyfile="bot/logica.c" bodystart="242" bodyend="266" declfile="projeto/logica.h" declline="165" declcolumn="12"/>
+        <location file="projeto/logica.h" line="165" column="12" bodyfile="bot/logica.c" bodystart="250" bodyend="274" declfile="projeto/logica.h" declline="165" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="projeto_2logica_8h_1a18183af7ccb1fd6405a5f39b1f56ef96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -1049,7 +1049,7 @@ Dá para cada casa do tabuleiro um valor específico. Tal valor será importante
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="projeto/logica.h" line="181" column="6" bodyfile="bot/logica.c" bodystart="403" bodyend="427" declfile="projeto/logica.h" declline="181" declcolumn="6"/>
+        <location file="projeto/logica.h" line="181" column="6" bodyfile="bot/logica.c" bodystart="411" bodyend="435" declfile="projeto/logica.h" declline="181" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="projeto_2logica_8h_1ad795e2ccc8ebc647d3bc2fb9966bdf2f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -1086,7 +1086,7 @@ Dá para cada casa do tabuleiro um valor específico. Tal valor será importante
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="projeto/logica.h" line="193" column="5" bodyfile="bot/logica.c" bodystart="317" bodyend="359" declfile="projeto/logica.h" declline="193" declcolumn="5"/>
+        <location file="projeto/logica.h" line="193" column="5" bodyfile="bot/logica.c" bodystart="325" bodyend="367" declfile="projeto/logica.h" declline="193" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="projeto_2logica_8h_1a47d04407ac67a91a6572ff5011640928" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -1114,7 +1114,7 @@ Dá para cada casa do tabuleiro um valor específico. Tal valor será importante
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="projeto/logica.h" line="199" column="5" bodyfile="bot/logica.c" bodystart="15" bodyend="25" declfile="projeto/logica.h" declline="199" declcolumn="5"/>
+        <location file="projeto/logica.h" line="199" column="5" bodyfile="bot/logica.c" bodystart="15" bodyend="26" declfile="projeto/logica.h" declline="199" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="projeto_2logica_8h_1a6b7af3834ab9d82aa443aa046de1ca60" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structCOORDENADA" kindref="compound">COORDENADA</ref></type>
@@ -1142,7 +1142,7 @@ Dá para cada casa do tabuleiro um valor específico. Tal valor será importante
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="projeto/logica.h" line="204" column="12" bodyfile="bot/logica.c" bodystart="79" bodyend="87" declfile="projeto/logica.h" declline="204" declcolumn="12"/>
+        <location file="projeto/logica.h" line="204" column="12" bodyfile="bot/logica.c" bodystart="84" bodyend="92" declfile="projeto/logica.h" declline="204" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="projeto_2logica_8h_1a859b6fa3715b706976d64748916a4253" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -1171,7 +1171,7 @@ Dá para cada casa do tabuleiro um valor específico. Tal valor será importante
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="projeto/logica.h" line="210" column="6" bodyfile="bot/logica.c" bodystart="361" bodyend="369" declfile="projeto/logica.h" declline="210" declcolumn="6"/>
+        <location file="projeto/logica.h" line="210" column="6" bodyfile="bot/logica.c" bodystart="369" bodyend="377" declfile="projeto/logica.h" declline="210" declcolumn="6"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

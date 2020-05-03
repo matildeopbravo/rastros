@@ -14,20 +14,24 @@ return result;
 
 int verifica_limite_tabuleiro(COORDENADA coordenada){
     int result = 0;
+    int linha = devolve_linha(coordenada);
+    int coluna = devolve_coluna(coordenada);
 
-    if ((coordenada.linha >= 0) && (coordenada.linha <= 7)
-     && (coordenada.coluna >= 0)&& (coordenada.coluna <= 7))
+    if (linha >= 0 && linha <= 7 && coluna >= 0 && coluna <= 7)
     {
         result = 1;
     }    
 
-return result;
+    return result;
 }
 
 COORDENADA * duplica_coordenada(COORDENADA coordenada){
+
     COORDENADA * coordenada_duplicada;
-        coordenada_duplicada = (COORDENADA *)malloc(sizeof(COORDENADA));
-        *coordenada_duplicada = coordenada;
+
+    coordenada_duplicada = (COORDENADA *)malloc(sizeof(COORDENADA));
+    *coordenada_duplicada = coordenada;
+
     return coordenada_duplicada;        
 }
 
@@ -35,13 +39,14 @@ COORDENADA insere_possiveis_jogadas ( ESTADO *e , LISTA *posicoesvazias,COORDENA
 
     COORDENADA coord_vizinha; //Coordenada que vai armazenar cada possível coordenada vizinha em cada ciclo
     COORDENADA *coord_duplicada;// será o resultado de duplicar a coordenada anterior de modo a não perder seu conteúdo
- 
+    COORDENADA ultima_jogada = obtem_ultima_jogada(e);
+
     for (int i = 1 ;i >= -1;i--){
         for (int j = -1;j <= 1;j++){
-            
-            coord_vizinha.linha = ((obtem_ultima_jogada(e)).linha) + i;
-            coord_vizinha.coluna = ((obtem_ultima_jogada(e)).coluna) + j;
-             
+            int lin = devolve_linha(ultima_jogada);
+            int coluna = devolve_coluna(ultima_jogada);
+            coord_vizinha = (COORDENADA) {.linha = lin +i, .coluna = coluna +j};
+
             /* Este primeiro if é a situação de preenchimento normal*/
             if (verifica_casa_vazia(e,coord_vizinha)
                && verifica_limite_tabuleiro(coord_vizinha))
@@ -119,11 +124,12 @@ int verifica_adjacencia ( COORDENADA coord , int num_casa[8][8] , int valor ) {
     for (int i = 1 ;i >= -1;i--){
         for (int j = -1;j <= 1;j++){
             
-            coord_vizinha.linha = (coord.linha) + i;
-            coord_vizinha.coluna = (coord.coluna) + j;
+           int linha = devolve_linha(coord);
+           int coluna = devolve_coluna(coord);
+           coord_vizinha = (COORDENADA) {.linha = linha + i, .coluna = coluna + j};
 
             if (verifica_limite_tabuleiro(coord_vizinha)
-            && num_casa[coord_vizinha.linha][coord_vizinha.coluna] == (valor - 1))
+            && num_casa[devolve_linha(coord_vizinha)][devolve_coluna(coord_vizinha)] == (valor - 1))
                 flag = 1;
                                               
         }
@@ -162,9 +168,12 @@ void inicializa_num_casa(int num_casa[8][8],ESTADO *e, int flag){
 int verifica_quadrante (ESTADO *e,COORDENADA coord){
 
     int result = 0;
+    int jogador_atual = obter_jogador_atual(e);
+    int lin = devolve_linha(coord);
+    int col = devolve_coluna(coord);
     
-    if ((obter_jogador_atual(e) == 1 && (coord.linha > 1 || coord.coluna < 6))
-       || (obter_jogador_atual(e)== 2 && (coord.linha < 6 || coord.coluna > 1)))
+    if ((jogador_atual == 1 && (lin > 1 || col < 6))
+       || (jogador_atual == 2 && (lin < 6 || col > 1)))
        {
        result = 1;
        }
@@ -177,7 +186,6 @@ int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int flag){
     int valor_casa_atual,//Indicará o valor dado a casa que o jogador está(util para indicar que chegamos ao fim da função ao preencher esta variável- mudará seu valor de 0 para outro)
         caminho_encontrado,// 0 se não é possível formar caminho para onde quero chegar. Diferente de zero caso contrário
         valor_casa_do_ciclo;//Valor que cada casa vai possuir mediante a fase do ciclo while
-
     //Inicialização das variáveis
     valor_casa_atual = caminho_encontrado =  valor_casa_do_ciclo = 0;
 
@@ -302,8 +310,7 @@ COORDENADA estrategia_floodfill ( ESTADO * e ) {
     COORDENADA coord_escolhida; //coordenada que vamos retornar no final
     
     /*inicialização padrão para fins no if da linha 266*/
-    coord_escolhida.linha  = 3;
-    coord_escolhida.coluna = 4;
+    coord_escolhida = (COORDENADA){.linha = 3, .coluna = 4};
     
     coord_escolhida = insere_possiveis_jogadas (e,&possiveis_jogadas,coord_escolhida) ;//inicialização da lista ligada com as possiveis jogadas a se fazer
         
@@ -436,10 +443,9 @@ COORDENADA estrategia_paridade(ESTADO *e){
     int indice_da_jogada_escolhida = -1;
     LISTA possiveis_jogadas = criar_lista(); //lista ligada que armazena as possíveis jogadas
     COORDENADA coord_escolhida;//coordenada escolhida resultado de aplicar a função
-    
-    coord_escolhida.linha = 3;  // Inicialização da coordenada com este valor com fins na condição
-    coord_escolhida.coluna = 4; //presente no próximo 'if'.
-    
+
+    coord_escolhida = (COORDENADA){.linha = 3, .coluna = 4};// Inicialização da coordenada com este valor com fins na condição
+
     COORDENADA *cabeca;//apontador auxiliar para retirar o conteúdo do apontador void da lista ligada
     cabeca = &coord_escolhida;//inicialização
     int paridade[8] =  {-1,-1,-1,-1,-1,-1,-1,-1,};//array que armazena a área restante para cada possível jogada
@@ -496,14 +502,14 @@ int verifica_valida ( ESTADO *e , COORDENADA jog_ant , COORDENADA jog_efet) {
 
     int r = 0;
 
-    int linhajogefet = jog_efet.linha;
-    int linhajogant = jog_ant.linha;
-    int coljogefet = jog_efet.coluna;
-    int coljogant = jog_ant.coluna;
+    int linhajogefet = devolve_linha(jog_efet);
+    int linhajogant = devolve_linha(jog_ant);
+    int coljogefet = devolve_coluna(jog_efet);
+    int coljogant = devolve_coluna(jog_ant);
 
     if ((obter_estado_casa ( e , jog_efet ) != PRETA)  
-        && abs( jog_ant.coluna - jog_efet.coluna ) <= 1 
-        && abs( jog_ant.linha - jog_efet.linha ) <= 1 
+        && abs( coljogant -coljogefet ) <= 1 
+        && abs( linhajogant - linhajogefet ) <= 1 
         && ((coljogant != coljogefet)
         || (linhajogant != linhajogefet)))
         {
@@ -600,11 +606,10 @@ int verifica_fim ( ESTADO *e , int l , int c, int j ) {
 int jogar( ESTADO *e , COORDENADA jog_efet ) {
  
     COORDENADA jog_ant = obtem_ultima_jogada(e); 
-    int lin_atual =  jog_ant.linha ;
-    int col_atual = jog_ant.coluna ;
-
-    int prox_lin = jog_efet.linha ;
-    int prox_col = jog_efet.coluna ;
+    int lin_atual =  devolve_linha(jog_ant);
+    int col_atual = devolve_coluna(jog_ant); 
+    int prox_lin = devolve_linha(jog_efet);
+    int prox_col = devolve_coluna(jog_efet); 
     int jogador_atual = obter_jogador_atual(e);
   
 

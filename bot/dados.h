@@ -226,6 +226,4 @@ int devolve_coluna(COORDENADA c);
 */
 int devolve_isBot(ESTADO * e); 
 
-
-
 #endif

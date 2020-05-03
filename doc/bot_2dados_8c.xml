@@ -1134,8 +1134,6 @@
 <codeline lineno="156"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bot_2dados_8h_1ab1e83f3fa9838305353f08b1d31c09b0" kindref="member">devolve_isBot</ref>(<ref refid="structESTADO" kindref="compound">ESTADO</ref><sp/>*<sp/>e)<sp/>{</highlight></codeline>
 <codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>e-&gt;<ref refid="structESTADO_1aed0811b2232af2fb6d00942c1aea3731" kindref="member">isBot</ref>;</highlight></codeline>
 <codeline lineno="158"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="159"><highlight class="normal"></highlight></codeline>
-<codeline lineno="160"><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="bot/dados.c"/>
   </compounddef>
