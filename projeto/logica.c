@@ -33,7 +33,6 @@ COORDENADA * duplica_coordenada(COORDENADA coordenada){
 
 COORDENADA insere_possiveis_jogadas ( ESTADO *e , LISTA *posicoesvazias,COORDENADA coord_escolhida ) {
 
-    printf("-> Possíveis jogadas : ");
     COORDENADA coord_vizinha; //Coordenada que vai armazenar cada possível coordenada vizinha em cada ciclo
     COORDENADA *coord_duplicada;// será o resultado de duplicar a coordenada anterior de modo a não perder seu conteúdo
  
@@ -49,7 +48,7 @@ COORDENADA insere_possiveis_jogadas ( ESTADO *e , LISTA *posicoesvazias,COORDENA
                {
                     coord_duplicada = duplica_coordenada(coord_vizinha);
                     *posicoesvazias = insere_cabeca(*posicoesvazias,coord_duplicada);
-                    printf(" %c%d ", coord_vizinha.coluna + 'a',8 -  coord_vizinha.linha);
+                    
                }
             /* Este if analisa uma das situações de prioridade MÀXIMA- VITÓRIA
             O ciclo deve ser interrompido dado que já achamos a jogada*/
@@ -72,7 +71,6 @@ COORDENADA insere_possiveis_jogadas ( ESTADO *e , LISTA *posicoesvazias,COORDENA
                }
          }
     }
-        printf("\n");
 
     return coord_escolhida;
 }
@@ -183,8 +181,6 @@ int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int flag){
     //Inicialização das variáveis
     valor_casa_atual = caminho_encontrado =  valor_casa_do_ciclo = 0;
    
-    printf ("\n->Atribuição de valor dado para cada casa do tabuleiro:\n\n");
-
     while ( valor_casa_atual == 0 ) {
   
         valor_casa_do_ciclo++; // Toda vez que começa o ciclo incrementamos o valor das casas a preencher(para dar segmento a formação do caminho) 
@@ -205,14 +201,6 @@ int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int flag){
 
                        if (e->tab[coord.linha][coord.coluna] == VAZIO ) {
                             
-                           /*Caso a CASA for fazia devemos nos preocupar apenas com uma situação:
-                           se a flag for diferente de 2  e a casa estiver no quadrante de perigo(quando
-                           verifica_quadrante devolve 0) não preencheremos a casa pois isso significa que
-                           o caminho mais rápido para vitória pode correr o risco de passar por uma casa que pode
-                           garantir a derrota na próxima jogada. Se estiver procurando o caminho mais longo para 
-                           derrota isso é irrelevante, por isso a condição abaixo preencherá tal casa caso as situções
-                           ditas acima não se verificarem*/
-
                            if (( flag == 2 ) || verifica_quadrante(e,coord)) 
                                 {
                                  num_casa[coord.linha][coord.coluna] = valor_casa_do_ciclo ;
@@ -238,34 +226,9 @@ int preenche_valor_das_casas(int num_casa[8][8],ESTADO *e, int flag){
             e mesmo assim não há caminho, logo devolvemos o valor_casa_atual como o valor_casa_do_ciclo para fins na escolha
             qualquer na floodfill inversa*/
 
-            if ( caminho_encontrado == 0 ) {
-                if ( flag == 1 )
-                    valor_casa_atual = -1 ;
-                else
-                    valor_casa_atual = valor_casa_do_ciclo ;
-            }
-
-          //Prints apenas para guiar no que está acontecendo
-   
-            for (int a = 0;a<8;a++){
-                for (int b = 0;b<8;b++){
-                    if ((num_casa[a][b] < 0 || num_casa[a][b] > 9 ) && valor_casa_atual != 0)
-                        printf ("%d", num_casa[a][b]);
-                    else if (valor_casa_atual!= 0)
-                        printf (" %d", num_casa[a][b]);
-                }
-                if (valor_casa_atual!= 0)
-                printf ("\n");
-            }
-            if (valor_casa_atual!= 0)
-            printf ("\n");
         }
 
-        if (valor_casa_atual != -1){
-            printf (" ---------------\n");
-            printf (" a b c d e f g h\n");
-        }
-        else printf("\n->Não há necessidade de dar valor a nada... \nNão dá mais para chegar a minha casinha, algoritimo floodfill é inútil aqui :(\n");
+       
     return valor_casa_atual;
 }
 
@@ -285,7 +248,6 @@ COORDENADA floodfill_inversa ( int num_casa[8][8] , LISTA possiveis_jogadas , ES
         if (num_casa[cabeca->linha][cabeca->coluna] > numcabecamax) {
             numcabecamax = num_casa[cabeca->linha][cabeca->coluna]  ;
             cabecamax = cabeca ;
-            printf ("%d %d %d\n", num_casa[cabeca->linha][cabeca->coluna] , cabeca->linha, cabeca->coluna );
         }
         possiveis_jogadas = proximo(possiveis_jogadas);
     }
@@ -327,8 +289,6 @@ COORDENADA estrategia_floodfill ( ESTADO * e ) {
     
     LISTA possiveis_jogadas = criar_lista();//lista das possíveis jogadas
     COORDENADA coord_escolhida; //coordenada que vamos retornar no final
-  
-    printf ("\n => Resumo da estratégia efetuada (floodfill) \n\n") ;
     
     /*inicialização padrão para fins no if da linha 266*/
     coord_escolhida.linha  = 3;
@@ -342,7 +302,7 @@ COORDENADA estrategia_floodfill ( ESTADO * e ) {
      && (obter_estado_casa(e,coord_escolhida) != UM)) {    
 
         coord_escolhida = auxiliar_floodfill(e,possiveis_jogadas,coord_escolhida);                              
-        printf("\n->Jogada escolhida a partir da heurística floodfill : %c%d  ", coord_escolhida.coluna + 'a',8 -  coord_escolhida.linha); 
+    
     }
 
     return  coord_escolhida;
@@ -390,7 +350,6 @@ int devolve_indice_paridade(int paridade[8]){
     }
 
     int x = rand() % j ;
-    printf ("\naqui %d",x);
     return jogadas_possiveis[x];
 }
 
@@ -442,22 +401,18 @@ void auxiliarparidade (ESTADO *e,LISTA possiveis_jogadas,int paridade[8],COORDEN
     int contador = 0;
 
     LISTA guarda_lista = possiveis_jogadas;
-  
-    printf("\n->Área que sobra mediante cada possível jogada\n") ;
    
     while (possiveis_jogadas != NULL) {
         
         transfere_tabuleiro(tabcopia,e->tab);
 
         cabeca = devolve_cabeca(possiveis_jogadas);
-        printf("%c%d -> ",(*cabeca).coluna + 'a',8 - (*cabeca).linha); 
         
         altera_casa(e,(COORDENADA){(e->ultima_jogada).linha,(e->ultima_jogada).coluna}, PRETA);
         altera_casa(e,(COORDENADA){(*cabeca).linha,(*cabeca).coluna}, BRANCA);
         
         paridade[contador] = calcula_area(((possiveis_jogadas)->valor),e);
 
-        printf("Área : %d\n",paridade[contador]);
         contador++;
         possiveis_jogadas = (possiveis_jogadas)->prox;
         
