@@ -1,4 +1,5 @@
-src/rastros
+projeto/rastros
+bot/bot
 *.o
 *.swp
 *.swo

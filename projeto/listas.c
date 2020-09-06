@@ -2,9 +2,12 @@
 #include <stdlib.h>
 #include "listas.h"
 #include "dados.h"
+#include <string.h>
+#include <strings.h>
 
 LISTA criar_lista() {
     return NULL;
+
  }
 
 LISTA insere_cabeca(LISTA L, void *valor) {

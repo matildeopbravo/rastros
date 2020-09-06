@@ -84,6 +84,7 @@ void altera_tabuleiro(ESTADO *estado){
     }
 }
 
+
 void mostrar_tabuleiro(ESTADO * estado, FILE * stream) {
     altera_tabuleiro(estado);
     /*Ciclo que printa na tela o tabuleiro mediante o contéudo do tabuleiro*/
@@ -261,14 +262,16 @@ int interpretador(ESTADO *e) {
     while(t != 2) { // t = 2 coorresponde a vitória
 
         if (devolve_flagpos(e) ==1){
-           alterna_situacao_pos(&salva_num_jogadas,&salva_jogador_atual,e);
-           mostrar_prompt (e); recupera_valores(e,salva_jogador_atual,salva_num_jogadas);              
+           alterna_situacao_pos(&salva_num_jogadas,&salva_jogador_atual,e); 
+        // guarda jogadas e jogador atual e altera o numero de jogadas para o valor de guardajogadaspos e o jogador atual para o jogado1
+           mostrar_prompt (e); 
+           recupera_valores(e,salva_jogador_atual,salva_num_jogadas);              
         }
         else
             mostrar_prompt (e); 
         /*leitura do que foi digitado pelo jogador */
         if ((fgets(linha, BUF_SIZE, stdin) == NULL) || (!strcmp(linha,"Q\n")))
-            return 0;
+            return -1;
         /*situações em que foi digitado algo*/
         // Situação em que foi digitado uma coordenada
         else if (strlen(linha) == 3 && sscanf(linha, "%[a-h]%[1-8]", col, lin) == 2) {
@@ -279,8 +282,9 @@ int interpretador(ESTADO *e) {
                     alterna_situacao_pos(&salva_num_jogadas,&salva_jogador_atual,e);                    
                     altera_tabuleiro(e);
                 }
+
                 t = jogar ( e,coord);                
-                if (t){
+                if (t){ // se a jogada for válida então o cenário muda
                     mostrar_tabuleiro(e,stdout);
                     altera_flag(e,0);
                 }
@@ -345,7 +349,7 @@ int interpretador(ESTADO *e) {
                         else
                             altera_num_jogadas(e,0); 
                              
-                        salva_jogador_atual =obter_jogador_atual(e);
+                        salva_jogador_atual = obter_jogador_atual(e);
                         altera_jogador_atual(e,1);
                         mostrar_tabuleiro(e,stdout);
                         recupera_valores(e,salva_jogador_atual,salva_num_jogadas);
